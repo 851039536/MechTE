@@ -1,0 +1,14 @@
+D:\sw\Console\MechTE\MechTE\bin\Release\MechTE.dll
+D:\sw\Console\MechTE\MechTE\bin\Release\MechTE.pdb
+D:\sw\Console\MechTE\MechTE\bin\Release\ICSharpCode.SharpZipLib.dll
+D:\sw\Console\MechTE\MechTE\bin\Release\INIFileParser.dll
+D:\sw\Console\MechTE\MechTE\bin\Release\Newtonsoft.Json.dll
+D:\sw\Console\MechTE\MechTE\bin\Release\ICSharpCode.SharpZipLib.pdb
+D:\sw\Console\MechTE\MechTE\bin\Release\ICSharpCode.SharpZipLib.xml
+D:\sw\Console\MechTE\MechTE\bin\Release\INIFileParser.xml
+D:\sw\Console\MechTE\MechTE\bin\Release\Newtonsoft.Json.xml
+D:\sw\Console\MechTE\MechTE\obj\Release\MechTE.csproj.AssemblyReference.cache
+D:\sw\Console\MechTE\MechTE\obj\Release\MechTE.csproj.CoreCompileInputs.cache
+D:\sw\Console\MechTE\MechTE\obj\Release\MechTE.csproj.CopyComplete
+D:\sw\Console\MechTE\MechTE\obj\Release\MechTE.dll
+D:\sw\Console\MechTE\MechTE\obj\Release\MechTE.pdb
