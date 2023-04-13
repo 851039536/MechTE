@@ -22,39 +22,44 @@
         </member>
         <member name="T:MechTE.Cmd.TCmd">
             <summary>
-            cmd.exe 命令
+            cmd命令
             </summary>
         </member>
-        <member name="M:MechTE.Cmd.TCmd.ExeCommand(System.String)">
-             <summary>
-            执行cmd.exe命令
-            命令文本
-             命令输出文本
-             </summary>
-             <param name="commandText"></param>
-             <returns></returns>
+        <member name="M:MechTE.Cmd.TCmd.VExe(System.Object)">
+            <summary>
+            cmd命令 vue版本
+            </summary>
+            <param name="name">Shell程序命令</param>
+            <returns>string</returns>
         </member>
         <member name="M:MechTE.Cmd.TCmd.ExeCommand(System.String[])">
-             
+             <summary>
              执行多条cmd.exe命令
-             
+             </summary>
             命令文本数组
              命令输出文本
         </member>
+        <member name="M:MechTE.Cmd.TCmd.Exe(System.String)">
+             <summary>
+            cmd.exe命令
+             </summary>
+             <param name="cmd">Shell程序命令</param>
+             <returns>string</returns>
+        </member>
         <member name="M:MechTE.Cmd.TCmd.StartApp(System.String)">
-             
+            <summary>
              启动外部Windows应用程序，隐藏程序界面
-             
-            应用程序路径名称
-             true表示成功，false表示失败
+            </summary>
+            <param name="appName">/应用程序路径名称</param>
+            <returns>bool</returns>
         </member>
         <member name="M:MechTE.Cmd.TCmd.StartApp(System.String,System.Diagnostics.ProcessWindowStyle)">
-             
-             启动外部应用程序
-             
-            应用程序路径名称
+            <summary>
             进程窗口模式
-             true表示成功，false表示失败
+            </summary>
+            <param name="appName">应用程序路径名称</param>
+            <param name="style">显示模式</param>
+            <returns>bool</returns>
         </member>
         <member name="M:MechTE.Cmd.TCmd.StartApp(System.String,System.String)">
              
@@ -73,30 +78,30 @@
             进程窗口模式
              true表示成功，false表示失败
         </member>
-        <member name="M:MechTE.Cmd.TCmd.Rar(System.String,System.String)">
+        <member name="M:MechTE.Cmd.TCmd.LoginNetwork(System.String,System.String,System.String)">
             <summary>
-            实现压缩，需要rar.exe上传到网站根目录
+            网盘登录
             </summary>
-            <param name="s"></param>
-            <param name="d"></param>
-            <example>rar("e:/www.svnhost.cn/", "e:/www.svnhost.cn.rar");</example>
-        </member>
-        <member name="M:MechTE.Cmd.TCmd.UnRar(System.String,System.String)">
-            <summary>
-            实现解压缩，需要rar.exe上传到网站根目录
-            </summary>
-            <param name="s"></param>
-            <param name="d"></param>
-            <example>unrar("e:/www.svnhost.cn.rar", "e:/");</example>
+            <param name="path">网盘路径:\10.xx.xx</param>
+            <param name="userName">用户</param>
+            <param name="passWord">密码</param>
+            <returns>bool</returns>
         </member>
         <member name="T:MechTE.Files.TFile">
             <summary>
             文件操作类
             </summary>
         </member>
+        <member name="M:MechTE.Files.TFile.VOpenFile(System.Object)">
+            <summary>
+            打开指定路径/程序
+            </summary>
+            <param name="path">路径</param>
+            <returns></returns>
+        </member>
         <member name="M:MechTE.Files.TFile.ShellExecute(System.IntPtr,System.Text.StringBuilder,System.Text.StringBuilder,System.Text.StringBuilder,System.Text.StringBuilder,System.Int32)">
             <summary>
-            ShellExecute
+            使用DllImport指定调用的Windows API函数及其相关信息
             </summary>
             <param name="hwnd">指定父窗口句柄:ntPtr.Zero</param>
             <param name="lpszOp">指定要进行的操作:Open</param>
@@ -129,20 +134,20 @@
         </member>
         <member name="M:MechTE.Files.TFile.FileDialog">
             <summary>
-            winfrom文件浏览对话框
+            winfrom浏览文件对话框
             </summary>
             <returns>string</returns>
         </member>
         <member name="M:MechTE.Files.TFile.QueryFile(System.String)">
             <summary>
-            遍历文件
+            获取指定目录文件夹
             </summary>
             <param name="path">文件路径</param>
             <returns>文件名,文件路径</returns>
         </member>
         <member name="M:MechTE.Files.TFile.DelFile(System.String)">
             <summary>
-            删除文件
+            删除指定的文件
             </summary>
             <param name="path">路径</param>
             <returns></returns>
@@ -156,7 +161,7 @@
         </member>
         <member name="M:MechTE.Files.TFile.IsExistFile(System.String)">
             <summary>
-            检测指定文件是否存在,如果存在则返回true。
+            检测指定文件是否存在
             </summary>
             <param name="filePath">文件的绝对路径</param>        
         </member>
@@ -168,7 +173,7 @@
         </member>
         <member name="M:MechTE.Files.TFile.GetDirectories(System.String)">
             <summary>
-            获取指定目录中所有子目录列表,若要搜索嵌套的子目录列表,请使用重载方法.
+            获取指定目录中所有子目录列表
             </summary>
             <param name="directoryPath">指定目录的绝对路径</param>        
         </member>
@@ -204,18 +209,6 @@
             范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param> 
             <param name="isSearchChild">是否搜索子目录</param>
         </member>
-        <member name="M:MechTE.Files.TFile.GetDateDir">
-            <summary>
-            根据时间得到目录名yyyyMMdd
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:MechTE.Files.TFile.GetDateFile">
-            <summary>
-            根据时间得到文件名HHmmssff
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:MechTE.Files.TFile.CopyFolder(System.String,System.String)">
             <summary>
             复制文件夹(递归)
@@ -250,7 +243,7 @@
         </member>
         <member name="M:MechTE.Files.TFile.CreateFile(System.String)">
             <summary>
-            创建一个文件。
+            创建一个文件
             </summary>
             <param name="filePath">文件的绝对路径</param>
         </member>
@@ -328,6 +321,122 @@
             </summary>
             <param name="directoryPath">指定目录的绝对路径</param>
         </member>
+        <member name="M:MechTE.Files.TFile.WriteFile(System.String,System.String)">
+            <summary>
+            写文件
+            </summary>
+            <param name="Path">文件路径</param>
+            <param name="Strings">文件内容</param>
+        </member>
+        <member name="M:MechTE.Files.TFile.ReadFile(System.String)">
+            <summary>
+            读文件
+            </summary>
+            <param name="Path">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE.Files.TFile.FileAdd(System.String,System.String)">
+            <summary>
+            追加文件
+            </summary>
+            <param name="Path">文件路径</param>
+            <param name="strings">内容</param>
+        </member>
+        <member name="M:MechTE.Files.TFile.FileCoppy(System.String,System.String)">
+            <summary>
+            拷贝文件
+            </summary>
+            <param name="OrignFile">原始文件</param>
+            <param name="NewFile">新文件路径</param>
+        </member>
+        <member name="M:MechTE.Files.TFile.FileDel(System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="Path">路径</param>
+        </member>
+        <member name="M:MechTE.Files.TFile.FileMove(System.String,System.String)">
+            <summary>
+            移动文件
+            </summary>
+            <param name="OrignFile">原始路径</param>
+            <param name="NewFile">新路径</param>
+        </member>
+        <member name="M:MechTE.Files.TFile.FolderCreate(System.String,System.String)">
+            <summary>
+            在当前目录下创建目录
+            </summary>
+            <param name="OrignFolder">当前目录</param>
+            <param name="NewFloder">新目录</param>
+        </member>
+        <member name="M:MechTE.Files.TFile.FolderCreate(System.String)">
+            <summary>
+            创建文件夹
+            </summary>
+            <param name="Path"></param>
+        </member>
+        <member name="M:MechTE.Files.TFile.FileCreate(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Path"></param>
+        </member>
+        <member name="M:MechTE.Files.TFile.DeleteFolder(System.String)">
+            <summary>
+            递归删除文件夹目录及文件
+            </summary>
+            <param name="dir"></param>  
+            <returns></returns>
+        </member>
+        <member name="M:MechTE.Files.TFile.CopyDir(System.String,System.String)">
+            <summary>
+            指定文件夹下面的所有内容copy到目标文件夹下面
+            </summary>
+            <param name="srcPath">原始路径</param>
+            <param name="aimPath">目标文件夹</param>
+        </member>
+        <member name="M:MechTE.Files.TFile.GetFoldAll(System.String)">
+            <summary>
+            获取指定文件夹下所有子目录及文件
+            </summary>
+            <param name="Path">详细路径</param>
+        </member>
+        <member name="M:MechTE.Files.TFile.ListTreeShow(System.IO.DirectoryInfo,System.Int32,System.String)">
+            <summary>
+            获取指定文件夹下所有子目录及文件函数
+            </summary>
+            <param name="theDir">指定目录</param>
+            <param name="nLevel">默认起始值,调用时,一般为0</param>
+            <param name="Rn">用于迭加的传入值,一般为空</param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE.Files.TFile.GetDirectoryLength(System.String)">
+            <summary>
+            获取文件夹大小
+            </summary>
+            <param name="dirPath">文件夹路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE.Files.TFile.GetFileAttibe(System.String)">
+            <summary>
+            获取指定文件详细属性
+            </summary>
+            <param name="filePath">文件详细路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE.Files.TFile.GetFiles(System.IO.DirectoryInfo,System.String,System.Collections.Generic.List{System.String}@)">
+            <summary>
+            获取指定目录下所有符合指定模式的文件名。
+            </summary>
+            <param name="directory">指定目录。</param>
+            <param name="pattern">指定模式。</param>
+            <param name="fileList">符合指定模式的文件名列表。</param>
+        </member>
+        <member name="M:MechTE.Files.TFile.GetDesktop(System.Object)">
+            <summary>
+            读取桌面内容
+            </summary>
+        </member>
         <member name="T:MechTE.TIni.TIni">
             <summary>
             ini文件操作类
@@ -344,6 +453,7 @@
             <param name="size">大小</param>
             <param name="iniPath">完整的ini文件名路径</param>
             <returns></returns>
+            声明INI文件的读操作函数 GetPrivateProfileString()
         </member>
         <member name="M:MechTE.TIni.TIni.WritePrivateProfileString(System.String,System.String,System.String,System.String)">
             <summary>
@@ -354,33 +464,40 @@
             <param name="val">写入的值</param>
             <param name="filePath">完整的ini文件名路径</param>
             <returns></returns>
+            声明INI文件的写操作函数 WritePrivateProfileString()
         </member>
-        <member name="M:MechTE.TIni.TIni.TWriteINI(System.String,System.String,System.String,System.String)">
+        <member name="M:MechTE.TIni.TIni.WINI(System.String,System.String,System.String,System.String)">
             <summary>
             写入ini
             </summary>
-            <param name="Section">ini文件 [xxxx] 头部标识</param>
-            <param name="Key">key名</param>
-            <param name="Value">写入的值</param>
+            <param name="section">ini文件 [xxxx] 头部标识</param>
+            <param name="key">key名</param>
+            <param name="value">写入的值</param>
             <param name="path">完整的ini文件名路径</param>
         </member>
-        <member name="M:MechTE.TIni.TIni.GetIni(System.String,System.String,System.String)">
+        <member name="M:MechTE.TIni.TIni.RINI(System.String,System.String,System.String)">
             <summary>
             读取ini
             </summary>
             <param name="section">ini文件 [xxxx] 头部标识</param>
+            <param name="key">键名</param>
             <param name="path">文件路径</param>
-            <param name="name">Key</param>
             <returns>string</returns>
         </member>
-        <member name="M:MechTE.TIni.TIni.GetInis(System.String,System.String,System.String)">
+        <member name="M:MechTE.TIni.TIni.RINIS(System.String,System.String,System.String)">
             <summary>
             读取ini string[]
             </summary>
             <param name="section">ini文件 [xxxx] 头部标识</param>
-            <param name="path">文件路径</param>
-            <param name="name">Key</param>
+            <param name="key">文件路径</param>
+            <param name="path">Key</param>
             <returns>string[]</returns>
+        </member>
+        <member name="M:MechTE.TIni.TIni.DINI(System.String)">
+            <summary>
+            删除一个INI文件
+            </summary>
+            <param name="FilePath"></param>
         </member>
         <member name="M:MechTE.TIni.TIni.GetIniAll(System.String)">
             <summary>
@@ -443,7 +560,7 @@
             <param name="path">将序列化的json字符串内容写入Json文件，并且保存</param>
             <param name="jsonConents">写入的数据</param>
         </member>
-        <member name="M:MechTE.TJson.TJson.GetJsonString(System.String)">
+        <member name="M:MechTE.TJson.TJson.GetJsonStr(System.String)">
             <summary>
             获取到本地的Json文件并且解析返回对应的json字符串
             </summary>
@@ -469,7 +586,7 @@
             winfrom窗体api
             </summary>
         </member>
-        <member name="M:MechTE.TWinForm.TForm.TMessageBox(System.String,System.String)">
+        <member name="M:MechTE.TWinForm.TForm.MesBox(System.String,System.String)">
             <summary>
             弹框提示
             </summary>
@@ -477,44 +594,45 @@
             <param name="title">标题</param>
             <returns>bool</returns>
         </member>
-        <member name="M:MechTE.TWinForm.TForm.TGetCurrentProcess">
+        <member name="T:MechTE.Systems.TSystems">
+            <summary>
+            系统类
+            </summary>
+        </member>
+        <member name="M:MechTE.Systems.TSystems.GetWindows">
+            <summary>
+            读取当前系统信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE.Systems.TSystems.GetCurrentProcess">
             <summary>
             获取当前进程信息
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MechTE.TWinForm.TForm.TGetProcessesByName(System.String)">
+        <member name="M:MechTE.Systems.TSystems.CheckProcessesByName(System.String)">
             <summary>
             检查重复启动
             </summary>
-            <param name="name"></param>
+            <param name="name">进程名称</param>
         </member>
-        <member name="M:MechTE.TWinForm.TForm.TGetProcesses">
+        <member name="M:MechTE.Systems.TSystems.GetProcesses">
             <summary>
             获得本机的进程
             </summary>
             <returns>Process[]</returns>
         </member>
-        <member name="M:MechTE.TWinForm.TForm.TLoginNetwork(System.String,System.String,System.String)">
+        <member name="M:MechTE.Systems.TSystems.GetLogicalDrivess">
             <summary>
-            网盘登录
+            获取系统驱动器
             </summary>
-            <param name="path">网盘路径:\10.xx.xx</param>
-            <param name="userName">用户</param>
-            <param name="passWord">密码</param>
             <returns></returns>
         </member>
         <member name="T:MechTE.TZip.TZip">
             <summary>
             zip
             </summary>
-        </member>
-        <member name="M:MechTE.TZip.TZip.TZipDirectory(System.String,System.String)">
-            <summary>
-            压缩文件夹
-            </summary>
-            <param name="folderToZip">需要压缩的文件夹--F:\Test</param>
-            <param name="zipedFileName">压缩后的Zip完整文件名--F:\Test\xx.zip</param>
         </member>
         <member name="T:MechTE.ConvertHelper.TConvertHelpers">
             <summary>
@@ -557,125 +675,18 @@
             </summary>
             <param name="data">需要转换成整数的byte数组</param>
         </member>
-        <member name="T:DotNet.Utilities.XmlHelper">
+        <member name="M:MechTE.ConvertHelper.TConvertHelpers.ImgToBase(System.String)">
             <summary>
-            Xml的操作公共类
-            </summary>    
-        </member>
-        <member name="F:DotNet.Utilities.XmlHelper._filePath">
-            <summary>
-            XML文件的物理路径
+            图片转base64
             </summary>
+            <param name="imagePath"></param>
+            <returns></returns>
         </member>
-        <member name="F:DotNet.Utilities.XmlHelper._xml">
+        <member name="M:MechTE.ConvertHelper.TConvertHelpers.BaseToImg(System.String)">
             <summary>
-            Xml文档
+            base64转图片
             </summary>
-        </member>
-        <member name="F:DotNet.Utilities.XmlHelper._element">
-            <summary>
-            XML的根节点
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.#ctor(System.String)">
-            <summary>
-            实例化XmlHelper对象
-            </summary>
-            <param name="xmlFilePath">Xml文件的相对路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.CreateXMLElement">
-            <summary>
-            创建XML的根节点
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.GetNode(System.String)">
-            <summary>
-            获取指定XPath表达式的节点对象
-            </summary>        
-            <param name="xPath">XPath表达式,
-            范例1: @"Skill/First/SkillItem", 等效于 @"//Skill/First/SkillItem"
-            范例2: @"Table[USERNAME='a']" , []表示筛选,USERNAME是Table下的一个子节点.
-            范例3: @"ApplyPost/Item[@itemName='岗位编号']",@itemName是Item节点的属性.
-            </param>
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.GetValue(System.String)">
-            <summary>
-            获取指定XPath表达式节点的值
-            </summary>
-            <param name="xPath">XPath表达式,
-            范例1: @"Skill/First/SkillItem", 等效于 @"//Skill/First/SkillItem"
-            范例2: @"Table[USERNAME='a']" , []表示筛选,USERNAME是Table下的一个子节点.
-            范例3: @"ApplyPost/Item[@itemName='岗位编号']",@itemName是Item节点的属性.
-            </param>
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.GetAttributeValue(System.String,System.String)">
-            <summary>
-            获取指定XPath表达式节点的属性值
-            </summary>
-            <param name="xPath">XPath表达式,
-            范例1: @"Skill/First/SkillItem", 等效于 @"//Skill/First/SkillItem"
-            范例2: @"Table[USERNAME='a']" , []表示筛选,USERNAME是Table下的一个子节点.
-            范例3: @"ApplyPost/Item[@itemName='岗位编号']",@itemName是Item节点的属性.
-            </param>
-            <param name="attributeName">属性名</param>
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.AppendNode(System.Xml.XmlNode)">
-            <summary>
-            1. 功能：新增节点。
-            2. 使用条件：将任意节点插入到当前Xml文件中。
-            </summary>        
-            <param name="xmlNode">要插入的Xml节点</param>
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.AppendNode(System.Data.DataSet)">
-            <summary>
-            1. 功能：新增节点。
-            2. 使用条件：将DataSet中的第一条记录插入Xml文件中。
-            </summary>        
-            <param name="ds">DataSet的实例，该DataSet中应该只有一条记录</param>
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.RemoveNode(System.String)">
-            <summary>
-            删除指定XPath表达式的节点
-            </summary>        
-            <param name="xPath">XPath表达式,
-            范例1: @"Skill/First/SkillItem", 等效于 @"//Skill/First/SkillItem"
-            范例2: @"Table[USERNAME='a']" , []表示筛选,USERNAME是Table下的一个子节点.
-            范例3: @"ApplyPost/Item[@itemName='岗位编号']",@itemName是Item节点的属性.
-            </param>
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.Save">
-            <summary>
-            保存XML文件
-            </summary>        
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.CreateRootElement(System.String)">
-            <summary>
-            创建根节点对象
-            </summary>
-            <param name="xmlFilePath">Xml文件的相对路径</param>        
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.GetValue(System.String,System.String)">
-            <summary>
-            获取指定XPath表达式节点的值
-            </summary>
-            <param name="xmlFilePath">Xml文件的相对路径</param>
-            <param name="xPath">XPath表达式,
-            范例1: @"Skill/First/SkillItem", 等效于 @"//Skill/First/SkillItem"
-            范例2: @"Table[USERNAME='a']" , []表示筛选,USERNAME是Table下的一个子节点.
-            范例3: @"ApplyPost/Item[@itemName='岗位编号']",@itemName是Item节点的属性.
-            </param>
-        </member>
-        <member name="M:DotNet.Utilities.XmlHelper.GetAttributeValue(System.String,System.String,System.String)">
-            <summary>
-            获取指定XPath表达式节点的属性值
-            </summary>
-            <param name="xmlFilePath">Xml文件的相对路径</param>
-            <param name="xPath">XPath表达式,
-            范例1: @"Skill/First/SkillItem", 等效于 @"//Skill/First/SkillItem"
-            范例2: @"Table[USERNAME='a']" , []表示筛选,USERNAME是Table下的一个子节点.
-            范例3: @"ApplyPost/Item[@itemName='岗位编号']",@itemName是Item节点的属性.
-            </param>
-            <param name="attributeName">属性名</param>
+            <param name="base64String"></param>
         </member>
         <member name="T:DotNet.Utilities.XMLProcess">
             <summary>
@@ -871,827 +882,6 @@
             <param name="strXmlPath">XML相对路径</param>
             <param name="strColumn">列名</param>
             <param name="ColumnValue">指定值</param>
-        </member>
-        <member name="T:DotNet.Utilities.DownLoadHelper">
-            <summary>
-            文件下载帮助类
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.DownLoadHelper.ResponseFile(System.Web.HttpRequest,System.Web.HttpResponse,System.String,System.String,System.Int64)">
-            <summary>
-             输出硬盘文件，提供下载 支持大文件、续传、速度限制、资源占用小
-            </summary>
-            <param name="_Request">Page.Request对象</param>
-            <param name="_Response">Page.Response对象</param>
-            <param name="_fileName">下载文件名</param>
-            <param name="_fullPath">带文件名下载路径</param>
-            <param name="_speed">每秒允许下载的字节数</param>
-            <returns>返回是否成功</returns>
-        </member>
-        <member name="T:DotNet.Utilities.FileDown">
-            <summary>
-            文件下载类
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.FileDown.FileNameExtension(System.String)">
-            <summary>
-            参数为虚拟路径
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.FileDown.MapPathFile(System.String)">
-            <summary>
-            获取物理地址
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.FileDown.DownLoadold(System.String)">
-            <summary>
-            普通下载
-            </summary>
-            <param name="FileName">文件虚拟路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileDown.DownLoad(System.String)">
-            <summary>
-            分块下载
-            </summary>
-            <param name="FileName">文件虚拟路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileDown.ResponseFile(System.Web.HttpRequest,System.Web.HttpResponse,System.String,System.String,System.Int64)">
-            <summary>
-             输出硬盘文件，提供下载 支持大文件、续传、速度限制、资源占用小
-            </summary>
-            <param name="_Request">Page.Request对象</param>
-            <param name="_Response">Page.Response对象</param>
-            <param name="_fileName">下载文件名</param>
-            <param name="_fullPath">带文件名下载路径</param>
-            <param name="_speed">每秒允许下载的字节数</param>
-            <returns>返回是否成功</returns>
-        </member>
-        <member name="T:DotNet.Utilities.FileUp">
-            <summary>
-            文件上传类
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.FileUp.#ctor">
-            <summary>
-            文件上传类
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.FileUp.GetBinaryFile(System.String)">
-            <summary>
-            转换为字节数组
-            </summary>
-            <param name="filename">文件名</param>
-            <returns>字节数组</returns>
-        </member>
-        <member name="M:DotNet.Utilities.FileUp.ConvertStreamToByteBuffer(System.IO.Stream)">
-            <summary>
-            流转化为字节数组
-            </summary>
-            <param name="theStream">流</param>
-            <returns>字节数组</returns>
-        </member>
-        <member name="M:DotNet.Utilities.FileUp.FileSc(System.Web.UI.WebControls.FileUpload,System.String,System.String)">
-            <summary>
-            上传文件
-            </summary>
-            <param name="PosPhotoUpload">控件</param>
-            <param name="saveFileName">保存的文件名</param>
-            <param name="imagePath">保存的文件路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileUp.SaveFile(System.Byte[],System.String,System.String)">
-            <summary>
-            上传文件
-            </summary>
-            <param name="binData">字节数组</param>
-            <param name="fileName">文件名</param>
-            <param name="fileType">文件类型</param>
-        </member>
-        <member name="T:DotNet.Utilities.UpLoadFiles">
-            <summary>
-            UpLoadFiles 的摘要说明
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.UpLoadFiles.UploadFile(System.String,System.Int32,System.String[],System.Web.UI.HtmlControls.HtmlInputFile,System.String@,System.Int32@)">
-            <summary>
-            上传文件
-            </summary>
-            <param name="filePath">保存文件地址</param>
-            <param name="maxSize">文件最大大小</param>
-            <param name="fileType">文件后缀类型</param>
-            <param name="TargetFile">控件名</param>
-            <param name="saveFileName">保存后的文件名和地址</param>
-            <param name="fileSize">文件大小</param>
-            <returns></returns>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.Read_Txt(System.String)">
-            <summary>
-            读取TXT
-            </summary>
-            <param name="filename"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.GetPostfixStr(System.String)">
-            <summary>
-            取后缀名
-            </summary>
-            <param name="filename">文件名</param>
-            <returns>.gif|.html格式</returns>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.WriteFile(System.String,System.String)">
-            <summary>
-            写文件
-            </summary>
-            <param name="Path">文件路径</param>
-            <param name="Strings">文件内容</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.ReadFile(System.String)">
-            <summary>
-            读文件
-            </summary>
-            <param name="Path">文件路径</param>
-            <returns></returns>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.FileAdd(System.String,System.String)">
-            <summary>
-            追加文件
-            </summary>
-            <param name="Path">文件路径</param>
-            <param name="strings">内容</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.FileCoppy(System.String,System.String)">
-            <summary>
-            拷贝文件
-            </summary>
-            <param name="OrignFile">原始文件</param>
-            <param name="NewFile">新文件路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.FileDel(System.String)">
-            <summary>
-            删除文件
-            </summary>
-            <param name="Path">路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.FileMove(System.String,System.String)">
-            <summary>
-            移动文件
-            </summary>
-            <param name="OrignFile">原始路径</param>
-            <param name="NewFile">新路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.FolderCreate(System.String,System.String)">
-            <summary>
-            在当前目录下创建目录
-            </summary>
-            <param name="OrignFolder">当前目录</param>
-            <param name="NewFloder">新目录</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.FolderCreate(System.String)">
-            <summary>
-            创建文件夹
-            </summary>
-            <param name="Path"></param>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.DeleteFolder(System.String)">
-            <summary>
-            递归删除文件夹目录及文件
-            </summary>
-            <param name="dir"></param>  
-            <returns></returns>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.CopyDir(System.String,System.String)">
-            <summary>
-            指定文件夹下面的所有内容copy到目标文件夹下面
-            </summary>
-            <param name="srcPath">原始路径</param>
-            <param name="aimPath">目标文件夹</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.GetFoldAll(System.String)">
-            <summary>
-            获取指定文件夹下所有子目录及文件
-            </summary>
-            <param name="Path">详细路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.ListTreeShow(System.IO.DirectoryInfo,System.Int32,System.String)">
-            <summary>
-            获取指定文件夹下所有子目录及文件函数
-            </summary>
-            <param name="theDir">指定目录</param>
-            <param name="nLevel">默认起始值,调用时,一般为0</param>
-            <param name="Rn">用于迭加的传入值,一般为空</param>
-            <returns></returns>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.GetFoldAll(System.String,System.String,System.String)">
-             <summary>
-             获取指定文件夹下所有子目录及文件(下拉框形)
-             </summary>
-             <param name="Path">详细路径</param>
-            <param name="DropName">下拉列表名称</param>
-            <param name="tplPath">默认选择模板名称</param>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.ListTreeShow(System.IO.DirectoryInfo,System.Int32,System.String,System.String)">
-            <summary>
-            获取指定文件夹下所有子目录及文件函数
-            </summary>
-            <param name="theDir">指定目录</param>
-            <param name="nLevel">默认起始值,调用时,一般为0</param>
-            <param name="Rn">用于迭加的传入值,一般为空</param>
-            <param name="tplPath">默认选择模板名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.GetDirectoryLength(System.String)">
-            <summary>
-            获取文件夹大小
-            </summary>
-            <param name="dirPath">文件夹路径</param>
-            <returns></returns>
-        </member>
-        <member name="M:DotNet.Utilities.FileOperate.GetFileAttibe(System.String)">
-            <summary>
-            获取指定文件详细属性
-            </summary>
-            <param name="filePath">文件详细路径</param>
-            <returns></returns>
-        </member>
-        <member name="T:DotNet.Utilities.RegexHelper">
-            <summary>
-            操作正则表达式的公共类
-            </summary>    
-        </member>
-        <member name="M:DotNet.Utilities.RegexHelper.IsMatch(System.String,System.String)">
-            <summary>
-            验证输入字符串是否与模式字符串匹配，匹配返回true
-            </summary>
-            <param name="input">输入字符串</param>
-            <param name="pattern">模式字符串</param>        
-        </member>
-        <member name="M:DotNet.Utilities.RegexHelper.IsMatch(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
-            <summary>
-            验证输入字符串是否与模式字符串匹配，匹配返回true
-            </summary>
-            <param name="input">输入的字符串</param>
-            <param name="pattern">模式字符串</param>
-            <param name="options">筛选条件</param>
-        </member>
-        <member name="T:DotNet.Utilities.HttpHelper">
-            <summary>
-            Http连接操作帮助类 
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.HttpGet(System.String,System.String)">
-            <summary>
-            GET请求
-            </summary>
-            <param name="Url">The URL.</param>
-            <param name="postDataStr">The post data string.</param>
-            <returns>System.String.</returns>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.HttpPost(System.String,System.String)">
-            <summary>
-            POST请求
-            </summary>
-            <param name="posturl">The posturl.</param>
-            <param name="postData">The post data.</param>
-            <returns>System.String.</returns>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.CreateAutoSubmitForm(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Text.Encoding)">
-            <summary>
-            模拟httpPost提交表单
-            </summary>
-            <param name="url">POS请求的网址</param>
-            <param name="data">表单里的参数和值</param>
-            <param name="encoder">页面编码</param>
-            <returns></returns>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.GetHttpRequestData(DotNet.Utilities.HttpItem)">
-            <summary>
-            根据相传入的数据，得到相应页面数据
-            </summary>
-            <param name="strPostdata">传入的数据Post方式,get方式传NUll或者空字符串都可以</param>
-            <returns>string类型的响应数据</returns>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.GetMemoryStream(System.IO.Stream)">
-            <summary>
-            4.0以下.net版本取数据使用
-            </summary>
-            <param name="streamResponse">流</param>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.SetRequest(DotNet.Utilities.HttpItem)">
-             <summary>
-             为请求准备参数
-             </summary>
-            <param name="objhttpItem">参数列表</param>
-             <param name="_Encoding">读取数据时的编码方式</param>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.SetCer(DotNet.Utilities.HttpItem)">
-            <summary>
-            设置证书
-            </summary>
-            <param name="objhttpItem"></param>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.SetEncoding(DotNet.Utilities.HttpItem)">
-            <summary>
-            设置编码
-            </summary>
-            <param name="objhttpItem">Http参数</param>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.SetCookie(DotNet.Utilities.HttpItem)">
-            <summary>
-            设置Cookie
-            </summary>
-            <param name="objhttpItem">Http参数</param>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.SetPostData(DotNet.Utilities.HttpItem)">
-            <summary>
-            设置Post数据
-            </summary>
-            <param name="objhttpItem">Http参数</param>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.SetProxy(DotNet.Utilities.HttpItem)">
-            <summary>
-            设置代理
-            </summary>
-            <param name="objhttpItem">参数对象</param>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.CheckValidationResult(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
-            <summary>
-            回调验证证书问题
-            </summary>
-            <param name="sender">流对象</param>
-            <param name="certificate">证书</param>
-            <param name="chain">X509Chain</param>
-            <param name="errors">SslPolicyErrors</param>
-            <returns>bool</returns>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.GetUrl(System.String)">
-            <summary>    
-            传入一个正确或不正确的URl，返回正确的URL
-            </summary>    
-            <param name="URL">url</param>   
-            <returns>
-            </returns>
-        </member>
-        <member name="M:DotNet.Utilities.HttpHelper.GetHtml(DotNet.Utilities.HttpItem)">
-            <summary>
-            采用https协议访问网络,根据传入的URl地址，得到响应的数据字符串。
-            </summary>
-            <param name="objhttpItem">参数列表</param>
-            <returns>String类型的数据</returns>
-        </member>
-        <member name="T:DotNet.Utilities.HttpItem">
-            <summary>
-            Http请求参考类 
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.URL">
-            <summary>
-            请求URL必须填写
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.Method">
-            <summary>
-            请求方式默认为GET方式
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.Timeout">
-            <summary>
-            默认请求超时时间
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.ReadWriteTimeout">
-            <summary>
-            默认写入Post数据超时间
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.Accept">
-            <summary>
-            请求标头值 默认为text/html, application/xhtml+xml, */*
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.ContentType">
-            <summary>
-            请求返回类型默认 text/html
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.UserAgent">
-            <summary>
-            客户端访问信息默认Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.Encoding">
-            <summary>
-            返回数据编码默认为NUll,可以自动识别
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.PostDataType">
-            <summary>
-            Post的数据类型
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.Postdata">
-            <summary>
-            Post请求时要发送的字符串Post数据
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.PostdataByte">
-            <summary>
-            Post请求时要发送的Byte类型的Post数据
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.CookieCollection">
-            <summary>
-            Cookie对象集合
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.Cookie">
-            <summary>
-            请求时的Cookie
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.Referer">
-            <summary>
-            来源地址，上次访问地址
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.CerPath">
-            <summary>
-            证书绝对路径
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.IsToLower">
-            <summary>
-            是否设置为全文小写
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.Allowautoredirect">
-            <summary>
-            支持跳转页面，查询结果将是跳转后的页面
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.Connectionlimit">
-            <summary>
-            最大连接数
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.ProxyUserName">
-            <summary>
-            代理Proxy 服务器用户名
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.ProxyPwd">
-            <summary>
-            代理 服务器密码
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.ProxyIp">
-            <summary>
-            代理 服务IP
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpItem.ResultType">
-            <summary>
-            设置返回类型String和Byte
-            </summary>
-        </member>
-        <member name="T:DotNet.Utilities.HttpResult">
-            <summary>
-            Http返回参数类
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpResult.Cookie">
-            <summary>
-            Http请求返回的Cookie
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpResult.CookieCollection">
-            <summary>
-            Cookie对象集合
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpResult.Html">
-            <summary>
-            返回的String类型数据 只有ResultType.String时才返回数据，其它情况为空
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.HttpResult.ResultByte">
-            <summary>
-            返回的Byte数组 只有ResultType.Byte时才返回数据，其它情况为空
-            </summary>
-        </member>
-        <member name="T:DotNet.Utilities.ResultType">
-            <summary>
-            返回类型
-            </summary>
-        </member>
-        <member name="T:DotNet.Utilities.PostDataType">
-            <summary>
-            Post的数据格式默认为string
-            </summary>
-        </member>
-        <member name="T:DotNet.Utilities.IpHelper">
-            <summary>
-            共用工具类
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.IpHelper.GetUserIp">
-            <summary>
-            获得用户IP
-            </summary>
-        </member>
-        <member name="T:DotNet.Utilities.NetHelper">
-            <summary>
-            网络操作相关的类
-            </summary>    
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.GetValidPort(System.String)">
-            <summary>
-            检查设置的端口号是否正确，并返回正确的端口号,无效端口号返回-1。
-            </summary>
-            <param name="port">设置的端口号</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.StringToIPAddress(System.String)">
-            <summary>
-            将字符串形式的IP地址转换成IPAddress对象
-            </summary>
-            <param name="ip">字符串形式的IP地址</param>        
-        </member>
-        <member name="P:DotNet.Utilities.NetHelper.LocalHostName">
-            <summary>
-            获取本机的计算机名
-            </summary>
-        </member>
-        <member name="P:DotNet.Utilities.NetHelper.LANIP">
-            <summary>
-            获取本机的局域网IP
-            </summary>        
-        </member>
-        <member name="P:DotNet.Utilities.NetHelper.WANIP">
-            <summary>
-            获取本机在Internet网络的广域网IP
-            </summary>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.GetClientIP(System.Net.Sockets.Socket)">
-            <summary>
-            获取远程客户机的IP地址
-            </summary>
-            <param name="clientSocket">客户端的socket对象</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.CreateIPEndPoint(System.String,System.Int32)">
-            <summary>
-            创建一个IPEndPoint对象
-            </summary>
-            <param name="ip">IP地址</param>
-            <param name="port">端口号</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.CreateTcpListener">
-            <summary>
-            创建一个自动分配IP和端口的TcpListener对象
-            </summary>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.CreateTcpListener(System.String,System.Int32)">
-            <summary>
-            创建一个TcpListener对象
-            </summary>
-            <param name="ip">IP地址</param>
-            <param name="port">端口</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.CreateTcpSocket">
-            <summary>
-            创建一个基于TCP协议的Socket对象
-            </summary>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.CreateUdpSocket">
-            <summary>
-            创建一个基于UDP协议的Socket对象
-            </summary>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.GetLocalPoint(System.Net.Sockets.TcpListener)">
-            <summary>
-            获取TcpListener对象的本地终结点
-            </summary>
-            <param name="tcpListener">TcpListener对象</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.GetLocalPoint_IP(System.Net.Sockets.TcpListener)">
-            <summary>
-            获取TcpListener对象的本地终结点的IP地址
-            </summary>
-            <param name="tcpListener">TcpListener对象</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.GetLocalPoint_Port(System.Net.Sockets.TcpListener)">
-            <summary>
-            获取TcpListener对象的本地终结点的端口号
-            </summary>
-            <param name="tcpListener">TcpListener对象</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.GetLocalPoint(System.Net.Sockets.Socket)">
-            <summary>
-            获取Socket对象的本地终结点
-            </summary>
-            <param name="socket">Socket对象</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.GetLocalPoint_IP(System.Net.Sockets.Socket)">
-            <summary>
-            获取Socket对象的本地终结点的IP地址
-            </summary>
-            <param name="socket">Socket对象</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.GetLocalPoint_Port(System.Net.Sockets.Socket)">
-            <summary>
-            获取Socket对象的本地终结点的端口号
-            </summary>
-            <param name="socket">Socket对象</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.BindEndPoint(System.Net.Sockets.Socket,System.Net.IPEndPoint)">
-            <summary>
-            绑定终结点
-            </summary>
-            <param name="socket">Socket对象</param>
-            <param name="endPoint">要绑定的终结点</param>
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.BindEndPoint(System.Net.Sockets.Socket,System.String,System.Int32)">
-            <summary>
-            绑定终结点
-            </summary>
-            <param name="socket">Socket对象</param>        
-            <param name="ip">服务器IP地址</param>
-            <param name="port">服务器端口</param>
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.StartListen(System.Net.Sockets.Socket,System.Int32)">
-            <summary>
-            指定Socket对象执行监听，默认允许的最大挂起连接数为100
-            </summary>
-            <param name="socket">执行监听的Socket对象</param>
-            <param name="port">监听的端口号</param>
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.StartListen(System.Net.Sockets.Socket,System.Int32,System.Int32)">
-            <summary>
-            指定Socket对象执行监听
-            </summary>
-            <param name="socket">执行监听的Socket对象</param>
-            <param name="port">监听的端口号</param>
-            <param name="maxConnection">允许的最大挂起连接数</param>
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.StartListen(System.Net.Sockets.Socket,System.String,System.Int32,System.Int32)">
-            <summary>
-            指定Socket对象执行监听
-            </summary>
-            <param name="socket">执行监听的Socket对象</param>
-            <param name="ip">监听的IP地址</param>
-            <param name="port">监听的端口号</param>
-            <param name="maxConnection">允许的最大挂起连接数</param>
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.Connect(System.Net.Sockets.Socket,System.String,System.Int32)">
-            <summary>
-            连接到基于TCP协议的服务器,连接成功返回true，否则返回false
-            </summary>
-            <param name="socket">Socket对象</param>
-            <param name="ip">服务器IP地址</param>
-            <param name="port">服务器端口号</param>     
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.SendMsg(System.Net.Sockets.Socket,System.Byte[])">
-            <summary>
-            以同步方式向指定的Socket对象发送消息
-            </summary>
-            <param name="socket">socket对象</param>
-            <param name="msg">发送的消息</param>
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.SendMsg(System.Net.Sockets.Socket,System.String)">
-            <summary>
-            使用UTF8编码格式以同步方式向指定的Socket对象发送消息
-            </summary>
-            <param name="socket">socket对象</param>
-            <param name="msg">发送的消息</param>
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.ReceiveMsg(System.Net.Sockets.Socket,System.Byte[])">
-            <summary>
-            以同步方式接收消息
-            </summary>
-            <param name="socket">socket对象</param>
-            <param name="buffer">接收消息的缓冲区</param>
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.ReceiveMsg(System.Net.Sockets.Socket)">
-            <summary>
-            以同步方式接收消息，并转换为UTF8编码格式的字符串,使用5000字节的默认缓冲区接收。
-            </summary>
-            <param name="socket">socket对象</param>        
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.Close(System.Net.Sockets.Socket)">
-            <summary>
-            关闭基于Tcp协议的Socket对象
-            </summary>
-            <param name="socket">要关闭的Socket对象</param>
-        </member>
-        <member name="M:DotNet.Utilities.NetHelper.SendEmail(System.String,System.String,System.String,System.Boolean)">
-            <summary>
-            发送电子邮件,所有SMTP配置信息均在config配置文件中system.net节设置.
-            </summary>
-            <param name="receiveEmail">接收电子邮件的地址</param>
-            <param name="msgSubject">电子邮件的标题</param>
-            <param name="msgBody">电子邮件的正文</param>
-            <param name="IsEnableSSL">是否开启SSL</param>
-        </member>
-        <member name="T:DotNet.Utilities.BaseRandom">
-            <summary>
-            BaseRandom
-            产生随机数
-            
-            随机数管理，最大值、最小值可以自己进行设定。
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.BaseRandom.GetRandomString">
-            <summary>
-            产生随机字符
-            </summary>
-            <returns>字符串</returns>
-        </member>
-        <member name="M:DotNet.Utilities.BaseRandom.GetRandomString(System.Int32)">
-             <summary>
-            GetRandomString
-             </summary>
-             <param name="stringLength"></param>
-             <returns></returns>
-        </member>
-        <member name="M:DotNet.Utilities.BaseRandom.GetRandom">
-            <summary>
-            产生随机数
-            </summary>
-            <returns>随机数</returns>
-        </member>
-        <member name="M:DotNet.Utilities.BaseRandom.GetRandom(System.Int32,System.Int32)">
-            <summary>
-            产生随机数
-            </summary>
-            <param name="minNumber">最小值</param>
-            <param name="maxNumber">最大值</param>
-            <returns>随机数</returns>
-        </member>
-        <member name="T:DotNet.Utilities.RandomHelper">
-            <summary>
-            使用Random类生成伪随机数
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.RandomHelper.#ctor">
-            <summary>
-            构造函数
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.RandomHelper.GetRandomInt(System.Int32,System.Int32)">
-            <summary>
-            生成一个指定范围的随机整数，该随机数范围包括最小值，但不包括最大值
-            </summary>
-            <param name="minNum">最小值</param>
-            <param name="maxNum">最大值</param>
-        </member>
-        <member name="M:DotNet.Utilities.RandomHelper.GetRandomDouble">
-            <summary>
-            生成一个0.0到1.0的随机小数
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.RandomHelper.GetRandomArray``1(``0[])">
-            <summary>
-            对一个数组进行随机排序
-            </summary>
-            <typeparam name="T">数组的类型</typeparam>
-            <param name="arr">需要随机排序的数组</param>
-        </member>
-        <member name="T:DotNet.Utilities.RandomOperate">
-            <summary>
-            RandomOperate
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.RandomOperate.GenerateCheckCodeNum(System.Int32)">
-            <summary>
-            Generates the check code with unique number.
-            </summary>
-            <returns>The check code number.</returns>
-            <param name="codeCount">Code count. Max 10</param>
-        </member>
-        <member name="M:DotNet.Utilities.RandomOperate.GenerateCheckCode(System.Int32)">
-            <summary>
-            Generates the check code with number and char
-            </summary>
-            <returns>The check code.</returns>
-            <param name="CodeCount">Code lenght.</param>
-        </member>
-        <member name="M:DotNet.Utilities.RandomOperate.GetRandomCode(System.Char[],System.Int32)">
-            <summary>
-            Gets the random code.
-            </summary>
-            <returns>The random code.</returns>
-            <param name="CharList">All char want to generate.</param>
-            <param name="CodeLength">Code lenght.</param>
-        </member>
-        <member name="T:DotNet.Utilities.RedPacket">
-            <summary>
-            经典的红包分配算法
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.RedPacket.GetMoneys(System.Double,System.Int32)">
-            <summary>
-            红包算法
-            </summary>
-            <param name="remainMoney">要分配的总额度</param>
-            <param name="remainCount">要分配的份数</param>
-            <returns></returns>
         </member>
     </members>
 </doc>

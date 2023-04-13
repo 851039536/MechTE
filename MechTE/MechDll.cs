@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MechTE;
-using MechTE.Cmd;
+﻿using MechTE.Cmd;
 
-namespace MechTE
-{
+namespace MechTE {
     /// <summary>
     /// 调试模块
     /// </summary>
@@ -31,7 +24,7 @@ namespace MechTE
             switch (str[0])
             {
                 case"cmd" :
-                    return TCmd.ExeCommand(str[1]);
+                    return TCmd.Exe(str[1]);
                 default:
                     break;
             }

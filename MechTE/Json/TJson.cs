@@ -10,7 +10,7 @@ namespace MechTE.TJson
     /// </summary>
     public class TJson
     {
-        #region  写入json内容
+        #region 将序列化的json字符串内容写入Json文件
         /// <summary>
         /// 将序列化的json字符串内容写入Json文件，并且保存
         /// </summary>
@@ -27,12 +27,13 @@ namespace MechTE.TJson
             }
         }
         #endregion
+
         /// <summary>
         /// 获取到本地的Json文件并且解析返回对应的json字符串
         /// </summary>
         /// <param name="filepath">路径:如@".\json\JProgramFile.json"</param>
         /// <returns>string</returns>
-        public static string GetJsonString(string filepath)
+        public static string GetJsonStr(string filepath)
         {
             string json = string.Empty;
             using (FileStream fs = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
@@ -43,10 +44,10 @@ namespace MechTE.TJson
                 }
             }
             return json;
-
         }
 
-        
+
+        #region 读取数组Json数据
         /// <summary>
         /// 读取数组Json数据
         /// </summary>
@@ -54,8 +55,10 @@ namespace MechTE.TJson
         /// <returns>JArray</returns>
         public static JArray GetJson(string path)
         {
-            return JArray.Parse(GetJsonString(@path));
+            return JArray.Parse(GetJsonStr(@path));
         }
+        #endregion
+
 
         /// <summary>
         /// 写入数组Json数据

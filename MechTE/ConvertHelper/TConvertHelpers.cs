@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 
 namespace MechTE.ConvertHelper
@@ -19,16 +20,13 @@ namespace MechTE.ConvertHelper
         {
             //补足0的字符串
             string temp = "";
-
             //补足0
             for (int i = 0; i < limitedLength - text.Length; i++)
             {
                 temp += "0";
             }
-
             //连接text
             temp += text;
-
             //返回补足0的字符串
             return temp;
         }
@@ -73,7 +71,6 @@ namespace MechTE.ConvertHelper
             }
             catch
             {
-
                 //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
                 return "0";
             }
@@ -116,27 +113,45 @@ namespace MechTE.ConvertHelper
             {
                 return 0;
             }
-
             //定义要返回的整数
             int num = 0;
-
             //如果传入的字节数组长度大于4,需要进行处理
             if (data.Length >= 4)
             {
                 //创建一个临时缓冲区
                 byte[] tempBuffer = new byte[4];
-
                 //将传入的字节数组的前4个字节复制到临时缓冲区
                 Buffer.BlockCopy(data, 0, tempBuffer, 0, 4);
-
                 //将临时缓冲区的值转换成整数，并赋给num
                 num = BitConverter.ToInt32(tempBuffer, 0);
             }
-
             //返回整数
             return num;
         }
         #endregion
 
+        /// <summary>
+        /// 图片转base64
+        /// </summary>
+        /// <param name="imagePath"></param>
+        /// <returns></returns>
+        public static string ImgToBase(string imagePath = "C:\\Users\\ch190006\\Desktop\\123.jpg") {
+            byte[] imageBytes = File.ReadAllBytes(imagePath);
+            string base64String = Convert.ToBase64String(imageBytes);
+            Console.WriteLine(base64String);
+            return base64String;
+        }
+
+        /// <summary>
+        /// base64转图片
+        /// </summary>
+        /// <param name="base64String"></param>
+        private static void BaseToImg(string base64String) { //
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            using (var ms = new MemoryStream(imageBytes)) {
+                var image = System.Drawing.Image.FromStream(ms);
+            image.Save("image.png",System.Drawing.Imaging.ImageFormat.Png); // 将图像保存为 PNG 格式的文件
+            }
+        }
     }
 }

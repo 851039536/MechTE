@@ -60,7 +60,7 @@ namespace MechTE.TZip
         //    }
         //    //解压文件夹为空时默认与压缩文件同一级目录下，跟压缩文件同名的文件夹  
         //    if (unZipDir == string.Empty)
-        //        unZipDir = zipFilePath.Replace(Path.GetFileName(zipFilePath), Path.GetFileNameWithoutExtension(zipFilePath));
+        //        unZipDir = zipFilePath.Replace(Path.GetFileNames(zipFilePath), Path.GetFileNameWithoutExtension(zipFilePath));
         //    if (!unZipDir.EndsWith("/"))
         //        unZipDir += "/";
         //    if (!Directory.Exists(unZipDir))
@@ -73,7 +73,7 @@ namespace MechTE.TZip
         //        while ((theEntry = s.GetNextEntry()) != null)
         //        {
         //            string directoryName = Path.GetDirectoryName(theEntry.Name);
-        //            string fileName = Path.GetFileName(theEntry.Name);
+        //            string fileName = Path.GetFileNames(theEntry.Name);
         //            if (!string.IsNullOrEmpty(directoryName))
         //            {
         //                Directory.CreateDirectory(unZipDir + directoryName);

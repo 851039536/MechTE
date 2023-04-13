@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MechTE.Files
 {
@@ -12,8 +16,24 @@ namespace MechTE.Files
     /// </summary>
     public class TFile
     {
+        #region electorn
         /// <summary>
-        /// ShellExecute
+        /// 打开指定路径/程序
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns></returns>
+        public async Task<object> VOpenFile(dynamic path) {
+            return ShellExecute(IntPtr.Zero,
+                new StringBuilder("Open"),
+                new StringBuilder(@path),
+                new StringBuilder(""),
+                new StringBuilder(""),1);
+        }
+        #endregion
+
+        #region 打开程序/文件夹
+        /// <summary>
+        /// 使用DllImport指定调用的Windows API函数及其相关信息
         /// </summary>
         /// <param name="hwnd">指定父窗口句柄:ntPtr.Zero</param>
         /// <param name="lpszOp">指定要进行的操作:Open</param>
@@ -23,12 +43,12 @@ namespace MechTE.Files
         /// <param name="FsShowCmd">显示模式: 0:隐藏 1~11</param>
         /// <returns></returns>
         [DllImport("shell32.dll")]
-        private static extern int ShellExecute(IntPtr hwnd, StringBuilder lpszOp, StringBuilder lpszFile, StringBuilder lpszParams, StringBuilder lpszDir, int FsShowCmd);
+        private static extern int ShellExecute(IntPtr hwnd,StringBuilder lpszOp,StringBuilder lpszFile,StringBuilder lpszParams,StringBuilder lpszDir,int FsShowCmd);
 
         //Path类常用方法
         //string path = @"C:\Users\Administrator\Desktop\text.txt";
         // //获取文件名（包含扩展名）
-        //Console.WriteLine(Path.GetFileName(path));//输出：text.txt
+        //Console.WriteLine(Path.GetFileNames(path));//输出：text.txt
         //    //获取文件名（不包含扩展名）
         //    Console.WriteLine(Path.GetFileNameWithoutExtension(path));//输出：text
         //    //获取文件扩展名
@@ -39,18 +59,22 @@ namespace MechTE.Files
         //    Console.WriteLine(Path.GetFullPath(path));//输出：C:\Users\Administrator\Desktop\text.txt
         //    //连接字符串作为路径
         //    Console.WriteLine(Path.Combine(@"C:\Users", "text.txt"));//输出：C:\Users\text.txt
-
-        #region 打开程序/文件夹
-
         /// <summary>
         /// 打开程序/文件夹
         /// </summary>
         /// <param name="path">路径</param>
         /// <param name="FsShow">显示模式 默认1</param>
-        public static void OpenFile(string path, int FsShow = 1)
+        public static void OpenFile(string path,int FsShow = 1)
         {
-            ShellExecute(IntPtr.Zero, new StringBuilder("Open"), new StringBuilder(@path), new StringBuilder(""), new StringBuilder(""), FsShow);
+            ShellExecute(IntPtr.Zero,
+                new StringBuilder("Open"),// 打开方式为“Open”
+                new StringBuilder(@path),// 文件路径
+                new StringBuilder(""),// 命令行参数为空
+                new StringBuilder(""),// 工作目录为空
+                FsShow);// 是否显示窗口，默认显示
         }
+
+
 
         /// <summary>
         /// 使用本地系统进程打开程序/文件夹
@@ -60,7 +84,6 @@ namespace MechTE.Files
         {
             System.Diagnostics.Process.Start(@path);
         }
-
         #endregion
 
         #region 复制文件夹及文件
@@ -71,66 +94,53 @@ namespace MechTE.Files
         /// <param name="sourceFolder">原文件路径</param>
         /// <param name="destFolder">目标文件路径</param>
         /// <returns>1 || -1</returns>
-        public static int CopyFile(string sourceFolder, string destFolder)
+        public static int CopyFile(string sourceFolder,string destFolder)
         {
-            try
-            {
+            try {
                 //如果目标路径不存在,则创建目标路径
-                if (!Directory.Exists(destFolder))
-                {
+                if (!Directory.Exists(destFolder)) {
                     Directory.CreateDirectory(destFolder);
                 }
                 //得到原文件根目录下的所有文件
                 string[] files = Directory.GetFiles(sourceFolder);
-                foreach (string file in files)
-                {
+                foreach (string file in files) {
                     string name = Path.GetFileName(file);
-                    string dest = Path.Combine(destFolder, name);
-                   File.Copy(file, dest, true);//复制文件
-                    
+                    string dest = Path.Combine(destFolder,name);
+                    File.Copy(file,dest,true);//复制文件
                 }
                 //得到原文件根目录下的所有文件夹
                 string[] folders = Directory.GetDirectories(sourceFolder);
-                foreach (string folder in folders)
-                {
+                foreach (string folder in folders) {
                     string name = Path.GetFileName(folder);
-                    string dest = Path.Combine(destFolder, name);
-                    CopyFile(folder, dest);//构建目标路径,递归复制文件
+                    string dest = Path.Combine(destFolder,name);
+                    CopyFile(folder,dest);//构建目标路径,递归复制文件
                 }
                 return 1;
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Console.WriteLine(e.Message);
                 return -1;
             }
         }
-
         #endregion
 
-        #region 文件浏览对话框
+        #region 浏览文件对话框
         /// <summary>
-        /// winfrom文件浏览对话框
+        /// winfrom浏览文件对话框
         /// </summary>
         /// <returns>string</returns>
         public static string FileDialog()
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog
-            {
+            FolderBrowserDialog dialog = new FolderBrowserDialog {
                 //打开的文件夹浏览对话框上的描述
                 Description = "请选择文件夹",
                 //是否显示对话框左下角 新建文件夹 按钮，默认为 true
                 ShowNewFolderButton = false
             };
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                if (!string.IsNullOrEmpty(dialog.SelectedPath))
-                {
+            if (dialog.ShowDialog() == DialogResult.OK) {
+                if (!string.IsNullOrEmpty(dialog.SelectedPath)) {
                     return dialog.SelectedPath;
                 }
-            }
-            else
-            {
+            } else {
                 return "false";
             }
             return "FileDialog false";
@@ -138,30 +148,25 @@ namespace MechTE.Files
 
         #endregion
 
-        #region 遍历文件
+        #region 获取指定目录文件夹
         /// <summary>
-        /// 遍历文件
+        /// 获取指定目录文件夹
         /// </summary>
         /// <param name="path">文件路径</param>
         /// <returns>文件名,文件路径</returns>
         public static List<string> QueryFile(string path)
         {
             var result = new List<string>();
-            try
-            {
+            try {
                 DirectoryInfo theFolder = new DirectoryInfo(path);
                 DirectoryInfo[] dirInfo = theFolder.GetDirectories();//获取所在目录的文件夹
                 //遍历文件夹
-                foreach (DirectoryInfo NextFolder in dirInfo)
-                {
-                    if (!NextFolder.FullName.Contains("$RECYCLE"))
-                    {
+                foreach (DirectoryInfo NextFolder in dirInfo) {
+                    if (!NextFolder.FullName.Contains("$RECYCLE")) {
                         result.Add(NextFolder.Name.ToString() + "," + $"{path}\\{NextFolder.Name}");
                     }
                 }
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 throw;
             }
             return result;
@@ -171,16 +176,14 @@ namespace MechTE.Files
         #endregion
 
         #region 文件删除
-
         /// <summary>
-        /// 删除文件
+        /// 删除指定的文件
         /// </summary>
         /// <param name="path">路径</param>
         /// <returns></returns>
         public static bool DelFile(string path)
         {
-            if (File.Exists(path))
-            {
+            if (File.Exists(path)) {
                 File.Delete(path);
                 return true;
             }
@@ -199,9 +202,10 @@ namespace MechTE.Files
             return Directory.Exists(directoryPath);
         }
         #endregion
-        #region 检测指定文件是否存在,如果存在返回true
+
+        #region 检测指定文件是否存在
         /// <summary>
-        /// 检测指定文件是否存在,如果存在则返回true。
+        /// 检测指定文件是否存在
         /// </summary>
         /// <param name="filePath">文件的绝对路径</param>        
         public static bool IsExistFile(string filePath)
@@ -209,7 +213,6 @@ namespace MechTE.Files
             return File.Exists(filePath);
         }
         #endregion
-
 
         #region 获取指定目录中的文件列表
         /// <summary>
@@ -219,8 +222,7 @@ namespace MechTE.Files
         public static string[] GetFileNames(string directoryPath)
         {
             //如果目录不存在，则抛出异常
-            if (!IsExistDirectory(directoryPath))
-            {
+            if (!IsExistDirectory(directoryPath)) {
                 throw new FileNotFoundException();
             }
 
@@ -229,19 +231,16 @@ namespace MechTE.Files
         }
         #endregion
 
-        #region 获取指定目录中所有子目录列表,若要搜索嵌套的子目录列表,请使用重载方法.
+        #region 获取指定目录中所有子目录列表
         /// <summary>
-        /// 获取指定目录中所有子目录列表,若要搜索嵌套的子目录列表,请使用重载方法.
+        /// 获取指定目录中所有子目录列表
         /// </summary>
         /// <param name="directoryPath">指定目录的绝对路径</param>        
         public static string[] GetDirectories(string directoryPath)
         {
-            try
-            {
+            try {
                 return Directory.GetDirectories(directoryPath);
-            }
-            catch (IOException ex)
-            {
+            } catch (IOException ex) {
                 throw ex;
             }
         }
@@ -255,27 +254,20 @@ namespace MechTE.Files
         /// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
         /// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
         /// <param name="isSearchChild">是否搜索子目录</param>
-        public static string[] GetFileNames(string directoryPath, string searchPattern, bool isSearchChild)
+        public static string[] GetFileNames(string directoryPath,string searchPattern,bool isSearchChild)
         {
             //如果目录不存在，则抛出异常
-            if (!IsExistDirectory(directoryPath))
-            {
+            if (!IsExistDirectory(directoryPath)) {
                 throw new FileNotFoundException();
             }
 
-            try
-            {
-                if (isSearchChild)
-                {
-                    return Directory.GetFiles(directoryPath, searchPattern, SearchOption.AllDirectories);
+            try {
+                if (isSearchChild) {
+                    return Directory.GetFiles(directoryPath,searchPattern,SearchOption.AllDirectories);
+                } else {
+                    return Directory.GetFiles(directoryPath,searchPattern,SearchOption.TopDirectoryOnly);
                 }
-                else
-                {
-                    return Directory.GetFiles(directoryPath, searchPattern, SearchOption.TopDirectoryOnly);
-                }
-            }
-            catch (IOException ex)
-            {
+            } catch (IOException ex) {
                 throw ex;
             }
         }
@@ -288,26 +280,21 @@ namespace MechTE.Files
         /// <param name="directoryPath">指定目录的绝对路径</param>        
         public static bool IsEmptyDirectory(string directoryPath)
         {
-            try
-            {
+            try {
                 //判断是否存在文件
                 string[] fileNames = GetFileNames(directoryPath);
-                if (fileNames.Length > 0)
-                {
+                if (fileNames.Length > 0) {
                     return false;
                 }
 
                 //判断是否存在文件夹
                 string[] directoryNames = GetDirectories(directoryPath);
-                if (directoryNames.Length > 0)
-                {
+                if (directoryNames.Length > 0) {
                     return false;
                 }
 
                 return true;
-            }
-            catch
-            {
+            } catch {
                 //这里记录日志
                 //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
                 return true;
@@ -322,25 +309,19 @@ namespace MechTE.Files
         /// <param name="directoryPath">指定目录的绝对路径</param>
         /// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
         /// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>        
-        public static bool Contains(string directoryPath, string searchPattern)
+        public static bool Contains(string directoryPath,string searchPattern)
         {
-            try
-            {
+            try {
                 //获取指定的文件列表
-                string[] fileNames = GetFileNames(directoryPath, searchPattern, false);
+                string[] fileNames = GetFileNames(directoryPath,searchPattern,false);
 
                 //判断指定文件是否存在
-                if (fileNames.Length == 0)
-                {
+                if (fileNames.Length == 0) {
                     return false;
-                }
-                else
-                {
+                } else {
                     return true;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new Exception(ex.Message);
                 //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
             }
@@ -353,50 +334,22 @@ namespace MechTE.Files
         /// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
         /// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param> 
         /// <param name="isSearchChild">是否搜索子目录</param>
-        public static bool Contains(string directoryPath, string searchPattern, bool isSearchChild)
+        public static bool Contains(string directoryPath,string searchPattern,bool isSearchChild)
         {
-            try
-            {
+            try {
                 //获取指定的文件列表
-                string[] fileNames = GetFileNames(directoryPath, searchPattern, true);
+                string[] fileNames = GetFileNames(directoryPath,searchPattern,true);
 
                 //判断指定文件是否存在
-                if (fileNames.Length == 0)
-                {
+                if (fileNames.Length == 0) {
                     return false;
-                }
-                else
-                {
+                } else {
                     return true;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new Exception(ex.Message);
                 //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
             }
-        }
-        #endregion
- 
-
-
-
-        #region 根据时间得到目录名 / 格式:yyyyMMdd 或者 HHmmssff
-        /// <summary>
-        /// 根据时间得到目录名yyyyMMdd
-        /// </summary>
-        /// <returns></returns>
-        public static string GetDateDir()
-        {
-            return DateTime.Now.ToString("yyyyMMdd");
-        }
-        /// <summary>
-        /// 根据时间得到文件名HHmmssff
-        /// </summary>
-        /// <returns></returns>
-        public static string GetDateFile()
-        {
-            return DateTime.Now.ToString("HHmmssff");
         }
         #endregion
 
@@ -406,7 +359,7 @@ namespace MechTE.Files
         /// </summary>
         /// <param name="varFromDirectory">源文件夹路径</param>
         /// <param name="varToDirectory">目标文件夹路径</param>
-        public static void CopyFolder(string varFromDirectory, string varToDirectory)
+        public static void CopyFolder(string varFromDirectory,string varToDirectory)
         {
             Directory.CreateDirectory(varToDirectory);
 
@@ -414,19 +367,15 @@ namespace MechTE.Files
 
             string[] directories = Directory.GetDirectories(varFromDirectory);
 
-            if (directories.Length > 0)
-            {
-                foreach (string d in directories)
-                {
-                    CopyFolder(d, varToDirectory + d.Substring(d.LastIndexOf("\\")));
+            if (directories.Length > 0) {
+                foreach (string d in directories) {
+                    CopyFolder(d,varToDirectory + d.Substring(d.LastIndexOf("\\")));
                 }
             }
             string[] files = Directory.GetFiles(varFromDirectory);
-            if (files.Length > 0)
-            {
-                foreach (string s in files)
-                {
-                    File.Copy(s, varToDirectory + s.Substring(s.LastIndexOf("\\")), true);
+            if (files.Length > 0) {
+                foreach (string s in files) {
+                    File.Copy(s,varToDirectory + s.Substring(s.LastIndexOf("\\")),true);
                 }
             }
         }
@@ -439,11 +388,7 @@ namespace MechTE.Files
         /// <param name="FilePath">路径,包括文件名</param>
         public static void ExistsFile(string FilePath)
         {
-            //if(!File.Exists(FilePath))    
-            //File.Create(FilePath);    
-            //以上写法会报错,详细解释请看下文.........   
-            if (!File.Exists(FilePath))
-            {
+            if (!File.Exists(FilePath)) {
                 FileStream fs = File.Create(FilePath);
                 fs.Close();
             }
@@ -456,29 +401,19 @@ namespace MechTE.Files
         /// </summary>
         /// <param name="varFromDirectory">指定文件夹路径</param>
         /// <param name="varToDirectory">对应其他文件夹路径</param>
-        public static void DeleteFolderFiles(string varFromDirectory, string varToDirectory)
+        public static void DeleteFolderFiles(string varFromDirectory,string varToDirectory)
         {
             Directory.CreateDirectory(varToDirectory);
-
             if (!Directory.Exists(varFromDirectory)) return;
-
             string[] directories = Directory.GetDirectories(varFromDirectory);
-
-            if (directories.Length > 0)
-            {
-                foreach (string d in directories)
-                {
-                    DeleteFolderFiles(d, varToDirectory + d.Substring(d.LastIndexOf("\\")));
+            if (directories.Length > 0) {
+                foreach (string d in directories) {
+                    DeleteFolderFiles(d,varToDirectory + d.Substring(d.LastIndexOf("\\")));
                 }
             }
-
-
             string[] files = Directory.GetFiles(varFromDirectory);
-
-            if (files.Length > 0)
-            {
-                foreach (string s in files)
-                {
+            if (files.Length > 0) {
+                foreach (string s in files) {
                     File.Delete(varToDirectory + s.Substring(s.LastIndexOf("\\")));
                 }
             }
@@ -498,7 +433,6 @@ namespace MechTE.Files
         }
         #endregion
 
-
         #region 创建一个目录
         /// <summary>
         /// 创建一个目录
@@ -507,8 +441,7 @@ namespace MechTE.Files
         public static void CreateDirectory(string directoryPath)
         {
             //如果目录不存在则创建该目录
-            if (!IsExistDirectory(directoryPath))
-            {
+            if (!IsExistDirectory(directoryPath)) {
                 Directory.CreateDirectory(directoryPath);
             }
         }
@@ -516,16 +449,14 @@ namespace MechTE.Files
 
         #region 创建一个文件
         /// <summary>
-        /// 创建一个文件。
+        /// 创建一个文件
         /// </summary>
         /// <param name="filePath">文件的绝对路径</param>
         public static void CreateFile(string filePath)
         {
-            try
-            {
+            try {
                 //如果文件不存在则创建该文件
-                if (!IsExistFile(filePath))
-                {
+                if (!IsExistFile(filePath)) {
                     //创建一个FileInfo对象
                     FileInfo file = new FileInfo(filePath);
 
@@ -535,9 +466,7 @@ namespace MechTE.Files
                     //关闭文件流
                     fs.Close();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
                 throw ex;
             }
@@ -548,13 +477,11 @@ namespace MechTE.Files
         /// </summary>
         /// <param name="filePath">文件的绝对路径</param>
         /// <param name="buffer">二进制流数据</param>
-        public static void CreateFile(string filePath, byte[] buffer)
+        public static void CreateFile(string filePath,byte[] buffer)
         {
-            try
-            {
+            try {
                 //如果文件不存在则创建该文件
-                if (!IsExistFile(filePath))
-                {
+                if (!IsExistFile(filePath)) {
                     //创建一个FileInfo对象
                     FileInfo file = new FileInfo(filePath);
 
@@ -562,14 +489,12 @@ namespace MechTE.Files
                     FileStream fs = file.Create();
 
                     //写入二进制流
-                    fs.Write(buffer, 0, buffer.Length);
+                    fs.Write(buffer,0,buffer.Length);
 
                     //关闭文件流
                     fs.Close();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
                 throw ex;
             }
@@ -614,38 +539,31 @@ namespace MechTE.Files
         /// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
         /// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
         /// <param name="isSearchChild">是否搜索子目录</param>
-        public static string[] GetDirectories(string directoryPath, string searchPattern, bool isSearchChild)
+        public static string[] GetDirectories(string directoryPath,string searchPattern,bool isSearchChild)
         {
-            try
-            {
-                if (isSearchChild)
-                {
-                    return Directory.GetDirectories(directoryPath, searchPattern, SearchOption.AllDirectories);
+            try {
+                if (isSearchChild) {
+                    return Directory.GetDirectories(directoryPath,searchPattern,SearchOption.AllDirectories);
+                } else {
+                    return Directory.GetDirectories(directoryPath,searchPattern,SearchOption.TopDirectoryOnly);
                 }
-                else
-                {
-                    return Directory.GetDirectories(directoryPath, searchPattern, SearchOption.TopDirectoryOnly);
-                }
-            }
-            catch (IOException ex)
-            {
+            } catch (IOException ex) {
                 throw ex;
             }
         }
         #endregion
 
         #region 向文本文件写入内容
-
         /// <summary>
         /// 向文本文件中写入内容
         /// </summary>
         /// <param name="filePath">文件的绝对路径</param>
         /// <param name="text">写入的内容</param>
         /// <param name="encoding">编码</param>
-        public static void WriteText(string filePath, string text, Encoding encoding)
+        public static void WriteText(string filePath,string text,Encoding encoding)
         {
             //向文件写入内容
-            File.WriteAllText(filePath, text, encoding);
+            File.WriteAllText(filePath,text,encoding);
         }
         #endregion
 
@@ -655,9 +573,9 @@ namespace MechTE.Files
         /// </summary>
         /// <param name="filePath">文件的绝对路径</param>
         /// <param name="content">写入的内容</param>
-        public static void AppendText(string filePath, string content)
+        public static void AppendText(string filePath,string content)
         {
-            File.AppendAllText(filePath, content);
+            File.AppendAllText(filePath,content);
         }
         #endregion
 
@@ -667,14 +585,11 @@ namespace MechTE.Files
         /// </summary>
         /// <param name="sourceFilePath">源文件的绝对路径</param>
         /// <param name="destFilePath">目标文件的绝对路径</param>
-        public static void Copy(string sourceFilePath, string destFilePath)
+        public static void Copy(string sourceFilePath,string destFilePath)
         {
-            File.Copy(sourceFilePath, destFilePath, true);
+            File.Copy(sourceFilePath,destFilePath,true);
         }
         #endregion
-
-
-
 
         #region 从文件的绝对路径中获取文件名( 不包含扩展名 )
         /// <summary>
@@ -702,7 +617,6 @@ namespace MechTE.Files
         }
         #endregion
 
-
         #region 清空文件内容
         /// <summary>
         /// 清空文件内容
@@ -724,11 +638,443 @@ namespace MechTE.Files
         /// <param name="directoryPath">指定目录的绝对路径</param>
         public static void DeleteDirectory(string directoryPath)
         {
-            if (IsExistDirectory(directoryPath))
-            {
-                Directory.Delete(directoryPath, true);
+            if (IsExistDirectory(directoryPath)) {
+                Directory.Delete(directoryPath,true);
             }
         }
         #endregion
+
+        /// <summary>
+        /// 写文件
+        /// </summary>
+        /// <param name="Path">文件路径</param>
+        /// <param name="Strings">文件内容</param>
+        public static void WriteFile(string Path,string Strings)
+        {
+            if (!File.Exists(Path)) {
+                FileStream f = File.Create(Path);
+                f.Close();
+                f.Dispose();
+            }
+            StreamWriter f2 = new StreamWriter(Path,true,Encoding.UTF8);
+            f2.WriteLine(Strings);
+            f2.Close();
+            f2.Dispose();
+        }
+
+        /// <summary>
+        /// 读文件
+        /// </summary>
+        /// <param name="Path">文件路径</param>
+        /// <returns></returns>
+        public static string ReadFile(string Path)
+        {
+            string s = "";
+            if (!File.Exists(Path))
+                s = "不存在相应的目录";
+            else {
+                StreamReader f2 = new StreamReader(Path,Encoding.GetEncoding("gb2312"));
+                s = f2.ReadToEnd();
+                f2.Close();
+                f2.Dispose();
+            }
+            return s;
+        }
+
+        #region 追加文件
+        /****************************************
+         * 函数名称：FileAdd
+         * 功能说明：追加文件内容
+         * 参    数：Path:文件路径,strings:内容
+         * 调用示列：
+         *           string Path = Server.MapPath("Default2.aspx");     
+         *           string Strings = "新追加内容";
+         *           DotNet.Utilities.FileOperate.FileAdd(Path, Strings);
+        *****************************************/
+        /// <summary>
+        /// 追加文件
+        /// </summary>
+        /// <param name="Path">文件路径</param>
+        /// <param name="strings">内容</param>
+        public static void FileAdd(string Path,string strings)
+        {
+            StreamWriter sw = File.AppendText(Path);
+            sw.Write(strings);
+            sw.Flush();
+            sw.Close();
+            sw.Dispose();
+        }
+        #endregion
+
+        #region 拷贝文件
+        /****************************************
+         * 函数名称：FileCoppy
+         * 功能说明：拷贝文件
+         * 参    数：OrignFile:原始文件,NewFile:新文件路径
+         * 调用示列：
+         *           string OrignFile = Server.MapPath("Default2.aspx");     
+         *           string NewFile = Server.MapPath("Default3.aspx");
+         *           DotNet.Utilities.FileOperate.FileCoppy(OrignFile, NewFile);
+        *****************************************/
+        /// <summary>
+        /// 拷贝文件
+        /// </summary>
+        /// <param name="OrignFile">原始文件</param>
+        /// <param name="NewFile">新文件路径</param>
+        public static void FileCoppy(string OrignFile,string NewFile)
+        {
+            File.Copy(OrignFile,NewFile,true);
+        }
+
+        #endregion
+
+        #region 删除文件
+        /****************************************
+         * 函数名称：FileDel
+         * 功能说明：删除文件
+         * 参    数：Path:文件路径
+         * 调用示列：
+         *           string Path = Server.MapPath("Default3.aspx");    
+         *           DotNet.Utilities.FileOperate.FileDel(Path);
+        *****************************************/
+        /// <summary>
+        /// 删除文件
+        /// </summary>
+        /// <param name="Path">路径</param>
+        public static void FileDel(string Path)
+        {
+            File.Delete(Path);
+        }
+        #endregion
+
+        #region 移动文件
+        /****************************************
+         * 函数名称：FileMove
+         * 功能说明：移动文件
+         * 参    数：OrignFile:原始路径,NewFile:新文件路径
+         * 调用示列：
+         *            string OrignFile = Server.MapPath("../说明.txt");    
+         *            string NewFile = Server.MapPath("../../说明.txt");
+         *            DotNet.Utilities.FileOperate.FileMove(OrignFile, NewFile);
+        *****************************************/
+        /// <summary>
+        /// 移动文件
+        /// </summary>
+        /// <param name="OrignFile">原始路径</param>
+        /// <param name="NewFile">新路径</param>
+        public static void FileMove(string OrignFile,string NewFile)
+        {
+            File.Move(OrignFile,NewFile);
+        }
+        #endregion
+
+        #region 在当前目录下创建目录
+        /****************************************
+         * 函数名称：FolderCreate
+         * 功能说明：在当前目录下创建目录
+         * 参    数：OrignFolder:当前目录,NewFloder:新目录
+         * 调用示列：
+         *           string OrignFolder = Server.MapPath("test/");    
+         *           string NewFloder = "new";
+         *           DotNet.Utilities.FileOperate.FolderCreate(OrignFolder, NewFloder); 
+        *****************************************/
+        /// <summary>
+        /// 在当前目录下创建目录
+        /// </summary>
+        /// <param name="OrignFolder">当前目录</param>
+        /// <param name="NewFloder">新目录</param>
+        public static void FolderCreate(string OrignFolder,string NewFloder)
+        {
+            Directory.SetCurrentDirectory(OrignFolder);
+            Directory.CreateDirectory(NewFloder);
+        }
+
+        /// <summary>
+        /// 创建文件夹
+        /// </summary>
+        /// <param name="Path"></param>
+        public static void FolderCreate(string Path)
+        {
+            // 判断目标目录是否存在如果不存在则新建之
+            if (!Directory.Exists(Path))
+                Directory.CreateDirectory(Path);
+        }
+
+        #endregion
+
+        #region 创建目录
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Path"></param>
+        public static void FileCreate(string Path)
+        {
+            FileInfo CreateFile = new FileInfo(Path); //创建文件 
+            if (!CreateFile.Exists) {
+                FileStream FS = CreateFile.Create();
+                FS.Close();
+            }
+        }
+        #endregion
+
+        #region 递归删除文件夹目录及文件
+        /****************************************
+         * 函数名称：DeleteFolder
+         * 功能说明：递归删除文件夹目录及文件
+         * 参    数：dir:文件夹路径
+         * 调用示列：
+         *           string dir = Server.MapPath("test/");  
+         *           DotNet.Utilities.FileOperate.DeleteFolder(dir);       
+        *****************************************/
+        /// <summary>
+        /// 递归删除文件夹目录及文件
+        /// </summary>
+        /// <param name="dir"></param>  
+        /// <returns></returns>
+        public static void DeleteFolder(string dir)
+        {
+            if (Directory.Exists(dir)) //如果存在这个文件夹删除之 
+            {
+                foreach (string d in Directory.GetFileSystemEntries(dir)) {
+                    if (File.Exists(d))
+                        File.Delete(d); //直接删除其中的文件                        
+                    else
+                        DeleteFolder(d); //递归删除子文件夹 
+                }
+                Directory.Delete(dir,true); //删除已空文件夹                 
+            }
+        }
+
+        #endregion
+
+        #region 将指定文件夹下面的所有内容copy到目标文件夹下面 果目标文件夹为只读属性就会报错。
+        /****************************************
+         * 函数名称：CopyDir
+         * 功能说明：将指定文件夹下面的所有内容copy到目标文件夹下面 果目标文件夹为只读属性就会报错。
+         * 参    数：srcPath:原始路径,aimPath:目标文件夹
+         * 调用示列：
+         *           string srcPath = Server.MapPath("test/");  
+         *           string aimPath = Server.MapPath("test1/");
+         *           DotNet.Utilities.FileOperate.CopyDir(srcPath,aimPath);   
+        *****************************************/
+        /// <summary>
+        /// 指定文件夹下面的所有内容copy到目标文件夹下面
+        /// </summary>
+        /// <param name="srcPath">原始路径</param>
+        /// <param name="aimPath">目标文件夹</param>
+        public static void CopyDir(string srcPath,string aimPath)
+        {
+            try {
+                // 检查目标目录是否以目录分割字符结束如果不是则添加之
+                if (aimPath[aimPath.Length - 1] != Path.DirectorySeparatorChar)
+                    aimPath += Path.DirectorySeparatorChar;
+                // 判断目标目录是否存在如果不存在则新建之
+                if (!Directory.Exists(aimPath))
+                    Directory.CreateDirectory(aimPath);
+                // 得到源目录的文件列表，该里面是包含文件以及目录路径的一个数组
+                //如果你指向copy目标文件下面的文件而不包含目录请使用下面的方法
+                //string[] fileList = Directory.GetFiles(srcPath);
+                string[] fileList = Directory.GetFileSystemEntries(srcPath);
+                //遍历所有的文件和目录
+                foreach (string file in fileList) {
+                    //先当作目录处理如果存在这个目录就递归Copy该目录下面的文件
+
+                    if (Directory.Exists(file))
+                        CopyDir(file,aimPath + Path.GetFileName(file));
+                    //否则直接Copy文件
+                    else
+                        File.Copy(file,aimPath + Path.GetFileName(file),true);
+                }
+            } catch (Exception ee) {
+                throw new Exception(ee.ToString());
+            }
+        }
+        #endregion
+
+        #region 获取指定文件夹下所有子目录及文件(树形)
+        /****************************************
+         * 函数名称：GetFoldAll(string Path)
+         * 功能说明：获取指定文件夹下所有子目录及文件(树形)
+         * 参    数：Path:详细路径
+         * 调用示列：
+         *           string strDirlist = Server.MapPath("templates");       
+         *           this.Literal1.Text = DotNet.Utilities.FileOperate.GetFoldAll(strDirlist);  
+        *****************************************/
+        /// <summary>
+        /// 获取指定文件夹下所有子目录及文件
+        /// </summary>
+        /// <param name="Path">详细路径</param>
+        public static string GetFoldAll(string Path)
+        {
+            string str = "";
+            DirectoryInfo thisOne = new DirectoryInfo(Path);
+            str = ListTreeShow(thisOne,0,str);
+            return str;
+        }
+        #endregion
+        /// <summary>
+        /// 获取指定文件夹下所有子目录及文件函数
+        /// </summary>
+        /// <param name="theDir">指定目录</param>
+        /// <param name="nLevel">默认起始值,调用时,一般为0</param>
+        /// <param name="Rn">用于迭加的传入值,一般为空</param>
+        /// <returns></returns>
+        public static string ListTreeShow(DirectoryInfo theDir,int nLevel,string Rn)//递归目录 文件
+        {
+            DirectoryInfo[] subDirectories = theDir.GetDirectories();//获得目录
+            foreach (DirectoryInfo dirinfo in subDirectories) {
+
+                if (nLevel == 0) {
+                    Rn += "├";
+                } else {
+                    string _s = "";
+                    for (int i = 1 ; i <= nLevel ; i++) {
+                        _s += "│&nbsp;";
+                    }
+                    Rn += _s + "├";
+                }
+                Rn += "<b>" + dirinfo.Name.ToString() + "</b><br />";
+                FileInfo[] fileInfo = dirinfo.GetFiles();   //目录下的文件
+                foreach (FileInfo fInfo in fileInfo) {
+                    if (nLevel == 0) {
+                        Rn += "│&nbsp;├";
+                    } else {
+                        string _f = "";
+                        for (int i = 1 ; i <= nLevel ; i++) {
+                            _f += "│&nbsp;";
+                        }
+                        Rn += _f + "│&nbsp;├";
+                    }
+                    Rn += fInfo.Name.ToString() + " <br />";
+                }
+                Rn = ListTreeShow(dirinfo,nLevel + 1,Rn);
+
+
+            }
+            return Rn;
+        }
+
+        #region 获取文件夹大小
+        /****************************************
+         * 函数名称：GetDirectoryLength(string dirPath)
+         * 功能说明：获取文件夹大小
+         * 参    数：dirPath:文件夹详细路径
+         * 调用示列：
+         *           string Path = Server.MapPath("templates"); 
+         *           Response.Write(DotNet.Utilities.FileOperate.GetDirectoryLength(Path));       
+        *****************************************/
+        /// <summary>
+        /// 获取文件夹大小
+        /// </summary>
+        /// <param name="dirPath">文件夹路径</param>
+        /// <returns></returns>
+        public static long GetDirectoryLength(string dirPath)
+        {
+            if (!Directory.Exists(dirPath))
+                return 0;
+            long len = 0;
+            DirectoryInfo di = new DirectoryInfo(dirPath);
+            foreach (FileInfo fi in di.GetFiles()) {
+                len += fi.Length;
+            }
+            DirectoryInfo[] dis = di.GetDirectories();
+            if (dis.Length > 0) {
+                for (int i = 0 ; i < dis.Length ; i++) {
+                    len += GetDirectoryLength(dis[i].FullName);
+                }
+            }
+            return len;
+        }
+        #endregion
+
+        #region 获取指定文件详细属性
+        /****************************************
+         * 函数名称：GetFileAttibe(string filePath)
+         * 功能说明：获取指定文件详细属性
+         * 参    数：filePath:文件详细路径
+         * 调用示列：
+         *           string file = Server.MapPath("robots.txt");  
+         *            Response.Write(DotNet.Utilities.FileOperate.GetFileAttibe(file));         
+        *****************************************/
+        /// <summary>
+        /// 获取指定文件详细属性
+        /// </summary>
+        /// <param name="filePath">文件详细路径</param>
+        /// <returns></returns>
+        public static string GetFileAttibe(string filePath)
+        {
+            string str = "";
+            FileInfo objFI = new FileInfo(filePath);
+            str += "详细路径:" + objFI.FullName + "<br>文件名称:" + objFI.Name + "<br>文件长度:" + objFI.Length.ToString() + "字节<br>创建时间" + objFI.CreationTime.ToString() + "<br>最后访问时间:" + objFI.LastAccessTime.ToString() + "<br>修改时间:" + objFI.LastWriteTime.ToString() + "<br>所在目录:" + objFI.DirectoryName + "<br>扩展名:" + objFI.Extension;
+            return str;
+        }
+        #endregion
+
+
+        /// <summary>
+        /// 获取指定目录下所有符合指定模式的文件名。
+        /// </summary>
+        /// <param name="directory">指定目录。</param>
+        /// <param name="pattern">指定模式。</param>
+        /// <param name="fileList">符合指定模式的文件名列表。</param>
+        public static void GetFiles(DirectoryInfo directory,string pattern,ref List<string> fileList) {
+            fileList = new List<string>();
+            if (directory.Exists && !string.IsNullOrWhiteSpace(pattern)) {
+                try {
+                    // 使用LINQ表达式筛选符合指定模式的文件，并将文件名添加到列表中。
+                    fileList.AddRange(directory.GetFiles(pattern).Select(f => f.Name));
+                } catch (Exception ex) {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取指定目录下符合指定模式的文件名和文件夹名。
+        /// </summary>
+        /// <param name="directory">指定目录。</param>
+        /// <param name="pattern">指定模式。</param>
+        /// <param name="fileList">符合指定模式的文件和文件夹名称列表。</param>
+        /// <param name="recursive">是否递归获取子文件夹中的文件和文件夹，true表示递归获取。</param>
+        public static void GetFiles(DirectoryInfo directory,string pattern,ref List<string> fileList,bool recursive) {
+            if (directory.Exists && !string.IsNullOrWhiteSpace(pattern)) {
+                try {
+                    // 获取目录下不包含"$RECYCLE"关键字的文件夹名，并添加到列表中。
+                    foreach (DirectoryInfo info in directory.GetDirectories()) {
+                        if (!info.FullName.Contains("$RECYCLE")) {
+                            fileList.Add(info.Name);
+                        }
+                    }
+                    // 获取目录下符合指定模式的文件名，并添加到列表中。
+                    foreach (FileInfo info in directory.GetFiles(pattern)) {
+                        fileList.Add(info.Name);
+                    }
+                } catch (Exception ex) {
+                    Console.WriteLine(ex.ToString());
+                }
+                if (recursive) {
+                    // 递归获取子文件夹中的文件和文件夹名称，并添加到列表中。
+                    foreach (DirectoryInfo info in directory.GetDirectories()) {
+                        GetFiles(info,pattern,ref fileList,recursive);
+                    }
+                }
+            }
+        }
+
+        #region electron
+        /// <summary>
+        /// 读取桌面内容
+        /// </summary>
+        public async Task<object> GetDesktop(object path) {
+            // 创建目录信息对象
+            DirectoryInfo dirInfo = new DirectoryInfo(path.ToString());
+            // 存储搜索结果的列表
+            List<string> searchResult = new List<string>();
+            // 调用Common类中的GetFiles方法，将搜索结果存储在searchResult列表中
+            GetFiles(dirInfo,"*.*",ref searchResult);
+            return searchResult;
+        }
+        #endregion
+
     }
 }

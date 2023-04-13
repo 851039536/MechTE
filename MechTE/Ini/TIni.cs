@@ -4,14 +4,13 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace MechTE.TIni
-{
+namespace MechTE.TIni {
     /// <summary>
     /// ini文件操作类
     /// </summary>
-    public class TIni
-    {
+    public class TIni {
         /// <summary>
         /// 读取ini
         /// </summary>
@@ -24,7 +23,7 @@ namespace MechTE.TIni
         /// <returns></returns>
         /// 声明INI文件的读操作函数 GetPrivateProfileString()
         [DllImport("kernel32.dll")]
-        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string iniPath);
+        private static extern int GetPrivateProfileString(string section,string key,string def,StringBuilder retVal,int size,string iniPath);
 
         /// <summary>
         /// 写入ini
@@ -36,9 +35,12 @@ namespace MechTE.TIni
         /// <returns></returns>
         /// 声明INI文件的写操作函数 WritePrivateProfileString()
         [DllImport("kernel32")]
-        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        private static extern long WritePrivateProfileString(string section,string key,string val,string filePath);
 
 
+        public async Task<object> RINIS(dynamic name) {
+            return name;
+        }
         /// <summary>
         /// 写入ini
         /// </summary>
@@ -46,10 +48,9 @@ namespace MechTE.TIni
         /// <param name="key">key名</param>
         /// <param name="value">写入的值</param>
         /// <param name="path">完整的ini文件名路径</param>
-        public void INIWrite(string section, string key, string value, string path)
-        {
+        public void WINI(string section,string key,string value,string path) {
             // section=配置节点名称，key=键名，value=返回键值，path=路径
-            WritePrivateProfileString(section, key, value, path);
+            WritePrivateProfileString(section,key,value,path);
         }
         /// <summary>
         /// 读取ini
@@ -58,16 +59,13 @@ namespace MechTE.TIni
         /// <param name="key">键名</param>
         /// <param name="path">文件路径</param>
         /// <returns>string</returns>
-        public string INIRead(string section, string key, string path)
-        {
+        public string RINI(string section,string key,string path) {
             // 每次从ini中读取多少字节
             StringBuilder temp = new StringBuilder(255);
             // section=配置节点名称，key=键名，temp=上面，path=路径
-            GetPrivateProfileString(section, key, "", temp, 255, path);
+            GetPrivateProfileString(section,key,"",temp,255,path);
             return temp.ToString();
-
         }
-
         /// <summary>
         /// 读取ini string[]
         /// </summary>
@@ -75,10 +73,9 @@ namespace MechTE.TIni
         /// <param name="key">文件路径</param>
         /// <param name="path">Key</param>
         /// <returns>string[]</returns>
-        public static string[] INIReads(string section, string key, string path)
-        {
+        public static string[] RINIS(string section,string key,string path) {
             StringBuilder temp = new StringBuilder(255);
-            GetPrivateProfileString(section, key, "", temp, 500, path);
+            GetPrivateProfileString(section,key,"",temp,500,path);
             return temp.ToString().Split(',');
         }
 
@@ -86,9 +83,8 @@ namespace MechTE.TIni
         /// 删除一个INI文件
         /// </summary>
         /// <param name="FilePath"></param>
-        public void INIDelete(string FilePath)
-        {
-           File.Delete(FilePath);
+        public void DINI(string FilePath) {
+            File.Delete(FilePath);
         }
 
         #region  查询INI文件所有内容
@@ -96,22 +92,20 @@ namespace MechTE.TIni
         /// 查询INI文件所有内容
         /// </summary>
         /// <param name="tpath"></param>
-        public static void GetIniAll(string tpath = @".\CONFIG.ini")
-        {
+        public static void GetIniAll(string tpath = @".\CONFIG.ini") {
             var parser = new FileIniDataParser();
             // 这将加载INI文件，读取失败中包含的数据，并解析该数据
             IniData data = parser.ReadFile(@tpath);
             //通过所有的段迭代
-            foreach (SectionData section in data.Sections)
-            {
+            foreach (SectionData section in data.Sections) {
                 Console.WriteLine("[" + section.SectionName + "]");
                 //遍历当前节中的所有键以打印值
                 foreach (KeyData key in section.Keys)
                     Console.WriteLine(key.KeyName + " = " + key.Value);
             }
         }
-
         #endregion
+
         #region 读取INI指定值
         /// <summary>
         /// 读取INI指定值 (@".\CONFIG.ini","CONFIG","Delay");
@@ -120,14 +114,14 @@ namespace MechTE.TIni
         /// <param name="section">ini文件 [xxxx] 头部标识</param>
         /// <param name="Key">Key</param>
         /// <returns>string[]</returns>
-        public static string GetIniValue(string tpath, string section, string Key)
-        {
+        public static string GetIniValue(string tpath,string section,string Key) {
             var parser = new FileIniDataParser();
             // 这将加载INI文件，读取失败中包含的数据，并解析该数据
             IniData data = parser.ReadFile(@tpath);
             return data[section][Key];
         }
         #endregion
+
         #region 更改指定INI值
         /// <summary>
         /// 更改指定INI值
@@ -137,17 +131,16 @@ namespace MechTE.TIni
         /// <param name="Key">Key</param>
         /// <param name="name">name</param>
         /// <returns></returns>
-        public static void UpIniValue(string tpath, string section, string Key, string name)
-        {
+        public static void UpIniValue(string tpath,string section,string Key,string name) {
             var parser = new FileIniDataParser();
             // 这将加载INI文件，读取失败中包含的数据，并解析该数据
             IniData data = parser.ReadFile(@tpath);
             data[section][Key] = name;
             //  parser.SaveFile(tpath,data);
-            parser.WriteFile(tpath, data, Encoding.UTF8);
+            parser.WriteFile(tpath,data,Encoding.UTF8);
         }
-
         #endregion
+
         #region 新增INI值
         /// <summary>
         /// 添加section下的键值,如果已存在section则在已存在的section下添加键值
@@ -156,19 +149,18 @@ namespace MechTE.TIni
         /// <param name="section">section</param>
         /// <param name="key">键</param>
         /// <param name="name">值</param>
-        public static void AddIniValue(string tpath, string section, string key, string name)
-        {
+        public static void AddIniValue(string tpath,string section,string key,string name) {
             var parser = new FileIniDataParser();
             // 这将加载INI文件，读取失败中包含的数据，并解析该数据
             IniData data = parser.ReadFile(@tpath);
             //添加一个新部分和一些键
             data.Sections.AddSection(section);
-            data[section].AddKey(key, name);
-            parser.WriteFile(tpath, data, Encoding.UTF8);
+            data[section].AddKey(key,name);
+            parser.WriteFile(tpath,data,Encoding.UTF8);
 
         }
-
         #endregion
+
         #region 删除一个键
         /// <summary>
         /// 删除一个键
@@ -176,33 +168,31 @@ namespace MechTE.TIni
         /// <param name="tpath">ini路径</param>
         /// <param name="section">section</param>
         /// <param name="key">键</param>
-        public static void DelIniValue(string tpath, string section, string key)
-        {
+        public static void DelIniValue(string tpath,string section,string key) {
             var parser = new FileIniDataParser();
             // 这将加载INI文件，读取失败中包含的数据，并解析该数据
             IniData data = parser.ReadFile(@tpath);
             //删除一个键
             data[section].RemoveKey(key);
-            parser.WriteFile(tpath, data, Encoding.UTF8);
+            parser.WriteFile(tpath,data,Encoding.UTF8);
 
         }
         #endregion
+
         #region 删除“section”部分以及与之关联的所有键和注释
         /// <summary>
         /// 从文件中删除“section”部分以及与之关联的所有键和注释
         /// </summary>
         /// <param name="tpath">ini路径</param>
         /// <param name="section">section</param>
-        public static void DelIniSection(string tpath, string section)
-        {
+        public static void DelIniSection(string tpath,string section) {
             var parser = new FileIniDataParser();
             // 这将加载INI文件，读取失败中包含的数据，并解析该数据
             IniData data = parser.ReadFile(@tpath);
             //从文件中删除“Users”部分以及与之关联的所有键和注释
             data.Sections.RemoveSection(section);
-            parser.WriteFile(tpath, data, Encoding.UTF8);
+            parser.WriteFile(tpath,data,Encoding.UTF8);
         }
-
         #endregion
     }
 }
