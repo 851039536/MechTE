@@ -70,7 +70,6 @@ namespace MechTE.Cmd
                     }
                     await p.StandardInput.WriteLineAsync("exit");
                     string strOutput = await p.StandardOutput.ReadToEndAsync();
-                    //strOutput = Encoding.UTF8.GetString(Encoding.Default.GetBytes(strOutput));
                      p.WaitForExit();
 
                     return strOutput;
