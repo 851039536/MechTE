@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.IO;
+﻿using System.IO;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace MechTE.TJson
+namespace MechTE.Json
 {
     /// <summary>
     /// Newtonsoft.Json
@@ -40,7 +40,7 @@ namespace MechTE.TJson
             {
                 using (StreamReader sr = new StreamReader(fs, Encoding.UTF8))
                 {
-                    json = sr.ReadToEnd().ToString();
+                    json = sr.ReadToEnd();
                 }
             }
             return json;

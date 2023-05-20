@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MechTE.TWinForm
+namespace MechTE.Form
 {
     /// <summary>
-    /// winfrom窗体api
+    /// 窗体api
     /// </summary>
     public class TForm
     {
@@ -16,7 +16,7 @@ namespace MechTE.TWinForm
         /// <returns>bool</returns>
         public static bool MesBox(string name, string title)
         {
-            DialogResult result = MessageBox.Show(@name, @title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show(@name, @title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 try

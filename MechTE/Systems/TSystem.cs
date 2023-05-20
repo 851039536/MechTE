@@ -9,9 +9,9 @@ namespace MechTE.Systems
     /// <summary>
     /// 系统类
     /// </summary>
+    
     public class TSystems
     {
-
         #region 读取当前系统信息
         /// <summary>
         /// 读取当前系统信息
@@ -33,7 +33,7 @@ namespace MechTE.Systems
                     name[4] = "启动方式：安全启动";
                 if (SystemInformation.BootMode.ToString() == "FailSafeWithNetwork")
                     name[4] = "启动方式：通过网络服务启动";
-                if (SystemInformation.Network == true)
+                if (SystemInformation.Network)
                     name[5] = "网络连接：已连接";
                 else
                     name[5] = "网络连接：未连接";
@@ -103,7 +103,7 @@ namespace MechTE.Systems
         /// 获取系统驱动器
         /// </summary>
         /// <returns></returns>
-        public static string[] GetLogicalDrivess()
+        public static string[] GetLogicalDrives()
         {
             //获取系统驱动器
            return  Directory.GetLogicalDrives();

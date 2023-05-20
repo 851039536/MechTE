@@ -1,53 +1,70 @@
-﻿/*
- 源码己托管:http://git.oschina.net/kuiyu/dotnetcodes
- */
-using System;
+﻿using System;
 using System.Data;
 using System.IO;
 using System.Web;
 using System.Xml;
 
-namespace DotNet.Utilities
+namespace MechTE.XML
 {
     /// <summary>
     /// 
     /// </summary>
-    public class XMLProcess
+    public class XmlProcess
     {
         #region 构造函数
-        public XMLProcess()
-        { }
 
-        public XMLProcess(string strPath)
+        /// <summary>
+        /// 
+        /// </summary>
+        public XmlProcess()
         {
-            this._XMLPath = strPath;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strPath"></param>
+        public XmlProcess(string strPath)
+        {
+            this._xmlPath = strPath;
+        }
+
         #endregion
 
         #region 公有属性
-        private string _XMLPath;
-        public string XMLPath
+
+        private readonly string _xmlPath;
+
+        /// <summary>
+        /// xml路径
+        /// </summary>
+        private string XmlPath
         {
-            get { return this._XMLPath; }
+            get { return this._xmlPath; }
         }
+
         #endregion
 
         #region 私有方法
-       /// <summary>
-       /// 导入XML文件
-       /// </summary>
-       /// <returns></returns>
+
+        /// <summary>
+        /// 导入XML文件
+        /// </summary>
+        /// <returns></returns>
         private XmlDocument XMLLoad()
         {
-            string XMLFile = XMLPath;
+            string XMLFile = XmlPath;
             XmlDocument xmldoc = new XmlDocument();
             try
             {
                 string filename = AppDomain.CurrentDomain.BaseDirectory.ToString() + XMLFile;
                 if (File.Exists(filename)) xmldoc.Load(filename);
             }
-            catch (Exception e)
-            { }
+            catch (Exception)
+            {
+                // ignored
+            }
+
             return xmldoc;
         }
 
@@ -64,7 +81,9 @@ namespace DotNet.Utilities
                 if (File.Exists(filename)) xmldoc.Load(filename);
             }
             catch (Exception e)
-            { }
+            {
+            }
+
             return xmldoc;
         }
 
@@ -83,9 +102,11 @@ namespace DotNet.Utilities
                 return HttpContext.Current.Server.MapPath(strPath);
             }
         }
+
         #endregion
 
         #region 读取数据
+
         /// <summary>
         /// 读取指定节点的数据
         /// </summary>
@@ -102,7 +123,10 @@ namespace DotNet.Utilities
                 XmlNode xn = doc.SelectSingleNode(node);
                 value = xn.InnerText;
             }
-            catch { }
+            catch
+            {
+            }
+
             return value;
         }
 
@@ -111,7 +135,6 @@ namespace DotNet.Utilities
         /// </summary>
         /// <param name="path">路径</param>
         /// <param name="node">节点</param>
-        /// <param name="attribute">属性名，非空时返回该属性值，否则返回串联值</param>
         /// 使用示列:
         /// XMLProsess.Read(path, "/Node", "")
         /// XMLProsess.Read(path, "/Node/Element[@Attribute='Name']")
@@ -124,7 +147,11 @@ namespace DotNet.Utilities
                 XmlNode xn = doc.SelectSingleNode(node);
                 value = xn.InnerText;
             }
-            catch { }
+            catch
+            {
+                // ignored
+            }
+
             return value;
         }
 
@@ -146,7 +173,10 @@ namespace DotNet.Utilities
                 XmlNode xn = doc.SelectSingleNode(node);
                 value = (attribute.Equals("") ? xn.InnerText : xn.Attributes[attribute].Value);
             }
-            catch { }
+            catch
+            {
+            }
+
             return value;
         }
 
@@ -160,16 +190,17 @@ namespace DotNet.Utilities
             string[] str = { };
             XmlDocument doc = XMLLoad();
             XmlNode xn = doc.SelectSingleNode(node);
-            XmlNodeList nodelist = xn.ChildNodes;  //得到该节点的子节点
+            XmlNodeList nodelist = xn.ChildNodes; //得到该节点的子节点
             if (nodelist.Count > 0)
             {
                 str = new string[nodelist.Count];
-                foreach (XmlElement el in nodelist)//读元素值
+                foreach (XmlElement el in nodelist) //读元素值
                 {
                     str[i] = el.Value;
                     i++;
                 }
             }
+
             return str;
         }
 
@@ -181,7 +212,7 @@ namespace DotNet.Utilities
         {
             XmlDocument doc = XMLLoad();
             XmlNode xn = doc.SelectSingleNode(node);
-            XmlNodeList nodelist = xn.ChildNodes;  //得到该节点的子节点
+            XmlNodeList nodelist = xn.ChildNodes; //得到该节点的子节点
             return nodelist;
         }
 
@@ -194,7 +225,7 @@ namespace DotNet.Utilities
         {
             try
             {
-                string XMLFile = this.XMLPath;
+                string XMLFile = this.XmlPath;
                 string filename = AppDomain.CurrentDomain.BaseDirectory.ToString() + XMLFile;
                 DataSet ds = new DataSet();
                 ds.ReadXml(filename);
@@ -203,10 +234,12 @@ namespace DotNet.Utilities
                 {
                     dv.Sort = strSort; //对DataView中的记录进行排序
                 }
+
                 if (strWhere != null)
                 {
                     dv.RowFilter = strWhere; //对DataView中的记录进行筛选，找到我们想要的记录
                 }
+
                 return dv;
             }
             catch (Exception)
@@ -229,6 +262,7 @@ namespace DotNet.Utilities
                 {
                     return ds;
                 }
+
                 return null;
             }
             catch (Exception)
@@ -236,9 +270,11 @@ namespace DotNet.Utilities
                 return null;
             }
         }
+
         #endregion
 
         #region 插入数据
+
         /// <summary>
         /// 插入数据
         /// </summary>
@@ -275,9 +311,12 @@ namespace DotNet.Utilities
                         xe.SetAttribute(attribute, value);
                     xn.AppendChild(xe);
                 }
+
                 doc.Save(AppDomain.CurrentDomain.BaseDirectory.ToString() + path);
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         /// <summary>
@@ -306,15 +345,19 @@ namespace DotNet.Utilities
                         else
                             strValue = strList[i][j];
                     }
+
                     if (strAttribute.Equals(""))
                         xe.InnerText = strValue;
                     else
                         xe.SetAttribute(strAttribute, strValue);
                 }
+
                 xn.AppendChild(xe);
                 doc.Save(AppDomain.CurrentDomain.BaseDirectory.ToString() + path);
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         /// <summary>
@@ -334,11 +377,12 @@ namespace DotNet.Utilities
                 ds.ReadXmlSchema(GetXmlFullPath(strXsdPath)); //读XML架构，关系到列的数据类型
                 ds.ReadXml(GetXmlFullPath(strXmlPath));
                 DataTable dt = ds.Tables[0];
-                DataRow newRow = dt.NewRow();                 //在原来的表格基础上创建新行
-                for (int i = 0; i < Columns.Length; i++)      //循环给一行中的各个列赋值
+                DataRow newRow = dt.NewRow(); //在原来的表格基础上创建新行
+                for (int i = 0; i < Columns.Length; i++) //循环给一行中的各个列赋值
                 {
                     newRow[Columns[i]] = ColumnValue[i];
                 }
+
                 dt.Rows.Add(newRow);
                 dt.AcceptChanges();
                 ds.AcceptChanges();
@@ -350,9 +394,11 @@ namespace DotNet.Utilities
                 return false;
             }
         }
+
         #endregion
 
         #region 修改数据
+
         /// <summary>
         /// 修改指定节点的数据
         /// </summary>
@@ -365,9 +411,11 @@ namespace DotNet.Utilities
                 XmlDocument doc = XMLLoad();
                 XmlNode xn = doc.SelectSingleNode(node);
                 xn.InnerText = value;
-                doc.Save(AppDomain.CurrentDomain.BaseDirectory.ToString() + XMLPath);
+                doc.Save(AppDomain.CurrentDomain.BaseDirectory.ToString() + XmlPath);
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         /// <summary>
@@ -388,7 +436,9 @@ namespace DotNet.Utilities
                 xn.InnerText = value;
                 doc.Save(AppDomain.CurrentDomain.BaseDirectory.ToString() + path);
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         /// <summary>
@@ -414,7 +464,9 @@ namespace DotNet.Utilities
                     xe.SetAttribute(attribute, value);
                 doc.Save(AppDomain.CurrentDomain.BaseDirectory.ToString() + path);
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         /// <summary>
@@ -425,13 +477,14 @@ namespace DotNet.Utilities
         /// <param name="ColumnValue">列值数组</param>
         /// <param name="strWhereColumnName">条件列名</param>
         /// <param name="strWhereColumnValue">条件列值</param>
-        public static bool UpdateXmlRow(string strXmlPath, string[] Columns, string[] ColumnValue, string strWhereColumnName, string strWhereColumnValue)
+        public static bool UpdateXmlRow(string strXmlPath, string[] Columns, string[] ColumnValue,
+            string strWhereColumnName, string strWhereColumnValue)
         {
             try
             {
                 string strXsdPath = strXmlPath.Substring(0, strXmlPath.IndexOf(".")) + ".xsd";
                 DataSet ds = new DataSet();
-                ds.ReadXmlSchema(GetXmlFullPath(strXsdPath));//读XML架构，关系到列的数据类型
+                ds.ReadXmlSchema(GetXmlFullPath(strXsdPath)); //读XML架构，关系到列的数据类型
                 ds.ReadXml(GetXmlFullPath(strXmlPath));
 
                 //先判断行数
@@ -447,13 +500,14 @@ namespace DotNet.Utilities
                             {
                                 ds.Tables[0].Rows[i][Columns[j]] = ColumnValue[j];
                             }
-                            ds.AcceptChanges();                     //更新DataSet
-                            ds.WriteXml(GetXmlFullPath(strXmlPath));//重新写入XML文件
+
+                            ds.AcceptChanges(); //更新DataSet
+                            ds.WriteXml(GetXmlFullPath(strXmlPath)); //重新写入XML文件
                             return true;
                         }
                     }
-
                 }
+
                 return false;
             }
             catch (Exception)
@@ -461,16 +515,16 @@ namespace DotNet.Utilities
                 return false;
             }
         }
+
         #endregion
 
         #region 删除数据
+
         /// <summary>
         /// 删除节点值
         /// </summary>
         /// <param name="path">路径</param>
         /// <param name="node">节点</param>
-        /// <param name="attribute">属性名，非空时删除该节点属性值，否则删除节点值</param>
-        /// <param name="value">值</param>
         /// 使用示列:
         /// XMLProsess.Delete(path, "/Node", "")
         /// XMLProsess.Delete(path, "/Node", "Attribute")
@@ -483,7 +537,9 @@ namespace DotNet.Utilities
                 xn.ParentNode.RemoveChild(xn);
                 doc.Save(AppDomain.CurrentDomain.BaseDirectory.ToString() + path);
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         /// <summary>
@@ -509,7 +565,9 @@ namespace DotNet.Utilities
                     xe.RemoveAttribute(attribute);
                 doc.Save(AppDomain.CurrentDomain.BaseDirectory.ToString() + path);
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         /// <summary>
@@ -526,6 +584,7 @@ namespace DotNet.Utilities
                 {
                     ds.Tables[0].Rows.Clear();
                 }
+
                 ds.WriteXml(GetXmlFullPath(strXmlPath));
                 return true;
             }
@@ -549,6 +608,7 @@ namespace DotNet.Utilities
                 {
                     ds.Tables[0].Rows[iDeleteRow].Delete();
                 }
+
                 ds.WriteXml(GetXmlFullPath(strXmlPath));
                 return true;
             }
@@ -599,8 +659,10 @@ namespace DotNet.Utilities
                             }
                         }
                     }
+
                     ds.WriteXml(GetXmlFullPath(strXmlPath));
                 }
+
                 return true;
             }
             catch (Exception)
@@ -608,6 +670,7 @@ namespace DotNet.Utilities
                 return false;
             }
         }
+
         #endregion
     }
 }

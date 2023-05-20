@@ -6,13 +6,13 @@ namespace MechTE {
     /// </summary>
     public class MechDll
     {
-        private string m_strPara;
+        private string _strPara;
         /// <summary>
         /// 构造函数
         /// </summary>
         public MechDll(string strPara)
         {
-            this.m_strPara = strPara;
+            _strPara = strPara;
         }
         /// <summary>
         /// 开始测试

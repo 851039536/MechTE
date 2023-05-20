@@ -4,22 +4,6 @@
         <name>MechTE</name>
     </assembly>
     <members>
-        <member name="T:MechTE.MechDll">
-            <summary>
-            调试模块
-            </summary>
-        </member>
-        <member name="M:MechTE.MechDll.#ctor(System.String)">
-            <summary>
-            构造函数
-            </summary>
-        </member>
-        <member name="M:MechTE.MechDll.Run(System.String)">
-            <summary>
-            开始测试
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:MechTE.Cmd.TCmd">
             <summary>
             cmd命令
@@ -27,10 +11,17 @@
         </member>
         <member name="M:MechTE.Cmd.TCmd.VExe(System.Object)">
             <summary>
-            cmd命令 vue版本
+            cmd命令vue版本
             </summary>
             <param name="name">Shell程序命令</param>
             <returns>string</returns>
+        </member>
+        <member name="M:MechTE.Cmd.TCmd.StartExe(System.String)">
+             <summary>
+            cmd命令
+             </summary>
+             <param name="cmd">Shell程序命令</param>
+             <returns>string</returns>
         </member>
         <member name="M:MechTE.Cmd.TCmd.ExeCommand(System.String[])">
              <summary>
@@ -39,16 +30,9 @@
             命令文本数组
              命令输出文本
         </member>
-        <member name="M:MechTE.Cmd.TCmd.Exe(System.String)">
-             <summary>
-            cmd.exe命令
-             </summary>
-             <param name="cmd">Shell程序命令</param>
-             <returns>string</returns>
-        </member>
         <member name="M:MechTE.Cmd.TCmd.StartApp(System.String)">
             <summary>
-             启动外部Windows应用程序，隐藏程序界面
+             启动Windows应用程序，隐藏程序界面
             </summary>
             <param name="appName">/应用程序路径名称</param>
             <returns>bool</returns>
@@ -108,7 +92,7 @@
             <param name="lpszFile">指定要打开的文件名|路径</param>
             <param name="lpszParams">指定命令行参数: 0 | ""</param>
             <param name="lpszDir">用于指定默认目录:0 | ""</param>
-            <param name="FsShowCmd">显示模式: 0:隐藏 1~11</param>
+            <param name="fsShowCmd">显示模式: 0:隐藏 1~11</param>
             <returns></returns>
         </member>
         <member name="M:MechTE.Files.TFile.OpenFile(System.String,System.Int32)">
@@ -116,7 +100,7 @@
             打开程序/文件夹
             </summary>
             <param name="path">路径</param>
-            <param name="FsShow">显示模式 默认1</param>
+            <param name="fsShow">显示模式 默认1</param>
         </member>
         <member name="M:MechTE.Files.TFile.OpenFile(System.String)">
             <summary>
@@ -134,7 +118,7 @@
         </member>
         <member name="M:MechTE.Files.TFile.FileDialog">
             <summary>
-            winfrom浏览文件对话框
+            窗体浏览文件对话框
             </summary>
             <returns>string</returns>
         </member>
@@ -220,7 +204,7 @@
             <summary>
             检查文件,如果文件不存在则创建  
             </summary>
-            <param name="FilePath">路径,包括文件名</param>
+            <param name="filePath">路径,包括文件名</param>
         </member>
         <member name="M:MechTE.Files.TFile.DeleteFolderFiles(System.String,System.String)">
             <summary>
@@ -325,61 +309,61 @@
             <summary>
             写文件
             </summary>
-            <param name="Path">文件路径</param>
-            <param name="Strings">文件内容</param>
+            <param name="path">文件路径</param>
+            <param name="strings">文件内容</param>
         </member>
         <member name="M:MechTE.Files.TFile.ReadFile(System.String)">
             <summary>
             读文件
             </summary>
-            <param name="Path">文件路径</param>
+            <param name="path">文件路径</param>
             <returns></returns>
         </member>
         <member name="M:MechTE.Files.TFile.FileAdd(System.String,System.String)">
             <summary>
             追加文件
             </summary>
-            <param name="Path">文件路径</param>
+            <param name="path">文件路径</param>
             <param name="strings">内容</param>
         </member>
-        <member name="M:MechTE.Files.TFile.FileCoppy(System.String,System.String)">
+        <member name="M:MechTE.Files.TFile.FileCopy(System.String,System.String)">
             <summary>
             拷贝文件
             </summary>
-            <param name="OrignFile">原始文件</param>
-            <param name="NewFile">新文件路径</param>
+            <param name="orignFile">原始文件</param>
+            <param name="newFile">新文件路径</param>
         </member>
         <member name="M:MechTE.Files.TFile.FileDel(System.String)">
             <summary>
             删除文件
             </summary>
-            <param name="Path">路径</param>
+            <param name="path">路径</param>
         </member>
         <member name="M:MechTE.Files.TFile.FileMove(System.String,System.String)">
             <summary>
             移动文件
             </summary>
-            <param name="OrignFile">原始路径</param>
-            <param name="NewFile">新路径</param>
+            <param name="orignFile">原始路径</param>
+            <param name="newFile">新路径</param>
         </member>
         <member name="M:MechTE.Files.TFile.FolderCreate(System.String,System.String)">
             <summary>
             在当前目录下创建目录
             </summary>
-            <param name="OrignFolder">当前目录</param>
-            <param name="NewFloder">新目录</param>
+            <param name="orignFolder">当前目录</param>
+            <param name="newFloder">新目录</param>
         </member>
         <member name="M:MechTE.Files.TFile.FolderCreate(System.String)">
             <summary>
             创建文件夹
             </summary>
-            <param name="Path"></param>
+            <param name="path"></param>
         </member>
         <member name="M:MechTE.Files.TFile.FileCreate(System.String)">
             <summary>
             
             </summary>
-            <param name="Path"></param>
+            <param name="path"></param>
         </member>
         <member name="M:MechTE.Files.TFile.DeleteFolder(System.String)">
             <summary>
@@ -399,7 +383,7 @@
             <summary>
             获取指定文件夹下所有子目录及文件
             </summary>
-            <param name="Path">详细路径</param>
+            <param name="path">详细路径</param>
         </member>
         <member name="M:MechTE.Files.TFile.ListTreeShow(System.IO.DirectoryInfo,System.Int32,System.String)">
             <summary>
@@ -407,7 +391,7 @@
             </summary>
             <param name="theDir">指定目录</param>
             <param name="nLevel">默认起始值,调用时,一般为0</param>
-            <param name="Rn">用于迭加的传入值,一般为空</param>
+            <param name="rn">用于迭加的传入值,一般为空</param>
             <returns></returns>
         </member>
         <member name="M:MechTE.Files.TFile.GetDirectoryLength(System.String)">
@@ -417,7 +401,7 @@
             <param name="dirPath">文件夹路径</param>
             <returns></returns>
         </member>
-        <member name="M:MechTE.Files.TFile.GetFileAttibe(System.String)">
+        <member name="M:MechTE.Files.TFile.GetFileAttribute(System.String)">
             <summary>
             获取指定文件详细属性
             </summary>
@@ -446,12 +430,12 @@
             读取桌面内容
             </summary>
         </member>
-        <member name="T:MechTE.TIni.TIni">
+        <member name="T:MechTE.Ini.TIni">
             <summary>
             ini文件操作类
             </summary>
         </member>
-        <member name="M:MechTE.TIni.TIni.GetPrivateProfileString(System.String,System.String,System.String,System.Text.StringBuilder,System.Int32,System.String)">
+        <member name="M:MechTE.Ini.TIni.GetPrivateProfileString(System.String,System.String,System.String,System.Text.StringBuilder,System.Int32,System.String)">
             <summary>
             读取ini
             </summary>
@@ -464,7 +448,7 @@
             <returns></returns>
             声明INI文件的读操作函数 GetPrivateProfileString()
         </member>
-        <member name="M:MechTE.TIni.TIni.WritePrivateProfileString(System.String,System.String,System.String,System.String)">
+        <member name="M:MechTE.Ini.TIni.WritePrivateProfileString(System.String,System.String,System.String,System.String)">
             <summary>
             写入ini
             </summary>
@@ -475,7 +459,7 @@
             <returns></returns>
             声明INI文件的写操作函数 WritePrivateProfileString()
         </member>
-        <member name="M:MechTE.TIni.TIni.WINI(System.String,System.String,System.String,System.String)">
+        <member name="M:MechTE.Ini.TIni.SetIni(System.String,System.String,System.String,System.String)">
             <summary>
             写入ini
             </summary>
@@ -484,7 +468,7 @@
             <param name="value">写入的值</param>
             <param name="path">完整的ini文件名路径</param>
         </member>
-        <member name="M:MechTE.TIni.TIni.RINI(System.String,System.String,System.String)">
+        <member name="M:MechTE.Ini.TIni.GetIni(System.String,System.String,System.String)">
             <summary>
             读取ini
             </summary>
@@ -493,7 +477,7 @@
             <param name="path">文件路径</param>
             <returns>string</returns>
         </member>
-        <member name="M:MechTE.TIni.TIni.RINIS(System.String,System.String,System.String)">
+        <member name="M:MechTE.Ini.TIni.GetIniArray(System.String,System.String,System.String)">
             <summary>
             读取ini string[]
             </summary>
@@ -502,100 +486,100 @@
             <param name="path">Key</param>
             <returns>string[]</returns>
         </member>
-        <member name="M:MechTE.TIni.TIni.DINI(System.String)">
+        <member name="M:MechTE.Ini.TIni.DeleteIni(System.String)">
             <summary>
             删除一个INI文件
             </summary>
-            <param name="FilePath"></param>
+            <param name="filePath"></param>
         </member>
-        <member name="M:MechTE.TIni.TIni.GetIniAll(System.String)">
+        <member name="M:MechTE.Ini.TIni.GetIniAll(System.String)">
             <summary>
             查询INI文件所有内容
             </summary>
-            <param name="tpath"></param>
+            <param name="path"></param>
         </member>
-        <member name="M:MechTE.TIni.TIni.GetIniValue(System.String,System.String,System.String)">
+        <member name="M:MechTE.Ini.TIni.GetIniValue(System.String,System.String,System.String)">
             <summary>
             读取INI指定值 (@".\CONFIG.ini","CONFIG","Delay");
             </summary>
-            <param name="tpath">文件路径</param>
+            <param name="path">文件路径</param>
             <param name="section">ini文件 [xxxx] 头部标识</param>
-            <param name="Key">Key</param>
+            <param name="key">Key</param>
             <returns>string[]</returns>
         </member>
-        <member name="M:MechTE.TIni.TIni.UpIniValue(System.String,System.String,System.String,System.String)">
+        <member name="M:MechTE.Ini.TIni.UpIniValue(System.String,System.String,System.String,System.String)">
             <summary>
             更改指定INI值
             </summary>
-            <param name="tpath">文件路径</param>
+            <param name="path">文件路径</param>
             <param name="section">ini文件 [xxxx] 头部标识</param>
-            <param name="Key">Key</param>
+            <param name="key">Key</param>
             <param name="name">name</param>
             <returns></returns>
         </member>
-        <member name="M:MechTE.TIni.TIni.AddIniValue(System.String,System.String,System.String,System.String)">
+        <member name="M:MechTE.Ini.TIni.AddIniValue(System.String,System.String,System.String,System.String)">
             <summary>
             添加section下的键值,如果已存在section则在已存在的section下添加键值
             </summary>
-            <param name="tpath">ini路径</param>
+            <param name="path">ini路径</param>
             <param name="section">section</param>
             <param name="key">键</param>
             <param name="name">值</param>
         </member>
-        <member name="M:MechTE.TIni.TIni.DelIniValue(System.String,System.String,System.String)">
+        <member name="M:MechTE.Ini.TIni.DelIniValue(System.String,System.String,System.String)">
             <summary>
             删除一个键
             </summary>
-            <param name="tpath">ini路径</param>
+            <param name="path">ini路径</param>
             <param name="section">section</param>
             <param name="key">键</param>
         </member>
-        <member name="M:MechTE.TIni.TIni.DelIniSection(System.String,System.String)">
+        <member name="M:MechTE.Ini.TIni.DelIniSection(System.String,System.String)">
             <summary>
             从文件中删除“section”部分以及与之关联的所有键和注释
             </summary>
-            <param name="tpath">ini路径</param>
+            <param name="path">ini路径</param>
             <param name="section">section</param>
         </member>
-        <member name="T:MechTE.TJson.TJson">
+        <member name="T:MechTE.Json.TJson">
             <summary>
             Newtonsoft.Json
             </summary>
         </member>
-        <member name="M:MechTE.TJson.TJson.WriteJsonStr(System.String,System.String)">
+        <member name="M:MechTE.Json.TJson.WriteJsonStr(System.String,System.String)">
             <summary>
             将序列化的json字符串内容写入Json文件，并且保存
             </summary>
             <param name="path">将序列化的json字符串内容写入Json文件，并且保存</param>
             <param name="jsonConents">写入的数据</param>
         </member>
-        <member name="M:MechTE.TJson.TJson.GetJsonStr(System.String)">
+        <member name="M:MechTE.Json.TJson.GetJsonStr(System.String)">
             <summary>
             获取到本地的Json文件并且解析返回对应的json字符串
             </summary>
             <param name="filepath">路径:如@".\json\JProgramFile.json"</param>
             <returns>string</returns>
         </member>
-        <member name="M:MechTE.TJson.TJson.GetJson(System.String)">
+        <member name="M:MechTE.Json.TJson.GetJson(System.String)">
             <summary>
             读取数组Json数据
             </summary>
             <param name="path">路径</param>
             <returns>JArray</returns>
         </member>
-        <member name="M:MechTE.TJson.TJson.WriteJson(System.String,Newtonsoft.Json.Linq.JArray)">
+        <member name="M:MechTE.Json.TJson.WriteJson(System.String,Newtonsoft.Json.Linq.JArray)">
             <summary>
             写入数组Json数据
             </summary>
             <param name="path">路径</param>
             <param name="j">JArray</param>
         </member>
-        <member name="T:MechTE.TWinForm.TForm">
+        <member name="T:MechTE.Form.TForm">
             <summary>
-            winfrom窗体api
+            窗体api
             </summary>
         </member>
-        <member name="M:MechTE.TWinForm.TForm.MesBox(System.String,System.String)">
+        <member name="M:MechTE.Form.TForm.MesBox(System.String,System.String)">
             <summary>
             弹框提示
             </summary>
@@ -632,16 +616,219 @@
             </summary>
             <returns>Process[]</returns>
         </member>
-        <member name="M:MechTE.Systems.TSystems.GetLogicalDrivess">
+        <member name="M:MechTE.Systems.TSystems.GetLogicalDrives">
             <summary>
             获取系统驱动器
             </summary>
             <returns></returns>
         </member>
-        <member name="T:MechTE.TZip.TZip">
+        <member name="T:MechTE.XML.XmlProcess">
             <summary>
-            zip
+            
             </summary>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="strPath"></param>
+        </member>
+        <member name="P:MechTE.XML.XmlProcess.XmlPath">
+            <summary>
+            xml路径
+            </summary>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.XMLLoad">
+            <summary>
+            导入XML文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.XMLLoad(System.String)">
+            <summary>
+            导入XML文件
+            </summary>
+            <param name="strPath">XML文件路径</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.GetXmlFullPath(System.String)">
+            <summary>
+            返回完整路径
+            </summary>
+            <param name="strPath">Xml的路径</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.Read(System.String)">
+            <summary>
+            读取指定节点的数据
+            </summary>
+            <param name="node">节点</param>
+            使用示列:
+            XMLProsess.Read("/Node", "")
+            XMLProsess.Read("/Node/Element[@Attribute='Name']")
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.Read(System.String,System.String)">
+            <summary>
+            读取指定路径和节点的串联值
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            使用示列:
+            XMLProsess.Read(path, "/Node", "")
+            XMLProsess.Read(path, "/Node/Element[@Attribute='Name']")
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.Read(System.String,System.String,System.String)">
+            <summary>
+            读取指定路径和节点的属性值
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            <param name="attribute">属性名，非空时返回该属性值，否则返回串联值</param>
+            使用示列:
+            XMLProsess.Read(path, "/Node", "")
+            XMLProsess.Read(path, "/Node/Element[@Attribute='Name']", "Attribute")
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.ReadAllChildallValue(System.String)">
+            <summary>
+            获取某一节点的所有孩子节点的值
+            </summary>
+            <param name="node">要查询的节点</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.ReadAllChild(System.String)">
+            <summary>
+            获取某一节点的所有孩子节点的值
+            </summary>
+            <param name="node">要查询的节点</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.GetDataViewByXml(System.String,System.String)">
+            <summary> 
+            读取XML返回经排序或筛选后的DataView
+            </summary>
+            <param name="strWhere">筛选条件，如:"name='kgdiwss'"</param>
+            <param name="strSort"> 排序条件，如:"Id desc"</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.GetDataSetByXml(System.String)">
+            <summary>
+            读取XML返回DataSet
+            </summary>
+            <param name="strXmlPath">XML文件相对路径</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.Insert(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            插入数据
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            <param name="element">元素名，非空时插入新元素，否则在该元素中插入属性</param>
+            <param name="attribute">属性名，非空时插入该元素属性值，否则插入元素值</param>
+            <param name="value">值</param>
+            使用示列:
+            XMLProsess.Insert(path, "/Node", "Element", "", "Value")
+            XMLProsess.Insert(path, "/Node", "Element", "Attribute", "Value")
+            XMLProsess.Insert(path, "/Node", "", "Attribute", "Value")
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.Insert(System.String,System.String,System.String,System.String[][])">
+            <summary>
+            插入数据
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            <param name="element">元素名，非空时插入新元素，否则在该元素中插入属性</param>
+            <param name="strList">由XML属性名和值组成的二维数组</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.WriteXmlByDataSet(System.String,System.String[],System.String[])">
+            <summary>
+            插入一行数据
+            </summary>
+            <param name="strXmlPath">XML文件相对路径</param>
+            <param name="Columns">要插入行的列名数组，如：string[] Columns = {"name","IsMarried"};</param>
+            <param name="ColumnValue">要插入行每列的值数组，如：string[] ColumnValue={"XML大全","false"};</param>
+            <returns>成功返回true,否则返回false</returns>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.Update(System.String,System.String)">
+            <summary>
+            修改指定节点的数据
+            </summary>
+            <param name="node">节点</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.Update(System.String,System.String,System.String)">
+            <summary>
+            修改指定节点的数据
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            <param name="value">值</param>
+            使用示列:
+            XMLProsess.Insert(path, "/Node","Value")
+            XMLProsess.Insert(path, "/Node","Value")
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.Update(System.String,System.String,System.String,System.String)">
+            <summary>
+            修改指定节点的属性值(静态)
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            <param name="attribute">属性名，非空时修改该节点属性值，否则修改节点值</param>
+            <param name="value">值</param>
+            使用示列:
+            XMLProsess.Insert(path, "/Node", "", "Value")
+            XMLProsess.Insert(path, "/Node", "Attribute", "Value")
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.UpdateXmlRow(System.String,System.String[],System.String[],System.String,System.String)">
+            <summary>
+            更改符合条件的一条记录
+            </summary>
+            <param name="strXmlPath">XML文件路径</param>
+            <param name="Columns">列名数组</param>
+            <param name="ColumnValue">列值数组</param>
+            <param name="strWhereColumnName">条件列名</param>
+            <param name="strWhereColumnValue">条件列值</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.Delete(System.String,System.String)">
+            <summary>
+            删除节点值
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            使用示列:
+            XMLProsess.Delete(path, "/Node", "")
+            XMLProsess.Delete(path, "/Node", "Attribute")
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.Delete(System.String,System.String,System.String)">
+            <summary>
+            删除数据
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            <param name="attribute">属性名，非空时删除该节点属性值，否则删除节点值</param>
+            <param name="value">值</param>
+            使用示列:
+            XMLProsess.Delete(path, "/Node", "")
+            XMLProsess.Delete(path, "/Node", "Attribute")
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.DeleteXmlAllRows(System.String)">
+            <summary>
+            删除所有行
+            </summary>
+            <param name="strXmlPath">XML路径</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.DeleteXmlRowByIndex(System.String,System.Int32)">
+            <summary>
+            通过删除DataSet中指定索引行，重写XML以实现删除指定行
+            </summary>
+            <param name="iDeleteRow">要删除的行在DataSet中的Index值</param>
+        </member>
+        <member name="M:MechTE.XML.XmlProcess.DeleteXmlRows(System.String,System.String,System.String[])">
+            <summary>
+            删除指定列中指定值的行
+            </summary>
+            <param name="strXmlPath">XML相对路径</param>
+            <param name="strColumn">列名</param>
+            <param name="ColumnValue">指定值</param>
         </member>
         <member name="T:MechTE.ConvertHelper.TConvertHelpers">
             <summary>
@@ -696,201 +883,6 @@
             base64转图片
             </summary>
             <param name="base64String"></param>
-        </member>
-        <member name="T:DotNet.Utilities.XMLProcess">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.XMLLoad">
-            <summary>
-            导入XML文件
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.XMLLoad(System.String)">
-            <summary>
-            导入XML文件
-            </summary>
-            <param name="strPath">XML文件路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.GetXmlFullPath(System.String)">
-            <summary>
-            返回完整路径
-            </summary>
-            <param name="strPath">Xml的路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.Read(System.String)">
-            <summary>
-            读取指定节点的数据
-            </summary>
-            <param name="node">节点</param>
-            使用示列:
-            XMLProsess.Read("/Node", "")
-            XMLProsess.Read("/Node/Element[@Attribute='Name']")
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.Read(System.String,System.String)">
-            <summary>
-            读取指定路径和节点的串联值
-            </summary>
-            <param name="path">路径</param>
-            <param name="node">节点</param>
-            <param name="attribute">属性名，非空时返回该属性值，否则返回串联值</param>
-            使用示列:
-            XMLProsess.Read(path, "/Node", "")
-            XMLProsess.Read(path, "/Node/Element[@Attribute='Name']")
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.Read(System.String,System.String,System.String)">
-            <summary>
-            读取指定路径和节点的属性值
-            </summary>
-            <param name="path">路径</param>
-            <param name="node">节点</param>
-            <param name="attribute">属性名，非空时返回该属性值，否则返回串联值</param>
-            使用示列:
-            XMLProsess.Read(path, "/Node", "")
-            XMLProsess.Read(path, "/Node/Element[@Attribute='Name']", "Attribute")
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.ReadAllChildallValue(System.String)">
-            <summary>
-            获取某一节点的所有孩子节点的值
-            </summary>
-            <param name="node">要查询的节点</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.ReadAllChild(System.String)">
-            <summary>
-            获取某一节点的所有孩子节点的值
-            </summary>
-            <param name="node">要查询的节点</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.GetDataViewByXml(System.String,System.String)">
-            <summary> 
-            读取XML返回经排序或筛选后的DataView
-            </summary>
-            <param name="strWhere">筛选条件，如:"name='kgdiwss'"</param>
-            <param name="strSort"> 排序条件，如:"Id desc"</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.GetDataSetByXml(System.String)">
-            <summary>
-            读取XML返回DataSet
-            </summary>
-            <param name="strXmlPath">XML文件相对路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.Insert(System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            插入数据
-            </summary>
-            <param name="path">路径</param>
-            <param name="node">节点</param>
-            <param name="element">元素名，非空时插入新元素，否则在该元素中插入属性</param>
-            <param name="attribute">属性名，非空时插入该元素属性值，否则插入元素值</param>
-            <param name="value">值</param>
-            使用示列:
-            XMLProsess.Insert(path, "/Node", "Element", "", "Value")
-            XMLProsess.Insert(path, "/Node", "Element", "Attribute", "Value")
-            XMLProsess.Insert(path, "/Node", "", "Attribute", "Value")
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.Insert(System.String,System.String,System.String,System.String[][])">
-            <summary>
-            插入数据
-            </summary>
-            <param name="path">路径</param>
-            <param name="node">节点</param>
-            <param name="element">元素名，非空时插入新元素，否则在该元素中插入属性</param>
-            <param name="strList">由XML属性名和值组成的二维数组</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.WriteXmlByDataSet(System.String,System.String[],System.String[])">
-            <summary>
-            插入一行数据
-            </summary>
-            <param name="strXmlPath">XML文件相对路径</param>
-            <param name="Columns">要插入行的列名数组，如：string[] Columns = {"name","IsMarried"};</param>
-            <param name="ColumnValue">要插入行每列的值数组，如：string[] ColumnValue={"XML大全","false"};</param>
-            <returns>成功返回true,否则返回false</returns>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.Update(System.String,System.String)">
-            <summary>
-            修改指定节点的数据
-            </summary>
-            <param name="node">节点</param>
-            <param name="value">值</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.Update(System.String,System.String,System.String)">
-            <summary>
-            修改指定节点的数据
-            </summary>
-            <param name="path">路径</param>
-            <param name="node">节点</param>
-            <param name="value">值</param>
-            使用示列:
-            XMLProsess.Insert(path, "/Node","Value")
-            XMLProsess.Insert(path, "/Node","Value")
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.Update(System.String,System.String,System.String,System.String)">
-            <summary>
-            修改指定节点的属性值(静态)
-            </summary>
-            <param name="path">路径</param>
-            <param name="node">节点</param>
-            <param name="attribute">属性名，非空时修改该节点属性值，否则修改节点值</param>
-            <param name="value">值</param>
-            使用示列:
-            XMLProsess.Insert(path, "/Node", "", "Value")
-            XMLProsess.Insert(path, "/Node", "Attribute", "Value")
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.UpdateXmlRow(System.String,System.String[],System.String[],System.String,System.String)">
-            <summary>
-            更改符合条件的一条记录
-            </summary>
-            <param name="strXmlPath">XML文件路径</param>
-            <param name="Columns">列名数组</param>
-            <param name="ColumnValue">列值数组</param>
-            <param name="strWhereColumnName">条件列名</param>
-            <param name="strWhereColumnValue">条件列值</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.Delete(System.String,System.String)">
-            <summary>
-            删除节点值
-            </summary>
-            <param name="path">路径</param>
-            <param name="node">节点</param>
-            <param name="attribute">属性名，非空时删除该节点属性值，否则删除节点值</param>
-            <param name="value">值</param>
-            使用示列:
-            XMLProsess.Delete(path, "/Node", "")
-            XMLProsess.Delete(path, "/Node", "Attribute")
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.Delete(System.String,System.String,System.String)">
-            <summary>
-            删除数据
-            </summary>
-            <param name="path">路径</param>
-            <param name="node">节点</param>
-            <param name="attribute">属性名，非空时删除该节点属性值，否则删除节点值</param>
-            <param name="value">值</param>
-            使用示列:
-            XMLProsess.Delete(path, "/Node", "")
-            XMLProsess.Delete(path, "/Node", "Attribute")
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.DeleteXmlAllRows(System.String)">
-            <summary>
-            删除所有行
-            </summary>
-            <param name="strXmlPath">XML路径</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.DeleteXmlRowByIndex(System.String,System.Int32)">
-            <summary>
-            通过删除DataSet中指定索引行，重写XML以实现删除指定行
-            </summary>
-            <param name="iDeleteRow">要删除的行在DataSet中的Index值</param>
-        </member>
-        <member name="M:DotNet.Utilities.XMLProcess.DeleteXmlRows(System.String,System.String,System.String[])">
-            <summary>
-            删除指定列中指定值的行
-            </summary>
-            <param name="strXmlPath">XML相对路径</param>
-            <param name="strColumn">列名</param>
-            <param name="ColumnValue">指定值</param>
         </member>
     </members>
 </doc>

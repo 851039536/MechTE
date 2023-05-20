@@ -9,20 +9,32 @@ namespace MechTE.Cmd
     /// </summary>
     public class TCmd
     {
+        #region electron,cmd命令vue版本
 
-        #region electron
         /// <summary>
-        /// cmd命令 vue版本
+        /// cmd命令vue版本
         /// </summary>
         /// <param name="name">Shell程序命令</param>
         /// <returns>string</returns>
-        public async Task<object> VExe(dynamic name) {
+        public async Task<object> StartElectronExe(dynamic name)
+        {
             return await ExeCommandAsync(new string[] { name });
         }
 
         #endregion
 
-        #region cmd
+        #region cmd命令
+
+        /// <summary>
+        ///cmd命令
+        /// </summary>
+        /// <param name="cmd">Shell程序命令</param>
+        /// <returns>string</returns>
+        public static string StartExe(string cmd)
+        {
+            return ExeCommand(new string[] { cmd });
+        }
+
         /// <summary>
         /// 执行多条cmd.exe命令
         /// </summary>
@@ -30,7 +42,8 @@ namespace MechTE.Cmd
         /// 命令输出文本
         private static string ExeCommand(string[] commandTexts)
         {
-            Process p = new Process();
+            //表示在操作系统上运行的进程
+            var p = new Process();
             p.StartInfo.FileName = "cmd.exe";
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardInput = true;
@@ -38,24 +51,33 @@ namespace MechTE.Cmd
             p.StartInfo.RedirectStandardError = true;
             p.StartInfo.CreateNoWindow = true;
             string strOutput = null;
-            try {
+            try
+            {
                 p.Start();
-                foreach (string item in commandTexts) {
+                foreach (var item in commandTexts)
+                {
                     p.StandardInput.WriteLine(item);
                 }
+
                 p.StandardInput.WriteLine("exit");
                 strOutput = p.StandardOutput.ReadToEnd();
                 //strOutput = Encoding.UTF8.GetString(Encoding.Default.GetBytes(strOutput));
+                //等待进程退出
                 p.WaitForExit();
                 p.Close();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 strOutput = e.Message;
             }
+
             return strOutput;
         }
 
-        private static async Task<string> ExeCommandAsync(string[] commandTexts) {
-            using (Process p = new Process()) {
+        private static async Task<string> ExeCommandAsync(string[] commandTexts)
+        {
+            using (var p = new Process())
+            {
                 p.StartInfo.FileName = "cmd.exe";
                 p.StartInfo.UseShellExecute = false;
                 p.StartInfo.RedirectStandardInput = true;
@@ -63,39 +85,33 @@ namespace MechTE.Cmd
                 p.StartInfo.RedirectStandardError = true;
                 p.StartInfo.CreateNoWindow = true;
 
-                try {
+                try
+                {
                     p.Start();
-                    foreach (string item in commandTexts) {
+                    foreach (string item in commandTexts)
+                    {
                         await p.StandardInput.WriteLineAsync(item);
                     }
+
                     await p.StandardInput.WriteLineAsync("exit");
                     string strOutput = await p.StandardOutput.ReadToEndAsync();
-                     p.WaitForExit();
+                    p.WaitForExit();
 
                     return strOutput;
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     return e.Message;
                 }
             }
         }
 
-
-        /// <summary>
-        ///cmd.exe命令
-        /// </summary>
-        /// <param name="cmd">Shell程序命令</param>
-        /// <returns>string</returns>
-        public static string Exe(string cmd)
-        {
-            return ExeCommand(new string[] { cmd });
-        }
-
-
         #endregion
 
-        #region 启动外部Windows应用程序
+        #region 启动Windows应用程序
+
         /// <summary>
-        ///  启动外部Windows应用程序，隐藏程序界面
+        ///  启动Windows应用程序，隐藏程序界面
         /// </summary>
         /// <param name="appName">/应用程序路径名称</param>
         /// <returns>bool</returns>
@@ -114,6 +130,7 @@ namespace MechTE.Cmd
         {
             return StartApp(appName, null, style);
         }
+
         /// 
         /// 启动外部应用程序，隐藏程序界面
         /// 
@@ -124,6 +141,7 @@ namespace MechTE.Cmd
         {
             return StartApp(appName, arguments, ProcessWindowStyle.Hidden);
         }
+
         /// 
         /// 启动外部应用程序
         /// 
@@ -133,26 +151,36 @@ namespace MechTE.Cmd
         /// true表示成功，false表示失败
         private static bool StartApp(string appName, string arguments, ProcessWindowStyle style)
         {
-            bool blnRst = false;
-            Process p = new Process();
-            p.StartInfo.FileName = appName;//exe,bat and so on
-            p.StartInfo.WindowStyle = style;
-            p.StartInfo.Arguments = arguments;
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = appName,
+                    Arguments = arguments,
+                    WindowStyle = style
+                }
+            };
+
             try
             {
-                p.Start();
-                p.WaitForExit();
-                p.Close();
-                blnRst = true;
+                process.Start();
+                process.WaitForExit();
+                return true;
             }
             catch
             {
+                return false;
             }
-            return blnRst;
+            finally
+            {
+                process.Dispose();
+            }
         }
+
         #endregion
 
         #region 网盘登录
+
         /// <summary>
         /// 网盘登录
         /// </summary>
@@ -160,38 +188,47 @@ namespace MechTE.Cmd
         /// <param name="userName">用户</param>
         /// <param name="passWord">密码</param>
         /// <returns>bool</returns>
-        public static bool LoginNetwork(string path,string userName,string passWord) {
-            bool flag = false;
-            Process proc = new Process();//实例启动一个独立进程
-            try {
-                proc.StartInfo.FileName = "cmd.exe";//设定程序名
+        public static bool LoginNetwork(string path, string userName, string passWord)
+        {
+            var proc = new Process(); //实例启动一个独立进程
+            try
+            {
+                proc.StartInfo.FileName = "cmd.exe"; //设定程序名
                 proc.StartInfo.UseShellExecute = false;
                 proc.StartInfo.RedirectStandardInput = true; //重定向标准输入
-                proc.StartInfo.RedirectStandardOutput = true;//重定向标准输出
-                proc.StartInfo.RedirectStandardError = true;//重定向错误输出
+                proc.StartInfo.RedirectStandardOutput = true; //重定向标准输出
+                proc.StartInfo.RedirectStandardError = true; //重定向错误输出
                 proc.StartInfo.CreateNoWindow = true; //设定不显示窗口
                 proc.Start();
                 string dosLine = "net use " + path + " " + passWord + " /user:" + userName;
                 proc.StandardInput.WriteLine(dosLine); //执行的命令
                 proc.StandardInput.WriteLine("exit");
-                while (!proc.HasExited) {
+                while (!proc.HasExited)
+                {
                     proc.WaitForExit(1000);
                 }
-                string errormsg = proc.StandardError.ReadToEnd();
+                var errors = proc.StandardError.ReadToEnd();
                 proc.StandardError.Close();
-                if (string.IsNullOrEmpty(errormsg)) {
-                    flag = true;
-                } else {
-                    throw new Exception(errormsg);
+                if (string.IsNullOrEmpty(errors))
+                {
                 }
-            } catch (Exception ex) {
+                else
+                {
+                    throw new Exception(errors);
+                }
+            }
+            catch (Exception ex)
+            {
                 throw new Exception(ex.Message);
-            } finally {
+            }
+            finally
+            {
                 proc.Close();
                 proc.Dispose();
             }
-            return flag;
+            return true;
         }
+
         #endregion
     }
 }

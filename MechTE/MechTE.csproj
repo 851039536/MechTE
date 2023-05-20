@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MechDll.cs" />
     <Compile Include="Cmd\TCmd.cs" />
     <Compile Include="Files\TFile.cs" />
     <Compile Include="Ini\TIni.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="Form\TForm.cs" />
     <Compile Include="Systems\TSystem.cs" />
     <Compile Include="XML\XMLProcess.cs" />
-    <Compile Include="Zip\TZip.cs" />
     <Compile Include="ConvertHelper\TConvertHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
