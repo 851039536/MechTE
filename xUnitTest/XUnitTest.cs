@@ -3,19 +3,19 @@ using Xunit;
 
 namespace xUnit_Test
 {
-    public class MechTest
+    public class XUnitTest
     {
         [Fact]
-        public void StartExe()
+        public void StartShell()
         {
-            TCmd.StartExe("notepad");
+            Cmd.StartShell("notepad");
             Assert.True(true);
         }
 
         [Fact]
         public void StartApp()
         {
-           var data = TCmd.StartApp(@"D:\software\Notepad++\notepad++.exe");
+           var data = Cmd.StartApp(@"D:\software\Notepad++\notepad++.exe");
             Assert.Equal(true, data);
         }
     }

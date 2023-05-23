@@ -7,7 +7,7 @@ namespace MechTE.Cmd
     /// <summary>
     /// cmd命令
     /// </summary>
-    public class TCmd
+    public static class Cmd
     {
         #region electron,cmd命令vue版本
 
@@ -16,97 +16,25 @@ namespace MechTE.Cmd
         /// </summary>
         /// <param name="name">Shell程序命令</param>
         /// <returns>string</returns>
-        public async Task<object> StartElectronExe(dynamic name)
+        public static async Task<object> StartElectronShell(dynamic name)
         {
-            return await ExeCommandAsync(new string[] { name });
+            return await CmdPack.ExeCommandAsync(new string[] { name });
         }
 
         #endregion
 
         #region cmd命令
-
-        /// <summary>
-        ///cmd命令
-        /// </summary>
-        /// <param name="cmd">Shell程序命令</param>
-        /// <returns>string</returns>
-        public static string StartExe(string cmd)
+        ///  <summary>
+        /// 使用cmd执行Shell命名
+        ///  </summary>
+        ///  <param name="cmd">Shell程序命令</param>
+        public static void StartShell(string cmd)
         {
-            return ExeCommand(new string[] { cmd });
+            CmdPack.ExeCommand(new[] { cmd });
         }
-
-        /// <summary>
-        /// 执行多条cmd.exe命令
-        /// </summary>
-        ///命令文本数组
-        /// 命令输出文本
-        private static string ExeCommand(string[] commandTexts)
-        {
-            //表示在操作系统上运行的进程
-            var p = new Process();
-            p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.CreateNoWindow = true;
-            string strOutput = null;
-            try
-            {
-                p.Start();
-                foreach (var item in commandTexts)
-                {
-                    p.StandardInput.WriteLine(item);
-                }
-
-                p.StandardInput.WriteLine("exit");
-                strOutput = p.StandardOutput.ReadToEnd();
-                //strOutput = Encoding.UTF8.GetString(Encoding.Default.GetBytes(strOutput));
-                //等待进程退出
-                p.WaitForExit();
-                p.Close();
-            }
-            catch (Exception e)
-            {
-                strOutput = e.Message;
-            }
-
-            return strOutput;
-        }
-
-        private static async Task<string> ExeCommandAsync(string[] commandTexts)
-        {
-            using (var p = new Process())
-            {
-                p.StartInfo.FileName = "cmd.exe";
-                p.StartInfo.UseShellExecute = false;
-                p.StartInfo.RedirectStandardInput = true;
-                p.StartInfo.RedirectStandardOutput = true;
-                p.StartInfo.RedirectStandardError = true;
-                p.StartInfo.CreateNoWindow = true;
-
-                try
-                {
-                    p.Start();
-                    foreach (string item in commandTexts)
-                    {
-                        await p.StandardInput.WriteLineAsync(item);
-                    }
-
-                    await p.StandardInput.WriteLineAsync("exit");
-                    string strOutput = await p.StandardOutput.ReadToEndAsync();
-                    p.WaitForExit();
-
-                    return strOutput;
-                }
-                catch (Exception e)
-                {
-                    return e.Message;
-                }
-            }
-        }
-
         #endregion
+        
+        
 
         #region 启动Windows应用程序
 
@@ -131,24 +59,24 @@ namespace MechTE.Cmd
             return StartApp(appName, null, style);
         }
 
-        /// 
+        /// <summary>
         /// 启动外部应用程序，隐藏程序界面
-        /// 
-        ///应用程序路径名称
-        ///启动参数
-        /// true表示成功，false表示失败
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="arguments"></param>
+        /// <returns></returns>
         private static bool StartApp(string appName, string arguments)
         {
             return StartApp(appName, arguments, ProcessWindowStyle.Hidden);
         }
 
-        /// 
+        /// <summary>
         /// 启动外部应用程序
-        /// 
-        ///应用程序路径名称
-        ///启动参数
-        ///进程窗口模式
-        /// true表示成功，false表示失败
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="arguments"></param>
+        /// <param name="style"></param>
+        /// <returns></returns>
         private static bool StartApp(string appName, string arguments, ProcessWindowStyle style)
         {
             var process = new Process
@@ -200,13 +128,14 @@ namespace MechTE.Cmd
                 proc.StartInfo.RedirectStandardError = true; //重定向错误输出
                 proc.StartInfo.CreateNoWindow = true; //设定不显示窗口
                 proc.Start();
-                string dosLine = "net use " + path + " " + passWord + " /user:" + userName;
+                var dosLine = "net use " + path + " " + passWord + " /user:" + userName;
                 proc.StandardInput.WriteLine(dosLine); //执行的命令
                 proc.StandardInput.WriteLine("exit");
                 while (!proc.HasExited)
                 {
                     proc.WaitForExit(1000);
                 }
+
                 var errors = proc.StandardError.ReadToEnd();
                 proc.StandardError.Close();
                 if (string.IsNullOrEmpty(errors))
@@ -226,6 +155,7 @@ namespace MechTE.Cmd
                 proc.Close();
                 proc.Dispose();
             }
+
             return true;
         }
 

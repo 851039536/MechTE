@@ -4,40 +4,39 @@
         <name>MechTE</name>
     </assembly>
     <members>
-        <member name="T:MechTE.Cmd.TCmd">
+        <member name="T:MechTE.Cmd.Cmd">
             <summary>
             cmd命令
             </summary>
         </member>
-        <member name="M:MechTE.Cmd.TCmd.VExe(System.Object)">
+        <member name="M:MechTE.Cmd.Cmd.StartElectronExe(System.Object)">
             <summary>
             cmd命令vue版本
             </summary>
             <param name="name">Shell程序命令</param>
             <returns>string</returns>
         </member>
-        <member name="M:MechTE.Cmd.TCmd.StartExe(System.String)">
+        <member name="M:MechTE.Cmd.Cmd.StartShell(System.String)">
              <summary>
-            cmd命令
+            使用cmd执行Shell命名
              </summary>
              <param name="cmd">Shell程序命令</param>
-             <returns>string</returns>
         </member>
-        <member name="M:MechTE.Cmd.TCmd.ExeCommand(System.String[])">
-             <summary>
-             执行多条cmd.exe命令
-             </summary>
-            命令文本数组
-             命令输出文本
+        <member name="M:MechTE.Cmd.Cmd.ExeCommandAsync(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            使用cmd执行Shell命名
+            </summary>
+            <param name="commandTexts"></param>
+            <returns></returns>
         </member>
-        <member name="M:MechTE.Cmd.TCmd.StartApp(System.String)">
+        <member name="M:MechTE.Cmd.Cmd.StartApp(System.String)">
             <summary>
              启动Windows应用程序，隐藏程序界面
             </summary>
             <param name="appName">/应用程序路径名称</param>
             <returns>bool</returns>
         </member>
-        <member name="M:MechTE.Cmd.TCmd.StartApp(System.String,System.Diagnostics.ProcessWindowStyle)">
+        <member name="M:MechTE.Cmd.Cmd.StartApp(System.String,System.Diagnostics.ProcessWindowStyle)">
             <summary>
             进程窗口模式
             </summary>
@@ -45,24 +44,24 @@
             <param name="style">显示模式</param>
             <returns>bool</returns>
         </member>
-        <member name="M:MechTE.Cmd.TCmd.StartApp(System.String,System.String)">
-             
-             启动外部应用程序，隐藏程序界面
-             
-            应用程序路径名称
-            启动参数
-             true表示成功，false表示失败
+        <member name="M:MechTE.Cmd.Cmd.StartApp(System.String,System.String)">
+            <summary>
+            启动外部应用程序，隐藏程序界面
+            </summary>
+            <param name="appName"></param>
+            <param name="arguments"></param>
+            <returns></returns>
         </member>
-        <member name="M:MechTE.Cmd.TCmd.StartApp(System.String,System.String,System.Diagnostics.ProcessWindowStyle)">
-             
-             启动外部应用程序
-             
-            应用程序路径名称
-            启动参数
-            进程窗口模式
-             true表示成功，false表示失败
+        <member name="M:MechTE.Cmd.Cmd.StartApp(System.String,System.String,System.Diagnostics.ProcessWindowStyle)">
+            <summary>
+            启动外部应用程序
+            </summary>
+            <param name="appName"></param>
+            <param name="arguments"></param>
+            <param name="style"></param>
+            <returns></returns>
         </member>
-        <member name="M:MechTE.Cmd.TCmd.LoginNetwork(System.String,System.String,System.String)">
+        <member name="M:MechTE.Cmd.Cmd.LoginNetwork(System.String,System.String,System.String)">
             <summary>
             网盘登录
             </summary>
@@ -70,6 +69,17 @@
             <param name="userName">用户</param>
             <param name="passWord">密码</param>
             <returns>bool</returns>
+        </member>
+        <member name="T:MechTE.Cmd.CmdPack">
+            <summary>
+            cmd包装类
+            </summary>
+        </member>
+        <member name="M:MechTE.Cmd.CmdPack.ExeCommand(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            执行多条cmd.exe命令
+            </summary>
+            <param name="commandTexts"></param>
         </member>
         <member name="T:MechTE.Files.TFile">
             <summary>

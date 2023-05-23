@@ -55,7 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cmd\TCmd.cs" />
+    <Compile Include="Cmd\Cmd.cs" />
+    <Compile Include="Cmd\CmdPack.cs" />
     <Compile Include="Files\TFile.cs" />
     <Compile Include="Ini\TIni.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
