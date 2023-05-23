@@ -64,7 +64,7 @@
     <Compile Include="Form\TForm.cs" />
     <Compile Include="Systems\TSystem.cs" />
     <Compile Include="XML\XMLProcess.cs" />
-    <Compile Include="ConvertHelper\TConvertHelpers.cs" />
+    <Compile Include="ConvertHelper\ConvertHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

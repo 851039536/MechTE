@@ -1,4 +1,5 @@
 ﻿using MechTE.Cmd;
+using MechTE.ConvertHelper;
 using Xunit;
 
 namespace xUnit_Test
@@ -17,6 +18,13 @@ namespace xUnit_Test
         {
            var data = Cmd.StartApp(@"D:\software\Notepad++\notepad++.exe");
             Assert.Equal(true, data);
+        }
+        
+        [Fact]
+        public void RepairZero()
+        {
+            var data = ConvertHelpers.RepairZero("1234", 5);
+            Assert.Equal("01234", data);
         }
     }
 }

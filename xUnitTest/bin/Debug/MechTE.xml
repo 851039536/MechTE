@@ -9,7 +9,7 @@
             cmd命令
             </summary>
         </member>
-        <member name="M:MechTE.Cmd.Cmd.StartElectronExe(System.Object)">
+        <member name="M:MechTE.Cmd.Cmd.StartElectronShell(System.Object)">
             <summary>
             cmd命令vue版本
             </summary>
@@ -21,13 +21,6 @@
             使用cmd执行Shell命名
              </summary>
              <param name="cmd">Shell程序命令</param>
-        </member>
-        <member name="M:MechTE.Cmd.Cmd.ExeCommandAsync(System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            使用cmd执行Shell命名
-            </summary>
-            <param name="commandTexts"></param>
-            <returns></returns>
         </member>
         <member name="M:MechTE.Cmd.Cmd.StartApp(System.String)">
             <summary>
@@ -43,14 +36,6 @@
             <param name="appName">应用程序路径名称</param>
             <param name="style">显示模式</param>
             <returns>bool</returns>
-        </member>
-        <member name="M:MechTE.Cmd.Cmd.StartApp(System.String,System.String)">
-            <summary>
-            启动外部应用程序，隐藏程序界面
-            </summary>
-            <param name="appName"></param>
-            <param name="arguments"></param>
-            <returns></returns>
         </member>
         <member name="M:MechTE.Cmd.Cmd.StartApp(System.String,System.String,System.Diagnostics.ProcessWindowStyle)">
             <summary>
@@ -80,6 +65,13 @@
             执行多条cmd.exe命令
             </summary>
             <param name="commandTexts"></param>
+        </member>
+        <member name="M:MechTE.Cmd.CmdPack.ExeCommandAsync(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            使用cmd执行Shell命名
+            </summary>
+            <param name="commandTexts"></param>
+            <returns></returns>
         </member>
         <member name="T:MechTE.Files.TFile">
             <summary>
@@ -840,12 +832,12 @@
             <param name="strColumn">列名</param>
             <param name="ColumnValue">指定值</param>
         </member>
-        <member name="T:MechTE.ConvertHelper.TConvertHelpers">
+        <member name="T:MechTE.ConvertHelper.ConvertHelpers">
             <summary>
             处理数据类型转换，数制转换、编码转换相关的类
             </summary>    
         </member>
-        <member name="M:MechTE.ConvertHelper.TConvertHelpers.RepairZero(System.String,System.Int32)">
+        <member name="M:MechTE.ConvertHelper.ConvertHelpers.RepairZero(System.String,System.Int32)">
             <summary>
             指定字符串的固定长度，如果字符串小于固定长度，
             则在字符串的前面补足零，可设置的固定长度最大为9位
@@ -853,7 +845,7 @@
             <param name="text">原始字符串</param>
             <param name="limitedLength">字符串的固定长度</param>
         </member>
-        <member name="M:MechTE.ConvertHelper.TConvertHelpers.ConvertBase(System.String,System.Int32,System.Int32)">
+        <member name="M:MechTE.ConvertHelper.ConvertHelpers.ConvertBase(System.String,System.Int32,System.Int32)">
             <summary>
             实现各进制数间的转换。ConvertBase("15",10,16)表示将十进制数15转换为16进制的数。
             </summary>
@@ -861,34 +853,34 @@
             <param name="from">原值的进制,只能是2,8,10,16四个值。</param>
             <param name="to">要转换到的目标进制，只能是2,8,10,16四个值。</param>
         </member>
-        <member name="M:MechTE.ConvertHelper.TConvertHelpers.StringToBytes(System.String,System.Text.Encoding)">
+        <member name="M:MechTE.ConvertHelper.ConvertHelpers.StringToBytes(System.String,System.Text.Encoding)">
             <summary>
             使用指定字符集将string转换成byte[]
             </summary>
             <param name="text">要转换的字符串</param>
             <param name="encoding">字符编码</param>
         </member>
-        <member name="M:MechTE.ConvertHelper.TConvertHelpers.BytesToString(System.Byte[],System.Text.Encoding)">
+        <member name="M:MechTE.ConvertHelper.ConvertHelpers.BytesToString(System.Byte[],System.Text.Encoding)">
             <summary>
             使用指定字符集将byte[]转换成string
             </summary>
             <param name="bytes">要转换的字节数组</param>
             <param name="encoding">字符编码</param>
         </member>
-        <member name="M:MechTE.ConvertHelper.TConvertHelpers.BytesToInt32(System.Byte[])">
+        <member name="M:MechTE.ConvertHelper.ConvertHelpers.BytesToInt32(System.Byte[])">
             <summary>
             将byte[]转换成int
             </summary>
             <param name="data">需要转换成整数的byte数组</param>
         </member>
-        <member name="M:MechTE.ConvertHelper.TConvertHelpers.ImgToBase(System.String)">
+        <member name="M:MechTE.ConvertHelper.ConvertHelpers.ImgToBase(System.String)">
             <summary>
             图片转base64
             </summary>
             <param name="imagePath"></param>
             <returns></returns>
         </member>
-        <member name="M:MechTE.ConvertHelper.TConvertHelpers.BaseToImg(System.String)">
+        <member name="M:MechTE.ConvertHelper.ConvertHelpers.BaseToImg(System.String)">
             <summary>
             base64转图片
             </summary>
