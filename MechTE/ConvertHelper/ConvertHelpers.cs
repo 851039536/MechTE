@@ -141,7 +141,7 @@ namespace MechTE.ConvertHelper
         /// </summary>
         /// <param name="imagePath"></param>
         /// <returns></returns>
-        public static string ImgToBase(string imagePath = "C:\\Users\\ch190006\\Desktop\\123.jpg")
+        public static string ImgToBase64(string imagePath)
         {
             byte[] imageBytes = File.ReadAllBytes(imagePath);
             string base64String = Convert.ToBase64String(imageBytes);
@@ -150,10 +150,10 @@ namespace MechTE.ConvertHelper
         }
 
         /// <summary>
-        /// base64转图片
+        /// base64转图片 待测试
         /// </summary>
         /// <param name="base64String"></param>
-        private static void BaseToImg(string base64String)
+        private static void Base64ToImg(string base64String)
         {
             //
             byte[] imageBytes = Convert.FromBase64String(base64String);
