@@ -49,7 +49,7 @@ namespace MechTE.Cmd
         /// </summary>
         /// <param name="commandTexts"></param>
         /// <returns></returns>
-        public static async Task<string> ExeCommandAsync(IEnumerable<string> commandTexts)
+        public static async Task<bool> ExeCommandAsync(IEnumerable<string> commandTexts)
         {
             using (var p = new Process())
             {
@@ -59,7 +59,6 @@ namespace MechTE.Cmd
                 p.StartInfo.RedirectStandardOutput = true;
                 p.StartInfo.RedirectStandardError = true;
                 p.StartInfo.CreateNoWindow = true;
-
                 try
                 {
                     p.Start();
@@ -69,14 +68,13 @@ namespace MechTE.Cmd
                     }
 
                     await p.StandardInput.WriteLineAsync("exit");
-                    var strOutput = await p.StandardOutput.ReadToEndAsync();
+                    await p.StandardOutput.ReadToEndAsync();
                     p.WaitForExit();
-
-                    return strOutput;
+                    return true;
                 }
                 catch (Exception e)
                 {
-                    return e.Message;
+                    return false;
                 }
             }
         }

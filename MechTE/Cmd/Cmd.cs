@@ -16,11 +16,11 @@ namespace MechTE.Cmd
         /// </summary>
         /// <param name="name">Shell程序命令</param>
         /// <returns>string</returns>
-        public static async Task<object> StartElectronShell(dynamic name)
+        public static async Task<bool> StartElectronShell(dynamic name)
         {
             return await CmdPack.ExeCommandAsync(new string[] { name });
         }
-
+        
         #endregion
 
         #region cmd命令
@@ -33,7 +33,6 @@ namespace MechTE.Cmd
             CmdPack.ExeCommand(new[] { cmd });
         }
         #endregion
-        
         
 
         #region 启动Windows应用程序
