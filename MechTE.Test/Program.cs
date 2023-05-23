@@ -1,35 +1,16 @@
-﻿using MechTE;
-using MechTE.TWinForm;
-using System;
-using System.Diagnostics;
-using System.IO;
-using DotNet.Utilities;
-using MechTE.TZip;
-using System.ServiceProcess;
-using System.Management;
-using MechTE.ConvertHelper;
+﻿using System;
 using MechTE.Files;
-using System.ComponentModel;
-using MechTE.Systems;
-using System.Net.Http;
-using System.Xml.Linq;
-using System.Text;
-using Newtonsoft.Json.Linq;
 using MechTE.Cmd;
 
 namespace MechTE.Test
 {
-    internal class Program {
-
-        static  void Main(string[] args) {
-
-            TCmd cmd = new TCmd();
-            //cmd.StartApp(@"D:\sw\winfrom\TestTool\TestTool\bin\Debug\net6.0-windows\TestTool.exe");
-
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
             TFile file = new TFile();
-          var r=   file.GetDesktop(@"C:\Users\CH190006\Desktop");
+            var r = file.GetDesktop(@"C:\Users\CH190006\Desktop");
             //file.VOpenFile(@"D:\software\MES Client\Sajet MES.exe");
-            //TCmd.StartApp(@"D:\\software\\Microsoft VS Code\Code.exe");
 
             //var res=  TConvertHelpers.RepairZero("test",10);
             // var res = TConvertHelpers.ConvertBase("15",10,16);
@@ -84,9 +65,8 @@ namespace MechTE.Test
             //    var text = jsonResponse["choices"][0]["text"].ToString();
             //    Console.WriteLine(text);
 
-                Console.ReadKey();
+            Console.ReadKey();
             //}
-
         }
     }
 }
