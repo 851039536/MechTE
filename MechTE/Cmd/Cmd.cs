@@ -58,16 +58,6 @@ namespace MechTE.Cmd
             return StartApp(appName, null, style);
         }
 
-        /// <summary>
-        /// 启动外部应用程序，隐藏程序界面
-        /// </summary>
-        /// <param name="appName"></param>
-        /// <param name="arguments"></param>
-        /// <returns></returns>
-        private static bool StartApp(string appName, string arguments)
-        {
-            return StartApp(appName, arguments, ProcessWindowStyle.Hidden);
-        }
 
         /// <summary>
         /// 启动外部应用程序
