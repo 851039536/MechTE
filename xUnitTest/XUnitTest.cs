@@ -26,5 +26,12 @@ namespace xUnit_Test
             var data = ConvertHelpers.RepairZero("1234", 5);
             Assert.Equal("01234", data);
         }
+        
+        [Fact]
+        public void ConvertBase()
+        {
+            var data = ConvertHelpers.ConvertBase("1", 10, 16);
+            Assert.Equal("1", data);
+        }
     }
 }
