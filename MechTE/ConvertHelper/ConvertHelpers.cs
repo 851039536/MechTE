@@ -16,21 +16,13 @@ namespace MechTE.ConvertHelper
         /// 则在字符串的前面补足零，可设置的固定长度最大为9位
         /// </summary>
         /// <param name="text">原始字符串</param>
-        /// <param name="limitedLength">字符串的固定长度</param>
-        public static string RepairZero(string text, int limitedLength)
+        /// <param name="totalLength">字符串的固定长度</param>
+        public static string RepairZero(string text, int totalLength)
         {
-            //补足0的字符串
-            string temp = "";
-            //补足0
-            for (int i = 0; i < limitedLength - text.Length; i++)
-            {
-                temp += "0";
-            }
-
-            //连接text
-            temp += text;
-            //返回补足0的字符串
-            return temp;
+            // 将文本左侧填充零，使其总长度为 totalLength
+            var paddedText = text.PadLeft(totalLength, '0');
+            // 将文本左侧填充零，使其总长度为 totalLength
+            return paddedText;
         }
 
         #endregion

@@ -843,7 +843,7 @@
             则在字符串的前面补足零，可设置的固定长度最大为9位
             </summary>
             <param name="text">原始字符串</param>
-            <param name="limitedLength">字符串的固定长度</param>
+            <param name="totalLength">字符串的固定长度</param>
         </member>
         <member name="M:MechTE.ConvertHelper.ConvertHelpers.ConvertBase(System.String,System.Int32,System.Int32)">
             <summary>
