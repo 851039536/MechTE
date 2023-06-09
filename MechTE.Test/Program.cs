@@ -1,5 +1,5 @@
 ﻿using System;
-using MechTE.Files;
+using MechTE_452.Files;
 
 namespace MechTE.Test
 {
@@ -30,7 +30,7 @@ namespace MechTE.Test
             //    TIni.TIni. TDelIniValue(@".\CONFIG.ini","CONFIG","Delay1");
             // TIni.TIni.TDelIniSection(@".\CONFIG.ini","DONGLE1");
 
-            //TForm.MesBox("MechTE.Test","123");
+            //TForm.MesBox("MechTE_452.Test","123");
             //var r=  StringCAPTCHA.Number(1);
 
 

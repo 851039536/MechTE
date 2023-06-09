@@ -8,7 +8,7 @@ namespace xUnit_Test
         [Fact]
         public void ReadIni()
         {
-            var data = MechTE.Ini.TIni.ReadIni("test", "test", "test.ini");
+            var data = MechTE_452.Ini.TIni.ReadIni("test", "test", "test.ini");
             Assert.Equal("test", data);
         }
     }

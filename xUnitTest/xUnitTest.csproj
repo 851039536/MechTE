@@ -56,9 +56,9 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\MechTE\MechTE.csproj">
+      <ProjectReference Include="..\MechTE_452\MechTE_452.csproj">
         <Project>{a3305449-a849-44fc-92a8-6d33d229e385}</Project>
-        <Name>MechTE</Name>
+        <Name>MechTE_452</Name>
       </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

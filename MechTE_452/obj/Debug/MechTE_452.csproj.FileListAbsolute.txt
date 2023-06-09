@@ -1,0 +1,7 @@
+D:\sw\Console\MechTE\MechTE_452\bin\Debug\MechTE.xml
+D:\sw\Console\MechTE\MechTE_452\obj\Debug\MechTE_452.csproj.AssemblyReference.cache
+D:\sw\Console\MechTE\MechTE_452\obj\Debug\MechTE_452.csproj.CoreCompileInputs.cache
+D:\sw\Console\MechTE\MechTE_452\bin\Debug\MechTE_452.dll
+D:\sw\Console\MechTE\MechTE_452\bin\Debug\MechTE_452.pdb
+D:\sw\Console\MechTE\MechTE_452\obj\Debug\MechTE_452.dll
+D:\sw\Console\MechTE\MechTE_452\obj\Debug\MechTE_452.pdb
