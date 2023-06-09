@@ -1,0 +1,6 @@
+D:\sw\Console\MechTE\MechTE_480\bin\Debug\MechTE_480.dll
+D:\sw\Console\MechTE\MechTE_480\bin\Debug\MechTE_480.pdb
+D:\sw\Console\MechTE\MechTE_480\obj\Debug\MechTE_480.csproj.AssemblyReference.cache
+D:\sw\Console\MechTE\MechTE_480\obj\Debug\MechTE_480.csproj.CoreCompileInputs.cache
+D:\sw\Console\MechTE\MechTE_480\obj\Debug\MechTE_480.dll
+D:\sw\Console\MechTE\MechTE_480\obj\Debug\MechTE_480.pdb
