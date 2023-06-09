@@ -9,8 +9,8 @@ namespace MechTE.ConvertHelper
     /// </summary>    
     public static class ConvertHelpers
     {
-        
         #region 补足位数
+
         /// <summary>
         /// 指定字符串的固定长度，如果字符串小于固定长度，
         /// 则在字符串的前面补足零，可设置的固定长度最大为9位
@@ -24,9 +24,11 @@ namespace MechTE.ConvertHelper
             // 将文本左侧填充零，使其总长度为 totalLength
             return paddedText;
         }
+
         #endregion
 
         #region 各进制数间转换
+
         /// <summary>
         /// 实现各进制数间的转换。ConvertBase("15",10,16)表示将十进制数15转换为16进制的数。
         /// </summary>
@@ -38,7 +40,7 @@ namespace MechTE.ConvertHelper
             try
             {
                 //先转成10进制
-                int intValue = Convert.ToInt32(value, from); 
+                int intValue = Convert.ToInt32(value, from);
                 //再转成目标进制
                 string result = Convert.ToString(intValue, to);
                 if (to == 2)

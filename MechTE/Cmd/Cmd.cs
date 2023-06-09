@@ -20,10 +20,11 @@ namespace MechTE.Cmd
         {
             return await CmdPack.ExeCommandAsync(new string[] { name });
         }
-        
+
         #endregion
 
         #region cmd命令
+
         ///  <summary>
         /// 使用cmd执行Shell命名
         ///  </summary>
@@ -32,8 +33,8 @@ namespace MechTE.Cmd
         {
             CmdPack.ExeCommand(new[] { cmd });
         }
+
         #endregion
-        
 
         #region 启动Windows应用程序
 
