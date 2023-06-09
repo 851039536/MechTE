@@ -17,16 +17,14 @@ namespace MechTE.Form
         public static bool MesBox(string name, string title)
         {
             var result = MessageBox.Show(@name, @title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            if (result != DialogResult.Yes) return false;
+            try
             {
-                try
-                {
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             return false;
         }
