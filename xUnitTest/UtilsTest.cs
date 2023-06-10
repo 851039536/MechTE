@@ -12,5 +12,7 @@ namespace xUnit_Test
             var data = MechUtils.GenerateNumberStringSequence(1, 10);
             Assert.Equal("1 2 3 4 5 6 7 8 9 10", data.ToString());
         }
+        
+
     }
 }
