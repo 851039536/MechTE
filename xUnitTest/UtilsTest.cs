@@ -1,4 +1,4 @@
-﻿using MechTE_452.Data;
+﻿using MechTE_452.MECH;
 using Xunit;
 
 namespace xUnit_Test

@@ -1,6 +1,5 @@
 ﻿using MechTE_452.Cmd;
 using MechTE_452.ConvertHelper;
-using MechTE_452.Data;
 using Xunit;
 
 namespace xUnit_Test

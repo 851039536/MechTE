@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MechTE_452.Data
+namespace MechTE_452.MECH
 {
     /// <summary>
     /// 通用工具类
@@ -49,7 +49,7 @@ namespace MechTE_452.Data
         /// <param name="bytes"></param>
         /// <param name="separator">分隔符</param>
         /// <returns></returns>
-        public static string ByteArr2HexStrings(List<byte> bytes, string separator = "")
+        public static string ByteArrayToHexStrings(List<byte> bytes, string separator = "")
         {
             var result = "";
             foreach (var item in bytes)
