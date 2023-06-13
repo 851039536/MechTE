@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace MechTE_452.MECH
@@ -9,6 +10,30 @@ namespace MechTE_452.MECH
     /// </summary>
     public class MechUtils
     {
+        
+        /// <summary>
+        /// 开启音频内部装置窗体显示到桌面
+        /// </summary>
+        /// <returns></returns>
+        public static bool EnterHfp()
+        {
+            using (Process.Start("rundll32.exe",@"C:\WINDOWS\system32\shell32.dll,Control_RunDLL mmsys.cpl,,1"))
+                return true;
+        }
+        /// <summary>
+        /// 检测进程关掉音频内部装置
+        /// </summary>
+        /// <param name="processName">rundll32</param>
+        /// <returns>bool</returns>
+        public static bool QuitHfp(string processName = "rundll32")
+        {
+            //得到所有打开的进程   
+            foreach (var thisProc in Process.GetProcesses())
+                if (thisProc.ProcessName.Contains("rundll32"))
+                    thisProc.Kill();
+            return true;
+        }
+        
         /// <summary>
         /// 生成数字字符串序列
         /// </summary>
