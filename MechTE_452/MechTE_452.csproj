@@ -55,7 +55,7 @@
     <Compile Include="MECH\MechTemplate.cs" />
     <Compile Include="MECH\MechUtils.cs" />
     <Compile Include="Files\TFile.cs" />
-    <Compile Include="Ini\TIni.cs" />
+    <Compile Include="Ini\MechIni.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Form\TForm.cs" />
     <Compile Include="Systems\TSystem.cs" />

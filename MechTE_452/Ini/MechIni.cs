@@ -7,7 +7,7 @@ namespace MechTE_452.Ini
     /// <summary>
     /// ini文件操作类
     /// </summary>
-    public class TIni
+    public static class MechIni
     {
         /// <summary>
         /// 读取ini

@@ -26,7 +26,7 @@ namespace MechTE_452.XML
         /// <param name="strPath"></param>
         public XmlProcess(string strPath)
         {
-            this._xmlPath = strPath;
+            _xmlPath = strPath;
         }
 
         #endregion
@@ -40,7 +40,7 @@ namespace MechTE_452.XML
         /// </summary>
         private string XmlPath
         {
-            get { return this._xmlPath; }
+            get { return _xmlPath; }
         }
 
         #endregion
