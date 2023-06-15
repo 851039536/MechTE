@@ -10,7 +10,7 @@
         /// 转换大写
         /// </summary>
         /// <returns></returns>
-        private bool IsBzpToUpper(string SN)
+        public static bool IsBzpToUpper(string SN)
         {
             if (SN.ToUpper().Contains("_BZP")) return true;
             return false;
@@ -21,7 +21,7 @@
         /// 转换小写
         /// </summary>
         /// <returns></returns>
-        private bool IsBzpToLower(string SN)
+        public static bool IsBzpToLower(string SN)
         {
             if (SN.ToLower().Contains("_BZP")) return true;
             return false;
