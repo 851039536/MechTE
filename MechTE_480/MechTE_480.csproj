@@ -41,6 +41,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Ini\MechIni.cs" />
+        <Compile Include="MECH\MechConvert.cs" />
+        <Compile Include="MECH\MechString.cs" />
         <Compile Include="MECH\MechTemplate.cs" />
         <Compile Include="MECH\MechUtils.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
