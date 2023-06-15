@@ -1,5 +1,5 @@
 ﻿using MechTE_452.Cmd;
-using MechTE_452.ConvertHelper;
+
 using Xunit;
 
 namespace xUnit_Test
@@ -23,18 +23,6 @@ namespace xUnit_Test
             Assert.Equal(true, data);
         }
         
-        [Fact]
-        public void RepairZero()
-        {
-            var data = ConvertHelpers.RepairZero("1234", 5);
-            Assert.Equal("01234", data);
-        }
-        
-        [Fact]
-        public void ConvertBase()
-        {
-            var data = ConvertHelpers.ConvertBase("1", 10, 16);
-            Assert.Equal("1", data);
-        }
+
     }
 }
