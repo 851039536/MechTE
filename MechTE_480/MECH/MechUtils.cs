@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace MechTE_480.MECH
 {
@@ -91,10 +90,10 @@ namespace MechTE_480.MECH
         }
         
         /// <summary>
-        /// 字符转换HID指令格式 
+        /// 将字符转换HID指令格式 
         /// </summary>
         /// <param name="keyValue"></param>
-        /// <returns>"keyValue=0021032334"->"00 21 03 23 34"</returns>
+        /// <returns>"keyValue=0021032334 > 00 21 03 23 34</returns>
         public static string CharacterConversionHidFormat(string keyValue)
         {
             string[] splitStrings = new string[keyValue.Length / 2];

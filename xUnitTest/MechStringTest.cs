@@ -8,8 +8,9 @@ namespace xUnit_Test
         [Fact]
         public void HexadecimalToASCII()
         {
-           var data= MechString.HexadecimalToASCII("0676312E342E30");
-           data = data.Substring(1, 6);
+           // var data= MechString.HexadecimalToASCII("0676312E342E30");
+           var data= MechString.HexadecimalToASCII("54");
+           // data = data.Substring(1, 6);
             Assert.Equal("v1.4.0", data);
         }    
         [Fact]
