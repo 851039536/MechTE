@@ -1,0 +1,400 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MechTE_480</name>
+    </assembly>
+    <members>
+        <member name="T:MechTE_480.Form.ProgressBars">
+            <summary>
+            进度条
+            </summary>
+        </member>
+        <member name="F:MechTE_480.Form.ProgressBars.Ide">
+            <summary>
+            标识
+            </summary>
+        </member>
+        <member name="M:MechTE_480.Form.ProgressBars.#ctor(System.String,System.Int32)">
+            <summary>
+            进度条初始化
+            </summary>
+            <param name="name">名称</param>
+            <param name="time">时间毫秒</param>
+        </member>
+        <member name="M:MechTE_480.Form.ProgressBars.ProgressBars_Load(System.Object,System.EventArgs)">
+            <summary>
+            程序加载
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:MechTE_480.Form.ProgressBars.ExecuteTest(System.Action)">
+            <summary>
+            执行窗体操作
+            </summary>
+            <param name="action">方法</param>
+        </member>
+        <member name="F:MechTE_480.Form.ProgressBars.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:MechTE_480.Form.ProgressBars.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:MechTE_480.Form.ProgressBars.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:MechTE_480.Ini.MechIni">
+            <summary>
+            ini文件操作类
+            </summary>
+        </member>
+        <member name="M:MechTE_480.Ini.MechIni.GetPrivateProfileString(System.String,System.String,System.String,System.Text.StringBuilder,System.Int32,System.String)">
+            <summary>
+            读取ini
+            </summary>
+            <param name="section">ni文件 [xxxx] 头部标识</param>
+            <param name="key">key名</param>
+            <param name="def">如果ini文件中没有前两个参数指定的字段名或键名,则将此值赋给变量</param>
+            <param name="retVal">得到的值</param>
+            <param name="size">大小</param>
+            <param name="iniPath">完整的ini文件名路径</param>
+            <returns></returns>
+            声明INI文件的读操作函数 GetPrivateProfileString()
+        </member>
+        <member name="M:MechTE_480.Ini.MechIni.WritePrivateProfileString(System.String,System.String,System.String,System.String)">
+            <summary>
+            写入ini
+            </summary>
+            <param name="section">ini文件 [xxxx] 头部标识</param>
+            <param name="key">key名</param>
+            <param name="val">写入的值</param>
+            <param name="filePath">完整的ini文件名路径</param>
+            <returns></returns>
+            声明INI文件的写操作函数 WritePrivateProfileString()
+        </member>
+        <member name="M:MechTE_480.Ini.MechIni.WriteIni(System.String,System.String,System.String,System.String)">
+            <summary>
+            写入ini
+            </summary>
+            <param name="section">ini文件 [xxxx] 头部标识</param>
+            <param name="key">key名</param>
+            <param name="value">写入的值</param>
+            <param name="path">完整的ini文件名路径</param>
+        </member>
+        <member name="M:MechTE_480.Ini.MechIni.ReadIni(System.String,System.String,System.String)">
+            <summary>
+            读取ini
+            </summary>
+            <param name="section">ini文件 [xxxx] 头部标识</param>
+            <param name="key">键名</param>
+            <param name="path">文件路径</param>
+            <returns>string</returns>
+        </member>
+        <member name="M:MechTE_480.Ini.MechIni.ReadIniArray(System.String,System.String,System.String)">
+            <summary>
+            读取ini string[]
+            </summary>
+            <param name="section">ini文件 [xxxx] 头部标识</param>
+            <param name="key">文件路径</param>
+            <param name="path">Key</param>
+            <returns>string[]</returns>
+        </member>
+        <member name="M:MechTE_480.Ini.MechIni.DeleteIni(System.String)">
+            <summary>
+            删除一个INI文件
+            </summary>
+            <param name="filePath"></param>
+        </member>
+        <member name="T:MechTE_480.MECH.MechCmd">
+            <summary>
+            cmd命令
+            </summary>
+        </member>
+        <member name="M:MechTE_480.MECH.MechCmd.StartShell(System.String)">
+             <summary>
+            使用cmd执行Shell命名
+             </summary>
+             <param name="cmd">Shell程序命令</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechCmd.StartApp(System.String)">
+            <summary>
+             启动Windows应用程序，隐藏程序界面
+            </summary>
+            <param name="appName">/应用程序路径名称</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechCmd.StartApp(System.String,System.Diagnostics.ProcessWindowStyle)">
+            <summary>
+            进程窗口模式
+            </summary>
+            <param name="appName">应用程序路径名称</param>
+            <param name="style">显示模式</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechCmd.StartApp(System.String,System.String,System.Diagnostics.ProcessWindowStyle)">
+            <summary>
+            启动外部应用程序
+            </summary>
+            <param name="appName"></param>
+            <param name="arguments"></param>
+            <param name="style"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechCmd.LoginNetwork(System.String,System.String,System.String)">
+            <summary>
+            网盘登录
+            </summary>
+            <param name="path">网盘路径:\10.xx.xx</param>
+            <param name="userName">用户</param>
+            <param name="passWord">密码</param>
+            <returns>bool</returns>
+        </member>
+        <member name="T:MechTE_480.MECH.CmdPack">
+            <summary>
+            cmd包装类
+            </summary>
+        </member>
+        <member name="M:MechTE_480.MECH.CmdPack.ExeCommand(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            执行多条cmd.exe命令
+            </summary>
+            <param name="commandTexts"></param>
+        </member>
+        <member name="M:MechTE_480.MECH.CmdPack.ExeCommandAsync(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            使用cmd执行Shell命名
+            </summary>
+            <param name="commandTexts"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MechTE_480.MECH.MechConvert">
+            <summary>
+            处理数据类型转换，数制转换、编码转换相关的类
+            </summary>    
+        </member>
+        <member name="M:MechTE_480.MECH.MechConvert.RepairZero(System.String,System.Int32)">
+            <summary>
+            指定字符串的固定长度，如果字符串小于固定长度，
+            则在字符串的前面补足零，可设置的固定长度最大为9位
+            </summary>
+            <param name="text">原始字符串</param>
+            <param name="totalLength">字符串的固定长度</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechConvert.ConvertBase(System.String,System.Int32,System.Int32)">
+            <summary>
+            实现各进制数间的转换。ConvertBase("15",10,16)表示将十进制数15转换为16进制的数。
+            </summary>
+            <param name="value">要转换的值,即原值</param>
+            <param name="from">原值的进制,只能是2,8,10,16四个值。</param>
+            <param name="to">要转换到的目标进制，只能是2,8,10,16四个值。</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechConvert.StringToBytes(System.String,System.Text.Encoding)">
+            <summary>
+            使用指定字符集将string转换成byte[]
+            </summary>
+            <param name="text">要转换的字符串</param>
+            <param name="encoding">字符编码</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechConvert.BytesToString(System.Byte[],System.Text.Encoding)">
+            <summary>
+            使用指定字符集将byte[]转换成string
+            </summary>
+            <param name="bytes">要转换的字节数组</param>
+            <param name="encoding">字符编码</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechConvert.BytesToInt32(System.Byte[])">
+            <summary>
+            将byte[]转换成int
+            </summary>
+            <param name="data">需要转换成整数的byte数组</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechConvert.ImgToBase64(System.String)">
+            <summary>
+            图片转base64
+            </summary>
+            <param name="imagePath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MechTE_480.MECH.MechForm">
+            <summary>
+            窗体api
+            </summary>
+        </member>
+        <member name="M:MechTE_480.MECH.MechForm.MesBox(System.String,System.String)">
+            <summary>
+            弹框提示
+            </summary>
+            <param name="name">描述</param>
+            <param name="title">标题</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechForm.ShowErr(System.String,System.String)">
+            <summary>
+            错误提示,
+            消息框包含一个符号，该符号包含一个红色背景圆圈，圆圈中为白色 X 符号
+            </summary>
+            <param name="title">标题</param>
+            <param name="prompt">描述</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechForm.ShowInputDialog(System.String,System.String)">
+            <summary>
+            弹窗接收输入参数
+            </summary>
+            <param name="title">标题</param>
+            <param name="prompt">描述</param>
+            <returns></returns>
+        </member>
+        <member name="T:MechTE_480.MECH.MechString">
+            <summary>
+            字符串操作类
+            </summary>
+        </member>
+        <member name="M:MechTE_480.MECH.MechString.HexStrings2AsciiHexStrings(System.String)">
+            <summary>
+            将16进制字符串转为ASCII16进制字符串
+            </summary>
+            <returns>示例：01 > 3031</returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechString.ByteArr2HexStrings(System.Byte[],System.String)">
+            <summary>
+            示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
+            </summary>
+            <param name="bytes"></param>
+            <param name="separator">分隔符</param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechString.Reverse(System.String)">
+            <summary>
+            将字符按2个长度为一组进行反序
+            </summary>
+            <param name="str">11223344</param>
+            <returns>44332211->11223344</returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechString.ClearStringSpaces(System.String)">
+            <summary>
+            清除字符串中的空格
+            </summary>
+            <param name="str"></param>
+            <returns>00 00 00 00 > 00000000</returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechString.HexadecimalToASCII(System.String)">
+            <summary>
+            将16进制字符转为ASCII字符
+            </summary>
+            <param name="hex">16个数字（0-9和A-F）来表示</param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechString.ASCIIConvertsDecimal16(System.String)">
+            <summary>
+            ASCII字符转为16进制字符
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MechTE_480.MECH.MechTemplate">
+            <summary>
+            模板操作
+            </summary>
+        </member>
+        <member name="M:MechTE_480.MECH.MechTemplate.IsBzpToUpper(System.String)">
+            <summary>
+            检查SN是否是标准品条码
+            转换大写
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MechTE_480.MECH.MechUtils">
+            <summary>
+            通用工具类
+            </summary>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.GetTheCurrentProgramAndDirectory">
+            <summary>
+            获取当前程序根目录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.GetSelectedPath">
+            <summary>
+            获取Windows当前选文件定路径
+            </summary>
+            <returns>完整路径</returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.EnterHfp">
+            <summary>
+            开启音频内部装置窗体显示到桌面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.QuitHfp(System.String)">
+            <summary>
+            检测进程关掉音频内部装置
+            </summary>
+            <param name="processName">rundll32</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.GenerateNumberStringSequence(System.Int32,System.Int32)">
+            <summary>
+            生成数字字符串序列
+            </summary>
+            <param name="startNumber">序列中第一个整数的值</param>
+            <param name="sequenceLength">要生成的顺序总条数</param>
+            <returns>生成-> 0 1 2 3...</returns>  
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.StringToByteArray(System.String)">
+            <summary>
+            将字符串转换为字节数组
+            示例："ABCDEF" -> [ 0xAB, 0xCD, 0xEF ]
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.ByteArrayToHexStrings(System.Collections.Generic.List{System.Byte},System.String)">
+            <summary>
+            将字节数组转换为十六进制字符串
+            示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
+            </summary>
+            <param name="bytes"></param>
+            <param name="separator">分隔符</param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.CharacterConversionHidFormat(System.String)">
+            <summary>
+            将字符转换HID指令格式 
+            </summary>
+            <param name="keyValue"></param>
+            <returns>"keyValue=0021032334 > 00 21 03 23 34</returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.IsEmptyAssert(System.String,System.String)">
+            <summary>
+             判断字符串是否为空,空等于true，抛出异常
+            </summary>
+            <param name="str"></param>
+            <param name="errMsg"></param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.Assert(System.Boolean,System.String)">
+            <summary>
+            自定义断言方法， result == true 抛出异常
+            </summary>
+            <param name="result">bool</param>
+            <param name="errMsg">错误信息</param>
+            <remarks>系统断言不能在 Release 版保留，用这个方法替代</remarks>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.Assert(System.Func{System.Boolean},System.String)">
+            <summary>
+            自定义断言方法， func() == true 抛出异常    
+            </summary>
+            <param name="func"></param>
+            <param name="errMsg"></param>
+            <remarks>系统断言不能在 Release 版保留，用这个方法替代</remarks>
+        </member>
+    </members>
+</doc>

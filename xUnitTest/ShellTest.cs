@@ -1,5 +1,4 @@
-﻿using MechTE_452.Cmd;
-
+﻿using MechTE_452.MECH;
 using Xunit;
 
 namespace xUnit_Test
@@ -12,14 +11,14 @@ namespace xUnit_Test
         [Fact]
         public void StartShell()
         {
-            Cmd.StartShell("notepad");
+            MechCmd.StartShell("notepad");
             Assert.True(true);
         }
 
         [Fact]
         public void StartApp()
         {
-           var data = Cmd.StartApp(@"D:\software\Notepad++\notepad++.exe");
+           var data = MechCmd.StartApp(@"D:\software\Notepad++\notepad++.exe");
             Assert.Equal(true, data);
         }
         

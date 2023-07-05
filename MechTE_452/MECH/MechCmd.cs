@@ -2,12 +2,12 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace MechTE_452.Cmd
+namespace MechTE_452.MECH
 {
     /// <summary>
     /// cmd命令
     /// </summary>
-    public static class Cmd
+    public static class MechCmd
     {
         #region electron,cmd命令vue版本
 

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Security.Principal;
 
 namespace MechTE_452.MECH
 {
@@ -10,6 +13,46 @@ namespace MechTE_452.MECH
     /// </summary>
     public class MechUtils
     {
+        
+        /// <summary>
+        /// 判断当前程序是否是管理员
+        /// </summary>
+        /// <returns></returns>
+        private static bool IsUserAdministrator()
+        {
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        /// <summary>
+        /// 重新启动应用程序并请求管理员权限
+        /// </summary>
+        private static void RestartAsAdministrator()
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.UseShellExecute = true;
+            startInfo.WorkingDirectory = Environment.CurrentDirectory;
+            startInfo.FileName = Process.GetCurrentProcess().MainModule.FileName;
+            startInfo.Verb = "runas"; // 请求管理员权限
+            try
+            {
+                Process.Start(startInfo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("无法以管理员权限重新启动应用程序：" + ex.Message);
+            }
+        }
+        /// <summary>
+        /// 获取当前程序根目录
+        /// </summary>
+        /// <returns></returns>
+        public static string GetTheCurrentProgramAndDirectory()
+        {
+            // 获取当前程序集的执行路径(根目录)D:\sw\Console\FileDownLoad\DownLoad\bin\Debug
+            return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        }
         
         /// <summary>
         /// 开启音频内部装置窗体显示到桌面

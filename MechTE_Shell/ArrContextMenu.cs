@@ -6,7 +6,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using MechTE_480.Ini;
 using SharpShell.Attributes;
 using SharpShell.SharpContextMenu;
 
@@ -52,9 +51,10 @@ namespace MechTE_Shell
             //设置次级菜单
             Dictionary<string, string> subItemsInfo = new Dictionary<string, string>()
             {
-                { "工程模式上传", "EngineeringMode.exe,uploadingEng" },
-                { "工程模式下载", "EngineeringMode.exe,downloadEng" },
-                { "更新", "EngineeringMode.exe,programUpdate" }
+                { "上传(工程)", "EngineeringMode.exe,uploadingEng" },
+                { "下载(工程)", "EngineeringMode.exe,downloadEng" },
+                { "更新", "EngineeringMode.exe,programUpdate" },
+                // { "卸载", "EngineeringMode.exe,unload" }
             };
             
             foreach (KeyValuePair<string,string> kv in subItemsInfo)

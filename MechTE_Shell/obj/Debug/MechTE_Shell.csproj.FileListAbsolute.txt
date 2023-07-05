@@ -7,3 +7,6 @@ D:\sw\class_library\MechTE\MechTE_Shell\obj\Debug\MechTE_Shell.csproj.CoreCompil
 D:\sw\class_library\MechTE\MechTE_Shell\obj\Debug\MechTE_Shell.csproj.CopyComplete
 D:\sw\class_library\MechTE\MechTE_Shell\obj\Debug\MechTE_Shell.dll
 D:\sw\class_library\MechTE\MechTE_Shell\obj\Debug\MechTE_Shell.pdb
+D:\sw\class_library\MechTE\MechTE_Shell\bin\Debug\MechTE_480.dll
+D:\sw\class_library\MechTE\MechTE_Shell\bin\Debug\MechTE_480.pdb
+D:\sw\class_library\MechTE\MechTE_Shell\bin\Debug\MechTE_480.xml

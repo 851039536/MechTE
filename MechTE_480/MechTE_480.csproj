@@ -49,6 +49,8 @@
       <DependentUpon>ProgressBars.cs</DependentUpon>
     </Compile>
     <Compile Include="Ini\MechIni.cs" />
+    <Compile Include="MECH\MechCmd.cs" />
+    <Compile Include="MECH\CmdPack.cs" />
     <Compile Include="MECH\MechConvert.cs" />
     <Compile Include="MECH\MechForm.cs" />
     <Compile Include="MECH\MechString.cs" />

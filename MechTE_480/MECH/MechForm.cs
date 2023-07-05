@@ -66,7 +66,7 @@ namespace MechTE_480.MECH
             label.ForeColor = Color.Blue;
 
             //// 设置确定按钮的样式
-            buttonOk.Text = "确定";
+            buttonOk.Text = @"确定";
             buttonOk.DialogResult = DialogResult.OK;
             buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             
@@ -77,7 +77,7 @@ namespace MechTE_480.MECH
 
             
             // 设置取消按钮的样式
-            buttonCancel.Text = "取消";
+            buttonCancel.Text = @"取消";
             buttonCancel.DialogResult = DialogResult.Cancel;
             
             buttonCancel.Font = new Font("Arial", 12, FontStyle.Bold);

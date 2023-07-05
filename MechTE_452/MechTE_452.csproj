@@ -50,8 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cmd\Cmd.cs" />
-    <Compile Include="Cmd\CmdPack.cs" />
+    <Compile Include="MECH\MechCmd.cs" />
+    <Compile Include="MECH\CmdPack.cs" />
     <Compile Include="MECH\MechConvert.cs" />
     <Compile Include="MECH\MechForm.cs" />
     <Compile Include="MECH\MechString.cs" />
