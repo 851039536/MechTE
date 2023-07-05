@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitTest", "xUnitTest\xUni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_480", "MechTE_480\MechTE_480.csproj", "{CF13CCDD-9E46-406A-8CB2-EF159D228A03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_Shell", "MechTE_Shell\MechTE_Shell.csproj", "{73EC2EB4-98FC-48FD-882A-6BC11D4B2423}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CF13CCDD-9E46-406A-8CB2-EF159D228A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF13CCDD-9E46-406A-8CB2-EF159D228A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF13CCDD-9E46-406A-8CB2-EF159D228A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73EC2EB4-98FC-48FD-882A-6BC11D4B2423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73EC2EB4-98FC-48FD-882A-6BC11D4B2423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73EC2EB4-98FC-48FD-882A-6BC11D4B2423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73EC2EB4-98FC-48FD-882A-6BC11D4B2423}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

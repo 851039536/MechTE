@@ -53,18 +53,21 @@
     <Compile Include="Cmd\Cmd.cs" />
     <Compile Include="Cmd\CmdPack.cs" />
     <Compile Include="MECH\MechConvert.cs" />
+    <Compile Include="MECH\MechForm.cs" />
     <Compile Include="MECH\MechString.cs" />
     <Compile Include="MECH\MechTemplate.cs" />
     <Compile Include="MECH\MechUtils.cs" />
     <Compile Include="Files\TFile.cs" />
     <Compile Include="Ini\MechIni.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Form\TForm.cs" />
     <Compile Include="Systems\TSystem.cs" />
     <Compile Include="XML\XMLProcess.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Form\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

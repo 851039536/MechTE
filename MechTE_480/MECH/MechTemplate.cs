@@ -15,16 +15,5 @@
             if (SN.ToUpper().Contains("_BZP")) return true;
             return false;
         }
-
-        /// <summary>
-        /// 检查SN是否是标准品条码
-        /// 转换小写
-        /// </summary>
-        /// <returns></returns>
-        public static bool IsBzpToLower(string SN)
-        {
-            if (SN.ToLower().Contains("_BZP")) return true;
-            return false;
-        }
     }
 }

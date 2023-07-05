@@ -6,7 +6,7 @@ namespace MechTE_452.Form
     /// <summary>
     /// 窗体api
     /// </summary>
-    public class TForm
+    public class MechForm
     {
         /// <summary>
         /// 弹框提示

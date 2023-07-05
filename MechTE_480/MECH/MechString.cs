@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MechTE_480.MECH
@@ -7,8 +8,30 @@ namespace MechTE_480.MECH
     /// <summary>
     /// 字符串操作类
     /// </summary>
-    public class MechString
+    public static class MechString
     {
+        
+        /// <summary>
+        /// 将16进制字符串转为ASCII16进制字符串
+        /// </summary>
+        /// <returns>示例：01 > 3031</returns>
+        public static string HexStrings2AsciiHexStrings(string hexStrings)
+        {
+            var asciiBytes = Encoding.ASCII.GetBytes(hexStrings);
+            return ByteArr2HexStrings(asciiBytes);
+        }
+
+        /// <summary>
+        /// 示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="separator">分隔符</param>
+        /// <returns></returns>
+        private static string ByteArr2HexStrings(byte[] bytes, string separator = "")
+        {
+            return MechUtils.ByteArrayToHexStrings(bytes.ToList());
+        }
+        
         /// <summary>
         /// 将字符按2个长度为一组进行反序
         /// </summary>

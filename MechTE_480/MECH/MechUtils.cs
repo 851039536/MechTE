@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 
 namespace MechTE_480.MECH
@@ -10,16 +11,35 @@ namespace MechTE_480.MECH
     /// </summary>
     public class MechUtils
     {
-        
+        /// <summary>
+        /// 获取Windows当前选文件定路径
+        /// </summary>
+        /// <returns>完整路径</returns>
+        public static string GetSelectedPath()
+        {
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            if (commandLineArgs.Length > 1)
+            {
+                string path = commandLineArgs[1];
+                if (File.Exists(path) || Directory.Exists(path))
+                {
+                    return path;
+                }
+            }
+
+            return null;
+        }
+
         /// <summary>
         /// 开启音频内部装置窗体显示到桌面
         /// </summary>
         /// <returns></returns>
         public static bool EnterHfp()
         {
-            using (Process.Start("rundll32.exe",@"C:\WINDOWS\system32\shell32.dll,Control_RunDLL mmsys.cpl,,1"))
+            using (Process.Start("rundll32.exe", @"C:\WINDOWS\system32\shell32.dll,Control_RunDLL mmsys.cpl,,1"))
                 return true;
         }
+
         /// <summary>
         /// 检测进程关掉音频内部装置
         /// </summary>
@@ -33,7 +53,7 @@ namespace MechTE_480.MECH
                     thisProc.Kill();
             return true;
         }
-        
+
         /// <summary>
         /// 生成数字字符串序列
         /// </summary>
@@ -88,7 +108,7 @@ namespace MechTE_480.MECH
             // 返回十六进制字符串
             return result;
         }
-        
+
         /// <summary>
         /// 将字符转换HID指令格式 
         /// </summary>
