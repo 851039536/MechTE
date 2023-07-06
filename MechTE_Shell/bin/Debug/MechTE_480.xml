@@ -168,6 +168,12 @@
             </summary>
             <param name="commandTexts"></param>
         </member>
+        <member name="M:MechTE_480.MECH.CmdPack.ExeBat(System.String)">
+            <summary>
+            执行Bat
+            </summary>
+            <param name="name"></param>
+        </member>
         <member name="M:MechTE_480.MECH.CmdPack.ExeCommandAsync(System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             使用cmd执行Shell命名
@@ -314,6 +320,17 @@
         <member name="T:MechTE_480.MECH.MechUtils">
             <summary>
             通用工具类
+            </summary>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.IsUserAdministrator">
+            <summary>
+            判断当前程序是否是管理员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechUtils.RestartAsAdministrator">
+            <summary>
+            重新启动应用程序并请求管理员权限
             </summary>
         </member>
         <member name="M:MechTE_480.MECH.MechUtils.GetTheCurrentProgramAndDirectory">

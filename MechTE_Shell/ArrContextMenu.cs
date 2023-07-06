@@ -53,6 +53,7 @@ namespace MechTE_Shell
             {
                 { "上传(工程)", "EngineeringMode.exe,uploadingEng" },
                 { "下载(工程)", "EngineeringMode.exe,downloadEng" },
+                { "SimpleHIDWrite", "EngineeringMode.exe,SimpleHIDWrite" },
                 { "更新", "EngineeringMode.exe,programUpdate" },
                 // { "卸载", "EngineeringMode.exe,unload" }
             };
