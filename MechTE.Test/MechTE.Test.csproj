@@ -64,9 +64,9 @@
       <Project>{cf13ccdd-9e46-406a-8cb2-ef159d228a03}</Project>
       <Name>MechTE_480</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MechTE_Shell\MechTE_Shell.csproj">
+    <ProjectReference Include="..\MechTE_ContextMenu\MechTE_ContextMenu.csproj">
       <Project>{73ec2eb4-98fc-48fd-882a-6bc11d4b2423}</Project>
-      <Name>MechTE_Shell</Name>
+      <Name>MechTE_ContextMenu</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

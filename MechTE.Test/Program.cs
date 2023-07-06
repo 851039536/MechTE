@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MechTE_Shell;
-using Microsoft.Win32;
+using MechTE_ContextMenu;
 
 namespace MechTE.Test
 {
@@ -11,7 +10,7 @@ namespace MechTE.Test
 
         static void Main(string[] args)
         {
-            ArrContextMenu menu = new ArrContextMenu();
+            ContextMenu menu = new ContextMenu();
             string rootPath = menu.getRootPath();
             Console.WriteLine(rootPath+"2");
             List<string> paths = menu.SelectedItemPaths.ToList();

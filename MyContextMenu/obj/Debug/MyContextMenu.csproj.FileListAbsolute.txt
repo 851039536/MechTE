@@ -1,0 +1,9 @@
+D:\sw\class_library\MechTE\MyContextMenu\bin\Debug\MyContextMenu.dll
+D:\sw\class_library\MechTE\MyContextMenu\bin\Debug\MyContextMenu.pdb
+D:\sw\class_library\MechTE\MyContextMenu\bin\Debug\SharpShell.dll
+D:\sw\class_library\MechTE\MyContextMenu\bin\Debug\SharpShell.xml
+D:\sw\class_library\MechTE\MyContextMenu\obj\Debug\MyContextMenu.csproj.AssemblyReference.cache
+D:\sw\class_library\MechTE\MyContextMenu\obj\Debug\MyContextMenu.csproj.CoreCompileInputs.cache
+D:\sw\class_library\MechTE\MyContextMenu\obj\Debug\MyContextMenu.csproj.CopyComplete
+D:\sw\class_library\MechTE\MyContextMenu\obj\Debug\MyContextMenu.dll
+D:\sw\class_library\MechTE\MyContextMenu\obj\Debug\MyContextMenu.pdb
