@@ -3,7 +3,7 @@
 cd /d %~dp0
 
 echo chekdll
-set dllfile=MechTE_Shell.dll
+set dllfile=MechTE_ContextMenu.dll
 if not exist %dllfile% (
     echo %dllfile% is not exist!
     pause>nul 

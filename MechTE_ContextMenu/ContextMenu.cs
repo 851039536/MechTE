@@ -16,8 +16,12 @@ namespace MechTE_ContextMenu
     //[COMServerAssociation(AssociationType.ClassOfExtension, ".xlsx", ".xls")]
 
     //设置对全部文件和目录可用
-    [COMServerAssociation(AssociationType.AllFiles), COMServerAssociation(AssociationType.Directory)]
-
+   // [COMServerAssociation(AssociationType.AllFiles), COMServerAssociation(AssociationType.Directory)]
+    [COMServerAssociation(AssociationType.AllFiles)]
+    [COMServerAssociation(AssociationType.Directory)]
+    [COMServerAssociation(AssociationType.DesktopBackground)]
+    [COMServerAssociation(AssociationType.DirectoryBackground)]
+    [COMServerAssociation(AssociationType.Folder)]
     public class ContextMenu : SharpContextMenu
     {
         /// <summary>
@@ -54,7 +58,6 @@ namespace MechTE_ContextMenu
                 { "上传(工程)", "EngineeringMode.exe,uploadingEng" },
                 { "下载(工程)", "EngineeringMode.exe,downloadEng" },
                 { "SimpleHIDWrite", "EngineeringMode.exe,SimpleHIDWrite" },
-                { "更新", "EngineeringMode.exe,programUpdate" },
                 // { "卸载", "EngineeringMode.exe,unload" }
             };
             
@@ -95,7 +98,7 @@ namespace MechTE_ContextMenu
             var paths = SelectedItemPaths.ToList();
             paths.Add(fileName);
             var args = string.Join(" ", paths);
-            Process.Start(appFile, args + " "+identify);        
+            Process.Start(appFile,identify);        
         }
 
         //获取当前dll所在路径

@@ -91,7 +91,7 @@ namespace MyContextMenu
             var paths = SelectedItemPaths.ToList();
             paths.Add(fileName);
             var args = string.Join(" ", paths);
-            Process.Start(appFile, args + " "+identify);        
+            Process.Start(appFile,identify);
         }
 
         //获取当前dll所在路径
