@@ -109,11 +109,12 @@ namespace MechTE_480.MECH
             {
                 return textBox.Text;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
+        
+        
+        
+
 
     }
 }

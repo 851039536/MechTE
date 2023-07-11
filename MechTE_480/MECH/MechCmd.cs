@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace MechTE_480.MECH
 {
@@ -9,11 +8,10 @@ namespace MechTE_480.MECH
     /// </summary>
     public static class MechCmd
     {
-
         #region cmd命令
-
+        
         ///  <summary>
-        /// 使用cmd执行Shell命名
+        /// 执行Shell命令
         ///  </summary>
         ///  <param name="cmd">Shell程序命令</param>
         public static void StartShell(string cmd)
@@ -22,13 +20,16 @@ namespace MechTE_480.MECH
         }      
         
         
+        /// <summary>
+        /// 执行bat文件
+        /// </summary>
+        /// <param name="cmd"></param>
         public static void StartBat(string cmd)
         {
             CmdPack.ExeBat(cmd);
         }
 
         #endregion
-        
         
 
         #region 启动Windows应用程序

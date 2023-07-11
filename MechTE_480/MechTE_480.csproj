@@ -50,11 +50,11 @@
     <Compile Include="Form\ProgressBars.designer.cs">
       <DependentUpon>ProgressBars.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ini\MechIni.cs" />
     <Compile Include="MECH\MechCmd.cs" />
     <Compile Include="MECH\CmdPack.cs" />
     <Compile Include="MECH\MechConvert.cs" />
     <Compile Include="MECH\MechForm.cs" />
+    <Compile Include="MECH\MechIni.cs" />
     <Compile Include="MECH\MechString.cs" />
     <Compile Include="MECH\MechTemplate.cs" />
     <Compile Include="MECH\MechUtils.cs" />
@@ -62,7 +62,6 @@
     <Compile Include="MECH\MechFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Form\ProgressBars.resx">
       <DependentUpon>ProgressBars.cs</DependentUpon>

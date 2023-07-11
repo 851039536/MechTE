@@ -56,6 +56,10 @@ namespace MechTE_ContextMenu
             var subItemsInfo = new Dictionary<string, string>()
             {
                 { "SimpleHIDWrite", "EngineeringMode.exe,SimpleHIDWrite" },
+                { "软体内网", "EngineeringMode.exe,SwWebsite" },
+                { "查询系统", "EngineeringMode.exe,TestTheData" },
+                { "版本系统", "EngineeringMode.exe,VersionSystem" },
+                { "后台系统", "EngineeringMode.exe,BackgroundSystem" },
             };
             
             foreach (var kv in subItemsInfo)

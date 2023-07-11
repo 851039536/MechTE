@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MechTE_452.Ini
+namespace MechTE_452.MECH
 {
     /// <summary>
     /// ini文件操作类

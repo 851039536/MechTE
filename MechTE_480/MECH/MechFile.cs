@@ -102,7 +102,7 @@ namespace MechTE_480.MECH
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog {
                 //打开的文件夹浏览对话框上的描述
-                Description = "请选择文件夹",
+                Description = @"请选择文件夹",
                 //是否显示对话框左下角 新建文件夹 按钮，默认为 true
                 ShowNewFolderButton = false
             };

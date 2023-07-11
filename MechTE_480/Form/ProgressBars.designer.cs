@@ -68,6 +68,9 @@
 
         #endregion
 
+        /// 
+        /// progressBarForm
+        /// 
         public System.Windows.Forms.ProgressBar progressBarForm;
         public System.Windows.Forms.Timer times;
     }

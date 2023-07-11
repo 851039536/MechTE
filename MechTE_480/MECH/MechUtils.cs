@@ -42,7 +42,7 @@ namespace MechTE_480.MECH
             }
             catch (Exception ex)
             {
-                Console.WriteLine("无法以管理员权限重新启动应用程序：" + ex.Message);
+                Console.WriteLine(@"无法以管理员权限重新启动应用程序：" + ex.Message);
             }
         }
         /// <summary>

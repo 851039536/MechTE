@@ -12,7 +12,7 @@ namespace MechTE_452.Files
     /// <summary>
     /// 文件操作类
     /// </summary>
-    public class TFile
+    public class MechFile
     {
         #region electorn
         /// <summary>

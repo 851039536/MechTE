@@ -22,7 +22,8 @@ namespace MechTE_ContextMenu
     // [COMServerAssociation(AssociationType.DesktopBackground)]
     // [COMServerAssociation(AssociationType.DirectoryBackground)]
     // [COMServerAssociation(AssociationType.Folder)]
-    public class ContextMenu : SharpContextMenu
+    
+    public class CompressContextMenu : SharpContextMenu
     {
         /// <summary>
         /// 判断菜单是否需要被激活显示
