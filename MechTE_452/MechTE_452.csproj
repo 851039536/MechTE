@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\ProgressBars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\ProgressBars.designer.cs">
+      <DependentUpon>ProgressBars.cs</DependentUpon>
+    </Compile>
     <Compile Include="MECH\MechCmd.cs" />
     <Compile Include="MECH\CmdPack.cs" />
     <Compile Include="MECH\MechConvert.cs" />
@@ -67,7 +73,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Form\" />
+    <EmbeddedResource Include="Form\ProgressBars.resx">
+      <DependentUpon>ProgressBars.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

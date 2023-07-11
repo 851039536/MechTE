@@ -11,7 +11,7 @@ namespace MechTE.Test
         static void Main(string[] args)
         {
             ContextMenu menu = new ContextMenu();
-            string rootPath = menu.getRootPath();
+            string rootPath = menu.GetRootPath();
             Console.WriteLine(rootPath+"2");
             List<string> paths = menu.SelectedItemPaths.ToList();
             paths.Add(".exe");

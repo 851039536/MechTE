@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_480", "MechTE_480\Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_ContextMenu", "MechTE_ContextMenu\MechTE_ContextMenu.csproj", "{73EC2EB4-98FC-48FD-882A-6BC11D4B2423}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyContextMenu", "MyContextMenu\MyContextMenu.csproj", "{81A35BDD-6DBD-414B-B2D1-E9804DE7604C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,10 +39,6 @@ Global
 		{73EC2EB4-98FC-48FD-882A-6BC11D4B2423}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73EC2EB4-98FC-48FD-882A-6BC11D4B2423}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73EC2EB4-98FC-48FD-882A-6BC11D4B2423}.Release|Any CPU.Build.0 = Release|Any CPU
-		{81A35BDD-6DBD-414B-B2D1-E9804DE7604C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81A35BDD-6DBD-414B-B2D1-E9804DE7604C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81A35BDD-6DBD-414B-B2D1-E9804DE7604C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81A35BDD-6DBD-414B-B2D1-E9804DE7604C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

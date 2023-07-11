@@ -56,6 +56,7 @@
         <Compile Include="ShellTest.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="UtilsTest.cs" />
+        <Compile Include="XmlTest.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\MechTE_452\MechTE_452.csproj">

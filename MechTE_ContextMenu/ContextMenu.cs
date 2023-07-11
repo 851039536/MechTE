@@ -13,15 +13,15 @@ namespace MechTE_ContextMenu
 {
     [ComVisible(true)]
     //如果按文件类型，按以下设置
-    //[COMServerAssociation(AssociationType.ClassOfExtension, ".xlsx", ".xls")]
+    [COMServerAssociation(AssociationType.ClassOfExtension, ".zip", ".7z")]
 
     //设置对全部文件和目录可用
-   // [COMServerAssociation(AssociationType.AllFiles), COMServerAssociation(AssociationType.Directory)]
-    [COMServerAssociation(AssociationType.AllFiles)]
-    [COMServerAssociation(AssociationType.Directory)]
-    [COMServerAssociation(AssociationType.DesktopBackground)]
-    [COMServerAssociation(AssociationType.DirectoryBackground)]
-    [COMServerAssociation(AssociationType.Folder)]
+    // [COMServerAssociation(AssociationType.AllFiles), COMServerAssociation(AssociationType.Directory)]
+    // [COMServerAssociation(AssociationType.AllFiles)]
+    // [COMServerAssociation(AssociationType.Directory)]
+    // [COMServerAssociation(AssociationType.DesktopBackground)]
+    // [COMServerAssociation(AssociationType.DirectoryBackground)]
+    // [COMServerAssociation(AssociationType.Folder)]
     public class ContextMenu : SharpContextMenu
     {
         /// <summary>
@@ -40,9 +40,10 @@ namespace MechTE_ContextMenu
         protected override ContextMenuStrip CreateMenu()
         {
 
+            // 将菜单绑定到窗口或控件
             var menu = new ContextMenuStrip();
             //设定菜单项显示文字
-            var item = new ToolStripMenuItem("MechTool");
+            var item = new ToolStripMenuItem("文件传输");
             //添加监听事件
             // item.Click += Item_Click;
             //设置图像及位置
@@ -57,7 +58,6 @@ namespace MechTE_ContextMenu
             {
                 { "上传(工程)", "EngineeringMode.exe,uploadingEng" },
                 { "下载(工程)", "EngineeringMode.exe,downloadEng" },
-                { "SimpleHIDWrite", "EngineeringMode.exe,SimpleHIDWrite" },
                 // { "卸载", "EngineeringMode.exe,unload" }
             };
             
@@ -82,11 +82,12 @@ namespace MechTE_ContextMenu
         {
             //分割,文件名和传递参数
             var argStrings = arg.Split(',');
+            //EngineeringMode.exe
             var fileName = argStrings[0];
             var identify = argStrings[1];
             
             //获取当前dll所在路径
-            var rootPath = getRootPath();
+            var rootPath = GetRootPath();
             //文件路径+文件名称组合
             var appFile = $@"{rootPath}\{fileName}";
             if (!File.Exists(appFile))
@@ -95,14 +96,15 @@ namespace MechTE_ContextMenu
                 return;
             }
             //转换为列表，然后将fileName添加到列表中
+            //选中的路径
             var paths = SelectedItemPaths.ToList();
-            paths.Add(fileName);
+            paths.Add(identify);
             var args = string.Join(" ", paths);
-            Process.Start(appFile,identify);        
+            Process.Start(appFile,args);        
         }
 
         //获取当前dll所在路径
-        public string getRootPath()
+        public string GetRootPath()
         {
             // 获取当前程序集的代码基路径
             var codeBase = Assembly.GetExecutingAssembly().CodeBase;

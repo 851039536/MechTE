@@ -413,5 +413,210 @@
             <param name="errMsg"></param>
             <remarks>系统断言不能在 Release 版保留，用这个方法替代</remarks>
         </member>
+        <member name="T:MechTE_480.MECH.MechXML">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="strPath"></param>
+        </member>
+        <member name="P:MechTE_480.MECH.MechXML.XmlPath">
+            <summary>
+            xml路径
+            </summary>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.XMLLoad">
+            <summary>
+            导入XML文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.XMLLoad(System.String)">
+            <summary>
+            导入XML文件
+            </summary>
+            <param name="strPath">XML文件路径</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.GetXmlFullPath(System.String)">
+            <summary>
+            返回完整路径
+            </summary>
+            <param name="strPath">Xml的路径</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.ReadRequest(System.String,System.String,System.String,System.String)">
+            <summary>
+            读取Request中node节点的值
+            </summary>
+            <param name="path"></param>
+            <param name="node"></param>
+            <param name="attribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.ReadAllChild(System.String)">
+            <summary>
+            获取某一节点的所有孩子节点的值
+            </summary>
+            <param name="node">要查询的节点</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.GetDataViewByXml(System.String,System.String)">
+            <summary> 
+            读取XML返回经排序或筛选后的DataView
+            </summary>
+            <param name="strWhere">筛选条件，如:"name='kgdiwss'"</param>
+            <param name="strSort"> 排序条件，如:"Id desc"</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.GetDataSetByXml(System.String)">
+            <summary>
+            读取XML返回DataSet
+            </summary>
+            <param name="strXmlPath">XML文件相对路径</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.InsertRequestFormat(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            插入RequestFormat数据
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点,传入函数名称</param>
+            <param name="element">元素名</param>
+            <param name="attribute">属性名,如果""则不插值</param>
+            <param name="value">值</param>
+            使用示列:
+            MechXML.InsertRequestFormat(pathXml,"LE_Audio_Connect2", "packet_type","value","0x05");
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.InsertRequestFormatResult(System.String,System.String,System.String)">
+            <summary>
+            插入RequestFormat数据传入的数组值
+            </summary>
+            <param name="path"></param>
+            <param name="node"></param>
+            <param name="element"></param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.InsertResponseFormatResult(System.String,System.String,System.String)">
+            <summary>
+            插入RequestFormat数据传入的数组值
+            </summary>
+            <param name="path"></param>
+            <param name="node"></param>
+            <param name="element"></param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.InsertResponseFormat(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            插入ResponseFormat数据
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点,传入函数名称</param>
+            <param name="element">元素名</param>
+            <param name="attribute">属性名,如果""则不插值</param>
+            <param name="value">值</param>
+            使用示列:
+            MechXML.InsertResponseFormat(pathXml,"LE_Audio_Connect2", "packet_type","value","0x5A");
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.InitializeTheNode(System.String)">
+            <summary>
+            初始化节点
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.CreateChildNode(System.String,System.String)">
+            <summary>
+            创建节点对应的函数:传入的函数名称,
+            RequestFormat,
+            ResponseFormat
+            </summary>
+            <param name="path">路径</param>
+            <param name="element">对应的方法名</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.Update(System.String,System.String)">
+            <summary>
+            修改指定节点的数据
+            </summary>
+            <param name="node">节点</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.Update(System.String,System.String,System.String)">
+            <summary>
+            修改指定节点的数据
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            <param name="value">值</param>
+            使用示列:
+            XMLProsess.Insert(path, "/Node","Value")
+            XMLProsess.Insert(path, "/Node","Value")
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.Update(System.String,System.String,System.String,System.String)">
+            <summary>
+            修改指定节点的属性值(静态)
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            <param name="attribute">属性名，非空时修改该节点属性值，否则修改节点值</param>
+            <param name="value">值</param>
+            使用示列:
+            XMLProsess.Insert(path, "/Node", "", "Value")
+            XMLProsess.Insert(path, "/Node", "Attribute", "Value")
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.UpdateXmlRow(System.String,System.String[],System.String[],System.String,System.String)">
+            <summary>
+            更改符合条件的一条记录
+            </summary>
+            <param name="strXmlPath">XML文件路径</param>
+            <param name="Columns">列名数组</param>
+            <param name="ColumnValue">列值数组</param>
+            <param name="strWhereColumnName">条件列名</param>
+            <param name="strWhereColumnValue">条件列值</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.Delete(System.String,System.String)">
+            <summary>
+            删除节点值
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            使用示列:
+            XMLProsess.Delete(path, "/Node", "")
+            XMLProsess.Delete(path, "/Node", "Attribute")
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.Delete(System.String,System.String,System.String)">
+            <summary>
+            删除数据
+            </summary>
+            <param name="path">路径</param>
+            <param name="node">节点</param>
+            <param name="attribute">属性名，非空时删除该节点属性值，否则删除节点值</param>
+            <param name="value">值</param>
+            使用示列:
+            XMLProsess.Delete(path, "/Node", "")
+            XMLProsess.Delete(path, "/Node", "Attribute")
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.DeleteXmlAllRows(System.String)">
+            <summary>
+            删除所有行
+            </summary>
+            <param name="strXmlPath">XML路径</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.DeleteXmlRowByIndex(System.String,System.Int32)">
+            <summary>
+            通过删除DataSet中指定索引行，重写XML以实现删除指定行
+            </summary>
+            <param name="iDeleteRow">要删除的行在DataSet中的Index值</param>
+        </member>
+        <member name="M:MechTE_480.MECH.MechXML.DeleteXmlRows(System.String,System.String,System.String[])">
+            <summary>
+            删除指定列中指定值的行
+            </summary>
+            <param name="strXmlPath">XML相对路径</param>
+            <param name="strColumn">列名</param>
+            <param name="ColumnValue">指定值</param>
+        </member>
     </members>
 </doc>

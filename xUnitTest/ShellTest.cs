@@ -6,8 +6,6 @@ namespace xUnit_Test
     public class ShellTest
     {
 
-
-
         [Fact]
         public void StartShell()
         {

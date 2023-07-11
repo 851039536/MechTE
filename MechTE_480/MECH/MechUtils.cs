@@ -70,7 +70,6 @@ namespace MechTE_480.MECH
                     return path;
                 }
             }
-
             return null;
         }
 

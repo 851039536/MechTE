@@ -9,16 +9,20 @@ using System.Windows.Forms;
 using SharpShell.Attributes;
 using SharpShell.SharpContextMenu;
 
-namespace MyContextMenu
+namespace MechTE_ContextMenu
 {
     [ComVisible(true)]
     //如果按文件类型，按以下设置
     //[COMServerAssociation(AssociationType.ClassOfExtension, ".xlsx", ".xls")]
 
     //设置对全部文件和目录可用
-    [COMServerAssociation(AssociationType.AllFiles), COMServerAssociation(AssociationType.Directory)]
-
-    public class ContextMenu : SharpContextMenu
+   // [COMServerAssociation(AssociationType.AllFiles), COMServerAssociation(AssociationType.Directory)]
+    // [COMServerAssociation(AssociationType.AllFiles)]
+    // [COMServerAssociation(AssociationType.Directory)]
+    [COMServerAssociation(AssociationType.DesktopBackground)]
+    [COMServerAssociation(AssociationType.DirectoryBackground)]
+    // [COMServerAssociation(AssociationType.Folder)]
+    public class ToolContextMenu : SharpContextMenu
     {
         /// <summary>
         /// 判断菜单是否需要被激活显示
@@ -38,7 +42,7 @@ namespace MyContextMenu
 
             var menu = new ContextMenuStrip();
             //设定菜单项显示文字
-            var item = new ToolStripMenuItem("MechTool");
+            var item = new ToolStripMenuItem("软体工具");
             //添加监听事件
             // item.Click += Item_Click;
             //设置图像及位置
@@ -51,7 +55,7 @@ namespace MyContextMenu
             //设置次级菜单
             var subItemsInfo = new Dictionary<string, string>()
             {
-                { "清理以太网", "EngineeringMode.exe,Ethernet" },
+                { "SimpleHIDWrite", "EngineeringMode.exe,SimpleHIDWrite" },
             };
             
             foreach (var kv in subItemsInfo)
@@ -68,8 +72,6 @@ namespace MyContextMenu
 
             return menu;
         }
-
-
         //菜单动作
         public void Item_Click(object sender, EventArgs e, string arg)
         {
@@ -79,7 +81,7 @@ namespace MyContextMenu
             var identify = argStrings[1];
             
             //获取当前dll所在路径
-            var rootPath = getRootPath();
+            var rootPath = GetRootPath();
             //文件路径+文件名称组合
             var appFile = $@"{rootPath}\{fileName}";
             if (!File.Exists(appFile))
@@ -89,13 +91,14 @@ namespace MyContextMenu
             }
             //转换为列表，然后将fileName添加到列表中
             var paths = SelectedItemPaths.ToList();
-            paths.Add(fileName);
+            paths.Add(identify);
+            paths.Add(identify);
             var args = string.Join(" ", paths);
-            Process.Start(appFile,identify);
+            Process.Start(appFile,args);        
         }
 
         //获取当前dll所在路径
-        public string getRootPath()
+        public string GetRootPath()
         {
             // 获取当前程序集的代码基路径
             var codeBase = Assembly.GetExecutingAssembly().CodeBase;
