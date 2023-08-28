@@ -80,7 +80,7 @@ namespace MechTE_452.XML
                 string filename = AppDomain.CurrentDomain.BaseDirectory.ToString() + strPath;
                 if (File.Exists(filename)) xmldoc.Load(filename);
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
 

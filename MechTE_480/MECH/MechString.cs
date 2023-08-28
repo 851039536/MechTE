@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -10,11 +8,11 @@ namespace MechTE_480.MECH
     /// </summary>
     public static class MechString
     {
-        
         /// <summary>
-        /// 将16进制字符串转为ASCII16进制字符串
+        /// 将16进制字符转为ASCII 16进制字符
         /// </summary>
-        /// <returns>示例：01 > 3031</returns>
+        /// <param name="hexStrings">16进制字符</param>
+        /// <returns>示例：01 &gt; 3031</returns>
         public static string HexStrings2AsciiHexStrings(string hexStrings)
         {
             var asciiBytes = Encoding.ASCII.GetBytes(hexStrings);
@@ -31,7 +29,7 @@ namespace MechTE_480.MECH
         {
             return MechUtils.ByteArrayToHexStrings(bytes.ToList());
         }
-        
+
         /// <summary>
         /// 将字符按2个长度为一组进行反序
         /// </summary>
@@ -50,7 +48,7 @@ namespace MechTE_480.MECH
 
             return newStr.ToString();
         }
-        
+
         /// <summary>
         /// 清除字符串中的空格
         /// </summary>
@@ -60,41 +58,5 @@ namespace MechTE_480.MECH
         {
             return str.Replace(" ", "");
         }
-        
-        /// <summary>
-        /// 将16进制字符转为ASCII字符
-        /// </summary>
-        /// <param name="hex">16个数字（0-9和A-F）来表示</param>
-        /// <returns></returns>
-        public static string HexadecimalToASCII(string hex)
-        {
-            //判断是否是16进制字符
-            if (hex.Length % 2 != 0)
-            {
-                throw new ArgumentException("不是16进制字符");
-            }
-            var asciiChars = new List<char>();
-            for (var i = 0; i < hex.Length; i += 2)
-            {
-                var hexPair = hex.Substring(i, 2);
-                var b = Convert.ToByte(hexPair, 16);
-                asciiChars.Add((char)b);
-            }
-            return new string(asciiChars.ToArray());
-        }
-
-        /// <summary>
-        /// ASCII字符转为16进制字符
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public static string ASCIIConvertsDecimal16(string name)
-        {
-            byte[] asciiBytes = Encoding.ASCII.GetBytes(name);
-            string hexString = BitConverter.ToString(asciiBytes).Replace("-", "");
-            return hexString;
-        }
-  
-        
     }
 }

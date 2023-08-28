@@ -126,7 +126,7 @@ namespace MechTE_480.MECH
         /// <summary>
         /// 读取Request中node节点的值
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="funName"></param>
         /// <param name="node"></param>
         /// <param name="attribute"></param>
         /// <returns></returns>

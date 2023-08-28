@@ -44,8 +44,6 @@ namespace MechTE_480.MECH
                 fsShow);// 是否显示窗口，默认显示
         }
 
-
-
         /// <summary>
         /// 使用本地系统进程打开程序/文件夹
         /// </summary>

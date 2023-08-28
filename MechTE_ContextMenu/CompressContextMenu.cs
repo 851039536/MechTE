@@ -14,7 +14,7 @@ namespace MechTE_ContextMenu
     [ComVisible(true)]
     //如果按文件类型，按以下设置
     [COMServerAssociation(AssociationType.ClassOfExtension, ".zip", ".7z")]
-
+    [COMServerAssociation(AssociationType.Folder)]
     //设置对全部文件和目录可用
     // [COMServerAssociation(AssociationType.AllFiles), COMServerAssociation(AssociationType.Directory)]
     // [COMServerAssociation(AssociationType.AllFiles)]

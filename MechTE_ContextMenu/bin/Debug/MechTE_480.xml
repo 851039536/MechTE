@@ -178,6 +178,20 @@
             <param name="imagePath"></param>
             <returns></returns>
         </member>
+        <member name="M:MechTE_480.MECH.MechConvert.HexadecimalToASCII(System.String)">
+            <summary>
+            将16进制字符转为ASCII字符
+            </summary>
+            <param name="hex">16个数字（0-9和A-F）来表示</param>
+            <returns></returns>
+        </member>
+        <member name="M:MechTE_480.MECH.MechConvert.ASCIIConvertsDecimal16(System.String)">
+            <summary>
+            ASCII字符转为16进制字符
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
         <member name="T:MechTE_480.MECH.MechForm">
             <summary>
             窗体api
@@ -276,9 +290,10 @@
         </member>
         <member name="M:MechTE_480.MECH.MechString.HexStrings2AsciiHexStrings(System.String)">
             <summary>
-            将16进制字符串转为ASCII16进制字符串
+            将16进制字符转为ASCII 16进制字符
             </summary>
-            <returns>示例：01 > 3031</returns>
+            <param name="hexStrings">16进制字符</param>
+            <returns>示例：01 &gt; 3031</returns>
         </member>
         <member name="M:MechTE_480.MECH.MechString.ByteArr2HexStrings(System.Byte[],System.String)">
             <summary>
@@ -301,20 +316,6 @@
             </summary>
             <param name="str"></param>
             <returns>00 00 00 00 > 00000000</returns>
-        </member>
-        <member name="M:MechTE_480.MECH.MechString.HexadecimalToASCII(System.String)">
-            <summary>
-            将16进制字符转为ASCII字符
-            </summary>
-            <param name="hex">16个数字（0-9和A-F）来表示</param>
-            <returns></returns>
-        </member>
-        <member name="M:MechTE_480.MECH.MechString.ASCIIConvertsDecimal16(System.String)">
-            <summary>
-            ASCII字符转为16进制字符
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
         </member>
         <member name="T:MechTE_480.MECH.MechTemplate">
             <summary>

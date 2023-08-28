@@ -72,7 +72,7 @@ namespace MechTE_452.MECH
                     p.WaitForExit();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
