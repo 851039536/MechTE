@@ -39,6 +39,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -57,6 +58,7 @@
     <Compile Include="MECH\MechIni.cs" />
     <Compile Include="MECH\MechString.cs" />
     <Compile Include="MECH\MechTemplate.cs" />
+    <Compile Include="MECH\MechUSB.cs" />
     <Compile Include="MECH\MechUtils.cs" />
     <Compile Include="MECH\MechXML.cs" />
     <Compile Include="MECH\MechFile.cs" />

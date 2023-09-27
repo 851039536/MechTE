@@ -13,23 +13,21 @@ namespace MechTE_480.MECH
     /// </summary>
     public class MechUtils
     {
-
-        
         /// <summary>
         /// 判断当前程序是否是管理员
         /// </summary>
         /// <returns></returns>
-        private static bool IsUserAdministrator()
+        public static bool IsUserAdministrator()
         {
-            WindowsIdentity identity = WindowsIdentity.GetCurrent();
-            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
         /// <summary>
         /// 重新启动应用程序并请求管理员权限
         /// </summary>
-        private static void RestartAsAdministrator()
+        public static void RestartAsAdministrator()
         {
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.UseShellExecute = true;
