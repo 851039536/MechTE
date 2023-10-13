@@ -35,9 +35,9 @@ namespace MechTE_480.Order
         #region 启动Windows应用程序
 
         /// <summary>
-        ///  启动Windows应用程序，隐藏程序界面
+        ///  启动Windows应用/网站
         /// </summary>
-        /// <param name="appName">/应用程序路径名称</param>
+        /// <param name="appName">/程序路径</param>
         /// <returns>bool</returns>
         public static bool StartApp(string appName)
         {
@@ -94,7 +94,6 @@ namespace MechTE_480.Order
         #endregion
 
         #region 网盘登录
-
         /// <summary>
         /// 网盘登录
         /// </summary>
@@ -102,7 +101,7 @@ namespace MechTE_480.Order
         /// <param name="userName">用户</param>
         /// <param name="passWord">密码</param>
         /// <returns>bool</returns>
-        public static bool LoginNetwork(string path, string userName, string passWord)
+        private static bool LoginNetwork(string path, string userName, string passWord)
         {
             var proc = new Process(); //实例启动一个独立进程
             try

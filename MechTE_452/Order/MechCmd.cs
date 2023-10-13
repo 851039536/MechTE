@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using MechTE_452.MECH;
 
 namespace MechTE_452.Order
 {
@@ -40,7 +39,7 @@ namespace MechTE_452.Order
         #region 启动Windows应用程序
 
         /// <summary>
-        ///  启动Windows应用程序，隐藏程序界面
+        ///  启动Windows应用/网站
         /// </summary>
         /// <param name="appName">/应用程序路径名称</param>
         /// <returns>bool</returns>
@@ -107,7 +106,7 @@ namespace MechTE_452.Order
         /// <param name="userName">用户</param>
         /// <param name="passWord">密码</param>
         /// <returns>bool</returns>
-        public static bool LoginNetwork(string path, string userName, string passWord)
+        private static bool LoginNetwork(string path, string userName, string passWord)
         {
             var proc = new Process(); //实例启动一个独立进程
             try

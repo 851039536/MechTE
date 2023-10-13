@@ -65,6 +65,7 @@
     <Compile Include="MECH\MechTemplate.cs" />
     <Compile Include="MECH\MechUSB.cs" />
     <Compile Include="MECH\MechUtils.cs" />
+    <Compile Include="MECH\MechWin.cs" />
     <Compile Include="Order\CmdPack.cs" />
     <Compile Include="Order\MechCmd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -44,7 +44,8 @@ namespace MechTE_480.MECH
             }
         }
         /// <summary>
-        /// 获取当前程序根目录
+        /// 获取当前程序根目录,
+        ///如: D:\sw\Console\FileDownLoad\DownLoad\bin\Debug
         /// </summary>
         /// <returns></returns>
         public static string GetTheCurrentProgramAndDirectory()
@@ -52,38 +53,13 @@ namespace MechTE_480.MECH
             // 获取当前程序集的执行路径(根目录)D:\sw\Console\FileDownLoad\DownLoad\bin\Debug
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
-        
-
-        /// <summary>
-        /// 开启音频内部装置窗体显示到桌面
-        /// </summary>
-        /// <returns></returns>
-        public static bool EnterHfp()
-        {
-            using (Process.Start("rundll32.exe", @"C:\WINDOWS\system32\shell32.dll,Control_RunDLL mmsys.cpl,,1"))
-                return true;
-        }
-
-        /// <summary>
-        /// 检测进程关掉音频内部装置
-        /// </summary>
-        /// <param name="processName">rundll32</param>
-        /// <returns>bool</returns>
-        public static bool QuitHfp(string processName = "rundll32")
-        {
-            //得到所有打开的进程   
-            foreach (var thisProc in Process.GetProcesses())
-                if (thisProc.ProcessName.Contains("rundll32"))
-                    thisProc.Kill();
-            return true;
-        }
 
         /// <summary>
         /// 生成数字字符串序列
         /// </summary>
         /// <param name="startNumber">序列中第一个整数的值</param>
-        /// <param name="sequenceLength">要生成的顺序总条数</param>
-        /// <returns>生成-> 0 1 2 3...</returns>  
+        /// <param name="sequenceLength">生成的顺序总条数</param>
+        /// <returns>传入0,6 生成 0 1 2 3 4 5</returns>  
         public static string GenerateNumberStringSequence(int startNumber, int sequenceLength)
         {
             // 生成一个包含数字字符串的序列                                                                                                                                 

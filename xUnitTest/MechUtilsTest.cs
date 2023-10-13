@@ -9,9 +9,8 @@ namespace xUnit_Test
         [Fact]
         public void EnterHfp()
         {
-            var data = MechUtils.EnterHfp();
+            var data = MechWin.EnterHfp();
             Assert.True(data);
         }      
-
     }
 }

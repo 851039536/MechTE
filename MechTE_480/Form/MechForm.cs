@@ -9,8 +9,9 @@ namespace MechTE_480.Form
     /// </summary>
     public class MechForm
     {
+        
         /// <summary>
-        /// 弹框提示
+        /// 默认弹框提示(确认/取消)
         /// </summary>
         /// <param name="name">描述</param>
         /// <param name="title">标题</param>
@@ -31,8 +32,7 @@ namespace MechTE_480.Form
         }
 
         /// <summary>
-        /// 错误提示,
-        /// 消息框包含一个符号，该符号包含一个红色背景圆圈，圆圈中为白色 X 符号
+        /// 错误提示(确认)
         /// </summary>
         /// <param name="title">标题</param>
         /// <param name="prompt">描述</param>
@@ -41,7 +41,7 @@ namespace MechTE_480.Form
             MessageBox.Show(prompt, title, MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
         /// <summary>
-        /// 弹窗接收输入参数
+        /// 弹窗接收参数(确认/取消)
         /// </summary>
         /// <param name="title">标题</param>
         /// <param name="prompt">描述</param>
@@ -111,10 +111,6 @@ namespace MechTE_480.Form
             }
             return null;
         }
-        
-        
-        
-
 
     }
 }
