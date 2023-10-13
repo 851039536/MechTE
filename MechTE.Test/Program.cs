@@ -6,7 +6,13 @@ namespace MechTE.Test
 
         static void Main(string[] args)
         {
-            Console.ReadKey();
+            //3.模拟测试项
+            while (true)
+            {
+                var cmd = Console.ReadLine();
+                // Console.WriteLine(merryDll.Run(cmd));
+            }
         }
     }
 }
+

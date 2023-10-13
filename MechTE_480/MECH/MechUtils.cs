@@ -53,23 +53,6 @@ namespace MechTE_480.MECH
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
         
-        /// <summary>
-        /// 获取Windows当前选文件定路径
-        /// </summary>
-        /// <returns>完整路径</returns>
-        public static string GetSelectedPath()
-        {
-            string[] commandLineArgs = Environment.GetCommandLineArgs();
-            if (commandLineArgs.Length > 1)
-            {
-                string path = commandLineArgs[1];
-                if (File.Exists(path) || Directory.Exists(path))
-                {
-                    return path;
-                }
-            }
-            return null;
-        }
 
         /// <summary>
         /// 开启音频内部装置窗体显示到桌面

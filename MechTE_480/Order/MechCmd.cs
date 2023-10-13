@@ -1,40 +1,36 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
-namespace MechTE_452.MECH
+namespace MechTE_480.Order
 {
     /// <summary>
     /// cmd命令
     /// </summary>
     public static class MechCmd
     {
-        #region electron,cmd命令vue版本
-
-        /// <summary>
-        /// cmd命令vue版本
-        /// </summary>
-        /// <param name="name">Shell程序命令</param>
-        /// <returns>string</returns>
-        public static async Task<bool> StartElectronShell(dynamic name)
-        {
-            return await CmdPack.ExeCommandAsync(new string[] { name });
-        }
-
-        #endregion
-
         #region cmd命令
-
+        
         ///  <summary>
-        /// 使用cmd执行Shell命名
+        /// 执行Shell命令
         ///  </summary>
         ///  <param name="cmd">Shell程序命令</param>
         public static void StartShell(string cmd)
         {
             CmdPack.ExeCommand(new[] { cmd });
+        }      
+        
+        
+        /// <summary>
+        /// 执行bat文件
+        /// </summary>
+        /// <param name="cmd"></param>
+        public static void StartBat(string cmd)
+        {
+            CmdPack.ExeBat(cmd);
         }
 
         #endregion
+        
 
         #region 启动Windows应用程序
 

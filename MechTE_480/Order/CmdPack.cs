@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace MechTE_452.MECH
+namespace MechTE_480.Order
 {
     /// <summary>
     /// cmd包装类
@@ -42,6 +42,32 @@ namespace MechTE_452.MECH
             {
                 // ignored
             }
+        }
+        
+        
+        /// <summary>
+        /// 执行Bat
+        /// </summary>
+        /// <param name="name"></param>
+        public static void ExeBat(string name)
+        {
+            // 创建一个ProcessStartInfo对象
+            ProcessStartInfo processInfo = new ProcessStartInfo();
+
+            // 设置要执行的bat文件路径
+            processInfo.FileName = name;
+
+            // 设置以管理员权限运行
+            // processInfo.Verb = "runas";
+
+            // 创建一个Process对象
+            Process process = new Process();
+
+            // 将ProcessStartInfo对象赋值给Process对象的StartInfo属性
+            process.StartInfo = processInfo;
+
+            // 启动进程
+            process.Start();
         }
         
         /// <summary>

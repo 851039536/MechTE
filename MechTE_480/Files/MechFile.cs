@@ -7,27 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MechTE_452.Files
+namespace MechTE_480.Files
 {
     /// <summary>
     /// 文件操作类
     /// </summary>
     public class MechFile
     {
-        #region electorn
-        /// <summary>
-        /// 打开指定路径/程序
-        /// </summary>
-        /// <param name="path">路径</param>
-        /// <returns></returns>
-        public Task<object> VOpenFile(dynamic path) {
-            return Task.FromResult<object>(ShellExecute(IntPtr.Zero,
-                new StringBuilder("Open"),
-                new StringBuilder(@path),
-                new StringBuilder(""),
-                new StringBuilder(""),1));
-        }
-        #endregion
 
         #region 打开程序/文件夹
         /// <summary>
@@ -44,10 +30,10 @@ namespace MechTE_452.Files
         private static extern int ShellExecute(IntPtr hwnd,StringBuilder lpszOp,StringBuilder lpszFile,StringBuilder lpszParams,StringBuilder lpszDir,int fsShowCmd);
 
         /// <summary>
-        /// 打开程序/文件夹
+        /// 开启程序/文件夹
         /// </summary>
         /// <param name="path">路径</param>
-        /// <param name="fsShow">显示模式 默认1</param>
+        /// <param name="fsShow">是否显示窗口 默认显示(1)</param>
         public static void OpenFile(string path,int fsShow = 1)
         {
             ShellExecute(IntPtr.Zero,
@@ -58,10 +44,8 @@ namespace MechTE_452.Files
                 fsShow);// 是否显示窗口，默认显示
         }
 
-
-
         /// <summary>
-        /// 使用本地系统进程打开程序/文件夹
+        /// 使用系统进程打开程序/文件夹
         /// </summary>
         /// <param name="path">路径</param>
         public static void OpenFile(string path)
@@ -116,7 +100,7 @@ namespace MechTE_452.Files
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog {
                 //打开的文件夹浏览对话框上的描述
-                Description = "请选择文件夹",
+                Description = @"请选择文件夹",
                 //是否显示对话框左下角 新建文件夹 按钮，默认为 true
                 ShowNewFolderButton = false
             };

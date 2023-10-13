@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MechTE_480.MECH
+namespace MechTE_480.Form
 {
     /// <summary>
     /// 窗体api

@@ -51,22 +51,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Files\MechFile.cs" />
+    <Compile Include="Form\MechForm.cs" />
     <Compile Include="Form\ProgressBars.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\ProgressBars.designer.cs">
       <DependentUpon>ProgressBars.cs</DependentUpon>
     </Compile>
-    <Compile Include="MECH\MechCmd.cs" />
-    <Compile Include="MECH\CmdPack.cs" />
     <Compile Include="MECH\MechConvert.cs" />
-    <Compile Include="MECH\MechForm.cs" />
     <Compile Include="MECH\MechIni.cs" />
     <Compile Include="MECH\MechString.cs" />
     <Compile Include="MECH\MechTemplate.cs" />
     <Compile Include="MECH\MechUSB.cs" />
     <Compile Include="MECH\MechUtils.cs" />
-    <Compile Include="MECH\MechFile.cs" />
+    <Compile Include="Order\CmdPack.cs" />
+    <Compile Include="Order\MechCmd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Systems\TSystem.cs" />
     <Compile Include="XML\XMLProcess.cs" />

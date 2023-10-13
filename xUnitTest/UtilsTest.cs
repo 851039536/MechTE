@@ -17,16 +17,6 @@ namespace xUnit_Test
             Assert.Equal("1 2 3 4 5 6 7 8 9 10", data.ToString());
         }      
         
-        [Fact]
-        public void GetSelectedPath()
-        {
-            var data = MechUtils.GetSelectedPath();
-            Assert.Equal("1 2 3 4 5 6 7 8 9 10", data);
-        }
-
-
-        
-        
 
     }
 }

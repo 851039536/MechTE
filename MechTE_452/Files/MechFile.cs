@@ -7,13 +7,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MechTE_480.MECH
+namespace MechTE_452.Files
 {
     /// <summary>
     /// 文件操作类
     /// </summary>
     public class MechFile
     {
+        #region electorn
+        /// <summary>
+        /// 打开指定路径/程序
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <returns></returns>
+        public Task<object> VOpenFile(dynamic path) {
+            return Task.FromResult<object>(ShellExecute(IntPtr.Zero,
+                new StringBuilder("Open"),
+                new StringBuilder(@path),
+                new StringBuilder(""),
+                new StringBuilder(""),1));
+        }
+        #endregion
 
         #region 打开程序/文件夹
         /// <summary>
@@ -43,6 +57,7 @@ namespace MechTE_480.MECH
                 new StringBuilder(""),// 工作目录为空
                 fsShow);// 是否显示窗口，默认显示
         }
+
 
         /// <summary>
         /// 使用本地系统进程打开程序/文件夹
@@ -100,7 +115,7 @@ namespace MechTE_480.MECH
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog {
                 //打开的文件夹浏览对话框上的描述
-                Description = @"请选择文件夹",
+                Description = "请选择文件夹",
                 //是否显示对话框左下角 新建文件夹 按钮，默认为 true
                 ShowNewFolderButton = false
             };
