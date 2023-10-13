@@ -38,12 +38,12 @@ namespace MechTE_ContextMenu.Menu
         {
             var menu = new ContextMenuStrip();
             //设定菜单项显示文字
-            var item = new ToolStripMenuItem("MECH网站导航");
+            var item = new ToolStripMenuItem("SW系统导航");
             var imgPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             //添加监听事件
             // item.Click += Item_Click;
             //设置图像及位置
-            item.Image = Image.FromFile(imgPath + @"/sw.png");
+            item.Image = Image.FromFile(imgPath + @"/image/nav.png");
             item.ImageScaling = ToolStripItemImageScaling.None;
             item.ImageTransparentColor = Color.White;
             item.ImageAlign = ContentAlignment.MiddleLeft;
@@ -61,7 +61,7 @@ namespace MechTE_ContextMenu.Menu
             foreach (var kv in subItemsInfo)
             {
                 //传入键和图片
-                var subItem = new ToolStripMenuItem(kv.Key,Image.FromFile(imgPath+ @"/sw.png"));
+                var subItem = new ToolStripMenuItem(kv.Key,Image.FromFile(imgPath+ @"/image/web.png"));
                 subItem.Click += (o, e) => { Item_Click(o, e, kv.Value); };
                 item.DropDownItems.Add(subItem);
             }

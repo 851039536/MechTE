@@ -7,22 +7,15 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using MechTE_480.MECH;
 using SharpShell.Attributes;
 using SharpShell.SharpContextMenu;
 
 namespace MechTE_ContextMenu.Menu
 {
     [ComVisible(true)]
-    //如果按文件类型，按以下设置
-    //[COMServerAssociation(AssociationType.ClassOfExtension, ".xlsx", ".xls")]
-
-    //设置对全部文件和目录可用
-    // [COMServerAssociation(AssociationType.AllFiles), COMServerAssociation(AssociationType.Directory)]
-    // [COMServerAssociation(AssociationType.AllFiles)]
-    // [COMServerAssociation(AssociationType.Directory)]
     [COMServerAssociation(AssociationType.DesktopBackground)]
     [COMServerAssociation(AssociationType.DirectoryBackground)]
-    // [COMServerAssociation(AssociationType.Folder)]
     public class ToolContextMenu : SharpContextMenu
     {
         /// <summary>
@@ -40,33 +33,34 @@ namespace MechTE_ContextMenu.Menu
         /// <returns></returns>
         protected override ContextMenuStrip CreateMenu()
         {
+            var cuPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var menu = new ContextMenuStrip();
-            //设定菜单项显示文字
-            var item = new ToolStripMenuItem("MECH软体工具");
-            var imgPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            //添加监听事件
-            // item.Click += Item_Click;
+            
+            //设定菜单项标题
+            var item = new ToolStripMenuItem("SW工具");
             //设置图像及位置
-            item.Image = Image.FromFile(imgPath + @"/sw.png");
+            item.Image = Image.FromFile(cuPath + @"/image/sw.png");
             item.ImageScaling = ToolStripItemImageScaling.None;
             item.ImageTransparentColor = Color.White;
             item.ImageAlign = ContentAlignment.MiddleLeft;
-
-            string fName = "DesktopMenu.exe,";
+            
             //设置次级菜单
-            var subItemsInfo = new Dictionary<string, string>()
+            var subItemsInfo = new Dictionary<string, string>();
+            
+            string[] strArray= File.ReadAllLines(cuPath + @"/config/Config.txt");	
+            string fName = "DesktopMenu.exe,";
+            
+            foreach (var t in strArray)
             {
-                { "SimpleHIDWrite", fName + "SimpleHIDWrite" },
-                { "Airoha_ANC_Debug_Tool", fName + "Airoha_ANC_Debug_Tool" },
-                { "下载(工程模式)", "DesktopMenu.exe,downloadEng" },
-                { "卸载工具", fName + "unload" }
-            };
+                //0图片路径 1 子菜单名称 2 子菜单参数
+                var meunText = t.Split(',');
+                //设置次级菜单
+                subItemsInfo.Add(meunText[1],fName + meunText[2]);
 
-            foreach (var kv in subItemsInfo)
-            {
+                // MechWin.MesBoxs(meunText[1], meunText[2]);
                 //传入键和图片
-                var subItem = new ToolStripMenuItem(kv.Key,Image.FromFile(imgPath+ @"/sw.png"));
-                subItem.Click += (o, e) => { Item_Click(o, e, kv.Value); };
+                var subItem = new ToolStripMenuItem(meunText[1], Image.FromFile(cuPath + @"/image/"+meunText[0]));
+                subItem.Click += (o, e) => { Item_Click(o, e, fName +meunText[2]); };
                 item.DropDownItems.Add(subItem);
             }
             menu.Items.Add(item);
@@ -80,7 +74,6 @@ namespace MechTE_ContextMenu.Menu
             var argStrings = arg.Split(',');
             var fileName = argStrings[0];
             var identify = argStrings[1];
-
             //获取当前dll所在路径
             var rootPath = GetRootPath();
             //文件路径+文件名称组合

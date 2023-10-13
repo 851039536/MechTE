@@ -1,0 +1,5 @@
+hid.png,SimpleHIDWrite,SimpleHIDWrite
+sw.png,Airoha_ANC_Debug_Tool,Airoha_ANC_Debug_Tool
+dw.png,下载(工程模式),downloadEng
+Config.png,配置,Config
+de.png,卸载,unload

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Menu\CompressContextMenu.cs" />
+    <Compile Include="Menu\Config.cs" />
     <Compile Include="Menu\NavigationMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Menu\ToolContextMenu.cs" />
@@ -56,7 +57,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) D:\sw\Console\EngineeringMode\DesktopMenu\bin\Debug</PostBuildEvent>
+    <PostBuildEvent>copy $(TargetPath) D:\sw\Console\DesktopMenu\DesktopMenu\bin\Debug</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
