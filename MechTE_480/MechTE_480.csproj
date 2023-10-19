@@ -1,105 +1,111 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CF13CCDD-9E46-406A-8CB2-EF159D228A03}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MechTE_480</RootNamespace>
-    <AssemblyName>MechTE_480</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\MechTE_480.xml</DocumentationFile>
-    <Prefer32bit>false</Prefer32bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Files\MechFile.cs" />
-    <Compile Include="ButForm\MechButton.cs" />
-    <Compile Include="ButForm\MouseControl.cs" />
-    <Compile Include="ButForm\ProgressBars.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ButForm\ProgressBars.designer.cs" />
-    <Compile Include="Form\Config.cs" />
-    <Compile Include="Form\MechForm.cs" />
-    <Compile Include="Form\ProgressBars.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\ProgressBars.designer.cs">
-      <DependentUpon>ProgressBars.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\UpFile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\UpFile.Designer.cs">
-      <DependentUpon>UpFile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Hid\BaseConversion.cs" />
-    <Compile Include="Hid\Config.cs" />
-    <Compile Include="Hid\Handles.cs" />
-    <Compile Include="Hid\MechHID.cs" />
-    <Compile Include="Hid\USB.cs" />
-    <Compile Include="MECH\MechConvert.cs" />
-    <Compile Include="MECH\MechIni.cs" />
-    <Compile Include="MECH\MechString.cs" />
-    <Compile Include="MECH\MechTemplate.cs" />
-    <Compile Include="MECH\MechUSB.cs" />
-    <Compile Include="MECH\MechUtils.cs" />
-    <Compile Include="MECH\MechWin.cs" />
-    <Compile Include="MECH\MechXML.cs" />
-    <Compile Include="MerryDll\IMerryDll.cs" />
-    <Compile Include="Order\Config.cs" />
-    <Compile Include="Order\MechCmd.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ButForm\ProgressBars.resx" />
-    <EmbeddedResource Include="Form\ProgressBars.resx">
-      <DependentUpon>ProgressBars.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\UpFile.resx">
-      <DependentUpon>UpFile.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{CF13CCDD-9E46-406A-8CB2-EF159D228A03}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>MechTE_480</RootNamespace>
+        <AssemblyName>MechTE_480</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <DocumentationFile>bin\Debug\MechTE_480.xml</DocumentationFile>
+        <Prefer32bit>false</Prefer32bit>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <DocumentationFile>
+        </DocumentationFile>
+    </PropertyGroup>
+    <PropertyGroup>
+      <PostBuildEvent>call $(TargetPath) merge.bat</PostBuildEvent>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Management" />
+        <Reference Include="System.Web" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Files\MechFile.cs" />
+        <Compile Include="ButForm\MechButton.cs" />
+        <Compile Include="ButForm\MouseControl.cs" />
+        <Compile Include="ButForm\ProgressBars.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="ButForm\ProgressBars.designer.cs" />
+        <Compile Include="Form\Config.cs" />
+        <Compile Include="Form\MechForm.cs" />
+        <Compile Include="Form\ProgressBars.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Form\ProgressBars.designer.cs">
+            <DependentUpon>ProgressBars.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Form\UpFile.cs">
+            <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Form\UpFile.Designer.cs">
+            <DependentUpon>UpFile.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Hid\BaseConversion.cs" />
+        <Compile Include="Hid\Config.cs" />
+        <Compile Include="Hid\Handles.cs" />
+        <Compile Include="Hid\MechHID.cs" />
+        <Compile Include="Hid\USB.cs" />
+        <Compile Include="MECH\MechConvert.cs" />
+        <Compile Include="MECH\MechIni.cs" />
+        <Compile Include="MECH\MechString.cs" />
+        <Compile Include="MECH\MechTemplate.cs" />
+        <Compile Include="MECH\MechUSB.cs" />
+        <Compile Include="MECH\MechUtils.cs" />
+        <Compile Include="MECH\MechXML.cs" />
+        <Compile Include="MerryDll\IMerryDll.cs" />
+        <Compile Include="Order\Config.cs" />
+        <Compile Include="Order\MechCmd.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Windows\Config.cs" />
+        <Compile Include="Windows\MechWin.cs" />
+        <Compile Include="Windows\SystemVolume.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="ButForm\ProgressBars.resx" />
+        <EmbeddedResource Include="Form\ProgressBars.resx">
+            <DependentUpon>ProgressBars.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Form\UpFile.resx">
+            <DependentUpon>UpFile.cs</DependentUpon>
+        </EmbeddedResource>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+           Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+      -->
+
 </Project>
