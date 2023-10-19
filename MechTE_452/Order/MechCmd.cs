@@ -1,39 +1,31 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace MechTE_452.Order
 {
     /// <summary>
     /// cmd命令
     /// </summary>
-    public static class MechCmd
+    public static partial class MechCmd
     {
-        #region electron,cmd命令vue版本
-
-        /// <summary>
-        /// cmd命令vue版本
-        /// </summary>
-        /// <param name="name">Shell程序命令</param>
-        /// <returns>string</returns>
-        public static async Task<bool> StartElectronShell(dynamic name)
-        {
-            return await CmdPack.ExeCommandAsync(new string[] { name });
-        }
-
-        #endregion
-
         #region cmd命令
 
         ///  <summary>
-        /// 使用cmd执行Shell命名
+        /// 执行Shell命令
         ///  </summary>
         ///  <param name="cmd">Shell程序命令</param>
         public static void StartShell(string cmd)
         {
-            CmdPack.ExeCommand(new[] { cmd });
+            ExeCommand(new[] { cmd });
         }
-
+        /// <summary>
+        /// 执行bat文件
+        /// </summary>
+        /// <param name="cmd"></param>
+        public static void StartBat(string cmd)
+        {
+            ExeBat(cmd);
+        }
         #endregion
 
         #region 启动Windows应用程序
@@ -41,22 +33,11 @@ namespace MechTE_452.Order
         /// <summary>
         ///  启动Windows应用/网站
         /// </summary>
-        /// <param name="appName">/应用程序路径名称</param>
+        /// <param name="appName">/程序路径</param>
         /// <returns>bool</returns>
         public static bool StartApp(string appName)
         {
-            return StartApp(appName, ProcessWindowStyle.Hidden);
-        }
-
-        /// <summary>
-        /// 进程窗口模式
-        /// </summary>
-        /// <param name="appName">应用程序路径名称</param>
-        /// <param name="style">显示模式</param>
-        /// <returns>bool</returns>
-        private static bool StartApp(string appName, ProcessWindowStyle style)
-        {
-            return StartApp(appName, null, style);
+            return StartApp(appName,ProcessWindowStyle.Hidden);
         }
 
 
@@ -67,30 +48,23 @@ namespace MechTE_452.Order
         /// <param name="arguments"></param>
         /// <param name="style"></param>
         /// <returns></returns>
-        private static bool StartApp(string appName, string arguments, ProcessWindowStyle style)
+        private static bool StartApp(string appName,string arguments,ProcessWindowStyle style)
         {
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
+            var process = new Process {
+                StartInfo = new ProcessStartInfo {
                     FileName = appName,
                     Arguments = arguments,
                     WindowStyle = style
                 }
             };
 
-            try
-            {
+            try {
                 process.Start();
                 process.WaitForExit();
                 return true;
-            }
-            catch
-            {
+            } catch {
                 return false;
-            }
-            finally
-            {
+            } finally {
                 process.Dispose();
             }
         }
@@ -98,7 +72,6 @@ namespace MechTE_452.Order
         #endregion
 
         #region 网盘登录
-
         /// <summary>
         /// 网盘登录
         /// </summary>
@@ -106,11 +79,10 @@ namespace MechTE_452.Order
         /// <param name="userName">用户</param>
         /// <param name="passWord">密码</param>
         /// <returns>bool</returns>
-        private static bool LoginNetwork(string path, string userName, string passWord)
+        private static bool LoginNetwork(string path,string userName,string passWord)
         {
             var proc = new Process(); //实例启动一个独立进程
-            try
-            {
+            try {
                 proc.StartInfo.FileName = "cmd.exe"; //设定程序名
                 proc.StartInfo.UseShellExecute = false;
                 proc.StartInfo.RedirectStandardInput = true; //重定向标准输入
@@ -121,27 +93,19 @@ namespace MechTE_452.Order
                 var dosLine = "net use " + path + " " + passWord + " /user:" + userName;
                 proc.StandardInput.WriteLine(dosLine); //执行的命令
                 proc.StandardInput.WriteLine("exit");
-                while (!proc.HasExited)
-                {
+                while (!proc.HasExited) {
                     proc.WaitForExit(1000);
                 }
 
                 var errors = proc.StandardError.ReadToEnd();
                 proc.StandardError.Close();
-                if (string.IsNullOrEmpty(errors))
-                {
-                }
-                else
-                {
+                if (string.IsNullOrEmpty(errors)) {
+                } else {
                     throw new Exception(errors);
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw new Exception(ex.Message);
-            }
-            finally
-            {
+            } finally {
                 proc.Close();
                 proc.Dispose();
             }

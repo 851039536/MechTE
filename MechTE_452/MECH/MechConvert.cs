@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace MechTE_452.MECH
@@ -18,10 +19,10 @@ namespace MechTE_452.MECH
         /// </summary>
         /// <param name="text">原始字符串</param>
         /// <param name="totalLength">字符串的固定长度</param>
-        public static string RepairZero(string text, int totalLength)
+        public static string RepairZero(string text,int totalLength)
         {
             // 将文本左侧填充零，使其总长度为 totalLength
-            var paddedText = text.PadLeft(totalLength, '0');
+            var paddedText = text.PadLeft(totalLength,'0');
             // 将文本左侧填充零，使其总长度为 totalLength
             return paddedText;
         }
@@ -36,42 +37,37 @@ namespace MechTE_452.MECH
         /// <param name="value">要转换的值,即原值</param>
         /// <param name="from">原值的进制,只能是2,8,10,16四个值。</param>
         /// <param name="to">要转换到的目标进制，只能是2,8,10,16四个值。</param>
-        public static string ConvertBase(string value, int from, int to)
+        public static string ConvertBase(string value,int from,int to)
         {
-            try
-            {
+            try {
                 //先转成10进制
-                int intValue = Convert.ToInt32(value, from);
+                int intValue = Convert.ToInt32(value,from);
                 //再转成目标进制
-                string result = Convert.ToString(intValue, to);
-                if (to == 2)
-                {
+                string result = Convert.ToString(intValue,to);
+                if (to == 2) {
                     //获取二进制的长度
                     int resultLength = result.Length;
-                    switch (resultLength)
-                    {
+                    switch (resultLength) {
                         case 7:
-                            result = "0" + result;
-                            break;
+                        result = "0" + result;
+                        break;
                         case 6:
-                            result = "00" + result;
-                            break;
+                        result = "00" + result;
+                        break;
                         case 5:
-                            result = "000" + result;
-                            break;
+                        result = "000" + result;
+                        break;
                         case 4:
-                            result = "0000" + result;
-                            break;
+                        result = "0000" + result;
+                        break;
                         case 3:
-                            result = "00000" + result;
-                            break;
+                        result = "00000" + result;
+                        break;
                     }
                 }
 
                 return result;
-            }
-            catch
-            {
+            } catch {
                 return "false";
             }
         }
@@ -85,7 +81,7 @@ namespace MechTE_452.MECH
         /// </summary>
         /// <param name="text">要转换的字符串</param>
         /// <param name="encoding">字符编码</param>
-        public static byte[] StringToBytes(string text, Encoding encoding)
+        public static byte[] StringToBytes(string text,Encoding encoding)
         {
             return encoding.GetBytes(text);
         }
@@ -99,7 +95,7 @@ namespace MechTE_452.MECH
         /// </summary>
         /// <param name="bytes">要转换的字节数组</param>
         /// <param name="encoding">字符编码</param>
-        public static string BytesToString(byte[] bytes, Encoding encoding)
+        public static string BytesToString(byte[] bytes,Encoding encoding)
         {
             return encoding.GetString(bytes);
         }
@@ -115,22 +111,20 @@ namespace MechTE_452.MECH
         public static int BytesToInt32(byte[] data)
         {
             //如果传入的字节数组长度小于4,则返回0
-            if (data.Length < 4)
-            {
+            if (data.Length < 4) {
                 return 0;
             }
 
             //定义要返回的整数
             int num = 0;
             //如果传入的字节数组长度大于4,需要进行处理
-            if (data.Length >= 4)
-            {
+            if (data.Length >= 4) {
                 //创建一个临时缓冲区
                 byte[] tempBuffer = new byte[4];
                 //将传入的字节数组的前4个字节复制到临时缓冲区
-                Buffer.BlockCopy(data, 0, tempBuffer, 0, 4);
+                Buffer.BlockCopy(data,0,tempBuffer,0,4);
                 //将临时缓冲区的值转换成整数，并赋给num
-                num = BitConverter.ToInt32(tempBuffer, 0);
+                num = BitConverter.ToInt32(tempBuffer,0);
             }
 
             //返回整数
@@ -151,7 +145,7 @@ namespace MechTE_452.MECH
             Console.WriteLine(base64String);
             return base64String;
         }
-        
+
         /// <summary>
         /// 将16进制字符转为ASCII字符
         /// </summary>
@@ -160,16 +154,14 @@ namespace MechTE_452.MECH
         public static string HexadecimalToASCII(string hex)
         {
             //判断是否是16进制字符
-            if (hex.Length % 2 != 0)
-            {
+            if (hex.Length % 2 != 0) {
                 throw new ArgumentException("不是16进制字符");
             }
-            
+
             var asciiChars = new List<char>();
-            for (var i = 0; i < hex.Length; i += 2)
-            {
-                var hexPair = hex.Substring(i, 2);
-                var b = Convert.ToByte(hexPair, 16);
+            for (var i = 0 ; i < hex.Length ; i += 2) {
+                var hexPair = hex.Substring(i,2);
+                var b = Convert.ToByte(hexPair,16);
                 asciiChars.Add((char)b);
             }
             return new string(asciiChars.ToArray());
@@ -183,11 +175,30 @@ namespace MechTE_452.MECH
         public static string ASCIIConvertsDecimal16(string name)
         {
             byte[] asciiBytes = Encoding.ASCII.GetBytes(name);
-            string hexString = BitConverter.ToString(asciiBytes).Replace("-", "");
+            string hexString = BitConverter.ToString(asciiBytes).Replace("-","");
             return hexString;
         }
 
 
+        /// <summary>
+        /// 将16进制字符串转为ASCII16进制字符串
+        /// </summary>
+        /// <returns>示例：01 > 3031</returns>
+        public static string HexStrings2AsciiHexStrings(string hexStrings)
+        {
+            var asciiBytes = Encoding.ASCII.GetBytes(hexStrings);
+            return ByteArr2HexStrings(asciiBytes);
+        }
+        /// <summary>
+        /// 示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="separator">分隔符</param>
+        /// <returns></returns>
+        private static string ByteArr2HexStrings(byte[] bytes,string separator = "")
+        {
+            return MechUtils.ByteArrayToHexStrings(bytes.ToList());
+        }
 
     }
 }

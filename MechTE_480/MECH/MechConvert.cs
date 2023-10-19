@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace MechTE_480.MECH
@@ -92,10 +93,10 @@ namespace MechTE_480.MECH
 
         #endregion
 
-        #region 使用指定字符集将byte[]转换成string
+        #region 集将byte[]转换成string
 
         /// <summary>
-        /// 使用指定字符集将byte[]转换成string
+        /// 将byte[]转换成string
         /// </summary>
         /// <param name="bytes">要转换的字节数组</param>
         /// <param name="encoding">字符编码</param>
@@ -185,6 +186,28 @@ namespace MechTE_480.MECH
             byte[] asciiBytes = Encoding.ASCII.GetBytes(name);
             string hexString = BitConverter.ToString(asciiBytes).Replace("-", "");
             return hexString;
+        }
+
+        /// <summary>
+        /// 将16进制字符转为ASCII 16进制字符
+        /// </summary>
+        /// <param name="hexStrings">16进制字符</param>
+        /// <returns>示例：01 &gt; 30 31</returns>
+        public static string HexStrings2AsciiHexStrings(string hexStrings)
+        {
+            var asciiBytes = Encoding.ASCII.GetBytes(hexStrings);
+            return ByteArr2HexStrings(asciiBytes);
+        }
+
+        /// <summary>
+        /// 示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="separator">分隔符</param>
+        /// <returns></returns>
+        private static string ByteArr2HexStrings(byte[] bytes,string separator = "")
+        {
+            return MechUtils.ByteArrayToHexStrings(bytes.ToList());
         }
 
     }

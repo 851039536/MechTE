@@ -32,7 +32,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,6 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Files\MechFile.cs" />
+    <Compile Include="ButForm\MechButton.cs" />
+    <Compile Include="ButForm\MouseControl.cs" />
+    <Compile Include="ButForm\ProgressBars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ButForm\ProgressBars.designer.cs" />
+    <Compile Include="Form\Config.cs" />
     <Compile Include="Form\MechForm.cs" />
     <Compile Include="Form\ProgressBars.cs">
       <SubType>Form</SubType>
@@ -53,6 +61,17 @@
     <Compile Include="Form\ProgressBars.designer.cs">
       <DependentUpon>ProgressBars.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\UpFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\UpFile.Designer.cs">
+      <DependentUpon>UpFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hid\BaseConversion.cs" />
+    <Compile Include="Hid\Config.cs" />
+    <Compile Include="Hid\Handles.cs" />
+    <Compile Include="Hid\MechHID.cs" />
+    <Compile Include="Hid\USB.cs" />
     <Compile Include="MECH\MechConvert.cs" />
     <Compile Include="MECH\MechIni.cs" />
     <Compile Include="MECH\MechString.cs" />
@@ -61,13 +80,18 @@
     <Compile Include="MECH\MechUtils.cs" />
     <Compile Include="MECH\MechWin.cs" />
     <Compile Include="MECH\MechXML.cs" />
-    <Compile Include="Order\CmdPack.cs" />
+    <Compile Include="MerryDll\IMerryDll.cs" />
+    <Compile Include="Order\Config.cs" />
     <Compile Include="Order\MechCmd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ButForm\ProgressBars.resx" />
     <EmbeddedResource Include="Form\ProgressBars.resx">
       <DependentUpon>ProgressBars.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\UpFile.resx">
+      <DependentUpon>UpFile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

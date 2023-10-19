@@ -7,7 +7,7 @@ namespace MechTE_480.Form
     /// <summary>
     /// 窗体api
     /// </summary>
-    public class MechForm
+    public partial class MechForm
     {
         
         /// <summary>
@@ -111,6 +111,5 @@ namespace MechTE_480.Form
             }
             return null;
         }
-
     }
 }

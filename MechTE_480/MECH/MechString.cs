@@ -8,27 +8,7 @@ namespace MechTE_480.MECH
     /// </summary>
     public static class MechString
     {
-        /// <summary>
-        /// 将16进制字符转为ASCII 16进制字符
-        /// </summary>
-        /// <param name="hexStrings">16进制字符</param>
-        /// <returns>示例：01 &gt; 3031</returns>
-        public static string HexStrings2AsciiHexStrings(string hexStrings)
-        {
-            var asciiBytes = Encoding.ASCII.GetBytes(hexStrings);
-            return ByteArr2HexStrings(asciiBytes);
-        }
 
-        /// <summary>
-        /// 示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
-        /// </summary>
-        /// <param name="bytes"></param>
-        /// <param name="separator">分隔符</param>
-        /// <returns></returns>
-        private static string ByteArr2HexStrings(byte[] bytes, string separator = "")
-        {
-            return MechUtils.ByteArrayToHexStrings(bytes.ToList());
-        }
 
         /// <summary>
         /// 将字符按2个长度为一组进行反序

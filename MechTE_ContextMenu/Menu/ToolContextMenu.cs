@@ -7,7 +7,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using MechTE_480.MECH;
 using SharpShell.Attributes;
 using SharpShell.SharpContextMenu;
 
@@ -35,9 +34,8 @@ namespace MechTE_ContextMenu.Menu
         {
             var cuPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var menu = new ContextMenuStrip();
-            
             //设定菜单项标题
-            var item = new ToolStripMenuItem("SW工具");
+            var item = new ToolStripMenuItem("SW测试工具");
             //设置图像及位置
             item.Image = Image.FromFile(cuPath + @"/image/sw.png");
             item.ImageScaling = ToolStripItemImageScaling.None;
@@ -46,17 +44,14 @@ namespace MechTE_ContextMenu.Menu
             
             //设置次级菜单
             var subItemsInfo = new Dictionary<string, string>();
-            
             string[] strArray= File.ReadAllLines(cuPath + @"/config/Config.txt");	
             string fName = "DesktopMenu.exe,";
-            
             foreach (var t in strArray)
             {
                 //0图片路径 1 子菜单名称 2 子菜单参数
                 var meunText = t.Split(',');
                 //设置次级菜单
                 subItemsInfo.Add(meunText[1],fName + meunText[2]);
-
                 // MechWin.MesBoxs(meunText[1], meunText[2]);
                 //传入键和图片
                 var subItem = new ToolStripMenuItem(meunText[1], Image.FromFile(cuPath + @"/image/"+meunText[0]));

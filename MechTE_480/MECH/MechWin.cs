@@ -64,7 +64,6 @@ namespace MechTE_480.MECH
                     thisProc.Kill();
             return true;
         }
-        
         private  void test(string text, string caption)
         {
             //弹出提示
