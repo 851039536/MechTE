@@ -35,7 +35,7 @@ namespace MechTE_ContextMenu.Menu
             var cuPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var menu = new ContextMenuStrip();
             //设定菜单项标题
-            var item = new ToolStripMenuItem("SW测试工具");
+            var item = new ToolStripMenuItem("SW测试工具(D)");
             //设置图像及位置
             item.Image = Image.FromFile(cuPath + @"/image/sw.png");
             item.ImageScaling = ToolStripItemImageScaling.None;

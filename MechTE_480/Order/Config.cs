@@ -8,7 +8,7 @@ namespace MechTE_480.Order
     /// <summary>
     /// cmd包装类
     /// </summary>
-    public static partial class MechCmd
+    public partial class MechProcess
     {
         /// <summary>
         /// 执行多条cmd.exe命令
@@ -24,9 +24,11 @@ namespace MechTE_480.Order
             p.StartInfo.RedirectStandardOutput = true;
             p.StartInfo.RedirectStandardError = true;
             p.StartInfo.CreateNoWindow = true;
-            try {
+            try
+            {
                 p.Start();
-                foreach (var item in commandTexts) {
+                foreach (var item in commandTexts)
+                {
                     p.StandardInput.WriteLine(item);
                 }
 
@@ -35,7 +37,8 @@ namespace MechTE_480.Order
                 //等待进程退出
                 p.WaitForExit();
                 p.Close();
-            } catch (Exception) {
+            } catch (Exception)
+            {
                 // ignored
             }
         }
@@ -68,23 +71,27 @@ namespace MechTE_480.Order
         /// <returns></returns>
         private static async Task<bool> ExeCommandAsync(IEnumerable<string> commandTexts)
         {
-            using (var p = new Process()) {
+            using (var p = new Process())
+            {
                 p.StartInfo.FileName = "cmd.exe";
                 p.StartInfo.UseShellExecute = false;
                 p.StartInfo.RedirectStandardInput = true;
                 p.StartInfo.RedirectStandardOutput = true;
                 p.StartInfo.RedirectStandardError = true;
                 p.StartInfo.CreateNoWindow = true;
-                try {
+                try
+                {
                     p.Start();
-                    foreach (var item in commandTexts) {
+                    foreach (var item in commandTexts)
+                    {
                         await p.StandardInput.WriteLineAsync(item);
                     }
                     await p.StandardInput.WriteLineAsync("exit");
                     await p.StandardOutput.ReadToEndAsync();
                     p.WaitForExit();
                     return true;
-                } catch (Exception) {
+                } catch (Exception)
+                {
                     return false;
                 }
             }

@@ -5,9 +5,11 @@ namespace MechTE_480.Form
 {
     public partial class UpFile : System.Windows.Forms.Form
     {
+        public static UpFile upFile;
         public UpFile()
         {
             InitializeComponent();
+            upFile = this;
         }
 
         private void UpFile_Load(object sender,EventArgs e)

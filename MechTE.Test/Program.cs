@@ -1,6 +1,5 @@
 ﻿using MechTE_480.Form;
 using System;
-using System.IO;
 
 namespace MechTE.Test
 {

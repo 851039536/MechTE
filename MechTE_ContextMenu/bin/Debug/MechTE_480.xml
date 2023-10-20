@@ -1214,7 +1214,7 @@
             </summary>
             <param name="obj"></param>
         </member>
-        <member name="T:MechTE_480.Order.MechCmd">
+        <member name="T:MechTE_480.Order.MechProcess">
             <summary>
             cmd包装类
             </summary>
@@ -1222,26 +1222,26 @@
             cmd命令
             </summary>
         </member>
-        <member name="M:MechTE_480.Order.MechCmd.ExeCommand(System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:MechTE_480.Order.MechProcess.ExeCommand(System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             执行多条cmd.exe命令
             </summary>
             <param name="commandTexts"></param>
         </member>
-        <member name="M:MechTE_480.Order.MechCmd.ExeBat(System.String)">
+        <member name="M:MechTE_480.Order.MechProcess.ExeBat(System.String)">
             <summary>
             执行Bat
             </summary>
             <param name="name"></param>
         </member>
-        <member name="M:MechTE_480.Order.MechCmd.ExeCommandAsync(System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:MechTE_480.Order.MechProcess.ExeCommandAsync(System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             使用cmd执行Shell命名
             </summary>
             <param name="commandTexts"></param>
             <returns></returns>
         </member>
-        <member name="M:MechTE_480.Order.MechCmd.StartApp(System.String,System.Diagnostics.ProcessWindowStyle)">
+        <member name="M:MechTE_480.Order.MechProcess.StartApp(System.String,System.Diagnostics.ProcessWindowStyle)">
             <summary>
             进程窗口模式
             </summary>
@@ -1249,26 +1249,32 @@
             <param name="style">显示模式</param>
             <returns>bool</returns>
         </member>
-        <member name="M:MechTE_480.Order.MechCmd.StartShell(System.String)">
+        <member name="M:MechTE_480.Order.MechProcess.StartShell(System.String)">
              <summary>
             执行Shell命令
              </summary>
              <param name="cmd">Shell程序命令</param>
         </member>
-        <member name="M:MechTE_480.Order.MechCmd.StartBat(System.String)">
+        <member name="M:MechTE_480.Order.MechProcess.StartBat(System.String)">
             <summary>
             执行bat文件
             </summary>
             <param name="cmd"></param>
         </member>
-        <member name="M:MechTE_480.Order.MechCmd.StartApp(System.String)">
+        <member name="M:MechTE_480.Order.MechProcess.StartApp(System.String)">
             <summary>
              启动Windows应用/网站
             </summary>
             <param name="appName">/程序路径</param>
             <returns>bool</returns>
         </member>
-        <member name="M:MechTE_480.Order.MechCmd.StartApp(System.String,System.String,System.Diagnostics.ProcessWindowStyle)">
+        <member name="M:MechTE_480.Order.MechProcess.StartApps(System.String)">
+            <summary>
+            管理员运行程序
+            </summary>
+            <param name="appName"></param>
+        </member>
+        <member name="M:MechTE_480.Order.MechProcess.StartApp(System.String,System.String,System.Diagnostics.ProcessWindowStyle)">
             <summary>
             启动外部应用程序
             </summary>
@@ -1276,15 +1282,6 @@
             <param name="arguments"></param>
             <param name="style"></param>
             <returns></returns>
-        </member>
-        <member name="M:MechTE_480.Order.MechCmd.LoginNetwork(System.String,System.String,System.String)">
-            <summary>
-            网盘登录
-            </summary>
-            <param name="path">网盘路径:\10.xx.xx</param>
-            <param name="userName">用户</param>
-            <param name="passWord">密码</param>
-            <returns>bool</returns>
         </member>
         <member name="T:MechTE_480.Windows.MechWin">
             <summary>

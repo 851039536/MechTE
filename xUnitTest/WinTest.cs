@@ -1,4 +1,5 @@
-﻿using MechTE_480.Windows;
+﻿using System.Globalization;
+using MechTE_480.Windows;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -30,7 +31,7 @@ namespace xUnit_Test
         public void GetMasterVolume()
         {
             var data = MechWin.GetMasterVolume();
-            _msg.WriteLine(data.ToString());
+            _msg.WriteLine(data.ToString(CultureInfo.InvariantCulture));
             Assert.Equal(data,data);
         }  
         
@@ -39,7 +40,7 @@ namespace xUnit_Test
         {
              MechWin.SetMasterVolume(20);
              var data = MechWin.GetMasterVolume();
-            _msg.WriteLine(data.ToString());
+            _msg.WriteLine(data.ToString(CultureInfo.InvariantCulture));
             Assert.Equal(data,data);
         }     
         
@@ -48,7 +49,7 @@ namespace xUnit_Test
         {
              MechWin.SetMasterVolumeMute(true);
              var data = MechWin.GetMasterVolume();
-            _msg.WriteLine(data.ToString());
+            _msg.WriteLine(data.ToString(CultureInfo.InvariantCulture));
             Assert.Equal(data,data);
         }  
     }
