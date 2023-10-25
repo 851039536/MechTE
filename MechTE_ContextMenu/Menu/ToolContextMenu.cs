@@ -44,7 +44,7 @@ namespace MechTE_ContextMenu.Menu
             
             //设置次级菜单
             var subItemsInfo = new Dictionary<string, string>();
-            string[] strArray= File.ReadAllLines(cuPath + @"/config/Config.txt");	
+            string[] strArray= File.ReadAllLines(cuPath + @"/config/ToolConfig.txt");	
             string fName = "DesktopMenu.exe,";
             foreach (var t in strArray)
             {

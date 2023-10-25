@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace MechTE_480.Windows
 {
@@ -17,7 +19,12 @@ namespace MechTE_480.Windows
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern int MessageBox(IntPtr hWnd, string text, string caption, int options);
         
-        
+        public static void RunDll(string arguments)
+        {
+            using (Process.Start("rundll32.exe", arguments))
+            {
+            }
+        }
         
     }
 }

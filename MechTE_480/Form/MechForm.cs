@@ -64,7 +64,6 @@ namespace MechTE_480.Form
         }
         #endregion
         
-        
         /// <summary>
         /// 默认弹框提示(确认/取消)
         /// </summary>

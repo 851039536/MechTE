@@ -356,6 +356,59 @@
             读取桌面内容
             </summary>
         </member>
+        <member name="T:MechTE_480.Files.MFileTransfer">
+            <summary>
+            文件传输(上传,下载)
+            </summary>
+        </member>
+        <member name="M:MechTE_480.Files.MFileTransfer.HttpPost(System.String,System.String,System.String,System.String)">
+            <summary>
+            通过HTTP下载
+            </summary>
+            <param name="httpUrl">HTTP请求路径</param>
+            <param name="writeData">JSON格式属性</param>
+            <param name="method">请求</param>
+            <param name="path">下载到指定路径</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:MechTE_480.Files.MFileTransfer.ExtractZipFile(System.String,System.String)">
+            <summary>
+            解压文件
+            </summary>
+            <param name="zipFilePath">要解压的zip</param>
+            <param name="extractPath">解压到指定路径</param>
+        </member>
+        <member name="M:MechTE_480.Files.MFileTransfer.DownloadZip(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            zip压缩包下载
+            下载完成后自动执行解压动作,需传入解压路径unPath
+            解压完成自动根据downloadName字段删除zip包
+            </summary>
+            <param name="httpPath">HTTP POST请求路径</param>
+            <param name="mode">模式:EngineeringMode(工程),TestItem(量产) </param>
+            <param name="zipPath">下载文件到指定路径,不允许为空</param>
+            <param name="unPath">解压到指定路径,如空则解压到当前程序集的执行路径(根目录)</param>
+            <param name="downloadName">文件名称(必须跟后台上传文件名匹配)</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:MechTE_480.Files.MFileTransfer.DownloadZip(System.String,System.String,System.String,System.String)">
+            <summary>
+            zip压缩包下载
+            </summary>
+            <param name="httpPath">HTTP POST请求路径</param>
+            <param name="mode">模式:EngineeringMode(工程),TestItem(量产) </param>
+            <param name="zipPath">下载文件到指定路径,不允许为空</param>
+            <param name="downloadName">文件名称(必须跟后台上传文件名匹配)</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:MechTE_480.Files.MFileTransfer.UploadZip(System.String,System.String)">
+            <summary>
+            zip文件上传1
+            </summary>
+            <param name="httpPath">HTTP POST请求路径</param>
+            <param name="zipPath">指定zip文件上传的路径</param>
+            <returns>bool</returns>
+        </member>
         <member name="T:MechTE_480.ButForm.MechButton">
             <summary>
             按键测试类
@@ -383,6 +436,34 @@
             <summary>
             窗体api
             </summary>
+        </member>
+        <member name="F:MechTE_480.Form.MechForm.X">
+            <summary>
+            定义当前窗体的宽度
+            </summary>
+        </member>
+        <member name="F:MechTE_480.Form.MechForm.Y">
+            <summary>
+            定义当前窗体的高度
+            </summary>
+        </member>
+        <member name="M:MechTE_480.Form.MechForm.SetTag(System.Windows.Forms.Control)">
+            <summary>
+            控件大小随窗体大小等比例缩放,
+            在窗体重载中使用 >>  MechForm.X = this.Width; MechForm.Y = this.Height;  MechForm.SetTag(this);
+            </summary>
+            <param name="cons"></param>
+        </member>
+        <member name="M:MechTE_480.Form.MechForm.SetControls(System.Single,System.Single,System.Windows.Forms.Control)">
+            <summary>
+            设置缩放,在Resize事件中使用 >>
+            float newX = this.Width / MechForm.X;
+            float newY = this.Height / MechForm.Y;
+            MechForm.SetControls(newX,newY,this);
+            </summary>
+            <param name="newx">X轴</param>
+            <param name="newy">Y轴</param>
+            <param name="cons"></param>
         </member>
         <member name="M:MechTE_480.Form.MechForm.MesBox(System.String,System.String)">
             <summary>
@@ -1333,15 +1414,21 @@
             <param name="options">1:确认/取消,2:终止/重试/忽略,3:是/否/取消,4:是/否,5:重试/取消,6:取消/重试/继续</param>
             <returns></returns>
         </member>
+        <member name="M:MechTE_480.Windows.MechWin.OpenA2DP">
+            <summary>
+            启动播放装置
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:MechTE_480.Windows.MechWin.EnterHfp">
             <summary>
             开启音频设置显示到桌面
             </summary>
             <returns></returns>
         </member>
-        <member name="M:MechTE_480.Windows.MechWin.QuitHfp(System.String)">
+        <member name="M:MechTE_480.Windows.MechWin.CloseRunDll(System.String)">
             <summary>
-            检测进程关掉音频内部装置
+            检测进程关掉
             </summary>
             <param name="processName">rundll32</param>
             <returns>bool</returns>
