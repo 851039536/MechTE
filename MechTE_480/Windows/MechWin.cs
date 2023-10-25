@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace MechTE_480.Windows
 {
@@ -29,6 +30,7 @@ namespace MechTE_480.Windows
                     Marshal.ReleaseComObject(masterVol);
             }
         }
+
         /// <summary>
         /// 返回系统音量(1~100)
         /// </summary>
@@ -50,7 +52,7 @@ namespace MechTE_480.Windows
                     Marshal.ReleaseComObject(masterVol);
             }
         }
-        
+
         /// <summary>
         /// 设置系统静音
         /// </summary>
@@ -72,8 +74,8 @@ namespace MechTE_480.Windows
                     Marshal.ReleaseComObject(masterVol);
             }
         }
-        
-        
+
+
         /// <summary>
         /// 弹出提示
         /// </summary>
@@ -99,6 +101,14 @@ namespace MechTE_480.Windows
             return ret;
         }
 
+        /// <summary>
+        /// 启动播放装置
+        /// </summary>
+        /// <returns></returns>
+        public static void OpenA2DP()
+        {
+            RunDll("shell32.dll,Control_RunDLL mmsys.cpl @1");
+        }
 
         /// <summary>
         /// 开启音频设置显示到桌面
@@ -106,16 +116,16 @@ namespace MechTE_480.Windows
         /// <returns></returns>
         public static bool EnterHfp()
         {
-            using (Process.Start("rundll32.exe", @"C:\WINDOWS\system32\shell32.dll,Control_RunDLL mmsys.cpl,,1"))
-                return true;
+            RunDll("shell32.dll,Control_RunDLL mmsys.cpl,,1");
+            return true;
         }
 
         /// <summary>
-        /// 检测进程关掉音频内部装置
+        /// 检测进程关掉
         /// </summary>
         /// <param name="processName">rundll32</param>
         /// <returns>bool</returns>
-        public static bool QuitHfp(string processName = "rundll32")
+        public static bool CloseRunDll(string processName = "rundll32")
         {
             //得到所有打开的进程   
             foreach (var thisProc in Process.GetProcesses())

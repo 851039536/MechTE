@@ -49,6 +49,7 @@
     <Compile Include="Menu\CompressContextMenu.cs" />
     <Compile Include="Menu\Config.cs" />
     <Compile Include="Menu\NavigationMenu.cs" />
+    <Compile Include="Menu\SystemContextMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Menu\ToolContextMenu.cs" />
   </ItemGroup>
