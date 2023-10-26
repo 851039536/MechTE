@@ -121,7 +121,15 @@ namespace MechTE_480.Windows
         }
 
         /// <summary>
-        /// 检测进程关掉
+        /// 开启系统设备管理器
+        /// </summary>
+        public static void OpenDevice()
+        {
+            RunDll("shell32.dll,Control_RunDLL sysdm.cpl,,2");
+        }
+
+        /// <summary>
+        /// 检测进程
         /// </summary>
         /// <param name="processName">rundll32</param>
         /// <returns>bool</returns>

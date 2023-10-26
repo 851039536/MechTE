@@ -71,7 +71,7 @@ namespace xUnit_Test
         [Fact]
         public void TEST()
         {
-           MechWin.RunDll("shell32.dll,Control_RunDLL sysdm.cpl,,2");
+            MechWin.OpenDevice();
         }  
     }
 }

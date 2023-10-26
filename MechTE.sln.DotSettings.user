@@ -2,6 +2,11 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005Csw_005Cclass_005Flibrary_005CMechTE_005CMechTE_005F480_005Cbin_005CDebug_005CMechTE_005F480_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005Csw_005Cclass_005Flibrary_005CMechTE_005CMechTE_005F480_005Cbin_005CDebug_005Cmerge_005CRestSharp_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005Csw_005Cclass_005Flibrary_005CMechTE_005CMechTE_005F480_005Cbin_005CDebug_005CRestSharp_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=78cff1dc_002D77ac_002D447a_002D91de_002D6077f57e9f77/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TEST" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.WinTest.TEST&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b158fc6b_002Dcae4_002D4c52_002Db3c0_002Db0aecdb602d4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="InitializeTheNode" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.XmlTest.读取指定路径和节点的属性值&lt;/TestId&gt;&#xD;
@@ -29,11 +34,12 @@
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.WinTest.CloseRunDll&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cf743422_002D3ef9_002D4b10_002Dbbdc_002D7e73dd77be2b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CloseRunDll" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cf743422_002D3ef9_002D4b10_002Dbbdc_002D7e73dd77be2b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CloseRunDll" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.WinTest.CloseRunDll&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.WinTest.TEST&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.WinTest.OpenA2Dp&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.WinTest.EnterHfp&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	

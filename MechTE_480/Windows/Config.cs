@@ -21,8 +21,26 @@ namespace MechTE_480.Windows
         
         public static void RunDll(string arguments)
         {
-            using (Process.Start("rundll32.exe", arguments))
+            // using (Process.Start("rundll32.exe", arguments))
+            // {
+            // }
+            
+            try
             {
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = "rundll32.exe",
+                    Arguments = arguments,
+                    UseShellExecute = true
+                };
+
+                using (Process.Start(startInfo))
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("无法打开音频设置面板：" + ex.Message);
             }
         }
         
