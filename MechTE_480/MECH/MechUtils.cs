@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
+using System.Threading;
 
 namespace MechTE_480.MECH
 {
@@ -13,6 +14,25 @@ namespace MechTE_480.MECH
     /// </summary>
     public class MechUtils
     {
+        
+        /// <summary>
+        /// 在指定的时间内等待某个函数的执行结果，并返回一个布尔值表示是否等待成功,
+        /// 调用 bool result = WaitSomething(5000, 1000, () =>{})
+        /// </summary>
+        /// <param name="timeout">表示等待的最大时间，以毫秒为单位</param>
+        /// <param name="freq">表示等待的频率，即每隔多少毫秒检查一次函数的执行结果</param>
+        /// <param name="func">表示要等待的函数，它是一个返回布尔值的委托</param>
+        /// <returns></returns>
+        public static bool WaitSomething(int timeout, int freq, Func<bool> func)
+        {
+            for (int index = 0; index < timeout; index += freq)
+            {
+                if (func())
+                    return true;
+                Thread.Sleep(freq);
+            }
+            return false;
+        }
         /// <summary>
         /// 判断当前程序是否是管理员
         /// </summary>
