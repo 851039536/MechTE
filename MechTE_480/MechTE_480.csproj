@@ -93,6 +93,7 @@
     <Compile Include="Order\Config.cs" />
     <Compile Include="Order\MechProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\MeasureDuration.cs" />
     <Compile Include="Windows\Config.cs" />
     <Compile Include="Windows\MechWin.cs" />
     <Compile Include="Windows\SystemVolume.cs" />

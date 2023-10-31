@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace MechTE_480.Windows
 {
@@ -9,6 +11,49 @@ namespace MechTE_480.Windows
     /// </summary>
     public partial class MechWin
     {
+        [DllImport("wininet.dll")]
+        private static extern bool InternetGetConnectedState(int description, int reservedValue);
+        #region 方法一
+
+        /// <summary>
+        /// 用于检查网络是否可以连接互联网,true表示连接成功,false表示连接失败
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsConnectInternet()
+        {
+            const int description = 0;
+            return InternetGetConnectedState(description, 0);
+        }
+        #endregion 方法一
+        #region 方法二
+
+        /// <summary>
+        /// 用于检查IP地址或域名(www.cnblogs.com)是否可以使用TCP/IP协议访问(使用Ping命令),true表示Ping成功,false表示Ping失败
+        /// </summary>
+        /// <param name="strIpOrDName">输入参数,表示IP地址或域名</param>
+        /// <returns></returns>
+        public static bool PingIpOrDomainName(string strIpOrDName)
+        {
+            try
+            {
+                var objPingSender = new Ping();
+                var objPinOptions = new PingOptions();
+                objPinOptions.DontFragment = true;
+                const string data = "";
+                var buffer = Encoding.UTF8.GetBytes(data);
+                const int intTimeout = 120;
+                var objPinReply = objPingSender.Send(strIpOrDName, intTimeout, buffer, objPinOptions);
+                var strInfo = objPinReply?.Status.ToString();
+                return strInfo == "Success";
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        #endregion 方法二
+
         /// <summary>
         /// 设置系统音量
         /// </summary>

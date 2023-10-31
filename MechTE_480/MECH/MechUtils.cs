@@ -12,8 +12,44 @@ namespace MechTE_480.MECH
     /// <summary>
     /// 通用工具类
     /// </summary>
-    public class MechUtils
+    public class MechUtils 
     {
+   
+        
+        /// <summary>
+        ///  定义一个泛型委托，用于定义带有超时检查的方法的签名
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TR"></typeparam>
+        public delegate TR TimeOutDelegate<in T, out TR>(T param);
+        /// <summary>
+        /// 执行带有超时检查的方法
+        /// </summary>
+        /// <param name="timeoutMethod">目标方法</param>
+        /// <param name="param">目标方法的参数</param>
+        /// <param name="result">执行结果</param>
+        /// <param name="timeout">超时时间</param>
+        /// <typeparam name="T">目标方法的参数类型</typeparam>
+        /// <typeparam name="TR">执行结果的类型</typeparam>
+        /// <returns>是否超时</returns>
+        public static bool Execute<T, TR>(
+            TimeOutDelegate<T, TR> timeoutMethod, T param, out TR result, TimeSpan timeout)
+        {
+            // 使用异步方式执行目标方法
+            var asyncResult = timeoutMethod.BeginInvoke(param, null, null);
+            
+            // 等待指定的超时时间
+            if (!asyncResult.AsyncWaitHandle.WaitOne(timeout, false))
+            {
+                // 如果超时，则将结果设置为默认值，并返回true
+                result = default(TR);
+                return true;
+            }
+            // 如果未超时，则获取执行结果，并返回false
+            result = timeoutMethod.EndInvoke(asyncResult);
+            return false;
+        }
+        
         
         /// <summary>
         /// 在指定的时间内等待某个函数的执行结果，并返回一个布尔值表示是否等待成功,
@@ -49,10 +85,13 @@ namespace MechTE_480.MECH
         /// </summary>
         public static void RestartAsAdministrator()
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.UseShellExecute = true;
-            startInfo.WorkingDirectory = Environment.CurrentDirectory;
-            startInfo.FileName = Process.GetCurrentProcess().MainModule.FileName;
+            var startInfo = new ProcessStartInfo
+            {
+                UseShellExecute = true,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
+            var processModule = Process.GetCurrentProcess().MainModule;
+            if (processModule != null) startInfo.FileName = processModule.FileName;
             startInfo.Verb = "runas"; // 请求管理员权限
             try
             {
