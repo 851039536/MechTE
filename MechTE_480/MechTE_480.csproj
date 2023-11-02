@@ -71,12 +71,6 @@
     <Compile Include="Form\ProgressBars.designer.cs">
       <DependentUpon>ProgressBars.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\UpFile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\UpFile.Designer.cs">
-      <DependentUpon>UpFile.cs</DependentUpon>
-    </Compile>
     <Compile Include="Hid\BaseConversion.cs" />
     <Compile Include="Hid\Config.cs" />
     <Compile Include="Hid\Handles.cs" />
@@ -102,9 +96,6 @@
     <EmbeddedResource Include="ButForm\ProgressBars.resx" />
     <EmbeddedResource Include="Form\ProgressBars.resx">
       <DependentUpon>ProgressBars.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\UpFile.resx">
-      <DependentUpon>UpFile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

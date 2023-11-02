@@ -92,6 +92,7 @@ namespace MechTE_480.Form
         /// <param name="prompt">描述</param>
         public static void ShowErr(string title, string prompt)
         {
+            // 显示错误信息
             MessageBox.Show(prompt, title, MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
         /// <summary>
