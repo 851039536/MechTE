@@ -65,7 +65,7 @@ namespace MechTE_480.Files
         }
 
         /// <summary>
-        /// 解压文件
+        /// 解压文件.
         /// </summary>
         /// <param name="zipFilePath">要解压的zip</param>
         /// <param name="extractPath">解压到指定路径</param>
