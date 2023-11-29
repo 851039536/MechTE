@@ -96,7 +96,7 @@ namespace MechTE_480.Form
             MessageBox.Show(prompt, title, MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
         /// <summary>
-        /// 弹窗接收参数(确认/取消).
+        /// 弹窗接收参数(确认/取消)..
         /// </summary>
         /// <param name="title">标题</param>
         /// <param name="prompt">描述</param>
