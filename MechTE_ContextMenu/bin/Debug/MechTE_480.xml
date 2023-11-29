@@ -540,37 +540,6 @@
             progressBarForm
             
         </member>
-        <member name="M:MechTE_480.Form.UpFile.UpFile_DragDrop(System.Object,System.Windows.Forms.DragEventArgs)">
-            <summary>
-            处理拖入的数据及操作
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:MechTE_480.Form.UpFile.UpFile_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
-            <summary>
-            退出窗体
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="F:MechTE_480.Form.UpFile.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:MechTE_480.Form.UpFile.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:MechTE_480.Form.UpFile.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
         <member name="T:MechTE_480.Hid.BaseConversion">
             <summary>
             进制转换帮助类
