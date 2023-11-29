@@ -38,7 +38,7 @@ namespace MechTE_ContextMenu.Menu
         }
 
         /// <summary>
-        /// 创建一个菜单，包含菜单项，设置ICON
+        /// 创建一个菜单，包含菜单项，设置ICON.
         /// </summary>
         /// <returns></returns>
         protected override ContextMenuStrip CreateMenu()

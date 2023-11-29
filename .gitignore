@@ -273,3 +273,10 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+
+# 忽略指定文件 MechTE_ContextMenu
+/MechTE_ContextMenu/bin/Debug/MechTE_480.xml
+/MechTE_ContextMenu/obj
+/MechTE_ContextMenu/bin/Debug/MechTE_480.pdb
+/MechTE_ContextMenu/bin/Debug/MechTE_480.dll.config
+/MechTE_ContextMenu/bin/Debug/MechTE_ContextMenu.dll
