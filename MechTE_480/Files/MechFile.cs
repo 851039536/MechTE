@@ -997,7 +997,7 @@ namespace MechTE_480.Files
 
 
         /// <summary>
-        /// 获取指定目录下所有符合指定模式的文件名。
+        /// 获取指定目录下所有符合指定模式的文件名..
         /// </summary>
         /// <param name="directory">指定目录。</param>
         /// <param name="pattern">指定模式。</param>
