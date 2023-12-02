@@ -38,13 +38,13 @@ namespace MechTE_480.MECH
 
 
         /// <summary>
-        /// 写入ini
+        /// 更新ini
         /// </summary>
         /// <param name="section">ini文件 [xxxx] 头部标识</param>
         /// <param name="key">key名</param>
         /// <param name="value">写入的值</param>
         /// <param name="path">完整的ini文件名路径</param>
-        public static void WriteIni(string section, string key, string value, string path)
+        public static void UpdateIni(string section, string key, string value, string path)
         {
             // section=配置节点名称，key=键名，value=返回键值，path=路径
             WritePrivateProfileString(section, key, value, path);

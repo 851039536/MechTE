@@ -14,8 +14,6 @@ namespace MechTE_480.MECH
     /// </summary>
     public class MechUtils 
     {
-   
-        
         /// <summary>
         ///  定义一个泛型委托，用于定义带有超时检查的方法的签名
         /// </summary>
