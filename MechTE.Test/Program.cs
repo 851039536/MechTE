@@ -1,6 +1,9 @@
 ﻿using MechTE_480.Form;
 using System;
 using System.IO;
+using System.IO.Ports;
+using System.Threading;
+using MechTE_480.port;
 
 namespace MechTE.Test
 {
@@ -8,24 +11,13 @@ namespace MechTE.Test
     {
         [STAThread]
         static void Main(string[] args)
-
         {
-            ConsoleKeyInfo c;
+            var name = MSerialPort.GetPortName();
+            MPCBA_32.command(name[0], "1.2.3.4.5.6");
+            Thread.Sleep(1000);
+            MPCBA_32.command(name[0], "6.5.8.1.9.3");
 
-            // 防止按下Ctrl+C时程序终止
-            Console.TreatControlCAsInput = true;
-
-            Console.WriteLine("按下任意键与CTL、ALT和SHIFT的组合键，或按下Esc键退出：\n");
-
-            do {
-                c = Console.ReadKey();
-                Console.Write(" - 按下的键是 ");
-
-                // 只输出按下的键
-                Console.WriteLine(c.Key.ToString());
-
-                // 退出条件
-            } while (c.Key != ConsoleKey.Escape);
+            Console.ReadLine();
             //3.模拟测试项
             //while (true)
             //{

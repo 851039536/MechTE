@@ -34,7 +34,7 @@ namespace MechTE_480.Hid
             var bytList = new List<byte>();
             int i = 0;
             foreach (var s in ssArray)
-            {   //将十六进制的字符串转换成数值  
+            {   //将十六进制的字符串转换成数值
                 bytList.Add(Convert.ToByte(s, 16));
                 i++;
             }
