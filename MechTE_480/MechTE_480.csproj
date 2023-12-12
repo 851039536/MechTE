@@ -55,27 +55,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Files\MechFile.cs" />
-    <Compile Include="ButForm\MechButton.cs" />
-    <Compile Include="ButForm\MouseControl.cs" />
-    <Compile Include="ButForm\ProgressBars.cs">
+    <Compile Include="files\MechFile.cs" />
+    <Compile Include="butForm\MechButton.cs" />
+    <Compile Include="butForm\MouseControl.cs" />
+    <Compile Include="butForm\ProgressBars.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ButForm\ProgressBars.designer.cs" />
-    <Compile Include="Files\MFileTransfer.cs" />
-    <Compile Include="Form\Config.cs" />
-    <Compile Include="Form\MechForm.cs" />
-    <Compile Include="Form\ProgressBars.cs">
+    <Compile Include="butForm\ProgressBars.designer.cs" />
+    <Compile Include="files\MFileTransfer.cs" />
+    <Compile Include="form\Config.cs" />
+    <Compile Include="form\MechForm.cs" />
+    <Compile Include="form\ProgressBars.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\ProgressBars.designer.cs">
+    <Compile Include="form\ProgressBars.designer.cs">
       <DependentUpon>ProgressBars.cs</DependentUpon>
     </Compile>
-    <Compile Include="Hid\BaseConversion.cs" />
-    <Compile Include="Hid\Config.cs" />
-    <Compile Include="Hid\Handles.cs" />
-    <Compile Include="Hid\MechHID.cs" />
-    <Compile Include="Hid\USB.cs" />
+    <Compile Include="hid\BaseConversion.cs" />
+    <Compile Include="hid\Config.cs" />
+    <Compile Include="hid\Handles.cs" />
+    <Compile Include="hid\MechHID.cs" />
+    <Compile Include="hid\USB.cs" />
     <Compile Include="MECH\MechConvert.cs" />
     <Compile Include="MECH\MechIni.cs" />
     <Compile Include="MECH\MechString.cs" />
@@ -83,20 +83,21 @@
     <Compile Include="MECH\MechUSB.cs" />
     <Compile Include="MECH\MechUtils.cs" />
     <Compile Include="MECH\MechXML.cs" />
-    <Compile Include="MerryDll\IMerryDll.cs" />
-    <Compile Include="Order\Config.cs" />
-    <Compile Include="Order\MechProcess.cs" />
+    <Compile Include="merryDll\IMerryDll.cs" />
+    <Compile Include="network\NetHelper.cs" />
+    <Compile Include="order\Config.cs" />
+    <Compile Include="order\MechProcess.cs" />
     <Compile Include="port\MSerialPort.cs" />
     <Compile Include="port\MPCBA_32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\MeasureDuration.cs" />
-    <Compile Include="Windows\Config.cs" />
-    <Compile Include="Windows\MechWin.cs" />
-    <Compile Include="Windows\SystemVolume.cs" />
+    <Compile Include="util\MeasureDuration.cs" />
+    <Compile Include="windows\Config.cs" />
+    <Compile Include="windows\MechWin.cs" />
+    <Compile Include="windows\SystemVolume.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ButForm\ProgressBars.resx" />
-    <EmbeddedResource Include="Form\ProgressBars.resx">
+    <EmbeddedResource Include="butForm\ProgressBars.resx" />
+    <EmbeddedResource Include="form\ProgressBars.resx">
       <DependentUpon>ProgressBars.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

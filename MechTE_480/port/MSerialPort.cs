@@ -4,7 +4,7 @@ using System.IO.Ports;
 namespace MechTE_480.port
 {
     /// <summary>
-    /// 封装串口操作
+    /// 串口工具类操作
     /// </summary>
     public class MSerialPort
     {

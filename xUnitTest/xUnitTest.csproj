@@ -55,6 +55,7 @@
         <Compile Include="IniTest.cs" />
         <Compile Include="MechStringTest.cs" />
         <Compile Include="MechUtilsTest.cs" />
+        <Compile Include="NetWorkTest.cs" />
         <Compile Include="ShellTest.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="UtilsTest.cs" />

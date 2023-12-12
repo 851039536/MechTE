@@ -68,8 +68,6 @@ namespace xUnit_Test
             MechWin.CloseRunDll();
         }
 
- 
-
         [Fact]
         public void IsConnectInternet()
         {
@@ -77,9 +75,5 @@ namespace xUnit_Test
             Assert.True(ret);
         }
         
-        [Fact]
-        public void TEST()
-        {
-        }
     }
 }
