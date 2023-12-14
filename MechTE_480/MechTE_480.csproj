@@ -55,24 +55,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="files\Config.cs" />
+    <Compile Include="files\MFileConfig.cs" />
     <Compile Include="files\MFile.cs" />
-    <Compile Include="butForm\MechButton.cs" />
-    <Compile Include="butForm\MouseControl.cs" />
-    <Compile Include="butForm\ProgressBars.cs">
+    <Compile Include="btnForm\MButton.cs" />
+    <Compile Include="btnForm\ProgressBars.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="butForm\ProgressBars.designer.cs" />
+    <Compile Include="btnForm\ProgressBars.designer.cs" />
     <Compile Include="files\MFileTransfer.cs" />
     <Compile Include="files\MFileTransferConfig.cs" />
-    <Compile Include="form\Config.cs" />
-    <Compile Include="form\MechForm.cs" />
-    <Compile Include="form\ProgressBars.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\ProgressBars.designer.cs">
-      <DependentUpon>ProgressBars.cs</DependentUpon>
-    </Compile>
+    <Compile Include="form\MFormConfig.cs" />
+    <Compile Include="form\MForm.cs" />
     <Compile Include="hid\BaseConversion.cs" />
     <Compile Include="hid\Config.cs" />
     <Compile Include="hid\Handles.cs" />
@@ -85,6 +78,7 @@
     <Compile Include="MECH\MechUSB.cs" />
     <Compile Include="MECH\MechUtils.cs" />
     <Compile Include="MECH\MechXML.cs" />
+    <Compile Include="MECH\MouseControl.cs" />
     <Compile Include="merryDll\IMerryDll.cs" />
     <Compile Include="network\NetHelper.cs" />
     <Compile Include="network\SocketClient.cs" />
@@ -100,10 +94,7 @@
     <Compile Include="windows\SystemVolume.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="butForm\ProgressBars.resx" />
-    <EmbeddedResource Include="form\ProgressBars.resx">
-      <DependentUpon>ProgressBars.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="btnForm\ProgressBars.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

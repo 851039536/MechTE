@@ -1,4 +1,4 @@
-﻿namespace MerryUtil.Forms
+﻿namespace MechTE_480.btnForm
 {
     partial class ProgressBars
     {
@@ -36,10 +36,10 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(2, 149);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(4);
+            this.progressBar1.Location = new System.Drawing.Point(2, 198);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(605, 71);
+            this.progressBar1.Size = new System.Drawing.Size(606, 95);
             this.progressBar1.TabIndex = 2;
             // 
             // timer1
@@ -50,27 +50,29 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("新宋体", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(2, 2);
+            this.label1.Location = new System.Drawing.Point(2, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(605, 143);
+            this.label1.Size = new System.Drawing.Size(606, 190);
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ProgressBars
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 228);
+            this.ClientSize = new System.Drawing.Size(608, 294);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
+            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "ProgressBars";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProgressBars";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.ProgressBars_Load);
             this.ResumeLayout(false);
-
         }
 
         #endregion

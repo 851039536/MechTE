@@ -696,10 +696,7 @@ namespace MechTE_480.Files
                 {
                     return Directory.GetDirectories(directoryPath, searchPattern, SearchOption.AllDirectories);
                 }
-                else
-                {
-                    return Directory.GetDirectories(directoryPath, searchPattern, SearchOption.TopDirectoryOnly);
-                }
+                return Directory.GetDirectories(directoryPath, searchPattern, SearchOption.TopDirectoryOnly);
             }
             catch (IOException ex)
             {
@@ -861,10 +858,10 @@ namespace MechTE_480.Files
                     Console.WriteLine(ex.ToString());
                 }
 
-                if (recursive)
+                if (!recursive) return;
                 {
                     // 递归获取子文件夹中的文件和文件夹名称，并添加到列表中。
-                    foreach (DirectoryInfo info in directory.GetDirectories())
+                    foreach (var info in directory.GetDirectories())
                     {
                         GetFiles(info, pattern, ref fileList, true);
                     }

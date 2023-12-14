@@ -5,20 +5,13 @@ using System.Windows.Forms;
 namespace MechTE_480.Form
 {
     /// <summary>
-    /// 窗体api
+    /// 常用窗体
     /// </summary>
-    public partial class MechForm
+    public partial class MForm
     {
         
         #region 控件大小随窗体大小等比例缩放
-        /// <summary>
-        /// 定义当前窗体的宽度
-        /// </summary>
-        public static float X;
-        /// <summary>
-        /// 定义当前窗体的高度
-        /// </summary>
-        public static float Y;
+
         /// <summary>
         /// 控件大小随窗体大小等比例缩放,
         /// 在窗体重载中使用 >>  MechForm.X = this.Width; MechForm.Y = this.Height;  MechForm.SetTag(this);
@@ -39,25 +32,25 @@ namespace MechTE_480.Form
         /// float newY = this.Height / MechForm.Y;
         /// MechForm.SetControls(newX,newY,this);
         /// </summary>
-        /// <param name="newx">X轴</param>
-        /// <param name="newy">Y轴</param>
+        /// <param name="newX">X轴</param>
+        /// <param name="newY">Y轴</param>
         /// <param name="cons"></param>
-        public static void SetControls(float newx,float newy,Control cons)
+        public static void SetControls(float newX,float newY,Control cons)
         {
             //遍历窗体中的控件，重新设置控件的值
             foreach (Control con in cons.Controls) {
                 //获取控件的Tag属性值，并分割后存储字符串数组
                 if (con.Tag != null) {
-                    string[] mytag = con.Tag.ToString().Split(new char[] { ';' });
+                    string[] strings = con.Tag.ToString().Split(new char[] { ';' });
                     //根据窗体缩放的比例确定控件的值
-                    con.Width = Convert.ToInt32(System.Convert.ToSingle(mytag[0]) * newx);//宽度
-                    con.Height = Convert.ToInt32(System.Convert.ToSingle(mytag[1]) * newy);//高度
-                    con.Left = Convert.ToInt32(System.Convert.ToSingle(mytag[2]) * newx);//左边距
-                    con.Top = Convert.ToInt32(System.Convert.ToSingle(mytag[3]) * newy);//顶边距
-                    Single currentSize = System.Convert.ToSingle(mytag[4]) * newy;//字体大小
+                    con.Width = Convert.ToInt32(Convert.ToSingle(strings[0]) * newX);//宽度
+                    con.Height = Convert.ToInt32(Convert.ToSingle(strings[1]) * newY);//高度
+                    con.Left = Convert.ToInt32(Convert.ToSingle(strings[2]) * newX);//左边距
+                    con.Top = Convert.ToInt32(Convert.ToSingle(strings[3]) * newY);//顶边距
+                    Single currentSize = Convert.ToSingle(strings[4]) * newY;//字体大小
                     con.Font = new Font(con.Font.Name,currentSize,con.Font.Style,con.Font.Unit);
                     if (con.Controls.Count > 0) {
-                        SetControls(newx,newy,con);
+                        SetControls(newX,newY,con);
                     }
                 }
             }
@@ -95,6 +88,7 @@ namespace MechTE_480.Form
             // 显示错误信息
             MessageBox.Show(prompt, title, MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
+        
         /// <summary>
         /// 弹窗接收参数(确认/取消)..
         /// </summary>

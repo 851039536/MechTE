@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace MechTE_480.butForm
+namespace MechTE_480.MECH
 {
     /// <summary>
     /// 控制鼠标类

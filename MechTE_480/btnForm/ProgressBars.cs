@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MerryUtil.Forms
+namespace MechTE_480.btnForm
 {
-    internal partial class ProgressBars : Form
+    internal partial class ProgressBars : System.Windows.Forms.Form
     {
         public ProgressBars(string name)
         {
@@ -28,12 +28,10 @@ namespace MerryUtil.Forms
             i = i + 5;
             progressBar1.Value = i;
             //如果執行時間超過，則this.DialogResult = DialogResult.No;
-            if (i >= 100)
-            {
-                DialogResult = DialogResult.No;
-                timer1.Enabled = false;
-                Close();
-            }
+            if (i < 100) return;
+            DialogResult = DialogResult.No;
+            timer1.Enabled = false;
+            Close();
         }
     }
 }

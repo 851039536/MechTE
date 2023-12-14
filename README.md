@@ -1,5 +1,3 @@
-# MechTE_API
-
 c#一些常用功能封装如弹窗, 文件操作, 数据转换, ini文件操作, 字符串操作等
 
 # 第三方库合并
@@ -651,6 +649,128 @@ public static void WriteFile(string path, string strings)
  /// <param name="strings">内容</param>
  public static void FileAdd(string path, string strings)
 ```
+
+
+
+## MButton
+
+弹窗提示类 (定制类不通用)
+
+- 命名空间: namespace MechTE_480.btnForm
+- 类名:MButton
+
+### ButtonTest
+
+弹框按键测试
+
+```csharp
+/// <summary>
+/// 按键测试
+/// </summary>
+/// <param name="func">传入方法, _button.ButtonTest(() =
+/// <param name="name">窗口名</param>
+/// <returns></returns>
+public bool ButtonTest(Func<bool> func,string name)
+    
+/// <summary>
+/// 按键测试
+/// </summary>
+/// <param name="command">command对象</param>
+/// <param name="action">下指令并且获取回传值的整个动作（下指令并且获取回传值事件）例：()=>{ command.WriteSendRetur
+/// <param name="readData">按键操作对应指令返回值</param>
+/// <param name="name">按键操作对应窗口名</param>
+/// <returns></returns>
+public bool ButtonTest(MechHID command,Action action,string readData,string name)
+```
+
+简单使用
+
+```csharp
+//创建一个按键测试对象对象
+private readonly MButton _button = new MButton();
+
+//传入方法和窗体名称
+_button.ButtonTest(() => HeadsetBtn("0x01"), "请按Teams键")
+```
+
+
+
+## MForm
+
+常用窗体
+
+- 命名空间: namespace MechTE_480.Form
+- 类名:MForm
+
+
+
+### MesBox
+
+默认弹框提示(确认/取消)
+
+```csharp
+/// <summary>
+/// 默认弹框提示(确认/取消)
+/// </summary>
+/// <param name="name">描述</param>
+/// <param name="title">标题</param>
+/// <returns>bool</returns>
+public static bool MesBox(string name, string title)
+```
+
+### ShowErr
+
+错误提示(确认)
+
+```csharp
+/// <summary>
+/// 错误提示(确认)
+/// </summary>
+/// <param name="title">标题</param>
+/// <param name="prompt">描述</param>
+public static void ShowErr(string title, string prompt)
+```
+
+### ShowInputDialog
+
+弹窗接收参数(确认/取消)..
+
+```csharp
+/// <summary>
+/// 弹窗接收参数(确认/取消)..
+/// </summary>
+/// <param name="title">标题</param>
+/// <param name="prompt">描述</param>
+/// <returns></returns>
+public static string ShowInputDialog(string title, string prompt)
+```
+
+
+
+### 窗体比例缩放
+
+```csharp
+/// <summary>
+/// 控件大小随窗体大小等比例缩放,
+/// 在窗体重载中使用 >>  MechForm.X = this.Width;
+/// </summary>
+/// <param name="cons"></param>
+public static void SetTag(Control cons)
+    
+
+/// <summary>
+/// 设置缩放,在Resize事件中使用 >>
+/// float newX = this.Width / MechForm.X;
+/// float newY = this.Height / MechForm.Y;
+/// MechForm.SetControls(newX,newY,this);
+/// </summary>
+/// <param name="newX">X轴</param>
+/// <param name="newY">Y轴</param>
+/// <param name="cons"></param>
+public static void SetControls(float newX,float newY,Control cons)
+```
+
+
 
 
 
