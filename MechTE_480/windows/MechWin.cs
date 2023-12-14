@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Text;
 
 namespace MechTE_480.Windows
@@ -184,6 +185,17 @@ namespace MechTE_480.Windows
                 if (thisProc.ProcessName.Contains("rundll32"))
                     thisProc.Kill();
             return true;
+        }
+        
+        /// <summary>
+        /// 判断当前程序是否是管理员
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsUserAdministrator()
+        {
+            var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
         private void test(string text, string caption)

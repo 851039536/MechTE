@@ -9,6 +9,7 @@ namespace MechTE_480.Hid
     public class BaseConversion
     {
         #region 通用
+        
         /// <summary>
         /// 将字符串转int数组
         /// </summary>

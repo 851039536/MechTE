@@ -8,7 +8,7 @@ namespace MechTE_452.MECH
     /// <summary>
     /// 字符串操作类
     /// </summary>
-    public class MechString
+    public class MString
     {
 
         

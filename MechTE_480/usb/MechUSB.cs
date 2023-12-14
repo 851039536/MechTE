@@ -1,6 +1,6 @@
 ﻿using System.Management;
 
-namespace MechTE_480.MECH
+namespace MechTE_480.usb
 {
     public class MechUSB
     {

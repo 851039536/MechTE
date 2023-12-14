@@ -10,6 +10,9 @@
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.UtilsTest.Execute&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.WinTest.IsConnectInternet&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.files.MFileTest.CopyFile&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.XmlTest.读取指定路径和节点的属性值&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.XmlTest.Insert&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.IniTest.MouseMove&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	

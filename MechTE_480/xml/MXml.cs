@@ -4,61 +4,26 @@ using System.IO;
 using System.Web;
 using System.Xml;
 
-namespace MechTE_480.MECH
+namespace MechTE_480.xml
 {
     /// <summary>
-    /// XML动态操作类
+    /// XML动态操作类(定制类不通用)
     /// </summary>
-    public class MechXML
+    public partial class MXml
     {
         #region 构造函数
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public MechXML()
-        {
-        }
 
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="strPath"></param>
-        public MechXML(string strPath)
+        public MXml(string strPath)
         {
             _xmlPath = strPath;
         }
-
         #endregion
 
-        #region 公有属性
-
-        private readonly string _xmlPath;
-
-        /// <summary>
-        /// xml路径
-        /// </summary>
-        public static string PathXml;
-
-        /// <summary>
-        /// 方法的节点名称
-        /// </summary>
-        public static string funName;
-
-        /// <summary>
-        /// 根目录路径
-        /// </summary>
-        private static string CurrenPath = AppDomain.CurrentDomain.BaseDirectory;
-
-        /// <summary>
-        /// xml路径
-        /// </summary>
-        private string XmlPath
-        {
-            get { return _xmlPath; }
-        }
-
-        #endregion
+       
 
         #region 私有方法
 
@@ -79,7 +44,6 @@ namespace MechTE_480.MECH
             {
                 // ignored
             }
-
             return xmlDoc;
         }
 
@@ -194,13 +158,13 @@ namespace MechTE_480.MECH
             try
             {
                 var doc = new XmlDocument();
-                doc.Load(CurrenPath + PathXml);
+                doc.Load(SCurrenPath + PathXml);
 
-                var xmlNode = doc.SelectSingleNode($"/CommandBook/{funName}/RequestFormat/{element}");
+                var xmlNode = doc.SelectSingleNode($"/CommandBook/{FunName}/RequestFormat/{element}");
                 if (xmlNode != null) return "节点已存在";
 
                 // 选择要插入节点的位置
-                var xn = doc.SelectSingleNode($"/CommandBook/{funName}/RequestFormat");
+                var xn = doc.SelectSingleNode($"/CommandBook/{FunName}/RequestFormat");
                 var xe = doc.CreateElement(element);
                 // 设置节点的属性和值
 
@@ -234,7 +198,7 @@ namespace MechTE_480.MECH
                 //RemoveAll移除所有节点
                 //doc.DocumentElement.AppendChild(xe);
                 //doc.DocumentElement.InsertBefore(xe, xn);
-                doc.Save(CurrenPath + PathXml);
+                doc.Save(SCurrenPath + PathXml);
             }
             catch
             {
@@ -255,13 +219,13 @@ namespace MechTE_480.MECH
             try
             {
                 var doc = new XmlDocument();
-                doc.Load(CurrenPath + PathXml);
+                doc.Load(SCurrenPath + PathXml);
 
-                var xmlNode = doc.SelectSingleNode($"/CommandBook/{funName}/RequestFormat/{element}");
+                var xmlNode = doc.SelectSingleNode($"/CommandBook/{FunName}/RequestFormat/{element}");
                 if (xmlNode != null) return "节点已存在";
 
                 // 选择要插入节点的位置
-                var xn = doc.SelectSingleNode($"/CommandBook/{funName}/RequestFormat");
+                var xn = doc.SelectSingleNode($"/CommandBook/{FunName}/RequestFormat");
                 var xe = doc.CreateElement(element);
                 // 设置节点的属性和值
                 xe.SetAttribute("type", "uint8_array");
@@ -270,7 +234,7 @@ namespace MechTE_480.MECH
                 // 将新节点添加到指定位置的节点下
                 xn.AppendChild(xe);
 
-                doc.Save(CurrenPath + PathXml);
+                doc.Save(SCurrenPath + PathXml);
             }
             catch
             {
@@ -289,14 +253,14 @@ namespace MechTE_480.MECH
             try
             {
                 var doc = new XmlDocument();
-                doc.Load(CurrenPath + PathXml);
+                doc.Load(SCurrenPath + PathXml);
 
 
-                var xmlNode = doc.SelectSingleNode($"/CommandBook/{funName}/ResponseFormat/{element}");
+                var xmlNode = doc.SelectSingleNode($"/CommandBook/{FunName}/ResponseFormat/{element}");
                 if (xmlNode != null) return "节点已存在";
 
                 // 选择要插入节点的位置
-                var xn = doc.SelectSingleNode($"/CommandBook/{funName}/ResponseFormat");
+                var xn = doc.SelectSingleNode($"/CommandBook/{FunName}/ResponseFormat");
                 var xe = doc.CreateElement(element);
                 // 设置节点的属性和值
                 xe.SetAttribute("type", "uint8_array");
@@ -305,10 +269,11 @@ namespace MechTE_480.MECH
                 // 将新节点添加到指定位置的节点下
                 xn.AppendChild(xe);
 
-                doc.Save(CurrenPath + PathXml);
+                doc.Save(SCurrenPath + PathXml);
             }
             catch
             {
+                // ignored
             }
 
             return "true";
@@ -326,13 +291,13 @@ namespace MechTE_480.MECH
             try
             {
                 var doc = new XmlDocument();
-                doc.Load(CurrenPath + PathXml);
+                doc.Load(SCurrenPath + PathXml);
 
-                var xmlNode = doc.SelectSingleNode($"/CommandBook/{funName}/ResponseFormat/{element}");
+                var xmlNode = doc.SelectSingleNode($"/CommandBook/{FunName}/ResponseFormat/{element}");
                 if (xmlNode != null) return "节点已存在";
 
                 // 选择要插入节点的位置
-                var xn = doc.SelectSingleNode($"/CommandBook/{funName}/ResponseFormat");
+                var xn = doc.SelectSingleNode($"/CommandBook/{FunName}/ResponseFormat");
                 var xe = doc.CreateElement(element);
                 // 设置节点的属性和值
                 switch (attribute.Length)
@@ -354,13 +319,14 @@ namespace MechTE_480.MECH
                 }
 
                 // 将新节点添加到指定位置的节点下
-                xn.AppendChild(xe);
+                if (xn != null) xn.AppendChild(xe);
 
 
-                doc.Save(CurrenPath + PathXml);
+                doc.Save(SCurrenPath + PathXml);
             }
             catch
             {
+                // ignored
             }
 
             return "true";
@@ -393,7 +359,7 @@ namespace MechTE_480.MECH
                 doc.AppendChild(v);
                 doc.AppendChild(commandBookElement);
 
-                doc.Save(CurrenPath + PathXml);
+                doc.Save(SCurrenPath + PathXml);
             }
 
             catch
@@ -414,17 +380,17 @@ namespace MechTE_480.MECH
             try
             {
                 //每次创建节点之前先删除对应的节点
-                Delete(PathXml, funName);
+                Delete(PathXml, FunName);
 
                 var doc = new XmlDocument();
-                doc.Load(CurrenPath + PathXml);
+                doc.Load(SCurrenPath + PathXml);
 
-                var xmlNode = doc.SelectSingleNode($"/CommandBook/{funName}");
+                var xmlNode = doc.SelectSingleNode($"/CommandBook/{FunName}");
                 if (xmlNode != null) return "节点已存在";
 
                 // 选择要插入节点的位置
                 var xn = doc.SelectSingleNode("/CommandBook");
-                var xe = doc.CreateElement(funName);
+                var xe = doc.CreateElement(FunName);
 
                 // 创建子节点 <RequestFormat>
                 var requestFormatElement = doc.CreateElement("RequestFormat");
@@ -436,7 +402,7 @@ namespace MechTE_480.MECH
 
                 xn.AppendChild(xe);
                 doc.AppendChild(xn);
-                doc.Save(CurrenPath + PathXml);
+                doc.Save(SCurrenPath + PathXml);
             }
 
             catch

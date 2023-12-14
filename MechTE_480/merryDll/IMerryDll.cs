@@ -5,11 +5,10 @@ namespace MechTE_480.MerryDll
 {
 
     /// <summary>
-    /// 模板函数
+    /// 模板函数接口
     /// </summary>
     public interface IMerryDll
     {
-
         /// <summary>
         /// 程序每次开始运行时触发
         /// </summary>

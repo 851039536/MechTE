@@ -3,33 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using MechTE_480.MECH;
 
-namespace MechTE_480.MECH
+namespace MechTE_480.util
 {
     /// <summary>
     /// 处理数据类型转换，数制转换、编码转换相关的类
     /// </summary>    
-    public static class MechConvert
+    public static class MConvert
     {
-        #region 补足位数
 
-        /// <summary>
-        /// 指定字符串的固定长度，如果字符串小于固定长度，
-        /// 则在字符串的前面补足零，可设置的固定长度最大为9位
-        /// </summary>
-        /// <param name="text">原始字符串</param>
-        /// <param name="totalLength">字符串的固定长度</param>
-        public static string RepairZero(string text, int totalLength)
-        {
-            // 将文本左侧填充零，使其总长度为 totalLength
-            var paddedText = text.PadLeft(totalLength, '0');
-            // 将文本左侧填充零，使其总长度为 totalLength
-            return paddedText;
-        }
-
-        #endregion
-
-        #region 各进制数间转换
+        #region 进制转换
 
         /// <summary>
         /// 实现各进制数间的转换。ConvertBase("15",10,16)表示将十进制数15转换为16进制的数。
@@ -153,7 +137,6 @@ namespace MechTE_480.MECH
             return base64String;
         }
         
-        
         /// <summary>
         /// 将16进制字符转为ASCII字符
         /// </summary>
@@ -207,7 +190,28 @@ namespace MechTE_480.MECH
         /// <returns></returns>
         private static string ByteArr2HexStrings(byte[] bytes,string separator = "")
         {
-            return MechUtils.ByteArrayToHexStrings(bytes.ToList());
+            return ByteArrayToHexStrings(bytes.ToList());
+        }
+        
+        /// <summary>
+        /// 将字节数组转换为十六进制字符串
+        /// 示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="separator">分隔符</param>
+        /// <returns></returns>
+        public static string ByteArrayToHexStrings(List<byte> bytes, string separator = "")
+        {
+            var result = "";
+            foreach (var item in bytes)
+            {
+                // 将字节转换为十六进制字符串，并添加分隔符
+                result += $"{item:X2}{separator}";
+            }
+            // 去除最后一个分隔符
+            result = result.Substring(0, result.Length - separator.Length);
+            // 返回十六进制字符串
+            return result;
         }
 
     }

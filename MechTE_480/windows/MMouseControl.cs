@@ -3,12 +3,12 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace MechTE_480.MECH
+namespace MechTE_480.windows
 {
     /// <summary>
     /// 控制鼠标类
     /// </summary>
-    public class MouseControl
+    public class MMouseControl
     {
         /// <summary>
         /// 鼠标移动
@@ -16,11 +16,12 @@ namespace MechTE_480.MECH
         /// <param name="location">窗体坐标（this.Location）</param>
         /// <param name="offsetvalueX">X坐标偏移值</param>
         /// <param name="offsetvalueY">Y坐标偏移值（this.Location）</param>
-        public void MouseMove(Point location, int offsetvalueX, int offsetvalueY)
+        public static void MouseMove(Point location, int offsetvalueX, int offsetvalueY)
         {
             SetCursorPos(location.X + offsetvalueX, location.Y + offsetvalueY);
             Thread.Sleep(10);
         }
+        
         /// <summary>
         /// 鼠标左键点击
         /// </summary>

@@ -72,7 +72,7 @@
     <Compile Include="Hid\MechHID.cs" />
     <Compile Include="MECH\MechConvert.cs" />
     <Compile Include="MECH\MechIni.cs" />
-    <Compile Include="MECH\MechString.cs" />
+    <Compile Include="MECH\MString.cs" />
     <Compile Include="MECH\MechTemplate.cs" />
     <Compile Include="MECH\MechUSB.cs" />
     <Compile Include="MECH\MechUtils.cs" />

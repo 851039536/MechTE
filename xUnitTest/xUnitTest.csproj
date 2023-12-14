@@ -36,6 +36,7 @@
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
+        <Reference Include="System.Drawing" />
         <Reference Include="System.Xml" />
         <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c">
             <HintPath>..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
@@ -53,7 +54,7 @@
     <ItemGroup>
         <Compile Include="files\MFileTest.cs" />
         <Compile Include="IniTest.cs" />
-        <Compile Include="MechStringTest.cs" />
+        <Compile Include="MStringTest.cs" />
         <Compile Include="MechUtilsTest.cs" />
         <Compile Include="NetWorkTest.cs" />
         <Compile Include="ShellTest.cs" />

@@ -772,6 +772,163 @@ public static void SetControls(float newX,float newY,Control cons)
 
 
 
+## MTemplate
+
+模板程序定制的功能
+
+- 命名空间: MechTE_480.merryDll
+- 类名:MTemplate
+
+
+
+### IsBzp
+
+检查SN是否是标准品条码,自动转换大写
+
+```csharp
+/// <summary>
+/// 检查SN是否是标准品条码,自动转换大写
+/// </summary>
+/// <returns></returns>
+public static bool IsBzp(string sn)
+```
+
+
+
+## MIni
+
+ini文件操作类
+
+- 命名空间: MechTE_480.MIni
+- 类名:MIni
+
+### Read
+
+读取ini
+
+```csharp
+/// <summary>
+/// 读取ini
+/// </summary>
+/// <param name="section">ini文件[xxxx]头部标识</param>
+/// <param name="key">键名</param>
+/// <param name="path">文件路径</param>
+/// <returns>string</returns>
+public static string Read(string section, string key, string path)
+```
+
+### ReadArray
+
+```csharp
+/// <summary>
+/// 读取ini string[]
+/// </summary>
+/// <param name="section">ini文件[xxxx]头部标识</param>
+/// <param name="key">文件路径</param>
+/// <param name="path">Key</param>
+/// <returns>string[]</returns>
+public static string[] ReadArray(string section, string key, string path)
+```
+
+### Update
+
+```csharp
+/// <summary>
+/// 更新ini
+/// </summary>
+/// <param name="section">ini文件[xxxx]头部标识</param>
+/// <param name="key">key名</param>
+/// <param name="value">写入的值</param>
+/// <param name="path">完整的ini文件名路径</param>
+public static void Update(string section, string key, string value, string path)
+```
+
+### Delete
+
+```
+/// <summary>
+/// 删除一个INI文件
+/// </summary>
+/// <param name="filePath"></param>
+public static void Delete(string filePath)
+```
+
+
+
+## MString
+
+字符串操作类
+
+- 命名空间: MechTE_480.util
+- 类名:MString
+
+
+
+### Reverse
+
+```csharp
+/// <summary>
+/// 将字符按2个长度为一组进行反序
+/// </summary>
+/// <param name="str">11223344</param>
+/// <returns>44332211->11223344</returns>
+public static string Reverse(string str)
+```
+
+### ClearSpaces
+
+清除字符串中的空格
+
+```csharp
+/// <summary>
+/// 清除字符串中的空格(00 00 00 00 > 00000000)
+/// </summary>
+/// <param name="str"></param>
+/// <returns>string</returns>
+public static string ClearSpaces(string str)
+```
+
+### StringToByteArray
+
+将字符串转换为字节数组
+
+```csharp
+/// <summary>
+/// 将字符串转换为字节数组
+/// 示例："ABCDEF" -> [ 0xAB, 0xCD, 0xEF ]
+/// </summary>
+/// <param name="str"></param>
+/// <returns></returns>
+public static List<byte> StringToByteArray(string str)
+```
+
+### StringToHidFormat
+
+将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 3
+
+```csharp
+/// <summary>
+/// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 3
+/// </summary>
+/// <param name="name"></param>
+/// <returns>string</returns>
+public static string StringToHidFormat(string name)
+```
+
+### GenerateNumberSequence
+
+生成数字字符串序列(传0,6 生成 0 1 2 3 4 5)
+
+```csharp
+/// <summary>
+/// 生成数字字符串序列(传0,6 生成 0 1 2 3 4 5)
+/// </summary>
+/// <param name="startNumber">序列中第一个整数的值</param>
+/// <param name="sequenceLength">生成的顺序总条数</param>
+/// <returns>string</returns>  
+public static string GenerateNumberSequence(int startNumber, int sequenceLength)
+```
+
 
 
 ### 启动文件/程序
@@ -788,6 +945,8 @@ StartBat(string cmd) >> StartBat(_currentPath + @"\unload.bat");
 //启动Windows应用/网站
 StartApp(string appName) >> StartApp(@"D:\\software\Code.exe");
 ```
+
+
 
 ### 数据转换/处理
 
@@ -826,25 +985,6 @@ HexStrings2AsciiHexStrings(string hexStrings)
 ```
 
 
-
-
-
-### MechIni
-
-ini文件操作类
-
-- 静态类名：MechIni
-
-- 调用方式：MechIni.方法
-
-- 支持版本：**MechTE_452,480**
-
-| 描述             | 函数         | 调用示例 |
-| ---------------- | ------------ | -------- |
-| 写入ini          | WriteIni     |          |
-| 读取ini          | ReadIni      |          |
-| 读取ini string[] | ReadIniArray |          |
-| 删除一个INI文件  | DeleteIni    |          |
 
 ### TSystems
 

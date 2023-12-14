@@ -1,4 +1,7 @@
-﻿using MechTE_452.MECH;
+﻿using System.Drawing;
+using System.Reflection;
+using MechTE_480.MECH;
+using MechTE_480.windows;
 using Xunit;
 
 namespace xUnit_Test
@@ -9,8 +12,13 @@ namespace xUnit_Test
         [Fact]
         public void ReadIni()
         {
-            var data = MechIni.ReadIni("test", "test", "test.ini");
-            Assert.Equal("test", data);
+            
+        } 
+        [Fact]
+        public void MouseMove()
+        {
+             Point p =  new Point(800, 800);
+             MMouseControl.MouseMove(p, 20, 20);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Management;
 using System.Text.RegularExpressions;
 
-namespace MechTE_480.Hid
+namespace MechTE_480.usb
 {
     public partial class MechHID
     {

@@ -4,7 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using MechTE_480.MECH;
+using MechTE_480.util;
 using MechTE_480.Util;
+using MechTE_480.xml;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -15,7 +17,7 @@ namespace xUnit_Test
     public class UtilsTest
     {
         private readonly ITestOutputHelper _msg;
-        MechXML _mechXml = new MechXML("command_sw.xml");
+        private MXml _mXml = new MXml("command_sw.xml");
 
         public UtilsTest(ITestOutputHelper msg)
         {
@@ -26,7 +28,7 @@ namespace xUnit_Test
         [Fact]
         public void GenerateNumberStringSequence()
         {
-            var data = MechUtils.GenerateNumberStringSequence(1, 10);
+            var data = MString.GenerateNumberSequence(1, 10);
             Assert.Equal("1 2 3 4 5 6 7 8 9 10", data.ToString());
         }      
         

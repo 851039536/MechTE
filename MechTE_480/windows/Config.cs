@@ -19,12 +19,12 @@ namespace MechTE_480.Windows
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern int MessageBox(IntPtr hWnd, string text, string caption, int options);
         
+        /// <summary>
+        /// 执行rundll32.exe
+        /// </summary>
+        /// <param name="arguments"></param>
         public static void RunDll(string arguments)
         {
-            // using (Process.Start("rundll32.exe", arguments))
-            // {
-            // }
-            
             try
             {
                 var startInfo = new ProcessStartInfo
@@ -38,9 +38,9 @@ namespace MechTE_480.Windows
                 {
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("无法打开音频设置面板：" + ex.Message);
+                // ignored
             }
         }
         
