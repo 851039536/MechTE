@@ -51,7 +51,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="FilesTest.cs" />
+        <Compile Include="files\MFileTest.cs" />
         <Compile Include="IniTest.cs" />
         <Compile Include="MechStringTest.cs" />
         <Compile Include="MechUtilsTest.cs" />

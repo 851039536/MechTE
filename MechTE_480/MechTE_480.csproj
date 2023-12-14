@@ -55,7 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="files\MechFile.cs" />
+    <Compile Include="files\Config.cs" />
+    <Compile Include="files\MFile.cs" />
     <Compile Include="butForm\MechButton.cs" />
     <Compile Include="butForm\MouseControl.cs" />
     <Compile Include="butForm\ProgressBars.cs">
@@ -63,6 +64,7 @@
     </Compile>
     <Compile Include="butForm\ProgressBars.designer.cs" />
     <Compile Include="files\MFileTransfer.cs" />
+    <Compile Include="files\MFileTransferConfig.cs" />
     <Compile Include="form\Config.cs" />
     <Compile Include="form\MechForm.cs" />
     <Compile Include="form\ProgressBars.cs">

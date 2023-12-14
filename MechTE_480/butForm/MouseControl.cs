@@ -72,11 +72,11 @@ namespace MechTE_480.butForm
         [DllImport("User32.dll")]
         private static extern void mouse_event(UInt32 dwFlags, UInt32 dx, UInt32 dy, UInt32 dwData, UInt32 dwExtraInfo);
         [DllImport("user32.dll", EntryPoint = "FindWindow")]
-        private extern static IntPtr FindWindow(string lpClassName, string lpWindowName);
+        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
         [DllImport("user32.dll", EntryPoint = "GetWindowRect")]
-        private extern static bool GetWindowRect(IntPtr lpClassName, out WindowRect iWindow);
+        private static extern bool GetWindowRect(IntPtr lpClassName, out WindowRect iWindow);
         [DllImport("user32.dll")]
-        private extern static IntPtr SetWindowPos(IntPtr hwnd, IntPtr hwndaftef, int x, int y, int cx, int cy, uint wflags);
+        private static extern IntPtr SetWindowPos(IntPtr hwnd, IntPtr hwndaftef, int x, int y, int cx, int cy, uint wflags);
         #endregion
     }
 }

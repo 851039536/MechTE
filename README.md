@@ -42,6 +42,618 @@ call $(TargetPath) merge.bat
 
 每次生成项目时会调用项目下的merge.bat , 控制台输出ILMerge: Done.等于合并成功
 
+# 功能实现
+
+## MFile
+
+文件操作类 
+
+- 命名空间: namespace MechTE_480.Files
+- 类名:MFile
+
+### 打开文件&程序
+
+#### OpenFile
+
+开启程序/文件夹
+
+```csharp
+/// <summary>
+/// 开启程序/文件夹
+/// </summary>
+/// <param name="path">路径</param>
+/// <param name="fsShow">是否显示窗口 默认显示(1)</param>
+public static void OpenFile(string path, int fsShow = 1)
+```
+
+**Fact**
+
+```csharp
+MFile.OpenFile("D:\\sw");
+MFile.OpenFile("D:\\sw\\",1);
+```
+
+#### OpenProcessFile
+
+使用Process类的Start方法启动外部程序/文件夹
+
+```csharp
+/// <summary>
+/// 使用Process类的Start方法启动外部程序/文件夹
+/// </summary>
+/// <param name="path">路径</param>
+public static void OpenProcessFile(string path)
+```
+
+**Fact**
+
+```csharp
+MFile.OpenProcessFile(@"D:\sw\winfrom\Merry-exeStartTool\bin\exeStartTool\dw");
+```
+
+
+
+### 文件复制
+
+#### CopyFile
+
+复制文件夹及文件
+
+```csharp
+/// <summary>
+/// 复制文件夹及文件
+/// </summary>
+/// <param name="sourceFolder">原文件路径</param>
+/// <param name="destFolder">目标文件路径</param>
+/// <returns>1 || -1</returns>
+public static int CopyFile(string sourceFolder, string destFolder)
+```
+
+**Fact**
+
+```csharp
+var ret= MFile.CopyFile(@"C:\Users\ch190006\Desktop\test",@"C:\Users\ch190006\Desktop\test2");
+```
+
+
+
+#### CopyFolder
+
+复制文件夹(递归)
+
+```csharp
+/// <summary>
+/// 复制文件夹(递归)
+/// </summary>
+/// <param name="varFromDirectory">源文件夹路径</param>
+/// <param name="varToDirectory">目标文件夹路径</param>
+public static void CopyFolder(string varFromDirectory, string varToDirectory)
+```
+
+
+
+#### Copy
+
+将源文件的内容复制到目标文件中
+
+```csharp
+/// <summary>
+/// 将源文件的内容复制到目标文件中
+/// </summary>
+/// <param name="sourceFilePath">源文件的绝对路径</param>
+/// <param name="destFilePath">目标文件的绝对路径</param>
+public static void Copy(string sourceFilePath, string destFilePath)
+```
+
+#### FileMove
+
+移动文件
+
+```csharp
+/// <summary>
+/// 移动文件
+/// </summary>
+/// <param name="orignFile">原始路径</param>
+/// <param name="newFile">新路径</param>
+public static void FileMove(string orignFile, string newFile)
+```
+
+#### CopyDir
+
+指定文件夹下面的所有内容copy到目标文件夹下面
+
+```csharp
+/// <summary>
+/// 指定文件夹下面的所有内容copy到目标文件夹下面
+/// </summary>
+/// <param name="srcPath">原始路径</param>
+/// <param name="aimPath">目标文件夹</param>
+public static void CopyDir(string srcPath, string aimPath)
+```
+
+
+
+### 文件对话框
+
+#### FileDialog
+
+浏览文件对话框
+
+```csharp
+/// <summary>
+/// 窗体浏览文件对话框
+/// </summary>
+/// <returns>string</returns>
+public static string FileDialog()
+```
+
+
+
+### 文件获取
+
+#### QueryFile&GetFile
+
+获取指定目录文件夹
+
+```csharp
+ /// <summary>
+ /// 获取指定目录文件夹
+ /// </summary>
+ /// <param name="path">文件路径</param>
+ /// <returns>文件名,文件路径</returns>
+ public static List<string> QueryFile(string path)
+ //功能相同 , 后续删除QueryFile
+ public static List<string> GetFile(string path)
+```
+
+#### GetFileNames
+
+获取指定目录中所有文件列表
+
+```csharp
+/// <summary>
+/// 获取指定目录中所有文件列表
+/// </summary>
+/// <param name="directoryPath">指定目录的绝对路径</param>        
+public static string[] GetFileNames(string directoryPath)
+```
+
+#### GetDirectories
+
+获取指定目录中所有子目录列表
+
+```csharp
+/// <summary>
+/// 获取指定目录中所有子目录列表
+/// </summary>
+/// <param name="directoryPath">指定目录的绝对路径</param>        
+public static string[] GetDirectories(string directoryPath)
+```
+
+#### GetFileNames
+
+获取指定目录及子目录中所有文件列表
+
+```csharp
+ /// <summary>
+ /// 获取指定目录及子目录中所有文件列表
+ /// </summary>
+ /// <param name="directoryPath">指定目录的绝对路径</param>
+ /// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+ /// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
+ /// <param name="isSearchChild">是否搜索子目录</param>
+ public static string[] GetFileNames(string directoryPath, string searchPattern, bool isSearchChild)
+```
+
+#### GetFileName
+
+从文件的绝对路径中获取文件名( 包含扩展名 )
+
+```csharp
+/// <summary>
+/// 从文件的绝对路径中获取文件名( 包含扩展名 )
+/// </summary>
+/// <param name="filePath">文件的绝对路径</param>        
+public static string GetFileName(string filePath)
+```
+
+
+
+### 文件删除
+
+#### DelFile
+
+删除指定的文件
+
+```csharp
+/// <summary>
+/// 删除指定的文件
+/// </summary>
+/// <param name="path">路径</param>
+/// <returns></returns>
+public static bool DelFile(string path)
+```
+
+#### DeleteFolderFiles
+
+删除指定文件夹对应其他文件夹里的文件
+
+```csharp
+/// <summary>
+/// 删除指定文件夹对应其他文件夹里的文件
+/// </summary>
+/// <param name="varFromDirectory">指定文件夹路径</param>
+/// <param name="varToDirectory">对应其他文件夹路径</param>
+public static void DeleteFolderFiles(string varFromDirectory, string varToDirectory)
+```
+
+#### DeleteDirectory
+
+删除指定目录及其所有子目录
+
+```csharp
+/// <summary>
+/// 删除指定目录及其所有子目录
+/// </summary>
+/// <param name="directoryPath">指定目录的绝对路径</param>
+public static void DeleteDirectory(string directoryPath)
+```
+
+#### ClearFile
+
+清空文件内容
+
+```csharp
+/// <summary>
+/// 清空文件内容
+/// </summary>
+/// <param name="filePath">文件的绝对路径</param>
+public static void ClearFile(string filePath)
+```
+
+
+
+### 文件检查
+
+#### IsExistDirectory
+
+检测指定目录是否存在
+
+```csharp
+/// <summary>
+/// 检测指定目录是否存在
+/// </summary>
+/// <param name="directoryPath">目录的绝对路径</param>
+/// <returns></returns>
+public static bool IsExistDirectory(string directoryPath)
+```
+
+#### IsExistFile
+
+检测指定文件是否存在
+
+```csharp
+/// <summary>
+/// 检测指定文件是否存在
+/// </summary>
+/// <param name="filePath">文件的绝对路径</param>       
+public static bool IsExistFile(string filePath)
+```
+
+#### IsEmptyDirectory
+
+检测指定目录是否为空
+
+```csharp
+/// <summary>
+/// 检测指定目录是否为空
+/// </summary>
+/// <param name="directoryPath">指定目录的绝对路径</param>        
+public static bool IsEmptyDirectory(string directoryPath)
+```
+
+#### Contains
+
+```csharp
+/// <summary>
+/// 检测指定目录中是否存在指定的文件,若要搜索子目录请使用重载方法.
+/// </summary>
+/// <param name="directoryPath">指定目录的绝对路径</param>
+/// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+/// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>        
+public static bool Contains(string directoryPath, string searchPattern)
+```
+
+```csharp
+Contains(@"D:\\sw\\","*");
+```
+
+检测指定目录中是否存在指定的文件
+
+```csharp
+/// <summary>
+/// 检测指定目录中是否存在指定的文件
+/// </summary>
+/// <param name="directoryPath">指定目录的绝对路径</param>
+/// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+/// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param> 
+/// <param name="isSearchChild">是否搜索子目录</param>
+public static bool Contains(string directoryPath, string searchPattern, bool isSearchChild)
+```
+
+
+
+### 文件创建
+
+#### ExistsFile
+
+ 检查文件,如果文件不存在则创建  
+
+```csharp
+/// <summary>
+/// 检查文件,如果文件不存在则创建  
+/// </summary>
+/// <param name="filePath">路径,包括文件名</param>
+public static void ExistsFile(string filePath)
+```
+
+
+
+#### CreateDirectory
+
+创建一个目录
+
+```cs
+/// <summary>
+/// 创建一个目录
+/// </summary>
+/// <param name="directoryPath">目录的绝对路径</param>
+public static void CreateDirectory(string directoryPath)
+```
+
+#### CreateFile
+
+创建一个文件
+
+```csharp
+/// <summary>
+/// 创建一个文件
+/// </summary>
+/// <param name="filePath">文件的绝对路径</param>
+public static void CreateFile(string filePath)
+
+/// <summary>
+/// 创建一个文件,并将字节流写入文件。
+/// </summary>
+/// <param name="filePath">文件的绝对路径</param>
+/// <param name="buffer">二进制流数据</param>
+public static void CreateFile(string filePath, byte[] buffer)
+```
+
+#### FolderCreate
+
+```csharp
+/// <summary>
+/// 在当前目录下创建目录
+/// </summary>
+/// <param name="orignFolder">当前目录</param>
+/// <param name="newFloder">新目录</param>
+public static void FolderCreate(string orignFolder, string newFloder)
+    
+/// <summary>
+/// 创建文件夹
+/// </summary>
+/// <param name="path"></param>
+public static void FolderCreate(string path)
+```
+
+
+
+### 文件信息
+
+#### GetLineCount
+
+获取文本文件的行数
+
+```csharp
+/// <summary>
+/// 获取文本文件的行数
+/// </summary>
+/// <param name="filePath">文件的绝对路径</param>       
+public static int GetLineCount(string filePath)
+```
+
+#### GetFileSize
+
+获取一个文件的长度,单位为Byte
+
+```csharp
+/// <summary>
+/// 获取一个文件的长度,单位为Byte
+/// </summary>
+/// <param name="filePath">文件的绝对路径</param>     
+public static int GetFileSize(string filePath)
+```
+
+
+
+#### GetDirectories
+
+获取指定目录及子目录中所有子目录列表
+
+```csharp
+/// <summary>
+/// 获取指定目录及子目录中所有子目录列表
+/// </summary>
+/// <param name="directoryPath">指定目录的绝对路径</param>
+/// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
+/// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>
+/// <param name="isSearchChild">是否搜索子目录</param>
+public static string[] GetDirectories(string directoryPath, string searchPattern, bool isSearchChild)
+```
+
+
+
+#### GetFileNameNoExtension
+
+从文件的绝对路径中获取文件名( 不包含扩展名 )
+
+```csharp
+/// <summary>
+/// 从文件的绝对路径中获取文件名( 不包含扩展名 )
+/// </summary>
+/// <param name="filePath">文件的绝对路径</param>        
+public static string GetFileNameNoExtension(string filePath)
+```
+
+
+
+#### GetExtension
+
+从文件的绝对路径中获取扩展名
+
+```csharp
+/// <summary>
+/// 从文件的绝对路径中获取扩展名
+/// </summary>
+/// <param name="filePath">文件的绝对路径</param>        
+public static string GetExtension(string filePath)
+```
+
+
+
+#### ReadFile
+
+读文件内容
+
+```csharp
+/// <summary>
+/// 读文件内容
+/// </summary>
+/// <param name="path">文件路径</param>
+/// <returns></returns>
+public static string ReadFile(string path)
+```
+
+#### GetDirectoryLength
+
+获取文件夹大小
+
+```csharp
+/// <summary>
+/// 获取文件夹大小
+/// </summary>
+/// <param name="dirPath">文件夹路径</param>
+/// <returns></returns>
+public static long GetDirectoryLength(string dirPath)
+```
+
+#### GetFileAttribute
+
+获取指定文件详细属性
+
+```csharp
+/// <summary>
+/// 获取指定文件详细属性
+/// </summary>
+/// <param name="filePath">文件详细路径</param>
+/// <returns></returns>
+public static string GetFileAttribute(string filePath)
+```
+
+#### GetFiles
+
+```csharp
+/// <summary>
+/// 获取指定目录下符合指定模式的文件名和文件夹名。
+/// </summary>
+/// <param name="directory">指定目录。</param>
+/// <param name="pattern">指定模式。</param>
+/// <param name="fileList">符合指定模式的文件和文件夹名称列表。</param>
+/// <param name="recursive">是否递归获取子文件夹中的文件和文件夹，true表示递归获取。</param>
+public static void GetFiles(DirectoryInfo directory, string pattern, ref List<string> fileList, bool recursive)
+
+/// <summary>
+/// 获取指定目录下所有符合指定模式的文件名..
+/// </summary>
+/// <param name="directory">指定目录。</param>
+/// <param name="pattern">指定模式。</param>
+/// <param name="fileList">符合指定模式的文件名列表。</param>
+public static void GetFiles(DirectoryInfo directory, string pattern, ref List<string> fileList)
+```
+
+#### GetDesktop
+
+读取桌面内容(electron)
+
+```csharp
+/// <summary>
+/// 读取桌面内容(electron)
+/// </summary>
+public Task<object> GetDesktop(object path)
+```
+
+
+
+### 文本写入
+
+#### WriteText
+
+向文本文件中写入内容
+
+```csharp
+ /// <summary>
+ /// 向文本文件中写入内容
+ /// </summary>
+ /// <param name="filePath">文件的绝对路径</param>
+ /// <param name="text">写入的内容</param>
+ /// <param name="encoding">编码</param>
+ public static void WriteText(string filePath, string text, Encoding encoding)
+```
+
+#### AppendText
+
+向文本文件的尾部追加内容
+
+```csharp
+/// <summary>
+/// 向文本文件的尾部追加内容
+/// </summary>
+/// <param name="filePath">文件的绝对路径</param>
+/// <param name="content">写入的内容</param>
+public static void AppendText(string filePath, string content)
+```
+
+
+
+#### WriteFile
+
+写文件
+
+```csharp
+/// <summary>
+/// 写文件
+/// </summary>
+/// <param name="path">文件路径</param>
+/// <param name="strings">文件内容</param>
+public static void WriteFile(string path, string strings)
+```
+
+#### FileAdd
+
+追加文件内容
+
+```csharp
+ /// <summary>
+ /// 追加文件内容
+ /// </summary>
+ /// <param name="path">文件路径</param>
+ /// <param name="strings">内容</param>
+ public static void FileAdd(string path, string strings)
+```
+
+
+
 ### 启动文件/程序
 
 类名 **MechCmd**
@@ -95,73 +707,7 @@ HexStrings2AsciiHexStrings(string hexStrings)
 
 
 
-### 文件操作类
 
-类名 **MechFile**
-
-#### OpenFile
-
-使用本地系统进程打开程序/文件夹
-
-```
-OpenFile("D:\\sw");
-OpenFile("D:\\sw\\",1);
-```
-
-#### CopyFile
-
-复制文件夹及文件
-
-```csharp
-        /// <summary>
-        /// 复制文件夹及文件
-        /// </summary>
-        /// <param name="sourceFolder">原文件路径</param>
-        /// <param name="destFolder">目标文件路径</param>
-        /// <returns>1 || -1</returns>
-        public static int CopyFile(string sourceFolder,string destFolder)
-```
-
-#### FileDialog
-
-浏览文件对话框
-
-#### QueryFile
-
-获取指定目录文件夹
-
-QueryFile("D:\\sw\\");
-
-|                                              |                                        |                                |
-| -------------------------------------------- | -------------------------------------- | ------------------------------ |
-| 删除指定的文件                               | DelFile                                | DelFile("path")                |
-| 检测指定目录是否存在                         | IsExistDirectory                       | IsExistDirectory(@"D:\\sw\\"); |
-| 检测指定文件是否存在                         | IsExistFile                            | IsExistFile("path")            |
-| 获取指定目录中的文件列表                     | GetFileNames                           | GetFileNames(@"D:\\sw\\");     |
-| 获取指定目录中所有子目录列表                 | GetDirectories                         | GetDirectories(@"D:\\sw\\");   |
-| 获取指定目录及子目录中所有文件列表           | GetFileNames                           |                                |
-| 检测指定目录是否为空                         | IsEmptyDirectory(string directoryPath) | IsEmptyDirectory(@"D:\\sw\\"); |
-| 检测指定目录中是否存在指定的文件             | Contains                               | Contains(@"D:\\sw\\","*");     |
-| 复制文件夹(递归)                             | CopyFolder                             |                                |
-| 检查文件,如果文件不存在则创建                | ExistsFile                             |                                |
-| 删除指定文件夹对应其他文件夹里的文件         | DeleteFolderFiles                      |                                |
-| 从文件的绝对路径中获取文件名( 包含扩展名 )   | GetFileName                            |                                |
-| 创建一个目录                                 | CreateDirectory                        |                                |
-| 创建一个文件                                 | CreateFile                             |                                |
-| 创建一个文件,并将字节流写入文件              | CreateFile                             |                                |
-| 获取文本文件的行数                           | GetLineCount                           |                                |
-| 获取一个文件的长度                           | GetFileSize                            |                                |
-| 获取指定目录及子目录中所有子目录列表         | GetDirectories                         |                                |
-| 向文本文件中写入内容                         | void WriteText                         |                                |
-| 向文本文件的尾部追加内容                     | void AppendText                        |                                |
-| 将现有文件的内容复制到新文件中               | Copy                                   |                                |
-| 从文件的绝对路径中获取文件名( 不包含扩展名 ) | GetFileNameNoExtension                 |                                |
-| 从文件的绝对路径中获取扩展名                 | GetExtension                           |                                |
-| 清空文件内容                                 | ClearFile                              |                                |
-| 删除指定目录及其所有子目录                   | DeleteDirectory                        |                                |
-|                                              |                                        |                                |
-| **electron**                                 |                                        |                                |
-| ShellExecute打开程序/文件夹                  | VOpenFile                              | VOpenFile("D:\\sw");           |
 
 ### MechIni
 
