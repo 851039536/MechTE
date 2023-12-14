@@ -8,7 +8,7 @@ using ProgressBars = MerryUtil.Forms.ProgressBars;
 namespace MechTE_480.ButForm
 {
     /// <summary>
-    /// 按键测试类
+    /// 弹窗按键测试类
     /// </summary>
     public class MechButton
     {

@@ -18,7 +18,7 @@ namespace xUnit_Test
         [Fact]
         public void GetAddressIp()
         {
-           var ret=  _netHelper.GetAddressIP();
+           var ret=  NetHelper.GetAddressIp();
            _msg.WriteLine(ret);
             Assert.Equal(ret, ret);
         } 

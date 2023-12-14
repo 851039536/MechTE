@@ -85,6 +85,8 @@
     <Compile Include="MECH\MechXML.cs" />
     <Compile Include="merryDll\IMerryDll.cs" />
     <Compile Include="network\NetHelper.cs" />
+    <Compile Include="network\SocketClient.cs" />
+    <Compile Include="network\SocketServer.cs" />
     <Compile Include="order\Config.cs" />
     <Compile Include="order\MechProcess.cs" />
     <Compile Include="port\MSerialPort.cs" />

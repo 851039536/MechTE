@@ -25,7 +25,7 @@ namespace MechTE_480.MECH
             int size, string iniPath);
 
         /// <summary>
-        /// 写入ini
+        /// 写入ini.
         /// </summary>
         /// <param name="section">ini文件 [xxxx] 头部标识</param>
         /// <param name="key">key名</param>

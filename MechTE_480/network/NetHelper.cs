@@ -3,24 +3,27 @@ using System.Net;
 
 namespace MechTE_480.network
 {
+    /// <summary>
+    /// 网络工具类
+    /// </summary>
     public class NetHelper
     {
         /// <summary>
         /// 获取本地IP
         /// </summary>
         /// <returns></returns>
-        public string GetAddressIP()
+        public static string GetAddressIp()
         {
-            string AddressIP = string.Empty;
-            foreach (IPAddress _IPAddress in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+            string addressIp = string.Empty;
+            foreach (IPAddress ipAddress in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
             {
-                if (_IPAddress.AddressFamily.ToString() == "InterNetwork")
+                if (ipAddress.AddressFamily.ToString() == "InterNetwork")
                 {
-                    AddressIP = _IPAddress.ToString();
+                    addressIp = ipAddress.ToString();
                 }
             }
 
-            return AddressIP;
+            return addressIp;
         }
 
         #region 检查设置的端口号是否正确，返回正确的端口号
@@ -34,9 +37,9 @@ namespace MechTE_480.network
             //声明返回的正确端口号
             int validPort = -1;
             //最小有效端口号
-            const int MINPORT = 0;
+            const int minport = 0;
             //最大有效端口号
-            const int MAXPORT = 65535;
+            const int maxport = 65535;
 
             //检测端口号
             try
@@ -48,7 +51,7 @@ namespace MechTE_480.network
                 }
 
                 //检测端口范围
-                if ((Convert.ToInt32(port) < MINPORT) || (Convert.ToInt32(port) > MAXPORT))
+                if ((Convert.ToInt32(port) < minport) || (Convert.ToInt32(port) > maxport))
                 {
                     throw new Exception("端口号范围无效！");
                 }
@@ -58,7 +61,7 @@ namespace MechTE_480.network
             }
             catch (Exception ex)
             {
-                string errMessage = ex.Message;
+                Console.WriteLine(ex.Message);
             }
 
             return validPort;

@@ -1,29 +1,34 @@
-﻿using MechTE_480.Form;
-using System;
-using System.IO;
-using System.IO.Ports;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
-using MechTE_480.port;
+using System.Threading.Tasks;
 
 namespace MechTE.Test
 {
     internal class Program
     {
-        [STAThread]
         static void Main(string[] args)
         {
-            var name = MSerialPort.GetPortName();
-            MPCBA_32.command(name[0], "1.2.3.4.5.6");
-            Thread.Sleep(1000);
-            MPCBA_32.command(name[0], "6.5.8.1.9.3");
+            //2.Task线程也是来自于线程池
 
-            Console.ReadLine();
-            //3.模拟测试项
-            //while (true)
-            //{
-            //    var cmd = Console.ReadLine();
-            //    // Console.WriteLine(merryDll.Run(cmd));
-            //}
+            List<int> countList = new List<int>();
+            List<Task> taskList = new List<Task>();
+            for (int i = 0; i < 100; i++)
+            {
+                int k = i;
+                taskList.Add(Task.Run(() =>
+                {
+                    countList.Add(Thread.CurrentThread.ManagedThreadId);
+                    Console.WriteLine($@"k={k}");
+                    Console.WriteLine($@"线程ID为:{Thread.CurrentThread.ManagedThreadId}");
+                }));
+            }
+
+            Task.WaitAll(taskList.ToArray()); //等待所有的线程执行完毕
+            Console.WriteLine($@"最大线程数目为：{countList.Distinct().Count()}");
+            //输出结果里面只有4,5,6,7,8这几个ID的线程，最大线程数目为5
+            Console.ReadKey();
         }
     }
 }
