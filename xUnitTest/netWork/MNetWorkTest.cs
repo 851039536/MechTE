@@ -1,24 +1,23 @@
-﻿using System.Net;
-using MechTE_480.network;
+﻿using MechTE_480.network;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace xUnit_Test
+namespace xUnit_Test.netWork
 {
-    public class NetWorkTest
+    public class MNetWorkTest
     {
-        private readonly NetHelper _netHelper = new NetHelper();
+        private readonly MNetHelper _mNetHelper = new MNetHelper();
         
         private readonly ITestOutputHelper _msg;
 
-        public NetWorkTest(ITestOutputHelper msg)
+        public MNetWorkTest(ITestOutputHelper msg)
         {
             _msg = msg;
         }
         [Fact]
         public void GetAddressIp()
         {
-           var ret=  NetHelper.GetAddressIp();
+           var ret=  MNetHelper.GetAddressIp();
            _msg.WriteLine(ret);
             Assert.Equal(ret, ret);
         } 
@@ -26,7 +25,7 @@ namespace xUnit_Test
         [Fact]
         public void GetValidPort()
         {
-           var ret=  NetHelper.GetValidPort("65333");
+           var ret=  MNetHelper.GetValidPort("65333");
            _msg.WriteLine(ret.ToString());
             Assert.Equal(ret, ret);
         }  
@@ -35,7 +34,7 @@ namespace xUnit_Test
         [Fact]
         public void StringToIpAddress()
         {
-           var ret=  NetHelper.StringToIpAddress("172.16.202.14");
+           var ret=  MNetHelper.StringToIpAddress("172.16.202.14");
            _msg.WriteLine(ret.ToString());
             Assert.Equal(ret, ret);
         }  
@@ -43,8 +42,8 @@ namespace xUnit_Test
         [Fact]
         public void GetHostName()
         {
-            var ret= NetHelper.LocalHostName(); 
-           _msg.WriteLine(ret.ToString());
+            var ret= MNetHelper.GetHostName(); 
+           _msg.WriteLine(ret);
             Assert.Equal(ret, ret);
         }
     }

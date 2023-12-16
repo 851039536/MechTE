@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using MechTE_480.MECH;
 using MechTE_480.util;
 using MechTE_480.Util;
 using MechTE_480.xml;
@@ -12,12 +11,9 @@ using Xunit.Abstractions;
 
 namespace xUnit_Test
 {
-
-    
     public class UtilsTest
     {
         private readonly ITestOutputHelper _msg;
-        private MXml _mXml = new MXml("command_sw.xml");
 
         public UtilsTest(ITestOutputHelper msg)
         {
@@ -28,7 +24,7 @@ namespace xUnit_Test
         [Fact]
         public void GenerateNumberStringSequence()
         {
-            var data = MString.GenerateNumberSequence(1, 10);
+            var data = MUtil.GenerateNumberSequence(1, 10);
             Assert.Equal("1 2 3 4 5 6 7 8 9 10", data.ToString());
         }      
         
@@ -56,17 +52,17 @@ namespace xUnit_Test
             // result是用于接收Test方法的返回值的字典
             // TimeSpan.FromSeconds(3)表示超时时间为3秒
             // Execute方法返回一个布尔值，表示是否超时
-           var ret=   MechUtils.Execute(Test, "Hello, World!", out result, TimeSpan.FromSeconds(5));
+           var ret=   MUtil.Execute(Test, "Hello, World!", out result, TimeSpan.FromSeconds(3));
             _msg.WriteLine(ret.ToString());
         }      
         
         [Fact]
-        public void Duration()
+        public void MMeasure()
         {
-            using (new MeasureDuration(duration => _msg.WriteLine($"代码执行时间：{duration}")))
+            using (new MMeasure(duration => _msg.WriteLine($"代码执行时间：{duration}")))
             {
                 // 在这里编写需要测量执行时间的代码
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     // 一些耗时的操作
                     Thread.Sleep(1000);

@@ -4,7 +4,7 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005Csw_005Cclass_005Flibrary_005CMechTE_005CMechTE_005F480_005Cbin_005CDebug_005CRestSharp_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=CF13CCDD_002D9E46_002D406A_002D8CB2_002DEF159D228A03/@EntryIndexedValue">4F2A56FB-0199-4A3A-925A-040E5B8624D6</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=xUnit/@EntryIndexedValue">33ff99d8-b1ad-4ed5-a4fd-376b97c2c841</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=78cff1dc_002D77ac_002D447a_002D91de_002D6077f57e9f77/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TEST" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=78cff1dc_002D77ac_002D447a_002D91de_002D6077f57e9f77/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TEST" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.WinTest.TEST&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.UtilsTest.Execute&lt;/TestId&gt;&#xD;
@@ -17,11 +17,26 @@
 &lt;/SessionState&gt;</s:String>
 	
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e5070597_002D3cc7_002D4799_002Dbd81_002D1fedb07a88b1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Duration" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e5070597_002D3cc7_002D4799_002Dbd81_002D1fedb07a88b1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Duration" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.UtilsTest.Duration&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.NetWorkTest.ReadIni&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.FilesTest.OpenFile&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.port.MUsbTest.GetUSB_Name&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.port.MUsbTest.GetDeviceName&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.netWork.MNetWorkTest.GetAddressIp&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.netWork.MNetWorkTest.GetValidPort&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.netWork.MNetWorkTest.StringToIpAddress&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.netWork.MNetWorkTest.GetHostName&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.port.MHidTest.GetDeviceName&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.port.MHidTest.GetString&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.port.MHidTest.ByteToHex&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.port.MHidTest.ByteToHexs&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.port.MHidTest.GetintArray&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.port.MHidTest.NumberToIntArray&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.port.MHidTest.DeleteDriver&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.util.MConvertTest.ConvertBase&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.UtilsTest.MMeasure&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=MechTE_005F480_002FbtnForm_002FProgressBars/@EntryIndexedValue">True</s:Boolean>

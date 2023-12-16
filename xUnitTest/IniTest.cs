@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.Reflection;
-using MechTE_480.MECH;
 using MechTE_480.windows;
 using Xunit;
 

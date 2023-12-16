@@ -6,7 +6,7 @@ namespace MechTE_480.network
     /// <summary>
     /// 网络工具类
     /// </summary>
-    public class NetHelper
+    public class MNetHelper
     {
         /// <summary>
         /// 获取本地IP
@@ -15,7 +15,7 @@ namespace MechTE_480.network
         public static string GetAddressIp()
         {
             string addressIp = string.Empty;
-            foreach (IPAddress ipAddress in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+            foreach (var ipAddress in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
             {
                 if (ipAddress.AddressFamily.ToString() == "InterNetwork")
                 {
@@ -26,7 +26,6 @@ namespace MechTE_480.network
             return addressIp;
         }
 
-        #region 检查设置的端口号是否正确，返回正确的端口号
 
         /// <summary>
         /// 检查设置的端口号是否正确，并返回正确的端口号,无效端口号返回-1。
@@ -67,10 +66,6 @@ namespace MechTE_480.network
             return validPort;
         }
 
-        #endregion
-
-        #region 将字符串形式的IP地址转换成IPAddress对象
-
         /// <summary>
         /// 将字符串形式的IP地址转换成IPAddress对象
         /// </summary>
@@ -80,18 +75,13 @@ namespace MechTE_480.network
             return IPAddress.Parse(ip);
         }
 
-        #endregion
-
-        #region 获取本机的计算机名
 
         /// <summary>
         /// 获取本机的计算机名
         /// </summary>
-        public static string LocalHostName()
+        public static string GetHostName()
         {
             return Dns.GetHostName();
         }
-
-        #endregion
     }
 }

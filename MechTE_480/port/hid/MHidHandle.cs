@@ -1,13 +1,12 @@
 ﻿using System;
 
-namespace MechTE_480.Hid
+namespace MechTE_480.port.hid
 {
     /// <summary>
     /// 获取句柄类
     /// </summary>
-    public partial class MechHID
+    public partial class MHid
     {
-        #region 对外方法
 
         /// <summary>
         /// 获取双通道装置路径,传入参数不能为空
@@ -22,14 +21,14 @@ namespace MechTE_480.Hid
             bool flag;
             try
             {
-                for (int i = 0; i < intLen; i++)
+                for (int i = 0; i < IntLen; i++)
                 {
                     SetPath1[i] = "";
                     SetPath2[i] = "";
                 }
 
                 flag = GetHidDevicePath(pid01, vid01, pid02, vid02);
-                for (int i = 0; i < intLen; i++)
+                for (int i = 0; i < IntLen; i++)
                 {
                     SetHandle1[i] = GetHidDeviceHandle(SetPath1[i]);
                     SetHandle2[i] = GetHidDeviceHandle(SetPath2[i]);
@@ -54,13 +53,13 @@ namespace MechTE_480.Hid
             bool flag;
             try
             {
-                for (int i = 0; i < intLen; i++)
+                for (int i = 0; i < IntLen; i++)
                 {
                     SetPath1[i] = "";
                 }
 
                 flag = GetHidDevicePath(pid01, vid01);
-                for (int i = 0; i < intLen; i++)
+                for (int i = 0; i < IntLen; i++)
                 {
                     SetHandle1[i] = GetHidDeviceHandle(SetPath1[i]);
                 }
@@ -96,10 +95,9 @@ namespace MechTE_480.Hid
             return flag;
         }
 
-        #endregion
-
-        #region 释放所有通道句柄和路径
-
+        /// <summary>
+        ///  释放所有通道句柄和路径
+        /// </summary>
         public void CloseHandle()
         {
             try
@@ -114,7 +112,7 @@ namespace MechTE_480.Hid
                     if (handle != IntPtr.Zero) CloseHandle(handle);
                 }
 
-                for (int i = 0; i < intLen; i++)
+                for (int i = 0; i < IntLen; i++)
                 {
                     SetPath1[i] = "";
                     SetPath2[i] = "";
@@ -122,10 +120,9 @@ namespace MechTE_480.Hid
             }
             catch
             {
+                // ignored
             }
         }
-
-        #endregion
        
     }
 }

@@ -4,35 +4,35 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace MechTE_480.Hid
+namespace MechTE_480.port.hid
 {
-    public partial class MechHID
+    public partial class MHid
     {
         /// <summary>
         /// 定义数组长度,句柄对象,循环次数
         /// 如有增加长度,同步新增col01
         /// </summary>
-        private const int intLen = 10;
+        private const int IntLen = 10;
 
         /// <summary>
         /// 存储的句柄对象数组通道1
         /// </summary>
-        public readonly IntPtr[] SetHandle1 = new IntPtr[intLen];
+        public readonly IntPtr[] SetHandle1 = new IntPtr[IntLen];
 
         /// <summary>
         ///  存储的句柄对象数组通道2
         /// </summary>
-        public readonly IntPtr[] SetHandle2 = new IntPtr[intLen];
+        public readonly IntPtr[] SetHandle2 = new IntPtr[IntLen];
 
         /// <summary>
         ///  存储的句柄地址通道1
         /// </summary>
-        public readonly string[] SetPath1 = new string[intLen];
+        public readonly string[] SetPath1 = new string[IntLen];
 
         /// <summary>
         ///  存储的句柄地址通道2
         /// </summary>
-        public readonly string[] SetPath2 = new string[intLen];
+        public readonly string[] SetPath2 = new string[IntLen];
 
         #region 参数及引用区
 
@@ -101,6 +101,9 @@ namespace MechTE_480.Hid
         /// 句柄
         /// </summary>
         public IntPtr Handle = IntPtr.Zero;
+        /// <summary>
+        /// Path
+        /// </summary>
         public string Path = "";
 
         [DllImport("kernel32.dll",SetLastError = true)]
@@ -202,21 +205,21 @@ namespace MechTE_480.Hid
                                 var matchPid02 = Dpid02.Match(detailData.DevicePath);
                                 var matchVid02 = Dvid02.Match(detailData.DevicePath);
 
-                                var mathExternAgs = new Match[intLen];
+                                var mathExternAgs = new Match[IntLen];
 
-                                for (int i = 0 ; i < intLen ; i++) {
+                                for (int i = 0 ; i < IntLen ; i++) {
                                     mathExternAgs[i] = ExternAgs[i].Match(detailData.DevicePath);
                                 }
 
                                 if (matchPid02.Success && matchVid02.Success) {
-                                    for (int i = 0 ; i < intLen ; i++) {
+                                    for (int i = 0 ; i < IntLen ; i++) {
                                         if (mathExternAgs[i].Success) {
                                             SetPath2[i] = detailData.DevicePath;
                                             retFlag = true;
                                         }
                                     }
                                 } else if (matchPid01.Success && matchVid01.Success) {
-                                    for (int i = 0 ; i < intLen ; i++) {
+                                    for (int i = 0 ; i < IntLen ; i++) {
                                         if (mathExternAgs[i].Success) {
                                             SetPath1[i] = detailData.DevicePath;
                                             retFlag = true;
@@ -293,14 +296,14 @@ namespace MechTE_480.Hid
                                 var matchVid01 = Dvid01.Match(detailData.DevicePath);
 
 
-                                var mathExternAgs = new Match[intLen];
+                                var mathExternAgs = new Match[IntLen];
 
-                                for (int i = 0 ; i < intLen ; i++) {
+                                for (int i = 0 ; i < IntLen ; i++) {
                                     mathExternAgs[i] = ExternAgs[i].Match(detailData.DevicePath);
                                 }
 
                                 if (matchPid01.Success && matchVid01.Success) {
-                                    for (int i = 0 ; i < intLen ; i++) {
+                                    for (int i = 0 ; i < IntLen ; i++) {
                                         if (mathExternAgs[i].Success) {
                                             SetPath1[i] = detailData.DevicePath;
                                             retFlag = true;
@@ -397,9 +400,11 @@ namespace MechTE_480.Hid
         }
         #endregion
 
-
         #region 删除驱动
 
+        /// <summary>
+        /// SpDeviceInfoData
+        /// </summary>
         protected struct SpDeviceInfoData
         {
             public int Size;
@@ -449,41 +454,36 @@ namespace MechTE_480.Hid
             SPDRP_UI_NUMBER_DESC_FORMAT = 0x1E,
             SPDRP_MAXIMUM_PROPERTY = 0x1F
         }
-        public static int deletedriver(List<string> pid)
+        
+ 
+
+        #endregion 
+        
+        /// <summary>
+        /// 將16進制字符串轉換為16进制byte數組并且根据数组长度自动补0
+        /// </summary>
+        /// <param name="shex">要转换的16进制字符串</param>
+        /// <param name="length">要转换的Byte数组长度</param>
+        /// <returns>转换后的Byte数组，自动补0</returns>
+        public static byte[] HexToByteArray(string shex, int length)
         {
-            Guid hidGuid = Guid.Empty;
-            bool result = true;
-            bool resultflag = false;
-            IntPtr hidHandle = IntPtr.Zero;
-            uint deviceSerialNumber = 0;
-            HidD_GetHidGuid(ref hidGuid);
-            int s = 0;
-            IntPtr hDevInfo = SetupDiGetClassDevs(ref hidGuid,null,IntPtr.Zero,Digcf.DigcfAllclasses | Digcf.DigcfDeviceinterface);
-            try {
-                SpDeviceInfoData devi = new SpDeviceInfoData();
-                devi.Size = Marshal.SizeOf(devi);
-                StringBuilder by = new StringBuilder();
-
-                uint zzz = 0;
-                while (result) {
-                    result = SetupDiEnumDeviceInfo(hDevInfo,deviceSerialNumber,ref devi);
-                    if (result) {
-                        resultflag = SetupDiGetDeviceRegistryProperty(hDevInfo,ref devi,SPDRP.SPDRP_DRIVER,
-                          0,by,2048,zzz);
-                        if (!pid.Contains(by.ToString())) {
-                            resultflag = SetupDiRemoveDevice(hDevInfo,ref devi);
-                            s++;
-                        }
-                    }
-                    deviceSerialNumber++;
-                }
-            } catch (Exception) {
-            } finally {
-                SetupDiDestroyDeviceInfoList(hDevInfo);
+            // 将输入的十六进制字符串按空格分割成字符串数组
+            string[] ssArray = shex.Split(' ');
+            // 创建一个空的字节数组列表
+            var bytList = new List<byte>();
+            int i = 0;
+            foreach (var s in ssArray)
+            {  
+                //将十六进制的字符串转换成数值
+                bytList.Add(Convert.ToByte(s, 16));
+                i++;
             }
-            return s;
+            for (int j = i; j < length; j++)
+            {
+                bytList.Add(Convert.ToByte("0"));
+            }
+            return bytList.ToArray();
         }
-
-        #endregion 删除驱动
+       
     }
 }

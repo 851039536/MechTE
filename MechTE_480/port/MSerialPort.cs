@@ -9,12 +9,10 @@ namespace MechTE_480.port
     public class MSerialPort
     {
         private readonly SerialPort _serialPort;
-
         /// <summary>
         /// 事件，用于通知接收到的数据
         /// </summary>
         public event EventHandler<string> DataReceived;
-
         /// <summary>
         /// 对象初始化
         /// </summary>
@@ -29,12 +27,6 @@ namespace MechTE_480.port
             _serialPort = new SerialPort(portName, baudRate, parity, dataBits, stopBits);
             // 绑定数据接受监听事件
             _serialPort.DataReceived += SerialPort_DataReceived;
-
-            // 设置默认的串口属性，你可以根据需要进行修改
-            // serialPort.BaudRate = 9600;
-            // serialPort.DataBits = 8;
-            // serialPort.StopBits = StopBits.One;
-            // serialPort.Parity = Parity.None;
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -42,7 +34,6 @@ namespace MechTE_480.port
             // 数据接收后需要干的活
             // 串口数据接收事件处理
             string data = _serialPort.ReadExisting();
-            Console.WriteLine(data);
             // 触发事件通知接收到的数据
             OnDataReceived(data);
         }

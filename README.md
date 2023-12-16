@@ -862,8 +862,6 @@ public static void Delete(string filePath)
 - 命名空间: MechTE_480.util
 - 类名:MString
 
-
-
 ### Reverse
 
 ```csharp
@@ -888,19 +886,139 @@ public static string Reverse(string str)
 public static string ClearSpaces(string str)
 ```
 
-### StringToByteArray
 
-将字符串转换为字节数组
+
+## MConvert
+
+处理数据类型转换，数制转换、编码转换相关的类
+
+- 命名空间: MechTE_480.util
+- 类名:MConvert
+
+### ConvertBase
 
 ```csharp
 /// <summary>
-/// 将字符串转换为字节数组
-/// 示例："ABCDEF" -> [ 0xAB, 0xCD, 0xEF ]
+/// 实现2,8,10,16进制数间的转换
 /// </summary>
-/// <param name="str"></param>
-/// <returns></returns>
-public static List<byte> StringToByteArray(string str)
+/// <param name="value">原值</param>
+/// <param name="from">原值的进制,只能是2,8,10,16四个值。</param>
+/// <param name="to">要转换到的目标进制，只能是2,8,10,16四个值。</param>
+public static string ConvertBase(string value, int from, int to)
 ```
+
+### StringToBytes
+
+```csharp
+/// <summary>
+/// 使用指定字符集将string转换成byte[]
+/// </summary>
+/// <param name="text">要转换的字符串</param>
+/// <param name="encoding">字符编码</param>
+public static byte[] StringToBytes(string text, Encoding encoding)
+```
+
+### BytesToString
+
+```csharp
+/// <summary>
+/// 将byte[]转换成string
+/// </summary>
+/// <param name="bytes">要转换的字节数组</param>
+/// <param name="encoding">字符编码</param>
+public static string BytesToString(byte[] bytes, Encoding encoding)
+```
+
+### BytesToInt32
+
+```csharp
+/// <summary>
+/// 将byte[]转换成int
+/// </summary>
+/// <param name="data">需要转换成整数的byte数组</param>
+public static int BytesToInt32(byte[] data)
+```
+
+### HexToAscii
+
+```csharp
+/// <summary>
+/// 将16进制字符转为ASCII字符
+/// </summary>
+/// <param name="hex">16个数字（0-9和A-F）来表示</param>
+/// <returns></returns>
+public static string HexToAscii(string hex)
+```
+
+### AsciiToHex
+
+```csharp
+/// <summary>
+/// ASCII字符转为16进制字符
+/// </summary>
+/// <param name="name"></param>
+/// <returns></returns>
+public static string AsciiToHex(string name)
+```
+
+### HexStrToAsciiHexStr
+
+```cs
+/// <summary>
+/// 将16进制字符转为ASCII16进制字符
+/// </summary>
+/// <param name="hexStrings">16进制字符</param>
+/// <returns>示例：01 &gt; 30 31</returns>
+public static string HexStrToAsciiHexStr(string hexStrings)
+```
+
+### StringToByteArray
+
+```csharp
+ /// <summary>
+ /// 将字符串转换为字节数组
+ /// 示例："ABCDEF" -> [ 0xAB, 0xCD, 0xEF ]
+ /// </summary>
+ /// <param name="str"></param>
+ /// <returns></returns>
+ public static List<byte> StringToByteArray(string str)
+```
+
+### NumberStrToIntArray
+
+```csharp
+/// <summary>
+/// 将数字类型字符串转int数组
+/// </summary>
+/// <param name="ar">数字字符用空格分割</param>
+/// <returns></returns>
+public static int[] NumberStrToIntArray(string ar)
+```
+
+### ByteToHex
+
+```csharp
+/// <summary>
+/// Byte数组转16进制字符串
+/// </summary>
+/// <param name="bytes">Byte数组</param>
+/// <returns>16进制字符串</returns>
+public static string ByteToHex(byte[] bytes)
+```
+
+### ByteToHex
+
+```csharp
+/// <summary>
+/// 通过给定的索引，从字节数组中提取特定位置的字节，并将其转换为十六进制字符串
+/// </summary>
+/// <param name="bytes">Byte数组</param>
+/// <param name="index">Byte数组索引数组</param>
+/// <returns>16进制字符串</returns>
+public static string ByteToHex(byte[] bytes, string index)
+```
+
+
 
 ### StringToHidFormat
 
@@ -915,74 +1033,218 @@ public static List<byte> StringToByteArray(string str)
 public static string StringToHidFormat(string name)
 ```
 
-### GenerateNumberSequence
 
-生成数字字符串序列(传0,6 生成 0 1 2 3 4 5)
+
+
+
+## MAssert
+
+自定义断言类
+
+- 命名空间: MechTE_480.assert
+- 类名:MAssert
+
+### IsEmpty
 
 ```csharp
 /// <summary>
-/// 生成数字字符串序列(传0,6 生成 0 1 2 3 4 5)
+///  判断字符串是否为空,空等于true，抛出异常
 /// </summary>
-/// <param name="startNumber">序列中第一个整数的值</param>
-/// <param name="sequenceLength">生成的顺序总条数</param>
-/// <returns>string</returns>  
-public static string GenerateNumberSequence(int startNumber, int sequenceLength)
+/// <param name="str"></param>
+/// <param name="errMsg"></param>
+public static void IsEmpty(string str, string errMsg)
 ```
 
-
-
-### 启动文件/程序
-
-类名 **MechCmd**
-
-执行cmd 程序 网站等...
+### Assert
 
 ```csharp
-//执行Shell命令
-StartShell(string cmd)  >> StartShell("notepad");
-//执行bat文件
-StartBat(string cmd) >> StartBat(_currentPath + @"\unload.bat");
-//启动Windows应用/网站
-StartApp(string appName) >> StartApp(@"D:\\software\Code.exe");
+/// <summary>
+/// 自定义断言方法， result == true 抛出异常
+/// </summary>
+/// <param name="result">bool</param>
+/// <param name="errMsg">错误信息</param>
+/// <remarks>系统断言不能在 Release 版保留，用这个方法替代</remarks>
+// ReSharper disable once MemberCanBePrivate.Global
+public static void Assert(bool result, string errMsg)
+    
+/// <summary>
+/// 自定义断言方法， func() == true 抛出异常    
+/// </summary>
+/// <param name="func"></param>
+/// <param name="errMsg"></param>
+/// <remarks>系统断言不能在 Release 版保留，用这个方法替代</remarks>
+public static void Assert(Func<bool> func, string errMsg)
+    
+/// <summary>
+/// 直接报错误提示
+/// </summary>
+/// <param name="errMsg"></param>
+/// <exception cref="Exception"></exception
+public static void Assert( string errMsg)
 ```
 
 
 
-### 数据转换/处理
+## MProcess
 
-类名 **MechConvert**
+使用进程调用cmd命令或程序
 
-处理数据类型转换，数制转换、编码转换相关的类
+- 命名空间: MechTE_480.process
+- 类名:MProcess
+
+### Shell
 
 ```csharp
-//补足位数:指定字符串的固定长度，如果字符串小于固定长度， 则在字符串的前面补足零，可设置的固定长度最大为9位
-RepairZero(string text, int totalLength) >> RepairZero("test",9);
-
-//进制数间的转换。ConvertBase("15",10,16)表示将十进制数15转换为16进制的数。
-ConvertBase(string value, int from, int to) >> ConvertBase("15",10,16)
-    
-//将string转换成byte[]
-StringToBytes(string text, Encoding encoding) 
-    
-//将byte[]转换成string
-BytesToString(byte[] bytes, Encoding encoding)z
-
-//将byte[]转换成int
-BytesToInt32(byte[] data)   
-    
-//图片转base64
-ImgToBase64(string imagePath)
-    
-//将16进制字符转为ASCII字符
-HexadecimalToASCII(string hex)
-
-//ASCII字符转为16进制字符
-ASCIIConvertsDecimal16(string name)
-    
-    
-//将16进制字符转为ASCII 16进制字符
-HexStrings2AsciiHexStrings(string hexStrings)
+///  <summary>
+/// 执行Shell
+///  </summary>
+///  <param name="cmd">Shell程序命令</para
+public static void Shell(string cmd)
 ```
+
+### Bat
+
+```csharp
+/// <summary>
+/// 执行bat文件
+/// </summary>
+/// <param name="cmd"></param>
+public static void Bat(string cmd)
+```
+
+### StartApp
+
+```csharp
+/// <summary>
+/// 启动应用网站
+/// </summary>
+/// <param name="appName">/程序路径</param>
+/// <returns>bool</returns>
+public static bool StartApp(string appName)
+```
+
+### StartApps
+
+```csharp
+/// <summary>
+/// 启动应用(管理员运行)
+/// </summary>
+/// <param name="appName"></param>
+public static void StartApps(string appName)
+```
+
+
+
+
+
+## MSerialPort
+
+串口工具类操作
+
+- 命名空间: MechTE_480.port
+- 类名:MSerialPort
+
+创建串口
+
+```csharp
+var mSerialPort = new MSerialPort(portName, 9600, Parity.None, 8, StopBits.One);
+```
+
+### GetPortName
+
+```csharp
+/// <summary>
+/// 获取可用串口设备的名称数组
+/// </summary>
+public static string[] GetPortName()
+```
+
+### SendData
+
+```csharp
+ /// <summary>
+ /// 写字符串指令
+ /// </summary>
+ /// <param name="data"></param>
+ /// <exception cref="ApplicationException"></exception>
+ public void SendData(string data)
+     
+
+/// <summary>
+/// 写二进制指令
+/// </summary>
+/// <param name="data">如:byte[] s1 = { 0x55, 0x01, 0x32, 0x00, 0x00, 0x00, 0x01, 0x89 }</param>
+/// <param name="f">默认 0</param>
+/// <param name="l">字节数</param>
+/// <exception cref="ApplicationException"></exception>
+public void SendData(byte[] data, int f, int l)
+```
+
+### SendHexString
+
+```csharp
+/// <summary>
+/// 使用16进制字符串发送数据
+/// </summary>
+/// <param name="hexString"></param>
+public void SendHexString(string hexString)
+```
+
+
+
+## MNetHelper
+
+网络工具类
+
+- 命名空间: MechTE_480.network
+- 类名:MNetHelper
+
+### GetAddressIp
+
+```csharp
+/// <summary>
+/// 获取本地IP
+/// </summary>
+/// <returns></returns>
+public static string GetAddressIp()
+```
+
+### GetValidPort
+
+```csharp
+/// <summary>
+/// 检查设置的端口号是否正确，并返回正确的端口号,无效端口号返回-1。
+/// </summary>
+/// <param name="port">设置的端口号</param>        
+public static int GetValidPort(string port)
+```
+
+### StringToIpAddress
+
+```csharp
+ /// <summary>
+ /// 将字符串形式的IP地址转换成IPAddress对象
+ /// </summary>
+ /// <param name="ip">字符串形式的IP地址</param>        
+ public static IPAddress StringToIpAddress(string ip)
+```
+
+### GetHostName
+
+```csharp
+/// <summary>
+/// 获取本机的计算机名
+/// </summary>
+public static string GetHostName()
+```
+
+
+
+## MHid
+
+## MUsb
+
+
 
 
 

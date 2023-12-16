@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MechTE_480.Hid;
+using MHid = MechTE_480.port.hid.MHid;
 
 namespace MechTE_480.btnForm
 {
@@ -19,7 +19,7 @@ namespace MechTE_480.btnForm
         /// <param name="readData">按键操作对应指令返回值</param>
         /// <param name="name">按键操作对应窗口名</param>
         /// <returns></returns>
-        public bool ButtonTest(MechHID command,Action action,string readData,string name)
+        public bool ButtonTest(MHid command,Action action,string readData,string name)
         {
             var flag = true;
             Task.Run(() =>

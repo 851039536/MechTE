@@ -5,12 +5,12 @@ using System.Threading;
 namespace MechTE_480.port
 {
     /// <summary>
-    /// 调节32路继电器类
+    /// 32路继电器类(定制不通用)
     /// </summary>
-    public static class MPCBA_32
+    public static class MRelay32
     {
         #region 
-        private static readonly byte[] A = { 0x55, 0x01, 0x13, 0x00, 0x00, 0x00, 0x00, 0x69 };
+        private static readonly byte[] SA = { 0x55, 0x01, 0x13, 0x00, 0x00, 0x00, 0x00, 0x69 };
         private static readonly byte[] S1 = { 0x55, 0x01, 0x32, 0x00, 0x00, 0x00, 0x01, 0x89 };
         private static readonly byte[] S2 = { 0x55, 0x01, 0x32, 0x00, 0x00, 0x00, 0x02, 0x8a };
         private static readonly byte[] S3 = { 0x55, 0x01, 0x32, 0x00, 0x00, 0x00, 0x03, 0x8b };
@@ -47,14 +47,13 @@ namespace MechTE_480.port
         /// <summary>
         /// 关闭的指令
         /// </summary>
-        private static readonly byte[] Off = { 0x55, 0x01, 0x31, 0x00, 0x00, 0x00, 0x00, 0x87 };
+        private static readonly byte[] SOff = { 0x55, 0x01, 0x31, 0x00, 0x00, 0x00, 0x00, 0x87 };
         
         #endregion
         /// <summary>
         /// 判断存储的容器
         /// </summary>
         private static string[] _vessel;
-
         
         /// <summary>
         /// 启动指定模板-32
@@ -66,12 +65,11 @@ namespace MechTE_480.port
         {
             try
             {
-                // SerialPort port = new SerialPort(portName);
                 var mSerialPort = new MSerialPort(portName, 9600, Parity.None, 8, StopBits.One);
                 string[] ch = number.Split('.');
                 if (_vessel == null)
                 {
-                    mSerialPort.SendData(A, 0, A.Length);
+                    mSerialPort.SendData(SA, 0, SA.Length);
                 }
                 else //第二次下指令将会关闭之前开过的通道
                 {
@@ -89,11 +87,14 @@ namespace MechTE_480.port
                         {
                             if (item == "") continue;
                             Thread.Sleep(2);
-                            Off[6] = (byte)(Convert.ToInt16(item));
-                            Off[7] = (byte)(Off[0] + Off[1] + Off[2] + Off[3] + Off[4] + Off[5] + Off[6]);
-                            mSerialPort.SendData(Off, 0, Off.Length);
+                            SOff[6] = (byte)(Convert.ToInt16(item));
+                            SOff[7] = (byte)(SOff[0] + SOff[1] + SOff[2] + SOff[3] + SOff[4] + SOff[5] + SOff[6]);
+                            mSerialPort.SendData(SOff, 0, SOff.Length);
                         }
-                        catch { }
+                        catch
+                        {
+                            // ignored
+                        }
                     }
                 }
                 //下指令开通通道
@@ -103,7 +104,7 @@ namespace MechTE_480.port
                     Thread.Sleep(5);
                     switch (item)
                     {
-                        case "0": mSerialPort.SendData(A, 0, A.Length); break;
+                        case "0": mSerialPort.SendData(SA, 0, SA.Length); break;
                         case "1": mSerialPort.SendData(S1, 0, S1.Length); break;
                         case "2": mSerialPort.SendData(S2, 0, S2.Length); break;
                         case "3": mSerialPort.SendData(S3, 0, S3.Length); break;

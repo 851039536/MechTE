@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="assert\MAssert.cs" />
     <Compile Include="files\MFileConfig.cs" />
     <Compile Include="files\MFile.cs" />
     <Compile Include="btnForm\MButton.cs" />
@@ -69,25 +70,23 @@
     <Compile Include="ini\MIni.cs" />
     <Compile Include="ini\MIniConfig.cs" />
     <Compile Include="merryDll\MTemplate.cs" />
-    <Compile Include="usb\BaseConversion.cs" />
-    <Compile Include="usb\Config.cs" />
-    <Compile Include="usb\Handles.cs" />
-    <Compile Include="usb\MechHID.cs" />
-    <Compile Include="usb\MechUSB.cs" />
-    <Compile Include="usb\USB.cs" />
-    <Compile Include="MECH\MechUtils.cs" />
+    <Compile Include="port\hid\MHid.cs" />
+    <Compile Include="port\hid\MHidConfig.cs" />
+    <Compile Include="port\hid\MHidHandle.cs" />
+    <Compile Include="port\usb\MUsb.cs" />
     <Compile Include="merryDll\IMerryDll.cs" />
-    <Compile Include="network\NetHelper.cs" />
+    <Compile Include="network\MNetHelper.cs" />
     <Compile Include="network\SocketClient.cs" />
     <Compile Include="network\SocketServer.cs" />
-    <Compile Include="order\Config.cs" />
-    <Compile Include="order\MechProcess.cs" />
+    <Compile Include="process\MProcessConfig.cs" />
+    <Compile Include="process\MProcess.cs" />
     <Compile Include="port\MSerialPort.cs" />
-    <Compile Include="port\MPCBA_32.cs" />
+    <Compile Include="port\MRelay32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="util\MConvert.cs" />
-    <Compile Include="util\MeasureDuration.cs" />
+    <Compile Include="util\MMeasure.cs" />
     <Compile Include="util\MString.cs" />
+    <Compile Include="util\MUtil.cs" />
     <Compile Include="windows\Config.cs" />
     <Compile Include="windows\MechWin.cs" />
     <Compile Include="windows\MMouseControl.cs" />
@@ -106,7 +105,6 @@
     <Content Include="bin\Debug\merge\RestSharp.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assert\" />
     <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

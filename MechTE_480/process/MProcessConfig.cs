@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace MechTE_480.Order
+namespace MechTE_480.process
 {
     /// <summary>
     /// cmd包装类
     /// </summary>
-    public partial class MechProcess
+    public partial class MProcess
     {
         /// <summary>
         /// 执行多条cmd.exe命令
@@ -107,5 +107,39 @@ namespace MechTE_480.Order
         {
             return StartApp(appName,null,style);
         }
+        
+        /// <summary>
+        /// 启动外部应用程序
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="arguments"></param>
+        /// <param name="style"></param>
+        /// <returns></returns>
+        private static bool StartApp(string appName,string arguments,ProcessWindowStyle style)
+        {
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = appName,
+                    Arguments = arguments,
+                    WindowStyle = style
+                }
+            };
+
+            try
+            {
+                process.Start();
+                process.WaitForExit();
+                return true;
+            } catch
+            {
+                return false;
+            } finally
+            {
+                process.Dispose();
+            }
+        }
+        
     }
 }
