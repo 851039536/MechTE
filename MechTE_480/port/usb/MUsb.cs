@@ -53,7 +53,7 @@ namespace MechTE_480.port.usb
         }
 
         /// <summary>
-        /// 检测USB指定装置是否存在
+        /// 检测USB播放装置是否存在
         /// </summary>
         /// <param name="deviceName">装置名称(DeviceID:PID_A527)</param>
         /// <returns></returns>
@@ -71,5 +71,6 @@ namespace MechTE_480.port.usb
             }
             return false;
         }
+        
     }
 }

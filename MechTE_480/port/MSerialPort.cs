@@ -13,6 +13,7 @@ namespace MechTE_480.port
         /// 事件，用于通知接收到的数据
         /// </summary>
         public event EventHandler<string> DataReceived;
+        
         /// <summary>
         /// 对象初始化
         /// </summary>

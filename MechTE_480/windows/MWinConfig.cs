@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Threading;
 
 namespace MechTE_480.Windows
 {
-    public partial class MechWin
+    public partial class MWin
     {
+        
+        
+        [DllImport("wininet.dll")]
+        private static extern bool InternetGetConnectedState(int description, int reservedValue);
         
         /// <summary>
         /// Windows操作系统提供的一个函数，用于在应用程序中显示消息框。消息框可以用于显示警告、错误、提示等信息，并与用户进行交互。

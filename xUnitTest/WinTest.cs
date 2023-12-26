@@ -18,7 +18,7 @@ namespace xUnit_Test
         [Fact]
         public void MesBoxs()
         {
-            var data = MechWin.MesBoxs("12", "123", 1);
+            var data = MWin.MesBoxs("12", "123", 1);
             Assert.Equal(1, data);
         }
 
@@ -26,52 +26,52 @@ namespace xUnit_Test
         [Fact]
         public void GetMasterVolume()
         {
-            var data = MechWin.GetMasterVolume();
-            _msg.WriteLine(data.ToString(CultureInfo.InvariantCulture));
+            var data = MWin.GetMasterVolume();
+            _msg.WriteLine(data.ToString());
             Assert.Equal(data, data);
         }
 
         [Fact]
         public void SetMasterVolume()
         {
-            MechWin.SetMasterVolume(20);
-            var data = MechWin.GetMasterVolume();
-            _msg.WriteLine(data.ToString(CultureInfo.InvariantCulture));
+            MWin.SetMasterVolume(20);
+            var data = MWin.GetMasterVolume();
+            _msg.WriteLine(data.ToString());
             Assert.Equal(data, data);
         }
 
         [Fact]
         public void SetMasterVolumeMute()
         {
-            MechWin.SetMasterVolumeMute(true);
-            var data = MechWin.GetMasterVolume();
-            _msg.WriteLine(data.ToString(CultureInfo.InvariantCulture));
+            MWin.SetMasterVolumeMute(true);
+            var data = MWin.GetMasterVolume();
+            _msg.WriteLine(data.ToString());
             Assert.Equal(data, data);
         }
 
         [Fact]
         public void OpenA2Dp()
         {
-            MechWin.OpenA2DP();
+            MWin.OpenA2Dp();
         }
 
         [Fact]
         public void EnterHfp()
         {
-            var data = MechWin.EnterHfp();
+            var data = MWin.EnterHfp();
             Assert.True(data);
         }
 
         [Fact]
         public void CloseRunDll()
         {
-            MechWin.CloseRunDll();
+            MWin.CloseRunDll();
         }
 
         [Fact]
         public void IsConnectInternet()
         {
-            var ret = MechWin.PingIpOrDomainName("www.cnblogs.com");
+            var ret = MWin.PingIpOrDomainName("www.cnblogs.com");
             Assert.True(ret);
         }
         

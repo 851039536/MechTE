@@ -6,7 +6,7 @@ namespace MechTE_480.Windows
     /// <summary>
     /// 系统音频设置
     /// </summary>
-    public partial class MechWin
+    public partial class MWin
     {
         #region Master Volume Manipulation
 

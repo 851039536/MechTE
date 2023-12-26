@@ -40,7 +40,7 @@ call $(TargetPath) merge.bat
 
 每次生成项目时会调用项目下的merge.bat , 控制台输出ILMerge: Done.等于合并成功
 
-# 功能实现
+# 功能
 
 ## MFile
 
@@ -1035,6 +1035,39 @@ public static string StringToHidFormat(string name)
 
 
 
+## MMeasure
+
+测量代码执行时间
+
+- 命名空间: MechTE_480.Util
+- 类名:MMeasure
+
+```csharp
+/// <summary>
+/// 测量代码的执行时间
+/// </summary>
+/// <param name="callback"></param>
+public MMeasure(Action<TimeSpan> callback)
+```
+
+**单元测试**
+
+```csharp
+[Fact]
+public void MMeasure()
+{
+    using (new MMeasure(duration => _msg.WriteLine($"执行时间：{duration}")))
+    {
+        // 在这里编写需要测量执行时间的代码
+        for (int i = 0; i < 5; i++)
+        {
+            // 一些耗时的操作
+            Thread.Sleep(1000);
+        }
+    }
+}      
+```
+
 
 
 ## MAssert
@@ -1133,7 +1166,14 @@ public static bool StartApp(string appName)
 public static void StartApps(string appName)
 ```
 
+### RestartAsAdministrator
 
+```csharp
+ /// <summary>
+ /// 重新启动应用程序并请求管理员权限
+ /// </summary>
+ public static void RestartAsAdministrator()
+```
 
 
 
@@ -1242,77 +1282,291 @@ public static string GetHostName()
 
 ## MHid
 
+
+
 ## MUsb
 
+USB端口类
 
+- 命名空间: MechTE_480.port.usb
+- 类名:MUsb
 
-
-
-### TSystems
-
-系统类
-
-- 类名： TSystems
-
-- 调用方式：TSystems.方法
-
-- 支持版本: **MechTE_452**
-
-| 描述             | 函数                 | 调用示例             |
-| ---------------- | -------------------- | -------------------- |
-| 读取当前系统信息 | GetWindows           | GetWindows();        |
-| 获得本机的进程   | GetProcesses         | GetProcesses();      |
-| 获取当前进程信息 | GetCurrentProcess    | GetCurrentProcess(); |
-| 检查重复启动     | CheckProcessesByName |                      |
-| 获取系统驱动器   | GetLogicalDrivess    |                      |
-
-
-
-### MechUtils
-
-通用工具类
-
-- 类名： MechUtils
-
-- 支持版本: **MechTE_452,480**
-
-| 描述                                     | 函数                                   | 调用示例                    |
-| ---------------------------------------- | -------------------------------------- | --------------------------- |
-| 生成数字字符串序列                       | GenerateNumberStringSequence           | 生成-> 0 01 02 03...        |
-| 判断字符串是否为空,空等于true，抛出异常  | IsEmptyAssert                          |                             |
-| 自定义断言方法， result == true 抛出异常 | Assert(bool result, string errMsg)     |                             |
-| 自定义断言方法， func() == true 抛出异常 | void CheckProcessesByName(string name) |                             |
-| 获取系统驱动器                           | Assert(Func<bool> func, string errMsg) |                             |
-| 开启音频内部装置窗体显示到桌面           | EnterHfp                               |                             |
-| 检测进程关掉音频内部装置                 | QuitHfp                                |                             |
-| 将字符转换HID指令格式                    | CharacterConversionHidFormat           | 0021032334 > 00 21 03 23 34 |
-
-### ProgressBars
-
-进度条
-
-- 类名： ProgressBars
-- 支持版本: **MechTE_480**
-
-基础调用
+### GetDeviceName
 
 ```csharp
-        private static ProgressBars msgbox;
+/// <summary>
+/// 装置USB装置名称
+/// </summary>
+/// <param name="vendorId">供应商标识VID</param>
+/// <param name="productId">产品编号PID</param>
+/// <param name="names">匹配装置名称</param>
+/// <returns></returns>
+public static string GetDeviceName(ushort vendorId, ushort productId, string names)
+```
 
+### IsDevice
 
-            msgbox = new ProgressBars("name", 50);
-            msgbox.ExecuteTest(() =>
-            {
-                Thread.Sleep(2000);
-                Console.WriteLine(msgbox.Ide = true);
-            });
+```csharp
+/// <summary>
+/// 检测USB播放装置是否存在
+/// </summary>
+/// <param name="deviceName">装置名称(DeviceID:PID_A527)</param>
+/// <returns></returns>
+public static bool IsDevice(string deviceName)
 ```
 
 
 
+## MUtil
+
+通用工具类
+
+- 命名空间: MechTE_480.util
+- 类名:MUtil
+
+### Execute
+
+```csharp
+/// <summary>
+/// 检测传入的方法是否超时
+/// </summary>
+/// <param name="timeoutMethod">方法</param>
+/// <param name="param">方法的参数</param>
+/// <param name="result">执行结果</param>
+/// <param name="timeout">超时时间</param>
+/// <typeparam name="T">方法的参数类型</typeparam>
+/// <typeparam name="TR">执行结果的类型</typeparam>
+/// <returns>是否超时</returns>
+public static bool Execute<T, TR>(
+    TimeOutDelegate<T, TR> timeoutMethod, T param, out TR result, TimeSpan timeout)
+```
+
+单元测试
+
+```csharp
+ // 示例方法，接受一个字符串参数，并返回一个字典
+ public static Dictionary<Guid, string> Test(string sourceString)
+ {
+     // 将字符串转换为字典，每个字符作为键，使用Guid作为值
+     var result = sourceString.ToDictionary(
+         character => Guid.NewGuid(),
+         character => character.ToString(CultureInfo.InvariantCulture));
+     // 模拟耗时操作，暂停4秒
+     Thread.Sleep(4000);
+     
+     return result;
+ }
+ [Fact]
+ public void Execute()
+ {
+     Dictionary<Guid, string> result;
+     
+     // 调用TimeoutFunction类的Execute方法执行带有超时检查的方法
+     // Test方法是一个示例方法，它接受一个字符串参数，并返回一个字典
+     // "Hello, World!"是传递给Test方法的参数
+     // result是用于接收Test方法的返回值的字典
+     // TimeSpan.FromSeconds(3)表示超时时间为3秒
+     // Execute方法返回一个布尔值，表示是否超时
+    var ret=   MUtil.Execute(Test, "Hello, World!", out result, TimeSpan.FromSeconds(3));
+     _msg.WriteLine(ret.ToString());
+ }      
+```
 
 
 
+### WaitSomething
+
+```csharp
+ /// <summary>
+ /// 在指定的时间内等待某个函数的执行结果,调用 bool result = WaitSomething(5000, 1000, () =>{})
+ /// </summary>
+ /// <param name="timeout">表示等待的最大时间，以毫秒为单位</param>
+ /// <param name="freq">表示等待的频率，即每隔多少毫秒检查一次函数的执行结果</param>
+ /// <param name="func">表示要等待的函数，它是一个返回布尔值的委托</param>
+ /// <returns></returns>
+ public static bool WaitSomething(int timeout, int freq, Func<bool> func)
+```
+
+### GetCurrentProgramDirectory
+
+```csharp
+/// <summary>
+/// 获取当前程序根目录地址(D:\File\bin\Debug)
+/// </summary>
+/// <returns></returns>
+public static string GetCurrentProgramDirectory()
+```
+
+### GenerateNumberSequence
+
+```csharp
+/// <summary>
+/// 生成数字字符串序列(传0,6生成 0 1 2 3 4 5)
+/// </summary>
+/// <param name="startNumber">序列中第一个整数的值</param>
+/// <param name="sequenceLength">生成的顺序总条数</param>
+/// <returns>string</returns>  
+public static string GenerateNumberSequence(int startNumber, int sequenceLength)
+```
 
 
 
+## MWin
+
+系统相关API
+
+- 命名空间: MechTE_480.Windows
+- 类名:MWin
+
+### IsConnectInternet
+
+```csharp
+/// <summary>
+/// 用于检查网络是否可以连接互联网
+/// </summary>
+/// <returns></returns>
+public static bool IsConnectInternet()
+```
+
+### PingIpOrDomainName
+
+```csharp
+/// <summary>
+/// 用于检查IP地址或域名(www.cnblogs.com)是否可以使用TCP/IP协议访问(使用Ping命令),true表示Ping成功,false表示Ping失败
+/// </summary>
+/// <param name="strIpOrDName">输入参数,表示IP地址或域名</param>
+/// <returns></returns>
+public static bool PingIpOrDomainName(string strIpOrDName)
+```
+
+单元测试
+
+```csharp
+[Fact]
+public void IsConnectInternet()
+{
+    var ret = MWin.PingIpOrDomainName("www.cnblogs.com");
+    Assert.True(ret);
+}
+```
+
+### SetMasterVolume
+
+```csharp
+ /// <summary>
+ /// 设置系统音量
+ /// </summary>
+ public static void SetMasterVolume(float newLevel)
+```
+
+单元测试
+
+```csharp
+ [Fact]
+ public void SetMasterVolume()
+ {
+     MWin.SetMasterVolume(20);
+     var data = MWin.GetMasterVolume();
+     _msg.WriteLine(data.ToString());
+     Assert.Equal(data, data);
+ }
+```
+
+### GetMasterVolume
+
+```csharp
+ /// <summary>
+ /// 返回系统音量(1~100)
+ /// </summary>
+ public static float GetMasterVolume()
+```
+
+### SetMasterVolumeMute
+
+```csharp
+/// <summary>
+/// 设置系统静音
+/// </summary>
+/// <param name="isMuted"></param>
+public static void SetMasterVolumeMute(bool isMuted)
+```
+
+### MesBoxs
+
+```csharp
+ /// <summary>
+ /// 弹出提示
+ /// </summary>
+ /// <param name="text">内容描述</param>
+ /// <param name="caption">标题</param>
+ public static void MesBoxs(string text, string caption)
+     
+ /// <summary>
+ /// 弹出提示,传参
+ /// </summary>
+ /// <param name="text">内容描述</param>
+ /// <param name="caption">标题</param>
+ /// <param name="options">1:确认/取消,2:终止/重试/忽略,3:是/否/取消,4:是/否,5:重试/取消,6:取消/重试/继续</param
+ /// <returns></returns>
+ public static int MesBoxs(string text, string caption, int options)
+```
+
+### OpenA2Dp
+
+```csharp
+ /// <summary>
+ /// 启动播放装置
+ /// </summary>
+ /// <returns></returns>
+ public static void OpenA2Dp()
+```
+
+
+
+### EnterHfp
+
+
+
+```csharp
+ /// <summary>
+ /// 开启音频设置显示到桌面
+ /// </summary>
+ /// <returns></returns>
+ public static bool EnterHfp()
+```
+
+### OpenDevice
+
+```csharp
+/// <summary>
+/// 开启系统设备管理器
+/// </summary>
+public static void OpenDevice()
+```
+
+### CloseRunDll
+
+```csharp
+/// <summary>
+/// 清除rundll32进程
+/// </summary>
+/// <param name="processName">rundll32</param>
+/// <returns>bool</returns>
+public static bool CloseRunDll(string processName = "rundll32")
+```
+
+### IsUserAdministrator
+
+```csharp
+/// <summary>
+/// 判断当前程序是否是管理员
+/// </summary>
+/// <returns></returns>
+public static bool IsUserAdministrator()
+```
+
+
+
+## MXml
+
+定制类

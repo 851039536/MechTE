@@ -59,7 +59,7 @@ namespace xUnit_Test
         [Fact]
         public void MMeasure()
         {
-            using (new MMeasure(duration => _msg.WriteLine($"代码执行时间：{duration}")))
+            using (new MMeasure(duration => _msg.WriteLine($"执行时间：{duration}")))
             {
                 // 在这里编写需要测量执行时间的代码
                 for (int i = 0; i < 5; i++)

@@ -22,11 +22,11 @@ namespace MechTE_480.util
         /// <summary>
         /// 检测传入的方法是否超时
         /// </summary>
-        /// <param name="timeoutMethod">目标方法</param>
-        /// <param name="param">目标方法的参数</param>
+        /// <param name="timeoutMethod">方法</param>
+        /// <param name="param">方法的参数</param>
         /// <param name="result">执行结果</param>
         /// <param name="timeout">超时时间</param>
-        /// <typeparam name="T">目标方法的参数类型</typeparam>
+        /// <typeparam name="T">方法的参数类型</typeparam>
         /// <typeparam name="TR">执行结果的类型</typeparam>
         /// <returns>是否超时</returns>
         public static bool Execute<T, TR>(
@@ -69,39 +69,16 @@ namespace MechTE_480.util
         }
 
         /// <summary>
-        /// 重新启动应用程序并请求管理员权限
-        /// </summary>
-        public static void RestartAsAdministrator()
-        {
-            var startInfo = new ProcessStartInfo
-            {
-                UseShellExecute = true,
-                WorkingDirectory = Environment.CurrentDirectory
-            };
-            var processModule = Process.GetCurrentProcess().MainModule;
-            if (processModule != null) startInfo.FileName = processModule.FileName;
-            startInfo.Verb = "runas"; // 请求管理员权限
-            try
-            {
-                Process.Start(startInfo);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(@"无法以管理员权限重新启动应用程序：" + ex.Message);
-            }
-        }
-
-        /// <summary>
         /// 获取当前程序根目录地址(D:\File\bin\Debug)
         /// </summary>
         /// <returns></returns>
-        public static string GetTheCurrentProgramAndDirectory()
+        public static string GetCurrentProgramDirectory()
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
 
         /// <summary>
-        /// 生成数字字符串序列(传0,6 生成 0 1 2 3 4 5)
+        /// 生成数字字符串序列(传0,6生成 0 1 2 3 4 5)
         /// </summary>
         /// <param name="startNumber">序列中第一个整数的值</param>
         /// <param name="sequenceLength">生成的顺序总条数</param>

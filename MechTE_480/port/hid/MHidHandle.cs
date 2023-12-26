@@ -11,8 +11,8 @@ namespace MechTE_480.port.hid
         /// <summary>
         /// 获取双通道装置路径,传入参数不能为空
         /// </summary>
-        /// <param name="pid01"></param>
-        /// <param name="vid01"></param>
+        /// <param name="pid01">如:a520</param>
+        /// <param name="vid01">如:413c</param>
         /// <param name="pid02"></param>
         /// <param name="vid02"></param>
         /// <returns></returns>
@@ -45,8 +45,8 @@ namespace MechTE_480.port.hid
         /// <summary>
         /// 获取单通道装置路径
         /// </summary>
-        /// <param name="pid01"></param>
-        /// <param name="vid01"></param>
+        /// <param name="pid01">如:a520</param>
+        /// <param name="vid01">如:413c</param>
         /// <returns></returns>
         public bool GetHandle(string pid01, string vid01)
         {
@@ -75,8 +75,8 @@ namespace MechTE_480.port.hid
         /// <summary>
         /// 获取单通道装置路径
         /// </summary>
-        /// <param name="pid"></param>
-        /// <param name="vid"></param>
+        /// <param name="pid">如:a520</param>
+        /// <param name="vid">如:413c</param>
         /// <param name="col">指定col通道 , 特殊情况匹配pid</param>
         /// <returns></returns>
         public bool GetHandle(string pid, string vid, string col)
@@ -94,6 +94,8 @@ namespace MechTE_480.port.hid
             }
             return flag;
         }
+        
+        
 
         /// <summary>
         ///  释放所有通道句柄和路径

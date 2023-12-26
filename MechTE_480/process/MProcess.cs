@@ -19,6 +19,7 @@ namespace MechTE_480.process
         {
             ExeCommand(new[] { cmd });
         }
+
         /// <summary>
         /// 执行bat文件
         /// </summary>
@@ -27,10 +28,11 @@ namespace MechTE_480.process
         {
             ExeBat(cmd);
         }
-        
+
         #endregion
 
         #region 启动应用网站
+
         /// <summary>
         /// 启动应用网站
         /// </summary>
@@ -38,11 +40,11 @@ namespace MechTE_480.process
         /// <returns>bool</returns>
         public static bool StartApp(string appName)
         {
-            return StartApp(appName,ProcessWindowStyle.Hidden);
+            return StartApp(appName, ProcessWindowStyle.Hidden);
         }
 
         /// <summary>
-        /// 启动应用(管理员运行)
+        /// 在程序目录下启动应用(管理员运行)
         /// </summary>
         /// <param name="appName"></param>
         public static void StartApps(string appName)
@@ -52,17 +54,42 @@ namespace MechTE_480.process
             {
                 UseShellExecute = true,
                 WorkingDirectory = Environment.CurrentDirectory,
-                FileName = MUtil.GetTheCurrentProgramAndDirectory() + appName,
+                FileName = MUtil.GetCurrentProgramDirectory() + appName,
                 Verb = "runas" // 请求管理员权限
             };
             try
             {
                 Process.Start(startInfo);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(@"无法以管理员权限重新启动应用程序：" + ex.Message);
             }
         }
+
         #endregion
+
+        /// <summary>
+        /// 重新启动应用程序并请求管理员权限
+        /// </summary>
+        public static void RestartAsAdministrator()
+        {
+            var startInfo = new ProcessStartInfo
+            {
+                UseShellExecute = true,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
+            var processModule = Process.GetCurrentProcess().MainModule;
+            if (processModule != null) startInfo.FileName = processModule.FileName;
+            startInfo.Verb = "runas"; // 请求管理员权限
+            try
+            {
+                Process.Start(startInfo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(@"无法以管理员权限重新启动应用程序：" + ex.Message);
+            }
+        }
     }
 }

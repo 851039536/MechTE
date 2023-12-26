@@ -87,8 +87,8 @@
     <Compile Include="util\MMeasure.cs" />
     <Compile Include="util\MString.cs" />
     <Compile Include="util\MUtil.cs" />
-    <Compile Include="windows\Config.cs" />
-    <Compile Include="windows\MechWin.cs" />
+    <Compile Include="windows\MWinConfig.cs" />
+    <Compile Include="windows\MWin.cs" />
     <Compile Include="windows\MMouseControl.cs" />
     <Compile Include="windows\SystemVolume.cs" />
     <Compile Include="xml\MXml.cs" />

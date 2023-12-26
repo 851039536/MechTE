@@ -44,6 +44,7 @@ namespace MechTE_480.port.hid
                 return false;
             }
         }
+        
         /// <summary>
         /// 使用 getReport下指令
         /// </summary>

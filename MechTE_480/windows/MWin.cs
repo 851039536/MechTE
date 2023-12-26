@@ -10,14 +10,11 @@ namespace MechTE_480.Windows
     /// <summary>
     /// 系统相关API
     /// </summary>
-    public partial class MechWin
+    public partial class MWin
     {
-        [DllImport("wininet.dll")]
-        private static extern bool InternetGetConnectedState(int description, int reservedValue);
-        #region 方法一
-
+        
         /// <summary>
-        /// 用于检查网络是否可以连接互联网,true表示连接成功,false表示连接失败
+        /// 用于检查网络是否可以连接互联网
         /// </summary>
         /// <returns></returns>
         public static bool IsConnectInternet()
@@ -25,8 +22,6 @@ namespace MechTE_480.Windows
             const int description = 0;
             return InternetGetConnectedState(description, 0);
         }
-        #endregion 方法一
-        #region 方法二
 
         /// <summary>
         /// 用于检查IP地址或域名(www.cnblogs.com)是否可以使用TCP/IP协议访问(使用Ping命令),true表示Ping成功,false表示Ping失败
@@ -53,7 +48,6 @@ namespace MechTE_480.Windows
             }
         }
 
-        #endregion 方法二
 
         /// <summary>
         /// 设置系统音量
@@ -150,7 +144,7 @@ namespace MechTE_480.Windows
         /// 启动播放装置
         /// </summary>
         /// <returns></returns>
-        public static void OpenA2DP()
+        public static void OpenA2Dp()
         {
             RunDll("shell32.dll,Control_RunDLL mmsys.cpl @1");
         }
@@ -174,7 +168,7 @@ namespace MechTE_480.Windows
         }
 
         /// <summary>
-        /// 检测进程
+        /// 清除rundll32进程
         /// </summary>
         /// <param name="processName">rundll32</param>
         /// <returns>bool</returns>
