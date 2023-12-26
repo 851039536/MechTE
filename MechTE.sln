@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32519.111
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_452", "MechTE_452\MechTE_452.csproj", "{A3305449-A849-44FC-92A8-6D33D229E385}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE.Test", "MechTE.Test\MechTE.Test.csproj", "{8D027A6B-7599-4DDC-AE54-BC0566F14D57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnitTest", "xUnitTest\xUnitTest.csproj", "{4F2A56FB-0199-4A3A-925A-040E5B8624D6}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A3305449-A849-44FC-92A8-6D33D229E385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3305449-A849-44FC-92A8-6D33D229E385}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3305449-A849-44FC-92A8-6D33D229E385}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3305449-A849-44FC-92A8-6D33D229E385}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8D027A6B-7599-4DDC-AE54-BC0566F14D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8D027A6B-7599-4DDC-AE54-BC0566F14D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D027A6B-7599-4DDC-AE54-BC0566F14D57}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -89,7 +89,7 @@
     <Compile Include="util\MUtil.cs" />
     <Compile Include="windows\MWinConfig.cs" />
     <Compile Include="windows\MWin.cs" />
-    <Compile Include="windows\MMouseControl.cs" />
+    <Compile Include="windows\MMouse.cs" />
     <Compile Include="windows\SystemVolume.cs" />
     <Compile Include="xml\MXml.cs" />
     <Compile Include="xml\MXmlConfig.cs" />

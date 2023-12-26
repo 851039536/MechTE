@@ -8,24 +8,23 @@ namespace MechTE_480.windows
     /// <summary>
     /// 控制鼠标类
     /// </summary>
-    public class MMouseControl
+    public class MMouse
     {
         /// <summary>
         /// 鼠标移动
         /// </summary>
         /// <param name="location">窗体坐标（this.Location）</param>
-        /// <param name="offsetvalueX">X坐标偏移值</param>
-        /// <param name="offsetvalueY">Y坐标偏移值（this.Location）</param>
-        public static void MouseMove(Point location, int offsetvalueX, int offsetvalueY)
+        /// <param name="offSetValueX">X坐标偏移值</param>
+        /// <param name="offSetValueY">Y坐标偏移值（this.Location）</param>
+        public static void MouseMove(Point location, int offSetValueX, int offSetValueY)
         {
-            SetCursorPos(location.X + offsetvalueX, location.Y + offsetvalueY);
-            Thread.Sleep(10);
+            SetCursorPos(location.X + offSetValueX, location.Y + offSetValueY);
         }
         
         /// <summary>
         /// 鼠标左键点击
         /// </summary>
-        public void MouseLeftClick()
+        public static void MouseLeftClick()
         {
             mouse_event(LeftDown, 0, 0, 0, 0);
             Thread.Sleep(50);
@@ -34,7 +33,7 @@ namespace MechTE_480.windows
         /// <summary>
         /// 鼠标右键点击
         /// </summary>
-        public void MouseRightClick()
+        public static void MouseRightClick()
         {
             mouse_event(RightDown, 0, 0, 0, 0);
             Thread.Sleep(50);
@@ -43,7 +42,7 @@ namespace MechTE_480.windows
         /// <summary>
         /// 鼠标中键点击
         /// </summary>
-        public void MouseMiddleClick()
+        public static void MouseMiddleClick()
         {
             mouse_event(MiddleDown, 0, 0, 0, 0);
             Thread.Sleep(50);
