@@ -40,8 +40,7 @@ namespace MechTE_ContextMenu.Menu
             //设定菜单项显示文字
             var item = new ToolStripMenuItem("SW系统导航");
             var imgPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            //添加监听事件
-            // item.Click += Item_Click;
+
             //设置图像及位置
             item.Image = Image.FromFile(imgPath + @"/image/nav.png");
             item.ImageScaling = ToolStripItemImageScaling.None;
@@ -78,7 +77,7 @@ namespace MechTE_ContextMenu.Menu
             var identify = argStrings[1];
 
             //获取当前dll所在路径
-            var rootPath = GetRootPath();
+            var rootPath = Config.GetRootPath();
             //文件路径+文件名称组合
             var appFile = $@"{rootPath}\{fileName}";
             if (!File.Exists(appFile))
@@ -93,19 +92,6 @@ namespace MechTE_ContextMenu.Menu
             paths.Add(identify);
             var args = string.Join(" ", paths);
             Process.Start(appFile, args);
-        }
-
-        //获取当前dll所在路径
-        public string GetRootPath()
-        {
-            // 获取当前程序集的代码基路径
-            var codeBase = Assembly.GetExecutingAssembly().CodeBase;
-            // 创建一个UriBuilder对象，用于解析代码基路径
-            var uri = new UriBuilder(codeBase);
-            // 获取解析后的路径，并对路径中的特殊字符进行解码
-            var path = Uri.UnescapeDataString(uri.Path);
-            // 获取解析后的路径，并对路径中的特殊字符进行解码
-            return Path.GetDirectoryName(path);
         }
     }
 }

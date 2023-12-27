@@ -1,4 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.IO;
+using System.Reflection;
+using System;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace MechTE_ContextMenu.Menu
@@ -34,6 +37,22 @@ namespace MechTE_ContextMenu.Menu
             // section=配置节点名称，key=键名，temp=上面，path=路径
             GetPrivateProfileString(section, key, "", temp, 255, path);
             return temp.ToString();
+        }
+
+        /// <summary>
+        /// 获取当前dll所在路径
+        /// </summary>
+        /// <returns></returns>
+        public static string GetRootPath()
+        {
+            // 获取当前程序集的代码基路径
+            var codeBase = Assembly.GetExecutingAssembly().CodeBase;
+            // 创建一个UriBuilder对象，用于解析代码基路径
+            var uri = new UriBuilder(codeBase);
+            // 获取解析后的路径，并对路径中的特殊字符进行解码
+            var path = Uri.UnescapeDataString(uri.Path);
+            // 获取解析后的路径，并对路径中的特殊字符进行解码
+            return Path.GetDirectoryName(path);
         }
     }
 }

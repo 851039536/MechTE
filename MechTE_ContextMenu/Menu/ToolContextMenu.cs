@@ -70,7 +70,7 @@ namespace MechTE_ContextMenu.Menu
             var fileName = argStrings[0];
             var identify = argStrings[1];
             //获取当前dll所在路径
-            var rootPath = GetRootPath();
+            var rootPath =Config.GetRootPath();
             //文件路径+文件名称组合
             var appFile = $@"{rootPath}\{fileName}";
             if (!File.Exists(appFile))
@@ -87,17 +87,6 @@ namespace MechTE_ContextMenu.Menu
             Process.Start(appFile, args);
         }
 
-        //获取当前dll所在路径
-        public string GetRootPath()
-        {
-            // 获取当前程序集的代码基路径
-            var codeBase = Assembly.GetExecutingAssembly().CodeBase;
-            // 创建一个UriBuilder对象，用于解析代码基路径
-            var uri = new UriBuilder(codeBase);
-            // 获取解析后的路径，并对路径中的特殊字符进行解码
-            var path = Uri.UnescapeDataString(uri.Path);
-            // 获取解析后的路径，并对路径中的特殊字符进行解码
-            return Path.GetDirectoryName(path);
-        }
+      
     }
 }

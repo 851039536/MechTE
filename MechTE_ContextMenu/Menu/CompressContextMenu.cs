@@ -13,20 +13,13 @@ using SharpShell.SharpContextMenu;
 namespace MechTE_ContextMenu.Menu
 {
     // <summary>
-    // 文件上传
+    // 文件压缩包上传下载
     // </summary>
     [ComVisible(true)]
     //如果按文件类型，按以下设置
-    [COMServerAssociation(AssociationType.ClassOfExtension, ".zip", ".7z")]
+    [COMServerAssociation(AssociationType.ClassOfExtension,".zip",".7z")]
     [COMServerAssociation(AssociationType.Folder)]
-    //设置对全部文件和目录可用
-    // [COMServerAssociation(AssociationType.AllFiles), COMServerAssociation(AssociationType.Directory)]
-    // [COMServerAssociation(AssociationType.AllFiles)]
-    // [COMServerAssociation(AssociationType.Directory)]
-    // [COMServerAssociation(AssociationType.DesktopBackground)]
-    // [COMServerAssociation(AssociationType.DirectoryBackground)]
-    // [COMServerAssociation(AssociationType.Folder)]
-    public class CompressContextMenu : SharpContextMenu
+    public class CompressContextMenu : SharpContextMenu //继承SharpContextMenu 
     {
         /// <summary>
         /// 判断菜单是否需要被激活显示1
@@ -49,8 +42,6 @@ namespace MechTE_ContextMenu.Menu
             var item = new ToolStripMenuItem("SW文件传输");
 
             var imgPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            //添加监听事件
-            // item.Click += Item_Click;
             //设置图像及位置
             item.Image = Image.FromFile(imgPath + @"/image/zip.png");
             item.ImageScaling = ToolStripItemImageScaling.None;
@@ -59,17 +50,16 @@ namespace MechTE_ContextMenu.Menu
 
 
             //设置次级菜单
-            var subItemsInfo = new Dictionary<string, string>()
+            var subItemsInfo = new Dictionary<string,string>()
             {
                 { "上传(工程)", "DesktopMenu.exe,uploadingEng" },
                 { "上传(量产)无功能", "DesktopMenu.exe,xxx" },
-                // { "下载(工程)", "DesktopMenu.exe,downloadEng" },
-                // { "卸载", "DesktopMenu.exe,unload" }
             };
+
             foreach (var kv in subItemsInfo)
             {
-                var subItem = new ToolStripMenuItem(kv.Key, Image.FromFile(imgPath + @"/image/zip1.png"));
-                subItem.Click += (o, e) => { Item_Click(o, e, kv.Value); };
+                var subItem = new ToolStripMenuItem(kv.Key,Image.FromFile(imgPath + @"/image/zip1.png"));
+                subItem.Click += (o,e) => { Item_Click(o,e,kv.Value); };
                 item.DropDownItems.Add(subItem);
             }
 
@@ -79,8 +69,13 @@ namespace MechTE_ContextMenu.Menu
         }
 
 
-        //菜单动作
-        public void Item_Click(object sender, EventArgs e, string arg)
+        /// <summary>
+        /// 菜单动作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="arg"></param>
+        public void Item_Click(object sender,EventArgs e,string arg)
         {
             //分割,文件名和传递参数
             var argStrings = arg.Split(',');
@@ -89,12 +84,12 @@ namespace MechTE_ContextMenu.Menu
             var identify = argStrings[1];
 
             //获取当前dll所在路径
-            var rootPath = GetRootPath();
+            var rootPath = Config.GetRootPath();
             //文件路径+文件名称组合
             var appFile = $@"{rootPath}\{fileName}";
             if (!File.Exists(appFile))
             {
-                MessageBox.Show($"找不到程序路径:{Environment.NewLine}{appFile}", "出错了", MessageBoxButtons.OK);
+                MessageBox.Show($"找不到程序路径:{Environment.NewLine}{appFile}","出错了",MessageBoxButtons.OK);
                 return;
             }
 
@@ -102,21 +97,9 @@ namespace MechTE_ContextMenu.Menu
             //选中的路径
             var paths = SelectedItemPaths.ToList();
             paths.Add(identify);
-            var args = string.Join(" ", paths);
-            Process.Start(appFile, args);
+            var args = string.Join(" ",paths);
+            Process.Start(appFile,args);
         }
 
-        //获取当前dll所在路径
-        public string GetRootPath()
-        {
-            // 获取当前程序集的代码基路径
-            var codeBase = Assembly.GetExecutingAssembly().CodeBase;
-            // 创建一个UriBuilder对象，用于解析代码基路径
-            var uri = new UriBuilder(codeBase);
-            // 获取解析后的路径，并对路径中的特殊字符进行解码
-            var path = Uri.UnescapeDataString(uri.Path);
-            // 获取解析后的路径，并对路径中的特殊字符进行解码
-            return Path.GetDirectoryName(path);
-        }
     }
 }
