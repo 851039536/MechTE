@@ -799,7 +799,7 @@ public static bool IsBzp(string sn)
 
 ini文件操作类
 
-- 命名空间: MechTE_480.MIni
+- 命名空间: MechTE_480.Files
 - 类名:MIni
 
 ### Read
@@ -853,6 +853,26 @@ public static void Update(string section, string key, string value, string path)
 public static void Delete(string filePath)
 ```
 
+### ClearAllSection
+
+```csharp
+/// <summary>
+/// 删除ini文件下所有段落
+/// </summary>
+public static void ClearAllSection(string filePath)
+```
+
+### ClearSection
+
+```csharp
+/// <summary>
+/// 删除ini文件下personal段落下的所有键
+/// </summary>
+/// <param name="Section"></param>
+/// <param name="filePath"></param>
+public static void ClearSection(string Section,string filePath)
+```
+
 
 
 ## MString
@@ -884,6 +904,55 @@ public static string Reverse(string str)
 /// <param name="str"></param>
 /// <returns>string</returns>
 public static string ClearSpaces(string str)
+```
+
+### StringToListStr
+
+```csharp
+ /// <summary>
+ /// 把字符串按照分隔符转换成List
+ /// </summary>
+ /// <param name="str">源字符串</param>
+ /// <param name="speater">分隔符</param>
+ /// <param name="toLower">是否转换为小写</param>
+ /// <returns></returns>
+ public static List<string> StringToListStr(string str,char speater,bool toLower)
+```
+
+### StringToArray
+
+```csharp
+ /// <summary>
+ /// 把字符串转 按照, 分割 换为数组
+ /// </summary>
+ /// <param name="str"></param>
+ /// <returns></returns>
+ public static string[] StringToArray(string str)
+```
+
+
+
+### StrLength
+
+```csharp
+ #region 得到字符串长度，一个汉字长度为2
+ /// <summary>
+ /// 得到字符串长度，一个汉字长度为2
+ /// </summary>
+ /// <param name="inputString">参数字符串</param>
+ /// <returns></returns>
+ public static int StrLength(string inputString)
+```
+
+### IsNullOrEmpty
+
+```csharp
+ /// <summary>
+ /// 检测一个字符串是否为空
+ /// </summary>
+ /// <param name="str"></param>
+ /// <returns></returns>
+ public static bool IsNullOrEmpty(string str)
 ```
 
 
@@ -1278,6 +1347,28 @@ public static int GetValidPort(string port)
 public static string GetHostName()
 ```
 
+### WANIP
+
+```csharp
+ /// <summary>
+ /// 获取本机在Internet网络的广域网IP
+ /// </summary>        
+ public static string WANIP()
+
+```
+
+
+
+### LANIP
+
+```csharp
+ /// <summary>
+ /// 获取本机的局域网IP
+ /// </summary>        
+ public static string LANIP()
+
+```
+
 
 
 ## MHid
@@ -1407,6 +1498,49 @@ public static string GetCurrentProgramDirectory()
 /// <param name="sequenceLength">生成的顺序总条数</param>
 /// <returns>string</returns>  
 public static string GenerateNumberSequence(int startNumber, int sequenceLength)
+```
+
+### SetMD5
+
+```csharp
+ /// <summary>
+ /// 根据配置对指定字符串进行 MD5 加密
+ /// </summary>
+ /// <param name="s"></param>
+ /// <returns></returns>
+ [Obsolete]
+ public static string SetMD5(string s)
+```
+
+### IsEmail
+
+```csharp
+ /// <summary>
+ /// 验证EMail是否合法
+ /// </summary>
+ /// <param name="email">要验证的Email</param>
+ public static bool IsEmail(string email)
+```
+
+### IsInt
+
+```csharp
+  /// <summary>
+  /// 验证是否为整数 如果为空，认为验证不合格 返回false
+  /// </summary>
+  /// <param name="number">要验证的整数</param>      
+  public static bool IsInt(string number)
+```
+
+### IsNumber
+
+```
+ /// <summary>
+ /// 验证是否为数字
+ /// </summary>
+ /// <param name="number">要验证的数字</param>        
+ public static bool IsNumber(string number)
+
 ```
 
 

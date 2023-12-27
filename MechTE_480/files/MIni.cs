@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace MechTE_480.ini
+namespace MechTE_480.Files
 {
     /// <summary>
     /// ini文件操作类
@@ -59,6 +59,24 @@ namespace MechTE_480.ini
         public static void Delete(string filePath)
         {
             File.Delete(filePath);
+        }
+
+        /// <summary>
+        /// 删除ini文件下所有段落
+        /// </summary>
+        public static void ClearAllSection(string filePath)
+        {
+            Update(null,null,null,filePath);
+        }
+
+        /// <summary>
+        /// 删除ini文件下personal段落下的所有键
+        /// </summary>
+        /// <param name="Section"></param>
+        /// <param name="filePath"></param>
+        public static void ClearSection(string Section,string filePath)
+        {
+            Update(Section,null,null,filePath);
         }
     }
 }

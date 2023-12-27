@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Sockets;
 
 namespace MechTE_480.network
 {
@@ -26,6 +27,42 @@ namespace MechTE_480.network
             return addressIp;
         }
 
+        /// <summary>
+        /// 获取本机的局域网IP
+        /// </summary>        
+        public static string LANIP()
+        {
+
+            //获取本机的IP列表,IP列表中的第一项是局域网IP，第二项是广域网IP
+            IPAddress[] addressList = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
+
+            //如果本机IP列表为空，则返回空字符串
+            if (addressList.Length < 1)
+            {
+                return "";
+            }
+
+            //返回本机的局域网IP
+            return addressList[0].ToString();
+        }
+
+        /// <summary>
+        /// 获取本机在Internet网络的广域网IP
+        /// </summary>        
+        public static string WANIP()
+        {
+                //获取本机的IP列表,IP列表中的第一项是局域网IP，第二项是广域网IP
+                IPAddress[] addressList = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
+
+                //如果本机IP列表小于2，则返回空字符串
+                if (addressList.Length < 2)
+                {
+                    return "";
+                }
+
+                //返回本机的广域网IP
+                return addressList[1].ToString();
+        }
 
         /// <summary>
         /// 检查设置的端口号是否正确，并返回正确的端口号,无效端口号返回-1。
@@ -57,8 +94,7 @@ namespace MechTE_480.network
 
                 //为端口号赋值
                 validPort = Convert.ToInt32(port);
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -83,5 +119,7 @@ namespace MechTE_480.network
         {
             return Dns.GetHostName();
         }
+
+       
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MechTE_480.Regexs;
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -88,6 +89,83 @@ namespace MechTE_480.util
             var strLen = Enumerable.Range(startNumber, sequenceLength).Select(i => i.ToString())
                 .Aggregate((a, b) => a + " " + b);
             return strLen;
+        }
+
+        /// <summary>
+        /// 根据配置对指定字符串进行 MD5 加密
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        [Obsolete]
+        public static string SetMD5(string s)
+        {
+            //md5加密
+            s = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(s,"md5").ToString();
+            return s.ToLower().Substring(8,16);
+        }
+
+        /// <summary>
+        /// 验证EMail是否合法
+        /// </summary>
+        /// <param name="email">要验证的Email</param>
+        public static bool IsEmail(string email)
+        {
+            //如果为空，认为验证不合格
+            if (MString.IsNullOrEmpty(email))
+            {
+                return false;
+            }
+            //清除要验证字符串中的空格
+            email = email.Trim();
+            //模式字符串
+            string pattern = @"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$";
+
+            //验证
+            return MRegex.IsMatch(email,pattern);
+        }
+
+        /// <summary>
+        /// 验证是否为整数 如果为空，认为验证不合格 返回false
+        /// </summary>
+        /// <param name="number">要验证的整数</param>        
+        public static bool IsInt(string number)
+        {
+            //如果为空，认为验证不合格
+            if (MString.IsNullOrEmpty(number))
+            {
+                return false;
+            }
+
+            //清除要验证字符串中的空格
+            number = number.Trim();
+
+            //模式字符串
+            string pattern = @"^[0-9]+[0-9]*$";
+
+            //验证
+            return MRegex.IsMatch(number,pattern);
+        }
+
+        /// <summary>
+        /// 验证是否为数字
+        /// </summary>
+        /// <param name="number">要验证的数字</param>        
+        public static bool IsNumber(string number)
+        {
+            //如果为空，认为验证不合格
+            if (MString.IsNullOrEmpty(number))
+            {
+                return false;
+            }
+
+            //清除要验证字符串中的空格
+            number = number.Trim();
+
+            //模式字符串
+            string pattern = @"^[0-9]+[0-9]*[.]?[0-9]*$";
+
+            //验证
+            return MRegex.IsMatch(number,pattern);
         }
     }
 }

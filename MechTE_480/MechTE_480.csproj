@@ -67,8 +67,8 @@
     <Compile Include="files\MFileTransferConfig.cs" />
     <Compile Include="form\MFormConfig.cs" />
     <Compile Include="form\MForm.cs" />
-    <Compile Include="ini\MIni.cs" />
-    <Compile Include="ini\MIniConfig.cs" />
+    <Compile Include="files\MIni.cs" />
+    <Compile Include="files\MIniConfig.cs" />
     <Compile Include="merryDll\MTemplate.cs" />
     <Compile Include="port\hid\MHid.cs" />
     <Compile Include="port\hid\MHidConfig.cs" />
@@ -83,7 +83,9 @@
     <Compile Include="port\MSerialPort.cs" />
     <Compile Include="port\MRelay32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regexs\MRegex.cs" />
     <Compile Include="util\MConvert.cs" />
+    <Compile Include="util\MEncrypt.cs" />
     <Compile Include="util\MMeasure.cs" />
     <Compile Include="util\MString.cs" />
     <Compile Include="util\MUtil.cs" />
@@ -104,9 +106,7 @@
     <Content Include="bin\Debug\merge\MySql.Data.dll" />
     <Content Include="bin\Debug\merge\RestSharp.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
            Other similar extension points exist, see Microsoft.Common.targets.
