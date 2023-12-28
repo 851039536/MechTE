@@ -53,12 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="files\MFileTest.cs" />
-    <Compile Include="MStringTest.cs" />
     <Compile Include="port\MHidTest.cs" />
     <Compile Include="port\MUsbTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilsTest.cs" />
-    <Compile Include="util\MConvertTest.cs" />
     <Compile Include="windows\MMouseTest.cs" />
     <Compile Include="WinTest.cs" />
     <Compile Include="XmlTest.cs" />

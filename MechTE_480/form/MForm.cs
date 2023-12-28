@@ -105,7 +105,7 @@ namespace MechTE_480.Form
 
             // 设置窗体标题和大小
             inputBox.Text = title;
-            inputBox.ClientSize = new Size(400, 135);
+            inputBox.ClientSize = new Size(410, 200);
             
             // 设置标题的文本和样式
             label.Text = prompt;
@@ -137,11 +137,12 @@ namespace MechTE_480.Form
             textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
             textBox.Font = new Font("Arial", 12);
             textBox.BackColor = Color.LightGray;
+            textBox.Multiline = true;
  
             // 设置控件的位置和大小
-            textBox.SetBounds(12, 50, 372, 35);
-            buttonCancel.SetBounds(309, 100, 75, 30);
-            buttonOk.SetBounds(228, 100, 75, 30);
+            textBox.SetBounds(17, 50, 372, 100);
+            buttonCancel.SetBounds(315, 160, 75, 30);
+            buttonOk.SetBounds(233, 160, 75, 30);
             label.SetBounds(10, 18, 372, 12);
          
             //// 将控件添加到窗体上

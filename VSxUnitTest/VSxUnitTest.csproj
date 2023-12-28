@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="netWork\MNetWorkTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="util\MConvertTest.cs" />
     <Compile Include="util\MDESEncryptTest.cs" />
     <Compile Include="util\MUtilTest.cs" />
     <Compile Include="util\MStringTest.cs" />
