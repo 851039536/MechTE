@@ -125,7 +125,7 @@ namespace MechTE_480.Files
         }
 
         /// <summary>
-        /// 将源文件的内容复制到目标文件中
+        /// 将源文件的内容复制到目标文件中并覆盖
         /// </summary>
         /// <param name="sourceFilePath">源文件的绝对路径</param>
         /// <param name="destFilePath">目标文件的绝对路径</param>
