@@ -750,24 +750,37 @@ public static string ShowInputDialog(string title, string prompt)
 ### 窗体比例缩放
 
 ```csharp
-/// <summary>
-/// 控件大小随窗体大小等比例缩放,
-/// 在窗体重载中使用 >>  MechForm.X = this.Width;
-/// </summary>
-/// <param name="cons"></param>
+ /// <summary>
+ /// 控件大小随窗体大小等比例缩放,
+ /// 在窗体重载中使用 >>  MForm.X = this.Width; MForm.Y = this.Height;  MForm.SetTag(this);
+ /// </summary>
+ /// <param name="cons"></param>
 public static void SetTag(Control cons)
     
 
 /// <summary>
 /// 设置缩放,在Resize事件中使用 >>
-/// float newX = this.Width / MechForm.X;
-/// float newY = this.Height / MechForm.Y;
-/// MechForm.SetControls(newX,newY,this);
+///  float newX = this.Width / MForm.X;
+///  float newY = this.Height / MForm.Y;
+///  MForm.SetControls(newX,newY,this);
 /// </summary>
 /// <param name="newX">X轴</param>
 /// <param name="newY">Y轴</param>
 /// <param name="cons"></param>
 public static void SetControls(float newX,float newY,Control cons)
+```
+
+
+
+### 弹框选择文件夹
+
+```csharp
+/// <summary>
+/// 弹框选择文件夹
+/// </summary>
+/// <param name="description">描述</param>
+/// <returns></returns>
+public static string FolderBrowserDialog(string description)
 ```
 
 

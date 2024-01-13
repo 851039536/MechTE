@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -144,7 +145,6 @@ namespace MechTE_480.Files
             File.Move(orignFile, newFile);
         }
 
-       
 
         /// <summary>
         /// 指定文件夹下面的所有内容copy到目标文件夹下面
@@ -219,7 +219,6 @@ namespace MechTE_480.Files
 
         #region 文件获取
 
-
         /// <summary>
         /// 从文件的绝对路径中获取文件名( 包含扩展名 )
         /// </summary>
@@ -291,6 +290,10 @@ namespace MechTE_480.Files
             return result;
         }
 
+
+
+
+
         /// <summary>
         /// 获取指定目录中所有文件列表
         /// </summary>
@@ -302,6 +305,7 @@ namespace MechTE_480.Files
             {
                 throw new FileNotFoundException();
             }
+
             //获取文件列表
             return Directory.GetFiles(directoryPath);
         }
@@ -696,6 +700,7 @@ namespace MechTE_480.Files
                 {
                     return Directory.GetDirectories(directoryPath, searchPattern, SearchOption.AllDirectories);
                 }
+
                 return Directory.GetDirectories(directoryPath, searchPattern, SearchOption.TopDirectoryOnly);
             }
             catch (IOException ex)

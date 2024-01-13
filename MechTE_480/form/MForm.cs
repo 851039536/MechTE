@@ -14,7 +14,7 @@ namespace MechTE_480.Form
 
         /// <summary>
         /// 控件大小随窗体大小等比例缩放,
-        /// 在窗体重载中使用 >>  MechForm.X = this.Width; MechForm.Y = this.Height;  MechForm.SetTag(this);
+        /// 在窗体重载中使用 >>  MForm.X = this.Width; MForm.Y = this.Height;  MForm.SetTag(this);
         /// </summary>
         /// <param name="cons"></param>
         public static void SetTag(Control cons)
@@ -28,9 +28,9 @@ namespace MechTE_480.Form
         }
         /// <summary>
         /// 设置缩放,在Resize事件中使用 >>
-        /// float newX = this.Width / MechForm.X;
-        /// float newY = this.Height / MechForm.Y;
-        /// MechForm.SetControls(newX,newY,this);
+        ///  float newX = this.Width / MForm.X;
+        ///  float newY = this.Height / MForm.Y;
+        ///  MForm.SetControls(newX,newY,this);
         /// </summary>
         /// <param name="newX">X轴</param>
         /// <param name="newY">Y轴</param>
@@ -56,7 +56,9 @@ namespace MechTE_480.Form
             }
         }
         #endregion
-        
+
+
+        #region 弹框提示
         /// <summary>
         /// 默认弹框提示(确认/取消)
         /// </summary>
@@ -161,5 +163,29 @@ namespace MechTE_480.Form
             }
             return null;
         }
+        
+        #endregion
+
+
+        /// <summary>
+        /// 弹框选择文件夹
+        /// </summary>
+        /// <param name="description">描述</param>
+        /// <returns></returns>
+        public static string FolderBrowserDialog(string description)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.Description = description;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                if (string.IsNullOrEmpty(dialog.SelectedPath))
+                {
+                    return null;
+                }
+                return dialog.SelectedPath;
+            }
+            return null;
+        }
+
     }
 }
