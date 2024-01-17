@@ -834,11 +834,11 @@ public static string Read(string section, string key, string path)
 
 ```csharp
 /// <summary>
-/// 读取ini string[]
+/// 读取ini string[],key对应的value值以,分割
 /// </summary>
 /// <param name="section">ini文件[xxxx]头部标识</param>
-/// <param name="key">文件路径</param>
-/// <param name="path">Key</param>
+/// <param name="key">key</param>
+/// <param name="path">文件路径</param>
 /// <returns>string[]</returns>
 public static string[] ReadArray(string section, string key, string path)
 ```
