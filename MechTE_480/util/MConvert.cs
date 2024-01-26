@@ -70,7 +70,7 @@ namespace MechTE_480.util
             //判断是否是16进制字符
             if (hex.Length % 2 != 0)
             {
-                throw new ArgumentException("不是16进制字符");
+                throw new ArgumentException("[False]:不是16进制字符");
             }
             var asciiChars = new List<char>();
             for (var i = 0; i < hex.Length; i += 2)
