@@ -1,9 +1,6 @@
 ﻿using System;
-using MechTE_480.process;
-using System.IO.Compression;
-using MechTE_480.Form;
-using MechTE_480.util;
-using MechTE_480.windows;
+using System.Collections.Specialized;
+using System.Reflection;
 
 namespace MechTE.Test
 {
@@ -11,11 +8,15 @@ namespace MechTE.Test
     {
         static void Main(string[] args)
         {
-            
+           var myCol = new NameValueCollection();
+           myCol.Add("red", "rojo");
+           myCol.Add("green", "verde");
+           myCol.Add("blue", "azul");
+           myCol.Add("red", "rouge");
+           Console.WriteLine(myCol["red"]);
+           // rojo,rouge
             Console.ReadKey();
         }
-        
-       
-       
     }
+
 }
