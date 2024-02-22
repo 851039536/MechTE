@@ -4,13 +4,62 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace MechTE_480.util
+namespace MechTE_480.ConvertCategory
 {
     /// <summary>
     /// 处理数据类型转换，数制转换、编码转换相关的类
     /// </summary>    
-    public static class MConvert
+    public static class MConvertUtil
     {
+        /// <summary>
+        /// 将字符串转换为整型，转换失败返回0
+        /// </summary>
+        public static int ToInt32(string value)
+        {
+            return int.TryParse(value, out var result) ? result : 0;
+        }
+        
+        /// <summary>
+        /// 将字符串转换为长整型，转换失败返回0
+        /// </summary>
+        public static long ToInt64(string value)
+        {
+            return long.TryParse(value, out var result) ? result : 0;
+        }
+        
+        /// <summary>
+        /// 将字符串转换为布尔型，转换失败返回默认值，默认值false
+        /// </summary>
+        public static bool ToBoolean(string data, bool defValue = false)
+        {
+            //如果为空则返回默认值
+            if (string.IsNullOrEmpty(data))
+            {
+                return defValue;
+            }
+            return bool.TryParse(data, out var temp) ? temp : defValue;
+        }
+
+        /// <summary>
+        /// 将对象转换为布尔型，转换失败返回默认值，默认值false
+        /// </summary>
+        public static bool ToBoolean(object data, bool defValue = false)
+        {
+            //如果为空则返回默认值
+            if (data == null || Convert.IsDBNull(data))
+            {
+                return defValue;
+            }
+
+            try
+            {
+                return Convert.ToBoolean(data);
+            }
+            catch
+            {
+                return defValue;
+            }
+        }
 
         #region 进制转换
 
@@ -18,45 +67,33 @@ namespace MechTE_480.util
         /// 实现2,8,10,16进制数间的转换
         /// </summary>
         /// <param name="value">原值</param>
-        /// <param name="from">原值的进制,只能是2,8,10,16四个值。</param>
-        /// <param name="to">要转换到的目标进制，只能是2,8,10,16四个值。</param>
+        /// <param name="from">原值的进制,只能是2,8,10,16四个值</param>
+        /// <param name="to">要转换到的目标进制，只能是2,8,10,16四个值</param>
         public static string ConvertBase(string value, int from, int to)
         {
             try
             {
                 //先转成10进制
-                int intValue = Convert.ToInt32(value, from);
+                var intValue = Convert.ToInt32(value, from);
                 //再转成目标进制
-                string ret = Convert.ToString(intValue, to);
-                if (to == 2)
+                var ret = Convert.ToString(intValue, to);
+                if (to != 2) return ret;
+                //获取二进制的长度
+                var resultLength = ret.Length;
+                ret = resultLength switch
                 {
-                    //获取二进制的长度
-                    int resultLength = ret.Length;
-                    switch (resultLength)
-                    {
-                        case 7:
-                            ret = "0" + ret;
-                            break;
-                        case 6:
-                            ret = "00" + ret;
-                            break;
-                        case 5:
-                            ret = "000" + ret;
-                            break;
-                        case 4:
-                            ret = "0000" + ret;
-                            break;
-                        case 3:
-                            ret = "00000" + ret;
-                            break;
-                    }
-                }
-
+                    7 => "0" + ret,
+                    6 => "00" + ret,
+                    5 => "000" + ret,
+                    4 => "0000" + ret,
+                    3 => "00000" + ret,
+                    _ => ret
+                };
                 return ret;
             }
             catch
             {
-                return "false";
+                return "[False]";
             }
         }
         
@@ -112,11 +149,11 @@ namespace MechTE_480.util
         /// <summary>
         /// 使用指定字符集将string转换成byte[]
         /// </summary>
-        /// <param name="text">要转换的字符串</param>
+        /// <param name="value">要转换的字符串</param>
         /// <param name="encoding">字符编码</param>
-        public static byte[] StringToBytes(string text, Encoding encoding)
+        public static byte[] StringToBytes(string value, Encoding encoding)
         {
-            return encoding.GetBytes(text);
+            return encoding.GetBytes(value);
         }
 
         #endregion
@@ -234,8 +271,6 @@ namespace MechTE_480.util
             // 返回十六进制字符串
             return result;
         }
-
-  
         
         /// <summary>
         /// 将数字类型字符串转int数组

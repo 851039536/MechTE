@@ -1,4 +1,5 @@
-﻿using MechTE_480.util;
+﻿using MechTE_480.ConvertCategory;
+using MechTE_480.util;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -21,7 +22,7 @@ namespace xUnit_Test.port
             byte[] bytes = { 0x41, 0x42, 0x43, 0x44, 0x45 };
             string index = "0 2 4";
 
-            string result = MConvert.ByteToHex(bytes, index);
+            string result = MConvertUtil.ByteToHex(bytes, index);
             _msg.WriteLine(result);
             Assert.Equal(result, result);
         }  
@@ -33,7 +34,7 @@ namespace xUnit_Test.port
         public void ByteToHexs()
         {
             byte[] bytes = { 65, 66, 67, 68 };
-            string result = MConvert.ByteToHex(bytes);
+            string result = MConvertUtil.ByteToHex(bytes);
             _msg.WriteLine(result);
             Assert.Equal(result, result);
         } 
@@ -41,7 +42,7 @@ namespace xUnit_Test.port
         [Fact]
         public void NumberToIntArray()
         {
-           var result = MConvert.NumberStrToIntArray("12312312 123123");
+           var result = MConvertUtil.NumberStrToIntArray("12312312 123123");
         }
     }
 }

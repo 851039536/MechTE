@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using MechTE_480.ConvertCategory;
 using MechTE_480.util;
 using Microsoft.Win32.SafeHandles;
 
@@ -347,7 +348,7 @@ namespace MechTE_480.port.hid
             ReturnValue = "False";
             ReturnAllValue = "False";
             Thread.Sleep(20);
-            var arr = MConvert.NumberStrToIntArray(indexes);
+            var arr = MConvertUtil.NumberStrToIntArray(indexes);
             Thread.Sleep(20);
             var comm = HexToByteArray(command, length);
             try
@@ -389,7 +390,7 @@ namespace MechTE_480.port.hid
             ReturnValue = "False";
             ReturnAllValue = "False";
             Thread.Sleep(20);
-            var arr = MConvert.NumberStrToIntArray(indexes);
+            var arr = MConvertUtil.NumberStrToIntArray(indexes);
             Thread.Sleep(20);
             var comm = HexToByteArray(command, length);
             try
@@ -447,7 +448,7 @@ namespace MechTE_480.port.hid
                     if (deviceRead != null)
                     {
                         deviceRead.EndRead(iResult);
-                        result = MConvert.ByteToHex(arrBuff, index);
+                        result = MConvertUtil.ByteToHex(arrBuff, index);
                     }
                 };
                 byte[] arrInputReport = new byte[length];

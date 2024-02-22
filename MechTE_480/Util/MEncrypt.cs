@@ -8,9 +8,8 @@ namespace MechTE_480.util
     /// <summary>
     /// DES加密/解密类。
     /// </summary>
-    public class MEncrypt
+    public static class MEncrypt
     {
-
         /// <summary>
         /// md5加密
         /// </summary>

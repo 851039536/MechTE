@@ -18,6 +18,8 @@
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.IniTest.MouseMove&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.windows.MMouseTest.MouseMove&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::xUnit_Test.util.MStringTest.GetStrArray&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::VSxUnitTest.util.MConvertUtilTests.ToInt32&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::VSxUnitTest.util.MConvertUtilTests.ToInt64&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	

@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VSxUnitTest</RootNamespace>
-    <AssemblyName>VSxUnitTest</AssemblyName>
+    <AssemblyName>MechTE_480Tests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -67,10 +67,10 @@
   <ItemGroup>
     <Compile Include="netWork\MNetWorkTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="util\MConvertTest.cs" />
-    <Compile Include="util\MDESEncryptTest.cs" />
-    <Compile Include="util\MUtilTest.cs" />
-    <Compile Include="util\MStringTest.cs" />
+    <Compile Include="Util\MConvertUtilTests.cs" />
+    <Compile Include="Util\MDESEncryptTest.cs" />
+    <Compile Include="Util\MUtilTest.cs" />
+    <Compile Include="Util\MStringTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -970,35 +970,95 @@ public static string ClearSpaces(string str)
 
 
 
-## MConvert
+## MConvertUtil
 
 处理数据类型转换，数制转换、编码转换相关的类
 
-- 命名空间: MechTE_480.util
-- 类名:MConvert
+- 命名空间: MechTE_480.ConvertCategory
+- 类名:MConvertUtil
 
-### ConvertBase
+
+
+### ToInt32-将字符串转换为整型
 
 ```csharp
-/// <summary>
-/// 实现2,8,10,16进制数间的转换
-/// </summary>
-/// <param name="value">原值</param>
-/// <param name="from">原值的进制,只能是2,8,10,16四个值。</param>
-/// <param name="to">要转换到的目标进制，只能是2,8,10,16四个值。</param>
+public static int ToInt32(string value)
+```
+
+**参数**
+
+`value`：要转换的字符串
+
+**返回值**
+
+转换成功则返回转换后的整型值，否则返回0
+
+
+
+### ToInt64-将字符串转换为长整型
+
+```csharp
+public static long ToInt64(string value)
+```
+
+**参数**
+
+`value`：要转换的字符串。
+
+**返回值**
+
+转换成功则返回转换后的长整型值，否则返回0
+
+
+
+### ToBoolean-将字符串转换为布尔型
+
+```csharp
+public static bool ToBoolean(string value)
+```
+
+**参数**
+
+`value`：要转换的字符串。
+
+**返回值**
+
+转换成功则返回转换后的布尔型值，否则返回false
+
+### ConvertBase-进制数间的转换
+
+实现2,8,10,16进制数间的转换
+
+```csharp
 public static string ConvertBase(string value, int from, int to)
 ```
 
-### StringToBytes
+**参数**
+
+`value`: 原值
+`from` : 原值的进制,只能是2,8,10,16四个值
+`to` : 要转换到的目标进制，只能是2,8,10,16四个值
+
+**返回值**
+
+转换成功则返回转换后的整型值，否则返回0
+
+
+
+### StringToBytes-string转换成byte[]
+
+使用指定字符集将string转换成byte[]
 
 ```csharp
-/// <summary>
-/// 使用指定字符集将string转换成byte[]
-/// </summary>
-/// <param name="text">要转换的字符串</param>
-/// <param name="encoding">字符编码</param>
-public static byte[] StringToBytes(string text, Encoding encoding)
+public static byte[] StringToBytes(string value, Encoding encoding)
 ```
+
+**参数**
+
+`value`: 原要转换的字符串
+`encoding` : 字符编码
+
+
 
 ### BytesToString
 

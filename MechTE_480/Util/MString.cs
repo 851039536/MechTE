@@ -46,7 +46,7 @@ namespace MechTE_480.util
         /// <param name="speater">分隔符</param>
         /// <param name="toLower">是否转换为小写</param>
         /// <returns></returns>
-        public static List<string> StringToListStr(string str,char speater,bool toLower)
+        public static List<string> StringToListStr(string str, char speater, bool toLower)
         {
             List<string> list = new List<string>();
             string[] ss = str.Split(speater);
@@ -59,9 +59,11 @@ namespace MechTE_480.util
                     {
                         strVal = s.ToLower();
                     }
+
                     list.Add(strVal);
                 }
             }
+
             return list;
         }
 
@@ -75,10 +77,9 @@ namespace MechTE_480.util
             return str.Split(new Char[] { ',' });
         }
 
-     
-
 
         #region 得到字符串长度，一个汉字长度为2
+
         /// <summary>
         /// 得到字符串长度，一个汉字长度为2
         /// </summary>
@@ -89,18 +90,21 @@ namespace MechTE_480.util
             ASCIIEncoding ascii = new ASCIIEncoding();
             int tempLen = 0;
             byte[] s = ascii.GetBytes(inputString);
-            for (int i = 0 ; i < s.Length ; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 if (s[i] == 63)
                     tempLen += 2;
                 else
                     tempLen += 1;
             }
+
             return tempLen;
         }
+
         #endregion
 
         #region HTML转行成TEXT
+
         /// <summary>
         /// HTML转行成TEXT
         /// </summary>
@@ -108,39 +112,41 @@ namespace MechTE_480.util
         /// <returns></returns>
         public static string HtmlToTxt(string strHtml)
         {
-            string[] aryReg ={
-            @"<script[^>]*?>.*?</script>",
-            @"<(\/\s*)?!?((\w+:)?\w+)(\w+(\s*=?\s*(([""'])(\\[""'tbnr]|[^\7])*?\7|\w+)|.{0})|\s)*?(\/\s*)?>",
-            @"([\r\n])[\s]+",
-            @"&(quot|#34);",
-            @"&(amp|#38);",
-            @"&(lt|#60);",
-            @"&(gt|#62);",
-            @"&(nbsp|#160);",
-            @"&(iexcl|#161);",
-            @"&(cent|#162);",
-            @"&(pound|#163);",
-            @"&(copy|#169);",
-            @"&#(\d+);",
-            @"-->",
-            @"<!--.*\n"
+            string[] aryReg =
+            {
+                @"<script[^>]*?>.*?</script>",
+                @"<(\/\s*)?!?((\w+:)?\w+)(\w+(\s*=?\s*(([""'])(\\[""'tbnr]|[^\7])*?\7|\w+)|.{0})|\s)*?(\/\s*)?>",
+                @"([\r\n])[\s]+",
+                @"&(quot|#34);",
+                @"&(amp|#38);",
+                @"&(lt|#60);",
+                @"&(gt|#62);",
+                @"&(nbsp|#160);",
+                @"&(iexcl|#161);",
+                @"&(cent|#162);",
+                @"&(pound|#163);",
+                @"&(copy|#169);",
+                @"&#(\d+);",
+                @"-->",
+                @"<!--.*\n"
             };
 
             string newReg = aryReg[0];
             string strOutput = strHtml;
-            for (int i = 0 ; i < aryReg.Length ; i++)
+            for (int i = 0; i < aryReg.Length; i++)
             {
-                Regex regex = new Regex(aryReg[i],RegexOptions.IgnoreCase);
-                strOutput = regex.Replace(strOutput,string.Empty);
+                Regex regex = new Regex(aryReg[i], RegexOptions.IgnoreCase);
+                strOutput = regex.Replace(strOutput, string.Empty);
             }
 
-            strOutput.Replace("<","");
-            strOutput.Replace(">","");
-            strOutput.Replace("\r\n","");
+            strOutput.Replace("<", "");
+            strOutput.Replace(">", "");
+            strOutput.Replace("\r\n", "");
 
 
             return strOutput;
         }
+
         #endregion
 
 
@@ -156,14 +162,12 @@ namespace MechTE_480.util
             {
                 // 如果字符串为空或null，则返回true
                 return true;
-            } else
+            }
+            else
             {
                 // 如果字符串不为空，则返回false
                 return false;
             }
         }
-
-
-
     }
 }

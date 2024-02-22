@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_480", "MechTE_480\Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_ContextMenu", "MechTE_ContextMenu\MechTE_ContextMenu.csproj", "{73EC2EB4-98FC-48FD-882A-6BC11D4B2423}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSxUnitTest", "VSxUnitTest\VSxUnitTest.csproj", "{E08A9A18-EADA-4DDB-B13E-83FD18A96D1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_480Tests", "MechTE_480Tests\MechTE_480Tests.csproj", "{E08A9A18-EADA-4DDB-B13E-83FD18A96D1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
