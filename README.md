@@ -968,6 +968,25 @@ public static string ClearSpaces(string str)
  public static bool IsNullOrEmpty(string str)
 ```
 
+## MLogUtil
+
+LOG数据操作
+
+- 命名空间: MechTE_480.LogCategory
+- 类名:MLogUtil
+
+### LogWrite
+
+```csharp
+public static void LogWrite(string paths, string name, string str)
+```
+
+**参数**
+
+`paths`：写入log路径
+`name`：log文件名称
+`str`：写入内容
+
 
 
 ## MConvertUtil
