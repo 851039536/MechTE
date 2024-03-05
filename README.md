@@ -888,12 +888,41 @@ public static void ClearSection(string Section,string filePath)
 
 
 
-## MString
+## MStringUtil
 
 字符串操作类
 
 - 命名空间: MechTE_480.util
-- 类名:MString
+- 类名:MStringUtil
+
+### MStartApp-启动应用网站
+
+```csharp
+public static void MStartApp(this string value)
+```
+
+**参数**
+
+`value`：要转换的字符串
+
+### MReverse
+
+```csharp
+/// <summary>
+/// 将字符按2个长度为一组进行反序
+/// </summary>
+/// <param name="value">11 22 33 44</param>
+/// <returns>44332211->11223344</returns>
+public static string MReverse(this string value)
+```
+
+**参数**
+
+`value`：将字符按2个长度为一组进行反序
+
+**返回值**
+
+转换成功则返回转换后44332211->11223344
 
 ### Reverse
 
@@ -914,10 +943,28 @@ public static string Reverse(string str)
 /// <summary>
 /// 清除字符串中的空格(00 00 00 00 > 00000000)
 /// </summary>
-/// <param name="str"></param>
+/// <param name="value"></param>
 /// <returns>string</returns>
-public static string ClearSpaces(string str)
+public static string ClearSpaces(string value)
+{
+    return value.Replace(" ", "");
+}
 ```
+
+### MClearSpaces
+
+清除字符串中的空格
+
+```csharp
+/// <summary>
+/// 清除字符串中的空格(00 00 00 00 > 00000000)
+/// </summary>
+/// <param name="value"></param>
+/// <returns>string</returns>
+public static string MClearSpaces(this string value)
+```
+
+
 
 ### StringToListStr
 
@@ -995,8 +1042,6 @@ public static void LogWrite(string paths, string name, string str)
 
 - 命名空间: MechTE_480.ConvertCategory
 - 类名:MConvertUtil
-
-
 
 ### ToInt32-将字符串转换为整型
 
@@ -1110,6 +1155,19 @@ public static int BytesToInt32(byte[] data)
 /// <returns></returns>
 public static string HexToAscii(string hex)
 ```
+
+
+
+```csharp
+/// <summary>
+/// 将16进制字符转为ASCII字符
+/// </summary>
+/// <param name="hex">16个数字（0-9和A-F）来表示</param>
+/// <returns></returns>
+public static string MHexToAscii(this string hex)
+```
+
+
 
 ### AsciiToHex
 
@@ -1279,12 +1337,12 @@ public static void Assert( string errMsg)
 
 
 
-## MProcess
+## MProcessUtil
 
 使用进程调用cmd命令或程序
 
-- 命名空间: MechTE_480.process
-- 类名:MProcess
+- 命名空间: MechTE_480.ProcessCategory
+- 类名:MProcessUtil
 
 ### Shell
 
@@ -1463,7 +1521,22 @@ public static string GetHostName()
 
 
 
-## MHid
+## MHidUtil
+
+HID指令帮助类
+
+- 命名空间: MechTE_480.PortCategory.hid
+- 类名:MHidUtil
+
+创建hid对象
+
+```csharp
+private static readonly MHidUtil Hid = new MHidUtil();
+```
+
+
+
+
 
 
 

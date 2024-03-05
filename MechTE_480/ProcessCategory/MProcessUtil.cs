@@ -2,12 +2,12 @@
 using System.Diagnostics;
 using MechTE_480.util;
 
-namespace MechTE_480.process
+namespace MechTE_480.ProcessCategory
 {
     /// <summary>
     /// 使用进程调用cmd命令或程序
     /// </summary>
-    public partial class MProcess
+    public partial class MProcessUtil
     {
         #region Shell
 

@@ -7,7 +7,6 @@ namespace MechTE_480.Windows
     public partial class MWin
     {
         
-        
         [DllImport("wininet.dll")]
         private static extern bool InternetGetConnectedState(int description, int reservedValue);
         

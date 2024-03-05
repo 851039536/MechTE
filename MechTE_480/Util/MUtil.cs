@@ -111,7 +111,7 @@ namespace MechTE_480.util
         public static bool IsEmail(string email)
         {
             //如果为空，认为验证不合格
-            if (MString.IsNullOrEmpty(email))
+            if (MStringUtil.IsNullOrEmpty(email))
             {
                 return false;
             }
@@ -131,7 +131,7 @@ namespace MechTE_480.util
         public static bool IsInt(string number)
         {
             //如果为空，认为验证不合格
-            if (MString.IsNullOrEmpty(number))
+            if (MStringUtil.IsNullOrEmpty(number))
             {
                 return false;
             }
@@ -153,7 +153,7 @@ namespace MechTE_480.util
         public static bool IsNumber(string number)
         {
             //如果为空，认为验证不合格
-            if (MString.IsNullOrEmpty(number))
+            if (MStringUtil.IsNullOrEmpty(number))
             {
                 return false;
             }
@@ -167,5 +167,8 @@ namespace MechTE_480.util
             //验证
             return MRegex.IsMatch(number,pattern);
         }
+        
+        
+        
     }
 }

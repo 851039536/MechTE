@@ -1,7 +1,7 @@
 ﻿using System.Management;
 using System.Text.RegularExpressions;
 
-namespace MechTE_480.port.usb
+namespace MechTE_480.PortCategory.usb
 {
     /// <summary>
     /// USB端口类

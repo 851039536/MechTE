@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO.Ports;
 
-namespace MechTE_480.port
+namespace MechTE_480.PortCategory
 {
     /// <summary>
     /// 串口工具类操作

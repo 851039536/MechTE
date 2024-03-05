@@ -2,7 +2,7 @@
 using System.IO.Ports;
 using System.Threading;
 
-namespace MechTE_480.port
+namespace MechTE_480.PortCategory
 {
     /// <summary>
     /// 32路继电器类(定制不通用)

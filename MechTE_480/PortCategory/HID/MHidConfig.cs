@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace MechTE_480.port.hid
+namespace MechTE_480.PortCategory.hid
 {
-    public partial class MHid
+    public partial class MHidUtil
     {
         /// <summary>
         /// 定义数组长度,句柄对象,循环次数

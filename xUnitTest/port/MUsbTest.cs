@@ -1,4 +1,4 @@
-﻿using MechTE_480.port.usb;
+﻿using MechTE_480.PortCategory.usb;
 using Xunit;
 using Xunit.Abstractions;
 

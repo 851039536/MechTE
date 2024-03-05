@@ -4,10 +4,10 @@ using Xunit.Abstractions;
 
 namespace xUnit_Test.util
 {
-    public class MStringTest
+    public class MStringUtilTest
     {
         private readonly ITestOutputHelper _msg;
-        public MStringTest(ITestOutputHelper msg)
+        public MStringUtilTest(ITestOutputHelper msg)
         {
             _msg = msg;
         }
@@ -15,7 +15,7 @@ namespace xUnit_Test.util
         [Fact]
         public void StringToListStr()
         {
-            var data = MString.StringToListStr("DFSD,w123T",',',true);
+            var data = MStringUtil.StringToListStr("DFSD,w123T",',',true);
 
             foreach (var item in data)
             {
@@ -27,7 +27,7 @@ namespace xUnit_Test.util
         [Fact]
         public void StringToArray()
         {
-            var data = MString.StringToArray("DFSD,w123T");
+            var data = MStringUtil.StringToArray("DFSD,w123T");
 
             foreach (var item in data)
             {
@@ -41,7 +41,7 @@ namespace xUnit_Test.util
         [Fact]
         public void StrLength()
         {
-            var data = MString.StrLength("托尔斯泰");
+            var data = MStringUtil.StrLength("托尔斯泰");
             _msg.WriteLine(data.ToString());
             Assert.Equal(data,data);
         }

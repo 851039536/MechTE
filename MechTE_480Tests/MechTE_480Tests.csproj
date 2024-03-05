@@ -70,7 +70,7 @@
     <Compile Include="Util\MConvertUtilTests.cs" />
     <Compile Include="Util\MDESEncryptTest.cs" />
     <Compile Include="Util\MUtilTest.cs" />
-    <Compile Include="Util\MStringTest.cs" />
+    <Compile Include="Util\MStringUtilTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -5,10 +5,10 @@ using Xunit.Abstractions;
 
 namespace xUnit_Test.port
 {
-    public class MHidTest
+    public class MHidUtilTest
     {
         private readonly ITestOutputHelper _msg;
-        public MHidTest(ITestOutputHelper msg)
+        public MHidUtilTest(ITestOutputHelper msg)
         {
             _msg = msg;
         }

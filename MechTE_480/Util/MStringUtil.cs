@@ -2,41 +2,83 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using MechTE_480.ProcessCategory;
 
 namespace MechTE_480.util
 {
     /// <summary>
     /// 字符串操作类
     /// </summary>
-    public static class MString
+    public static class MStringUtil
     {
+
+        #region 扩展方法,必须以M开头区分
+
+        /// <summary>
+        /// 启动应用网站
+        /// </summary>
+        /// <param name="value"></param>
+        public static void MStartApp(this string value)
+        {
+            MProcessUtil.StartApp(value);
+        }
+        
         /// <summary>
         /// 将字符按2个长度为一组进行反序
         /// </summary>
-        /// <param name="str">11223344</param>
+        /// <param name="value">11 22 33 44</param>
         /// <returns>44332211->11223344</returns>
-        public static string Reverse(string str)
+        public static string MReverse(this string value)
         {
             //使用StringBuilder代替字符串拼接，避免了频繁的内存分配和拷贝，提高了代码的效率
             var newStr = new StringBuilder();
             // 从字符串的倒数第二个字符开始循环，每次减少2个字符
-            for (var i = str.Length - 2; i >= 0; i -= 2)
+            for (var i = value.Length - 2; i >= 0; i -= 2)
             {
                 // 将每两个字符添加到新字符串变量中
-                newStr.Append(str.Substring(i, 2));
+                newStr.Append(value.Substring(i, 2));
             }
-
+            return newStr.ToString();
+        }
+        #endregion
+        
+        /// <summary>
+        /// 将字符按2个长度为一组进行反序
+        /// </summary>
+        /// <param name="value">11 22 33 44</param>
+        /// <returns>44332211->11223344</returns>
+        public static string Reverse(string value)
+        {
+            //使用StringBuilder代替字符串拼接，避免了频繁的内存分配和拷贝，提高了代码的效率
+            var newStr = new StringBuilder();
+            // 从字符串的倒数第二个字符开始循环，每次减少2个字符
+            for (var i = value.Length - 2; i >= 0; i -= 2)
+            {
+                // 将每两个字符添加到新字符串变量中
+                newStr.Append(value.Substring(i, 2));
+            }
             return newStr.ToString();
         }
 
         /// <summary>
         /// 清除字符串中的空格(00 00 00 00 > 00000000)
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="value"></param>
         /// <returns>string</returns>
-        public static string ClearSpaces(string str)
+        public static string ClearSpaces(string value)
         {
-            return str.Replace(" ", "");
+            return value.Replace(" ", "");
+        }
+        
+        
+        /// <summary>
+        /// 清除字符串中的空格(00 00 00 00 > 00000000)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>string</returns>
+        public static string MClearSpaces(this string value)
+        {
+            return value.Replace(" ", "");
         }
 
         /// <summary>
@@ -138,15 +180,11 @@ namespace MechTE_480.util
                 Regex regex = new Regex(aryReg[i], RegexOptions.IgnoreCase);
                 strOutput = regex.Replace(strOutput, string.Empty);
             }
-
             strOutput.Replace("<", "");
             strOutput.Replace(">", "");
             strOutput.Replace("\r\n", "");
-
-
             return strOutput;
         }
-
         #endregion
 
 

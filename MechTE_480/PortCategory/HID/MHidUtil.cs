@@ -5,15 +5,14 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using MechTE_480.ConvertCategory;
-using MechTE_480.util;
 using Microsoft.Win32.SafeHandles;
 
-namespace MechTE_480.port.hid
+namespace MechTE_480.PortCategory.hid
 {
     /// <summary>
-    /// 指令帮助类
+    /// HID指令帮助类
     /// </summary>
-    public partial class MHid
+    public partial class MHidUtil
     {
         /// <summary>
         /// 存储回传值
@@ -34,11 +33,11 @@ namespace MechTE_480.port.hid
         public bool WriteSend(string command, int length, IntPtr intPtr)
         {
             Thread.Sleep(20);
-            var comm = HexToByteArray(command, length);
+            var comm = MHidUtil.HexToByteArray(command, length);
             uint numberOfBytesWritten = 0;
             try
             {
-                return WriteFile(intPtr, comm, (uint)length, ref numberOfBytesWritten, IntPtr.Zero);
+                return MHidUtil.WriteFile(intPtr, comm, (uint)length, ref numberOfBytesWritten, IntPtr.Zero);
             }
             catch (IOException)
             {
@@ -56,10 +55,10 @@ namespace MechTE_480.port.hid
         public bool GetReportSend(string command, int length, IntPtr intPtr)
         {
             Thread.Sleep(20);
-            var comm = HexToByteArray(command, length);
+            var comm = MHidUtil.HexToByteArray(command, length);
             try
             {
-                return MHid.HidD_GetInputReport(intPtr, comm, length);
+                return MHidUtil.HidD_GetInputReport(intPtr, comm, length);
             }
             catch (IOException)
             {
@@ -77,10 +76,10 @@ namespace MechTE_480.port.hid
         public bool SetReportSend(string command, int length, IntPtr intPtr)
         {
             Thread.Sleep(20);
-            var comm = HexToByteArray(command, length);
+            var comm = MHidUtil.HexToByteArray(command, length);
             try
             {
-                return HidD_SetOutputReport(intPtr, comm, length);
+                return MHidUtil.HidD_SetOutputReport(intPtr, comm, length);
             }
             catch (IOException)
             {
@@ -100,10 +99,10 @@ namespace MechTE_480.port.hid
         public bool SetFeatureSend(string command, int length, IntPtr intPtr)
         {
             Thread.Sleep(20);
-            var comm = HexToByteArray(command, length);
+            var comm = MHidUtil.HexToByteArray(command, length);
             try
             {       //       通道     指令                指令長度               
-                return HidD_SetFeature(intPtr, comm, length);
+                return MHidUtil.HidD_SetFeature(intPtr, comm, length);
             }
             catch (IOException)
             {
@@ -125,7 +124,7 @@ namespace MechTE_480.port.hid
         {
             ReturnValue = "False";
             ReturnAllValue = "False";
-            var createFileHandle = MHid.CreateFile(handle,          //文件位置
+            var createFileHandle = MHidUtil.CreateFile(handle,          //文件位置
                            0x40000000 | 0x80000000,          //允许对设备进行读写访问
                            0x1 | 0x2,    //允许对设备进行共享访问
                            IntPtr.Zero,                           //指向空指针（SECURITY_ATTRIBUTES定义文件的安全特性）
@@ -237,7 +236,7 @@ namespace MechTE_480.port.hid
         {
             ReturnValue = "False";
             ReturnAllValue = "False";
-            var createFileHandle = MHid.CreateFile(handle,          //文件位置
+            var createFileHandle = MHidUtil.CreateFile(handle,          //文件位置
                            0x40000000 | 0x80000000,          //允许对设备进行读写访问
                            0x1 | 0x2,    //允许对设备进行共享访问
                            IntPtr.Zero,                           //指向空指针（SECURITY_ATTRIBUTES定义文件的安全特性）
@@ -350,10 +349,10 @@ namespace MechTE_480.port.hid
             Thread.Sleep(20);
             var arr = MConvertUtil.NumberStrToIntArray(indexes);
             Thread.Sleep(20);
-            var comm = HexToByteArray(command, length);
+            var comm = MHidUtil.HexToByteArray(command, length);
             try
             {
-                if (HidD_GetFeature(intPtr, comm, length))
+                if (MHidUtil.HidD_GetFeature(intPtr, comm, length))
                 {
                     string ver = "";
                     foreach (int a in arr)
@@ -392,10 +391,10 @@ namespace MechTE_480.port.hid
             Thread.Sleep(20);
             var arr = MConvertUtil.NumberStrToIntArray(indexes);
             Thread.Sleep(20);
-            var comm = HexToByteArray(command, length);
+            var comm = MHidUtil.HexToByteArray(command, length);
             try
             {
-                if (MHid.HidD_GetInputReport(intPtr, comm, length))
+                if (MHidUtil.HidD_GetInputReport(intPtr, comm, length))
                 {
                     string ver = "";
                     foreach (var a in arr)
@@ -429,7 +428,7 @@ namespace MechTE_480.port.hid
         /// <returns></returns>
         public string IsReturnValue(string handle, string index, int length = 1000)
         {
-            IntPtr createFileHandle = MHid.CreateFile(handle,          //文件位置
+            IntPtr createFileHandle = MHidUtil.CreateFile(handle,          //文件位置
                             0x40000000 | 0x80000000,          //允许对设备进行读写访问
                             0x1 | 0x2,    //允许对设备进行共享访问
                             IntPtr.Zero,                           //指向空指针（SECURITY_ATTRIBUTES定义文件的安全特性）
@@ -473,12 +472,12 @@ namespace MechTE_480.port.hid
             bool result = true;
             bool resFlag = false;
             uint deviceSerialNumber = 0;
-            HidD_GetHidGuid(ref hidGuid);
+            MHidUtil.HidD_GetHidGuid(ref hidGuid);
             int s = 0;
-            var hDevInfo = SetupDiGetClassDevs(ref hidGuid,null,IntPtr.Zero,Digcf.DigcfAllclasses | Digcf.DigcfDeviceinterface);
+            var hDevInfo = MHidUtil.SetupDiGetClassDevs(ref hidGuid,null,IntPtr.Zero,MHidUtil.Digcf.DigcfAllclasses | MHidUtil.Digcf.DigcfDeviceinterface);
             try {
                 // 设备信息
-                SpDeviceInfoData devi = new SpDeviceInfoData();
+                MHidUtil.SpDeviceInfoData devi = new MHidUtil.SpDeviceInfoData();
                 devi.Size = Marshal.SizeOf(devi);
                 // 驱动程序信息
                 StringBuilder by = new StringBuilder();
@@ -487,14 +486,14 @@ namespace MechTE_480.port.hid
                 // 遍历设备信息列表
                 while (result) {
                     // 获取设备信息
-                    result = SetupDiEnumDeviceInfo(hDevInfo,deviceSerialNumber,ref devi);
+                    result = MHidUtil.SetupDiEnumDeviceInfo(hDevInfo,deviceSerialNumber,ref devi);
                     if (result) {
                         // 获取设备驱动程序信息
-                        resFlag = SetupDiGetDeviceRegistryProperty(hDevInfo,ref devi,SPDRP.SPDRP_DRIVER,
+                        resFlag = MHidUtil.SetupDiGetDeviceRegistryProperty(hDevInfo,ref devi,MHidUtil.SPDRP.SPDRP_DRIVER,
                             0,by,2048,zzz);
                         if (!pid.Contains(by.ToString())) {
                             // 删除设备
-                            resFlag = SetupDiRemoveDevice(hDevInfo,ref devi);
+                            resFlag = MHidUtil.SetupDiRemoveDevice(hDevInfo,ref devi);
                             s++;
                         }
                     }
@@ -506,7 +505,7 @@ namespace MechTE_480.port.hid
                 // ignored
             }
             finally {
-                SetupDiDestroyDeviceInfoList(hDevInfo);
+                MHidUtil.SetupDiDestroyDeviceInfoList(hDevInfo);
             }
             return s;
         }

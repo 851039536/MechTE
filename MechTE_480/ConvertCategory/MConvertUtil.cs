@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace MechTE_480.ConvertCategory
     /// </summary>    
     public static class MConvertUtil
     {
+        
+
         /// <summary>
         /// 将字符串转换为整型，转换失败返回0
         /// </summary>
@@ -18,7 +21,7 @@ namespace MechTE_480.ConvertCategory
         {
             return int.TryParse(value, out var result) ? result : 0;
         }
-        
+
         /// <summary>
         /// 将字符串转换为长整型，转换失败返回0
         /// </summary>
@@ -26,7 +29,7 @@ namespace MechTE_480.ConvertCategory
         {
             return long.TryParse(value, out var result) ? result : 0;
         }
-        
+
         /// <summary>
         /// 将字符串转换为布尔型，转换失败返回默认值，默认值false
         /// </summary>
@@ -37,6 +40,7 @@ namespace MechTE_480.ConvertCategory
             {
                 return defValue;
             }
+
             return bool.TryParse(data, out var temp) ? temp : defValue;
         }
 
@@ -60,6 +64,7 @@ namespace MechTE_480.ConvertCategory
                 return defValue;
             }
         }
+
 
         #region 进制转换
 
@@ -96,13 +101,37 @@ namespace MechTE_480.ConvertCategory
                 return "[False]";
             }
         }
-        
+
         /// <summary>
         /// 将16进制字符转为ASCII字符
         /// </summary>
         /// <param name="hex">16个数字（0-9和A-F）来表示</param>
         /// <returns></returns>
         public static string HexToAscii(string hex)
+        {
+            //判断是否是16进制字符
+            if (hex.Length % 2 != 0)
+            {
+                throw new ArgumentException("[False]:转换失败不是16进制的字符串");
+            }
+
+            var asciiChars = new List<char>();
+            for (var i = 0; i < hex.Length; i += 2)
+            {
+                var hexPair = hex.Substring(i, 2);
+                var b = Convert.ToByte(hexPair, 16);
+                asciiChars.Add((char)b);
+            }
+
+            return new string(asciiChars.ToArray());
+        } 
+        
+        /// <summary>
+        /// 将16进制字符转为ASCII字符
+        /// </summary>
+        /// <param name="hex">16个数字（0-9和A-F）来表示</param>
+        /// <returns></returns>
+        public static string MHexToAscii(this string hex)
         {
             //判断是否是16进制字符
             if (hex.Length % 2 != 0)
@@ -119,6 +148,8 @@ namespace MechTE_480.ConvertCategory
             return new string(asciiChars.ToArray());
         }
         
+        
+
         /// <summary>
         /// ASCII字符转为16进制字符
         /// </summary>
@@ -130,7 +161,7 @@ namespace MechTE_480.ConvertCategory
             var hexString = BitConverter.ToString(asciiBytes).Replace("-", "");
             return hexString;
         }
-        
+
         /// <summary>
         /// 将16进制字符转为ASCII16进制字符
         /// </summary>
@@ -141,7 +172,7 @@ namespace MechTE_480.ConvertCategory
             var asciiBytes = Encoding.ASCII.GetBytes(hexStrings);
             return ByteArr2HexStrings(asciiBytes);
         }
-        
+
         #endregion
 
         #region 字符串转换
@@ -198,8 +229,8 @@ namespace MechTE_480.ConvertCategory
             //返回整数
             return num;
         }
-        
-        
+
+
         /// <summary>
         /// 将字符串转换为字节数组
         /// 示例："ABCDEF" -> [ 0xAB, 0xCD, 0xEF ]
@@ -215,12 +246,11 @@ namespace MechTE_480.ConvertCategory
                 var byteStr = $"0x{str[i]}{str[i + 1]}";
                 bytes.Add(Convert.ToByte(byteStr, 16));
             }
+
             return bytes;
         }
+
         #endregion
-
-
-
 
 
         /// <summary>
@@ -235,22 +265,19 @@ namespace MechTE_480.ConvertCategory
             Console.WriteLine(base64String);
             return base64String;
         }
-        
-        
 
 
-        
         /// <summary>
         /// 示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
         /// </summary>
         /// <param name="bytes"></param>
         /// <param name="separator">分隔符</param>
         /// <returns></returns>
-        private static string ByteArr2HexStrings(byte[] bytes,string separator = "")
+        private static string ByteArr2HexStrings(byte[] bytes, string separator = "")
         {
             return ByteArrayToHexStrings(bytes.ToList());
         }
-        
+
         /// <summary>
         /// 将字节数组转换为十六进制字符串
         /// 示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
@@ -266,12 +293,13 @@ namespace MechTE_480.ConvertCategory
                 // 将字节转换为十六进制字符串，并添加分隔符
                 result += $"{item:X2}{separator}";
             }
+
             // 去除最后一个分隔符
             result = result.Substring(0, result.Length - separator.Length);
             // 返回十六进制字符串
             return result;
         }
-        
+
         /// <summary>
         /// 将数字类型字符串转int数组
         /// </summary>
@@ -286,7 +314,7 @@ namespace MechTE_480.ConvertCategory
             // 返回转换后的整数数组
             return intArray;
         }
-        
+
         /// <summary>
         /// Byte数组转16进制字符串
         /// </summary>
@@ -302,9 +330,10 @@ namespace MechTE_480.ConvertCategory
                     returnStr += t.ToString("X2") + " ";
                 }
             }
+
             return returnStr.Trim();
         }
-        
+
         /// <summary>
         /// 通过给定的索引，从字节数组中提取特定位置的字节，并将其转换为十六进制字符串
         /// </summary>
@@ -320,16 +349,17 @@ namespace MechTE_480.ConvertCategory
             {
                 // 将索引字符串按空格分割成一个字符串数组
                 var arr = index.Split(' ');
-                
+
                 foreach (var item in arr)
                 {
                     // 将当前索引对应的字节转换为十六进制字符串，并添加到结果字符串中
                     returnStr += bytes[Convert.ToInt32(item)].ToString("X2") + " ";
                 }
             }
+
             return returnStr.Trim();
         }
-        
+
         /// <summary>
         /// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 34)
         /// </summary>

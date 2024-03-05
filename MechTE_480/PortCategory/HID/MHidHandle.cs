@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace MechTE_480.port.hid
+namespace MechTE_480.PortCategory.hid
 {
     /// <summary>
     /// 获取句柄类
     /// </summary>
-    public partial class MHid
+    public partial class MHidUtil
     {
 
         /// <summary>
