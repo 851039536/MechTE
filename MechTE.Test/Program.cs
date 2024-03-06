@@ -1,18 +1,25 @@
 ﻿using System;
+using System.Reflection;
+using System.Threading;
 using System.Timers;
 
 namespace MechTE.Test
 {
     internal class Program
     {
-        // Elapsed事件处理程序  
-        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            Console.WriteLine("触发了Elapsed事件");
-        }
+     
 
         static void Main(string[] args)
         {
+            System.Media.SystemSounds.Asterisk.Play(); 
+            Thread.Sleep(1000);
+            System.Media.SystemSounds.Beep.Play(); 
+            Thread.Sleep(1000);
+            System.Media.SystemSounds.Exclamation.Play(); 
+            Thread.Sleep(1000);
+            System.Media.SystemSounds.Hand.Play(); 
+            Thread.Sleep(1000);
+            System.Media.SystemSounds.Question.Play();
             Console.ReadKey();
         }
     }

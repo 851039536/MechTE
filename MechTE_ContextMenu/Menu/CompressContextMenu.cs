@@ -17,7 +17,7 @@ namespace MechTE_ContextMenu.Menu
     // </summary>
     [ComVisible(true)]
     //如果按文件类型，按以下设置
-    [COMServerAssociation(AssociationType.ClassOfExtension,".zip",".7z")]
+    [COMServerAssociation(AssociationType.ClassOfExtension,".zip",".7z",".exe",".pdf")]
     [COMServerAssociation(AssociationType.Folder)]
     public class CompressContextMenu : SharpContextMenu //继承SharpContextMenu 
     {
@@ -49,11 +49,12 @@ namespace MechTE_ContextMenu.Menu
             item.ImageAlign = ContentAlignment.MiddleLeft;
 
 
-            //设置次级菜单
+            //设置次级菜单 
             var subItemsInfo = new Dictionary<string,string>()
             {
-                { "上传(工程)", "DesktopMenu.exe,uploadingEng" },
+                { "上传(工程)", "DesktopMenu.exe,TeUploadingEng" },
                 { "上传(量产)无功能", "DesktopMenu.exe,xxx" },
+                { "上传七牛云", "DesktopMenu.exe,QiNiuUpLoading" },
             };
 
             foreach (var kv in subItemsInfo)
