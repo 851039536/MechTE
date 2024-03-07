@@ -2,12 +2,12 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MechTE_480.Form
+namespace MechTE_480.FormCategory
 {
     /// <summary>
     /// 常用窗体
     /// </summary>
-    public partial class MForm
+    public partial class MFormUtil
     {
         
         #region 控件大小随窗体大小等比例缩放
@@ -56,7 +56,6 @@ namespace MechTE_480.Form
             }
         }
         #endregion
-
 
         #region 弹框提示
         /// <summary>
@@ -166,7 +165,18 @@ namespace MechTE_480.Form
         
         #endregion
 
+        #region 鼠标按住窗体移动
 
+        /// <summary>
+        /// 鼠标按住窗体移动,先调用 Capture = false; MForm.MoveForm(Handle);
+        /// </summary>
+        /// <param name="handle"></param>
+        public static void MoveForm(IntPtr handle)
+        {
+            SendMessage(handle,0xA1,0x2,0);
+        }
+        #endregion
+        
         /// <summary>
         /// 弹框选择文件夹
         /// </summary>
@@ -186,6 +196,7 @@ namespace MechTE_480.Form
             }
             return null;
         }
+        
 
     }
 }

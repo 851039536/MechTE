@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,8 +11,6 @@ namespace MechTE_480.ConvertCategory
     /// </summary>    
     public static class MConvertUtil
     {
-        
-
         /// <summary>
         /// 将字符串转换为整型，转换失败返回0
         /// </summary>
@@ -147,8 +144,6 @@ namespace MechTE_480.ConvertCategory
             }
             return new string(asciiChars.ToArray());
         }
-        
-        
 
         /// <summary>
         /// ASCII字符转为16进制字符

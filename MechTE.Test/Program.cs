@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Reflection;
-using System.Threading;
-using System.Timers;
+using MechTE_480.ProcessCategory;
 
 namespace MechTE.Test
 {
@@ -11,16 +9,15 @@ namespace MechTE.Test
 
         static void Main(string[] args)
         {
-            System.Media.SystemSounds.Asterisk.Play(); 
-            Thread.Sleep(1000);
-            System.Media.SystemSounds.Beep.Play(); 
-            Thread.Sleep(1000);
-            System.Media.SystemSounds.Exclamation.Play(); 
-            Thread.Sleep(1000);
-            System.Media.SystemSounds.Hand.Play(); 
-            Thread.Sleep(1000);
-            System.Media.SystemSounds.Question.Play();
+            
+            Console.WriteLine(MProcessUtil.GetWiFiPassword("PM_SF"));
+            // MProcessUtil.ExCmd("mstsc");
+            
+             //MProcessUtil.ExCmdWrite(new[] { "d:", @"cd D:\sw\model\MSP168\MSP168\MerryDll\bin\Debug\fw", "FWupdate.exe /VID_03F0 /PID_0D84 -USB -Ver" });
+            // MProcessUtil.ExCmd(new[] { "ipconfig", "mstsc", "notepad" });
             Console.ReadKey();
         }
+        
+        
     }
 }

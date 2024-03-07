@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace MechTE_480.ProcessCategory
 {
@@ -10,40 +7,7 @@ namespace MechTE_480.ProcessCategory
     /// </summary>
     public partial class MProcessUtil
     {
-        /// <summary>
-        /// 执行多条cmd.exe命令
-        /// </summary>
-        /// <param name="commandTexts"></param>
-        private static void ExeCommand(IEnumerable<string> commandTexts)
-        {
-            //表示在操作系统上运行的进程
-            var p = new Process();
-            p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.CreateNoWindow = true;
-            try
-            {
-                p.Start();
-                foreach (var item in commandTexts)
-                {
-                    p.StandardInput.WriteLine(item);
-                }
-
-                p.StandardInput.WriteLine("exit");
-                p.StandardOutput.ReadToEnd();
-                //等待进程退出
-                p.WaitForExit();
-                p.Close();
-            } catch (Exception)
-            {
-                // ignored
-            }
-        }
-
-
+        
         /// <summary>
         /// 执行Bat
         /// </summary>
@@ -57,42 +21,12 @@ namespace MechTE_480.ProcessCategory
             // processInfo.Verb = "runas";
             // 创建一个Process对象
             Process process = new Process();
-            // 将ProcessStartInfo对象赋值给Process对象的StartInfo属性
             process.StartInfo = processInfo;
             // 启动进程
             process.Start();
         }
 
-        /// <summary>
-        /// 使用cmd执行Shell命名
-        /// </summary>
-        /// <param name="commandTexts"></param>
-        /// <returns></returns>
-        private static async Task<bool> ExeCommandAsync(IEnumerable<string> commandTexts)
-        {
-            using var p = new Process();
-            p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.CreateNoWindow = true;
-            try
-            {
-                p.Start();
-                foreach (var item in commandTexts)
-                {
-                    await p.StandardInput.WriteLineAsync(item);
-                }
-                await p.StandardInput.WriteLineAsync("exit");
-                await p.StandardOutput.ReadToEndAsync();
-                p.WaitForExit();
-                return true;
-            } catch (Exception)
-            {
-                return false;
-            }
-        }
+        
 
         /// <summary>
         /// 进程窗口模式

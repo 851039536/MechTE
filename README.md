@@ -695,14 +695,22 @@ _button.ButtonTest(() => HeadsetBtn("0x01"), "请按Teams键")
 
 
 
-## MForm
+## MFormUtil
 
 常用窗体
 
-- 命名空间: namespace MechTE_480.Form
-- 类名:MForm
+- 命名空间: MechTE_480.FormCategory
+- 类名:MFormUtil
 
+### MoveForm
 
+```csharp
+ /// <summary>
+ /// 鼠标按住窗体移动,先调用 Capture = false; MForm.MoveForm(Handle);
+ /// </summary>
+ /// <param name="handle"></param>
+ public static void MoveForm(IntPtr handle)
+```
 
 ### MesBox
 
@@ -898,6 +906,7 @@ public static void ClearSection(string Section,string filePath)
 ### MStartApp-启动应用网站
 
 ```csharp
+// 扩展方法
 public static void MStartApp(this string value)
 ```
 
@@ -905,14 +914,17 @@ public static void MStartApp(this string value)
 
 `value`：要转换的字符串
 
-### MReverse
+1 3 2
+
+KRULL-BDL-MS-PB1-8L-HS-ACOUSTIC-TEST
+
+
+
+### 字符反序
 
 ```csharp
-/// <summary>
-/// 将字符按2个长度为一组进行反序
-/// </summary>
-/// <param name="value">11 22 33 44</param>
-/// <returns>44332211->11223344</returns>
+public static string Reverse(string str)
+// 扩展方法
 public static string MReverse(this string value)
 ```
 
@@ -924,16 +936,7 @@ public static string MReverse(this string value)
 
 转换成功则返回转换后44332211->11223344
 
-### Reverse
 
-```csharp
-/// <summary>
-/// 将字符按2个长度为一组进行反序
-/// </summary>
-/// <param name="str">11223344</param>
-/// <returns>44332211->11223344</returns>
-public static string Reverse(string str)
-```
 
 ### ClearSpaces
 
@@ -1341,17 +1344,50 @@ public static void Assert( string errMsg)
 
 使用进程调用cmd命令或程序
 
-- 命名空间: MechTE_480.ProcessCategory
+- 命名空间: MechTE_480.ProcessCategory	
 - 类名:MProcessUtil
 
-### Shell
+### 根据名称获取wifi密码
 
 ```csharp
-///  <summary>
-/// 执行Shell
-///  </summary>
-///  <param name="cmd">Shell程序命令</para
-public static void Shell(string cmd)
+/// <summary>
+/// 根据名称获取wifi密码
+/// </summary>
+/// <param name="value"></param>
+/// <returns></returns>
+public static string GetWiFiPassword(string value)
+```
+
+### 执行cmd
+
+```csharp
+ /// <summary>
+ /// 单个线程执行多个cmd指令
+ /// </summary>
+ /// <param name="commands"></param>
+ public static void ExCmdWrite(string[] commands)
+     
+ /// <summary>
+/// 执行多个cmd,每次都会创建一次进程
+/// </summary>
+/// <param name="commands"></param>
+/// <returns></returns>
+public static string ExCmd(string[] commands)
+     
+ /// <summary>
+ /// 执行单个cmd命令获取返回值
+ /// </summary>
+ /// <param name="cmd"></param>
+ /// <returns></returns>
+ public static string ExCmd(string cmd)
+```
+
+调用示例
+
+```csharp
+MProcessUtil.ExCmd("mstsc");
+ MProcessUtil.ExCmdWrite(new[] { "d:", @"cd D:\sw\model\MSP168\MSP168\MerryDll\bin\Debug\fw", "FWupdate.exe /VID_03F0 /PID_0D84 -USB -Ver" });
+MProcessUtil.ExCmd(new[] { "ipconfig", "mstsc", "notepad" });
 ```
 
 ### Bat
@@ -1507,8 +1543,6 @@ public static string GetHostName()
 
 ```
 
-
-
 ### LANIP
 
 ```csharp
@@ -1518,8 +1552,6 @@ public static string GetHostName()
  public static string LANIP()
 
 ```
-
-
 
 ## MHidUtil
 

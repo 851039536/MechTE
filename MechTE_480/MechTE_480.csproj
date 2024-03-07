@@ -65,8 +65,8 @@
     <Compile Include="btnForm\ProgressBars.designer.cs" />
     <Compile Include="files\MFileTransfer.cs" />
     <Compile Include="files\MFileTransferConfig.cs" />
-    <Compile Include="form\MFormConfig.cs" />
-    <Compile Include="form\MForm.cs" />
+    <Compile Include="FormCategory\MFormConfig.cs" />
+    <Compile Include="FormCategory\MFormUtil.cs" />
     <Compile Include="files\MIni.cs" />
     <Compile Include="files\MIniConfig.cs" />
     <Compile Include="ConvertCategory\MConvertUtil.cs" />
