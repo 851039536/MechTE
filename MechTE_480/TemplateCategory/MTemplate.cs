@@ -1,4 +1,4 @@
-﻿namespace MechTE_480.merryDll
+﻿namespace MechTE_480.TemplateCategory
 {
     /// <summary>
     /// 模板程序定制的功能

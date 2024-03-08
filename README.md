@@ -1046,7 +1046,7 @@ public static void LogWrite(string paths, string name, string str)
 - 命名空间: MechTE_480.ConvertCategory
 - 类名:MConvertUtil
 
-### ToInt32-将字符串转换为整型
+### 将字符串转换为整型
 
 ```csharp
 public static int ToInt32(string value)
@@ -1062,7 +1062,7 @@ public static int ToInt32(string value)
 
 
 
-### ToInt64-将字符串转换为长整型
+### 将字符串转换为长整型
 
 ```csharp
 public static long ToInt64(string value)
@@ -1078,7 +1078,7 @@ public static long ToInt64(string value)
 
 
 
-### ToBoolean-将字符串转换为布尔型
+### 将字符串转换为布尔型
 
 ```csharp
 public static bool ToBoolean(string value)
@@ -1092,7 +1092,7 @@ public static bool ToBoolean(string value)
 
 转换成功则返回转换后的布尔型值，否则返回false
 
-### ConvertBase-进制数间的转换
+### 进制数间的转换
 
 实现2,8,10,16进制数间的转换
 
@@ -1148,7 +1148,7 @@ public static string BytesToString(byte[] bytes, Encoding encoding)
 public static int BytesToInt32(byte[] data)
 ```
 
-### HexToAscii
+### 将16进制字符转为ASCII字符
 
 ```csharp
 /// <summary>
@@ -1172,16 +1172,26 @@ public static string MHexToAscii(this string hex)
 
 
 
-### AsciiToHex
+### 将ASCII字符转为16进制字符
+
+ASCII字符转为16进制字符
+
+**参数**
+
+`value`：要转换的字符串
+
+**返回值**
+
+16进制字符
 
 ```csharp
-/// <summary>
-/// ASCII字符转为16进制字符
-/// </summary>
-/// <param name="name"></param>
-/// <returns></returns>
-public static string AsciiToHex(string name)
+public static string AsciiStrToHexStr(string name)
+public static string MAsciiStrToHexStr(this string name)    
 ```
+
+
+
+
 
 ### HexStrToAsciiHexStr
 
@@ -1242,17 +1252,19 @@ public static string ByteToHex(byte[] bytes, string index)
 
 
 
-### StringToHidFormat
+### 将字符转换HID指令格式
 
-将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 3
+**参数**
+
+`value`：要转换的字符串如:0021032334
+
+**返回值**
+
+转换成功则返回00 21 03 23 3
 
 ```csharp
-/// <summary>
-/// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 3
-/// </summary>
-/// <param name="name"></param>
-/// <returns>string</returns>
-public static string StringToHidFormat(string name)
+public static string ToHidFormat(string value)   
+public static string MToHidFormat(this string value)
 ```
 
 

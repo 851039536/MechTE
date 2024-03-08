@@ -47,7 +47,7 @@ namespace VSxUnitTest.util
         public void AsciiToHex()
         {
             var data2 = MConvertUtil.HexToAscii("0676312E342E30");
-            var data = MConvertUtil.AsciiToHex(data2);
+            var data = MConvertUtil.AsciiStrToHexStr(data2);
             // data = data.Substring(1, 6);
             Assert.Equal("v1.4.0",data);
         }

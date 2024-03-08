@@ -70,6 +70,7 @@ namespace MechTE_480.util
 
         /// <summary>
         /// 获取当前程序根目录地址(D:\File\bin\Debug)
+        /// 如果引用dll不在根目录，会触发异常
         /// </summary>
         /// <returns></returns>
         public static string GetCurrentProgramDirectory()

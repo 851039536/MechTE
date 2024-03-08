@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assert\MAssert.cs" />
+    <Compile Include="ConvertCategory\MConvertConfig.cs" />
+    <Compile Include="DateTimeCategory\MDateTimeUtil.cs" />
     <Compile Include="files\MFileConfig.cs" />
     <Compile Include="files\MFile.cs" />
     <Compile Include="btnForm\MButton.cs" />
@@ -71,12 +73,12 @@
     <Compile Include="files\MIniConfig.cs" />
     <Compile Include="ConvertCategory\MConvertUtil.cs" />
     <Compile Include="LogCategory\MLogUtil.cs" />
-    <Compile Include="merryDll\MTemplate.cs" />
+    <Compile Include="TemplateCategory\MTemplate.cs" />
     <Compile Include="PortCategory\HID\MHidUtil.cs" />
     <Compile Include="PortCategory\HID\MHidConfig.cs" />
     <Compile Include="PortCategory\HID\MHidHandle.cs" />
     <Compile Include="PortCategory\USB\MUsb.cs" />
-    <Compile Include="merryDll\IMerryDll.cs" />
+    <Compile Include="TemplateCategory\IMerryDll.cs" />
     <Compile Include="network\MNetHelper.cs" />
     <Compile Include="network\SocketClient.cs" />
     <Compile Include="network\SocketServer.cs" />

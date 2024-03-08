@@ -9,7 +9,7 @@ namespace MechTE_480.ConvertCategory
     /// <summary>
     /// 处理数据类型转换，数制转换、编码转换相关的类
     /// </summary>    
-    public static class MConvertUtil
+    public  static partial class MConvertUtil
     {
         /// <summary>
         /// 将字符串转换为整型，转换失败返回0
@@ -145,20 +145,32 @@ namespace MechTE_480.ConvertCategory
             return new string(asciiChars.ToArray());
         }
 
+        # region  ASCII字符转为16进制字符
+        
         /// <summary>
         /// ASCII字符转为16进制字符
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="value">转换值</param>
         /// <returns></returns>
-        public static string AsciiToHex(string name)
+        public static string AsciiStrToHexStr(string value)
         {
-            var asciiBytes = Encoding.ASCII.GetBytes(name);
-            var hexString = BitConverter.ToString(asciiBytes).Replace("-", "");
-            return hexString;
+            return AsciiStringToHexString(value);
         }
+        /// <summary>
+        /// ASCII字符转为16进制字符
+        /// </summary>
+        /// <param name="value">转换值</param>
+        /// <returns></returns>
+        public static string MAsciiStrToHexStr(this string value)
+        {
+            return AsciiStringToHexString(value);
+        }
+        #endregion
+        
+        
 
         /// <summary>
-        /// 将16进制字符转为ASCII16进制字符
+        /// 将16进制字符转为ASCII 16进制字符
         /// </summary>
         /// <param name="hexStrings">16进制字符</param>
         /// <returns>示例：01 &gt; 30 31</returns>
@@ -247,7 +259,6 @@ namespace MechTE_480.ConvertCategory
 
         #endregion
 
-
         /// <summary>
         /// 图片转base64
         /// </summary>
@@ -260,7 +271,6 @@ namespace MechTE_480.ConvertCategory
             Console.WriteLine(base64String);
             return base64String;
         }
-
 
         /// <summary>
         /// 示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
@@ -355,21 +365,29 @@ namespace MechTE_480.ConvertCategory
             return returnStr.Trim();
         }
 
+        
+        #region 将字符转换HID指令格式 
+        
         /// <summary>
         /// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 34)
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="value"></param>
         /// <returns>string</returns>
-        public static string StringToHidFormat(string name)
+        public static string ToHidFormat(string value)
         {
-            string[] splitStrings = new string[name.Length / 2];
-            for (int i = 0; i < splitStrings.Length; i++)
-            {
-                splitStrings[i] = name.Substring(i * 2, 2);
-            }
-
-            string formattedStringKey = string.Join(" ", splitStrings);
-            return formattedStringKey;
+            return StringToHidFormat(value);
         }
+        
+        /// <summary>
+        /// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 34)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>string</returns>
+        public static string MToHidFormat(this string value)
+        {
+            return StringToHidFormat(value);
+        }
+        
+        #endregion
     }
 }

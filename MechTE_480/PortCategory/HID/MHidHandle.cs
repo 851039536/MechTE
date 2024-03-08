@@ -48,7 +48,7 @@ namespace MechTE_480.PortCategory.hid
         /// <param name="pid01">如:a520</param>
         /// <param name="vid01">如:413c</param>
         /// <returns></returns>
-        public bool GetHandle(string pid01, string vid01)
+        public bool GetHandle(string vid01, string pid01)
         {
             bool flag;
             try
