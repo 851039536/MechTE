@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace MechTE_480.ConvertCategory
@@ -16,7 +13,7 @@ namespace MechTE_480.ConvertCategory
         /// </summary>
         /// <param name="value"></param>
         /// <returns>string</returns>
-        public static string StringToHidFormat(string value)
+        private static string StringToHidFormat(string value)
         {
             var splitStrings = new string[value.Length / 2];
             for (int i = 0; i < splitStrings.Length; i++)
@@ -32,7 +29,7 @@ namespace MechTE_480.ConvertCategory
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string AsciiStringToHexString(string value)
+        private static string AsciiStringToHexString(string value)
         {
             var asciiBytes = Encoding.ASCII.GetBytes(value);
             var hexString = BitConverter.ToString(asciiBytes).Replace("-", "");

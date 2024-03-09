@@ -168,8 +168,5 @@ namespace MechTE_480.util
             //验证
             return MRegex.IsMatch(number,pattern);
         }
-        
-        
-        
     }
 }

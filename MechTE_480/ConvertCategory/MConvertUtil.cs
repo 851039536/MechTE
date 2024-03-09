@@ -37,7 +37,6 @@ namespace MechTE_480.ConvertCategory
             {
                 return defValue;
             }
-
             return bool.TryParse(data, out var temp) ? temp : defValue;
         }
 
@@ -387,7 +386,6 @@ namespace MechTE_480.ConvertCategory
         {
             return StringToHidFormat(value);
         }
-        
         #endregion
     }
 }
