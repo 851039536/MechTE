@@ -903,7 +903,7 @@ public static void ClearSection(string Section,string filePath)
 - 命名空间: MechTE_480.util
 - 类名:MStringUtil
 
-### MStartApp-启动应用网站
+### 启动应用网站
 
 ```csharp
 // 扩展方法
@@ -914,16 +914,10 @@ public static void MStartApp(this string value)
 
 `value`：要转换的字符串
 
-1 3 2
-
-KRULL-BDL-MS-PB1-8L-HS-ACOUSTIC-TEST
-
-
-
 ### 字符反序
 
 ```csharp
-public static string Reverse(string str)
+public static string Reverse(string value)
 // 扩展方法
 public static string MReverse(this string value)
 ```
@@ -936,51 +930,43 @@ public static string MReverse(this string value)
 
 转换成功则返回转换后44332211->11223344
 
+### 清除字符串中的空格
 
+清除字符串中的空格(00 00 00 00 > 00000000)
 
-### ClearSpaces
+**参数**
 
-清除字符串中的空格
+`value`：将字符按2个长度为一组进行反序
+
+**返回值**
+
+转换成功则返回转换后44332211->11223344
 
 ```csharp
-/// <summary>
-/// 清除字符串中的空格(00 00 00 00 > 00000000)
-/// </summary>
-/// <param name="value"></param>
-/// <returns>string</returns>
 public static string ClearSpaces(string value)
-{
-    return value.Replace(" ", "");
-}
-```
-
-### MClearSpaces
-
-清除字符串中的空格
-
-```csharp
-/// <summary>
-/// 清除字符串中的空格(00 00 00 00 > 00000000)
-/// </summary>
-/// <param name="value"></param>
-/// <returns>string</returns>
+// 扩展方式
 public static string MClearSpaces(this string value)
 ```
 
+### 字符串按照分隔符转List
 
+把字符串按照分隔符转换成List
 
-### StringToListStr
+**参数**
+
+`str`：源字符串
+`speater`：分隔符
+`toLower`：是否转换为小写
+
+**返回值** 
+
+`List<string>`
 
 ```csharp
- /// <summary>
- /// 把字符串按照分隔符转换成List
- /// </summary>
- /// <param name="str">源字符串</param>
- /// <param name="speater">分隔符</param>
- /// <param name="toLower">是否转换为小写</param>
- /// <returns></returns>
- public static List<string> StringToListStr(string str,char speater,bool toLower)
+public static List<string> StringToListStr(string str,char speater,bool toLower)
 ```
+
+
 
 ### StringToArray
 
@@ -1497,7 +1483,38 @@ public void SendData(byte[] data, int f, int l)
 public void SendHexString(string hexString)
 ```
 
+## MLogUtil
 
+写本地log文本数据
+
+网络工具类
+
+- 命名空间: MechTE_480.LogCategory
+- 类名:MLogUtil
+
+### LogWrite
+
+```csharp
+/// <summary>
+/// 写入本地log,自动生成当前时间
+/// </summary>
+/// <param name="paths">写入log路径</param>
+/// <param name="name">log文件名称</param>
+/// <param name="value">写入内容</param>
+public static void LogWrite(string paths, string name, string value)
+```
+
+###  LogWriteYesterdayTime
+
+```csharp
+/// <summary>
+/// 写入本地log,自动生成前一天时间
+/// </summary>
+/// <param name="paths"></param>
+/// <param name="name"></param>
+/// <param name="value"></param>
+public static void LogWriteYesterdayTime(string paths, string name, string value)
+```
 
 ## MNetHelper
 
