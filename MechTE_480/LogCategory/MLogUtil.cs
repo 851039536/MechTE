@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using MechTE_480.DateTimeCategory;
 
 namespace MechTE_480.LogCategory
 {
@@ -19,6 +20,24 @@ namespace MechTE_480.LogCategory
             string dataTime = DateTime.Now.ToString("yyyy-MM-dd");
             //项目根目录
             string path = $@"{paths}\{dataTime}_{name}.txt";
+            if (!Directory.Exists($@"{paths}"))
+                Directory.CreateDirectory($@"{paths}");
+            var writer = !File.Exists(path) ? File.CreateText(path) : File.AppendText(path);
+            writer.WriteLine(value);
+            writer.Flush();
+            writer.Close();
+        }
+        
+        /// <summary>
+        /// 写入本地log,自动生成前一天时间
+        /// </summary>
+        /// <param name="paths"></param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        public static void LogWriteYesterdayTime(string paths, string name, string value)
+        {
+            //项目根目录
+            string path = $@"{paths}\{MDateTimeUtil.GetYesterdayTime()}_{name}.txt";
             if (!Directory.Exists($@"{paths}"))
                 Directory.CreateDirectory($@"{paths}");
             var writer = !File.Exists(path) ? File.CreateText(path) : File.AppendText(path);
