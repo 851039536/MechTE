@@ -5,7 +5,7 @@ using MechTE_480.DateTimeCategory;
 namespace MechTE_480.LogCategory
 {
     /// <summary>
-    /// 写本地log数据
+    /// 写本地log文本数据
     /// </summary>
     public static class MLogUtil
     {

@@ -1497,7 +1497,38 @@ public void SendData(byte[] data, int f, int l)
 public void SendHexString(string hexString)
 ```
 
+## MLogUtil
 
+写本地log文本数据
+
+网络工具类
+
+- 命名空间: MechTE_480.LogCategory
+- 类名:MLogUtil
+
+### LogWrite
+
+```csharp
+/// <summary>
+/// 写入本地log,自动生成当前时间
+/// </summary>
+/// <param name="paths">写入log路径</param>
+/// <param name="name">log文件名称</param>
+/// <param name="value">写入内容</param>
+public static void LogWrite(string paths, string name, string value)
+```
+
+###  LogWriteYesterdayTime
+
+```csharp
+/// <summary>
+/// 写入本地log,自动生成前一天时间
+/// </summary>
+/// <param name="paths"></param>
+/// <param name="name"></param>
+/// <param name="value"></param>
+public static void LogWriteYesterdayTime(string paths, string name, string value)
+```
 
 ## MNetHelper
 
