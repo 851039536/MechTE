@@ -1,25 +1,25 @@
 ﻿using System;
 
-namespace MechTE_480.assert
+namespace MechTE_480.AssertCategory
 {
     /// <summary>
-    /// 自定义断言类
+    /// 自定义断言类 , throw new Exception 异常
     /// </summary>
-    public class MAssert
+    public static class MAssertUtil
     {
         /// <summary>
-        ///  判断字符串是否为空,空等于true，抛出异常
+        /// 判断字符串是否为空，如为空则抛出异常
         /// </summary>
-        /// <param name="str"></param>
-        /// <param name="errMsg"></param>
-        public static void IsEmpty(string str, string errMsg)
+        /// <param name="value">需要判断的值</param>
+        /// <param name="errMsg">异常提示</param>
+        public static void IsEmpty(string value, string errMsg)
         {
             //如果为空，则等于true，抛出异常
-            Assert(string.IsNullOrEmpty(str), errMsg);
+            Assert(string.IsNullOrEmpty(value), errMsg);
         }
 
         /// <summary>
-        /// 自定义断言方法， result == true 抛出异常
+        /// result == true抛出异常
         /// </summary>
         /// <param name="result">bool</param>
         /// <param name="errMsg">错误信息</param>
@@ -40,13 +40,13 @@ namespace MechTE_480.assert
         {
             Assert(func(), errMsg);
         }
-        
+
         /// <summary>
         /// 直接报错误提示
         /// </summary>
         /// <param name="errMsg"></param>
         /// <exception cref="Exception"></exception>
-        public static void Assert( string errMsg)
+        public static void Assert(string errMsg)
         {
             throw new Exception(errMsg);
         }

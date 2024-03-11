@@ -38,9 +38,61 @@ merge文件中的库是等待合并的dll
 call $(TargetPath) merge.bat
 ```
 
-每次生成项目时会调用项目下的merge.bat , 控制台输出ILMerge: Done.等于合并成功
+每次生成项目时会调用项目下的merge.bat , 控制台输出 **ILMerge: Done.** 等于合并成功
 
-# 功能
+# MechTE_480
+
+功能模块
+
+## MAssertUtil
+
+自定义断言类
+
+- 命名空间: MechTE_480.AssertCategory
+- 类名:MAssertUtil
+
+### 判断字符是否为空
+
+判断字符串是否为空，如为空则抛出异常
+
+```csharp
+public static void IsEmpty(string value, string errMsg)
+```
+
+**参数**
+
+`value`：需要判断的值
+`errMsg`：异常提示
+
+### 自定义断言方法
+
+```csharp
+/// <summary>
+/// 自定义断言方法， result == true 抛出异常
+/// </summary>
+/// <param name="result">bool</param>
+/// <param name="errMsg">错误信息</param>
+/// <remarks>系统断言不能在 Release 版保留，用这个方法替代</remarks>
+// ReSharper disable once MemberCanBePrivate.Global
+public static void Assert(bool result, string errMsg)
+    
+/// <summary>
+/// 自定义断言方法， func() == true 抛出异常    
+/// </summary>
+/// <param name="func"></param>
+/// <param name="errMsg"></param>
+/// <remarks>系统断言不能在 Release 版保留，用这个方法替代</remarks>
+public static void Assert(Func<bool> func, string errMsg)
+    
+/// <summary>
+/// 直接报错误提示
+/// </summary>
+/// <param name="errMsg"></param>
+/// <exception cref="Exception"></exception
+public static void Assert( string errMsg)
+```
+
+
 
 ## MFile
 
@@ -1036,6 +1088,8 @@ public static void LogWrite(string paths, string name, string str)
 
 ```csharp
 public static int ToInt32(string value)
+//扩展方法
+public static int MToInt32(this string value)
 ```
 
 **参数**
@@ -1289,52 +1343,6 @@ public void MMeasure()
 ```
 
 
-
-## MAssert
-
-自定义断言类
-
-- 命名空间: MechTE_480.assert
-- 类名:MAssert
-
-### IsEmpty
-
-```csharp
-/// <summary>
-///  判断字符串是否为空,空等于true，抛出异常
-/// </summary>
-/// <param name="str"></param>
-/// <param name="errMsg"></param>
-public static void IsEmpty(string str, string errMsg)
-```
-
-### Assert
-
-```csharp
-/// <summary>
-/// 自定义断言方法， result == true 抛出异常
-/// </summary>
-/// <param name="result">bool</param>
-/// <param name="errMsg">错误信息</param>
-/// <remarks>系统断言不能在 Release 版保留，用这个方法替代</remarks>
-// ReSharper disable once MemberCanBePrivate.Global
-public static void Assert(bool result, string errMsg)
-    
-/// <summary>
-/// 自定义断言方法， func() == true 抛出异常    
-/// </summary>
-/// <param name="func"></param>
-/// <param name="errMsg"></param>
-/// <remarks>系统断言不能在 Release 版保留，用这个方法替代</remarks>
-public static void Assert(Func<bool> func, string errMsg)
-    
-/// <summary>
-/// 直接报错误提示
-/// </summary>
-/// <param name="errMsg"></param>
-/// <exception cref="Exception"></exception
-public static void Assert( string errMsg)
-```
 
 
 
@@ -1930,3 +1938,10 @@ public static bool IsUserAdministrator()
 ## MXml
 
 定制类
+
+
+
+# MechTE_ContextMenu
+
+菜单配置
+

@@ -55,7 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assert\MAssert.cs" />
+    <Compile Include="AssertCategory\MAssertUtil.cs" />
     <Compile Include="ConvertCategory\MConvertConfig.cs" />
     <Compile Include="DateTimeCategory\MDateTimeUtil.cs" />
     <Compile Include="files\MFileConfig.cs" />

@@ -9,8 +9,10 @@ namespace MechTE_480.ConvertCategory
     /// <summary>
     /// 处理数据类型转换，数制转换、编码转换相关的类
     /// </summary>    
-    public  static partial class MConvertUtil
+    public static partial class MConvertUtil
     {
+        #region 将字符串转换为整型
+
         /// <summary>
         /// 将字符串转换为整型，转换失败返回0
         /// </summary>
@@ -18,6 +20,17 @@ namespace MechTE_480.ConvertCategory
         {
             return int.TryParse(value, out var result) ? result : 0;
         }
+
+        /// <summary>
+        /// 将字符串转换为整型，转换失败返回0
+        /// </summary>
+        public static int MToInt32(this string value)
+        {
+            return int.TryParse(value, out var result) ? result : 0;
+        }
+
+        #endregion
+
 
         /// <summary>
         /// 将字符串转换为长整型，转换失败返回0
@@ -37,6 +50,7 @@ namespace MechTE_480.ConvertCategory
             {
                 return defValue;
             }
+
             return bool.TryParse(data, out var temp) ? temp : defValue;
         }
 
@@ -120,8 +134,8 @@ namespace MechTE_480.ConvertCategory
             }
 
             return new string(asciiChars.ToArray());
-        } 
-        
+        }
+
         /// <summary>
         /// 将16进制字符转为ASCII字符
         /// </summary>
@@ -134,6 +148,7 @@ namespace MechTE_480.ConvertCategory
             {
                 throw new ArgumentException("[False]:转换失败不是16进制的字符串");
             }
+
             var asciiChars = new List<char>();
             for (var i = 0; i < hex.Length; i += 2)
             {
@@ -141,11 +156,12 @@ namespace MechTE_480.ConvertCategory
                 var b = Convert.ToByte(hexPair, 16);
                 asciiChars.Add((char)b);
             }
+
             return new string(asciiChars.ToArray());
         }
 
-        # region  ASCII字符转为16进制字符
-        
+        # region ASCII字符转为16进制字符
+
         /// <summary>
         /// ASCII字符转为16进制字符
         /// </summary>
@@ -155,6 +171,7 @@ namespace MechTE_480.ConvertCategory
         {
             return AsciiStringToHexString(value);
         }
+
         /// <summary>
         /// ASCII字符转为16进制字符
         /// </summary>
@@ -164,9 +181,9 @@ namespace MechTE_480.ConvertCategory
         {
             return AsciiStringToHexString(value);
         }
+
         #endregion
-        
-        
+
 
         /// <summary>
         /// 将16进制字符转为ASCII 16进制字符
@@ -364,9 +381,9 @@ namespace MechTE_480.ConvertCategory
             return returnStr.Trim();
         }
 
-        
-        #region 将字符转换HID指令格式 
-        
+
+        #region 将字符转换HID指令格式
+
         /// <summary>
         /// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 34)
         /// </summary>
@@ -376,7 +393,7 @@ namespace MechTE_480.ConvertCategory
         {
             return StringToHidFormat(value);
         }
-        
+
         /// <summary>
         /// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 34)
         /// </summary>
@@ -386,6 +403,7 @@ namespace MechTE_480.ConvertCategory
         {
             return StringToHidFormat(value);
         }
+
         #endregion
     }
 }
