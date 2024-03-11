@@ -75,7 +75,6 @@ namespace MechTE_480.ConvertCategory
             }
         }
 
-
         #region 进制转换
 
         /// <summary>

@@ -178,13 +178,13 @@ namespace MechTE_480.FormCategory
         #endregion
         
         /// <summary>
-        /// 弹框选择文件夹
+        /// 通过图形用户界面选择一个文件夹
         /// </summary>
         /// <param name="description">描述</param>
         /// <returns></returns>
-        public static string FolderBrowserDialog(string description)
+        public static string ShowDialog(string description)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            var dialog = new FolderBrowserDialog();
             dialog.Description = description;
             if (dialog.ShowDialog() == DialogResult.OK)
             {

@@ -840,7 +840,7 @@ public static void SetControls(float newX,float newY,Control cons)
 /// </summary>
 /// <param name="description">描述</param>
 /// <returns></returns>
-public static string FolderBrowserDialog(string description)
+public static string ShowDialog(string description)
 ```
 
 
@@ -1084,7 +1084,7 @@ public static void LogWrite(string paths, string name, string str)
 - 命名空间: MechTE_480.ConvertCategory
 - 类名:MConvertUtil
 
-### 将字符串转换为整型
+### 将字符转换为整型
 
 ```csharp
 public static int ToInt32(string value)
@@ -1102,7 +1102,7 @@ public static int MToInt32(this string value)
 
 
 
-### 将字符串转换为长整型
+### 将字符转换为长整型
 
 ```csharp
 public static long ToInt64(string value)
@@ -1118,7 +1118,7 @@ public static long ToInt64(string value)
 
 
 
-### 将字符串转换为布尔型
+### 将字符转换为布尔型
 
 ```csharp
 public static bool ToBoolean(string value)
