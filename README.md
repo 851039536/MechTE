@@ -4,9 +4,15 @@ c#一些常用功能封装如弹窗, 文件操作, 数据转换, ini文件操作
 
 ## 合并工具及脚本
 
-merge.bat 文件中编写脚本 , 使用 ILMerge.exe进行合并
+**ILMerge.exe** : 支持将EXE依赖的DLL合并到EXE中，也支持将主DLL依赖的其他DLL合并到一个DLL中
 
-```
+在bat文件中编写脚本 , 使用 ILMerge.exe进行合并
+
+### 配置bat命令
+
+**merge.bat**
+
+```bat
 cmd /k "D:\sw\编程资料\Dll合并工具\ILMerge.exe /ndebug /target:dll /out:D:\sw\class_library\MechTE\MechTE_480\bin\Debug\MechTE_480_Merge.dll /log D:\sw\class_library\MechTE\MechTE_480\bin\Debug\merge\MySql.Data.dll D:\sw\class_library\MechTE\MechTE_480\bin\Debug\merge\RestSharp.dll D:\sw\class_library\MechTE\MechTE_480\bin\Debug\MechTE_480.dll"
 ```
 
@@ -26,11 +32,11 @@ merge文件中的库是等待合并的dll
 - mysql - 6.9.12.0
 - RestSharp
 
-**合并后生成的dll**
+### 合并后生成的dll
 
 - MechTE_480_Merge
 
-## 如何合并?
+## 项目中构建
 
 在项目属性中构建事件填入
 
@@ -1148,16 +1154,14 @@ public static string ConvertBase(string value, int from, int to)
 
 **返回值**
 
-转换成功则返回转换后的整型值，否则返回0
+string
 
-
-
-### StringToBytes-string转换成byte[]
+### 转换成byte[]
 
 使用指定字符集将string转换成byte[]
 
 ```csharp
-public static byte[] StringToBytes(string value, Encoding encoding)
+public static byte[] ToBytes(string value, Encoding encoding)
 ```
 
 **参数**
@@ -1165,54 +1169,44 @@ public static byte[] StringToBytes(string value, Encoding encoding)
 `value`: 原要转换的字符串
 `encoding` : 字符编码
 
+**返回值**
 
+byte[]
 
-### BytesToString
+### 将byte[]转换成string
 
 ```csharp
-/// <summary>
-/// 将byte[]转换成string
-/// </summary>
-/// <param name="bytes">要转换的字节数组</param>
-/// <param name="encoding">字符编码</param>
 public static string BytesToString(byte[] bytes, Encoding encoding)
 ```
 
-### BytesToInt32
+**参数**
+
+`bytes`: 要转换的字节数组
+`encoding` : 字符编码
+
+**返回值**
+
+string
+
+### 16进制字符转ASCII字符
+
+**参数**
+
+`hex`: 16个数字（0-9和A-F）来表示
+
+**返回值**
+
+ASCII字符
 
 ```csharp
-/// <summary>
-/// 将byte[]转换成int
-/// </summary>
-/// <param name="data">需要转换成整数的byte数组</param>
-public static int BytesToInt32(byte[] data)
-```
-
-### 将16进制字符转为ASCII字符
-
-```csharp
-/// <summary>
-/// 将16进制字符转为ASCII字符
-/// </summary>
-/// <param name="hex">16个数字（0-9和A-F）来表示</param>
-/// <returns></returns>
 public static string HexToAscii(string hex)
+//扩展方法
+public static string MHexToAscii(this string hex)   
 ```
 
 
 
-```csharp
-/// <summary>
-/// 将16进制字符转为ASCII字符
-/// </summary>
-/// <param name="hex">16个数字（0-9和A-F）来表示</param>
-/// <returns></returns>
-public static string MHexToAscii(this string hex)
-```
-
-
-
-### 将ASCII字符转为16进制字符
+### ASCII字符转16进制字符
 
 ASCII字符转为16进制字符
 
@@ -1225,24 +1219,30 @@ ASCII字符转为16进制字符
 16进制字符
 
 ```csharp
-public static string AsciiStrToHexStr(string name)
-public static string MAsciiStrToHexStr(this string name)    
+public static string AsciiStrToHexStr(string value)
+//扩展方法
+public static string MAsciiStrToHexStr(this string value)    
 ```
 
 
 
+### 16进制字符转为ASCII16进制字符
 
+ASCII字符转为16进制字符
 
-### HexStrToAsciiHexStr
+**参数**
+
+`value`：要转换的字符串
+
+**返回值**
+
+76312E342E30 > 373633313245333432453330
 
 ```cs
-/// <summary>
-/// 将16进制字符转为ASCII16进制字符
-/// </summary>
-/// <param name="hexStrings">16进制字符</param>
-/// <returns>示例：01 &gt; 30 31</returns>
-public static string HexStrToAsciiHexStr(string hexStrings)
+public static string HexToAsciiHex(string value)
 ```
+
+
 
 ### StringToByteArray
 
@@ -1305,6 +1305,35 @@ public static string ByteToHex(byte[] bytes, string index)
 ```csharp
 public static string ToHidFormat(string value)   
 public static string MToHidFormat(this string value)
+```
+
+
+
+## MDateTimeUtil
+
+时间类操作
+
+- 命名空间: MechTE_480.DateTimeCategory
+- 类名:MDateTimeUtil
+
+### 获取当前日期
+
+**返回值**
+
+yyyy-MM-dd
+
+```csharp
+public static string GetTime()
+```
+
+### 获取前一天时间
+
+**返回值**
+
+yyyy-MM-dd
+
+```csharp
+public static string GetYesterdayTime()
 ```
 
 

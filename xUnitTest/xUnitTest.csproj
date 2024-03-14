@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="AssertCategory\MAssertUtilTests.cs" />
     <Compile Include="ConvertCategory\MConvertUtilTests.cs" />
+    <Compile Include="DateTimeCategory\MDateTimeTests.cs" />
     <Compile Include="files\MFileTest.cs" />
     <Compile Include="port\MHidUtilTest.cs" />
     <Compile Include="port\MUsbTest.cs" />

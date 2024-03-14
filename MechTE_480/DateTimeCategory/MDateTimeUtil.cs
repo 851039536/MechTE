@@ -3,7 +3,7 @@
 namespace MechTE_480.DateTimeCategory
 {
     /// <summary>
-    /// 时间类
+    /// 时间类操作
     /// </summary>
     public static class MDateTimeUtil
     {

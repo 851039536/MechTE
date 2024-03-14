@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace MechTE_480.btnForm
 {
-    internal partial class ProgressBars : System.Windows.Forms.Form
+    internal partial class ProgressBars : Form
     {
         public ProgressBars(string name)
         {
@@ -25,9 +25,8 @@ namespace MechTE_480.btnForm
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            i = i + 5;
+            i += 5;
             progressBar1.Value = i;
-            //如果執行時間超過，則this.DialogResult = DialogResult.No;
             if (i < 100) return;
             DialogResult = DialogResult.No;
             timer1.Enabled = false;

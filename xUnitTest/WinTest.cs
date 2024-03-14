@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Globalization;
-using MechTE_480.Windows;
+﻿using MechTE_480.Windows;
 using Xunit;
 using Xunit.Abstractions;
 

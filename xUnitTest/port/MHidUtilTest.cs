@@ -27,22 +27,8 @@ namespace xUnit_Test.port
             Assert.Equal(result, result);
         }  
         
-        /// <summary>
-        /// 通过将byte数组中的每个元素转换为十六进制字符串，并在每个元素之间添加空格，将byte数组转换为字符串
-        /// </summary>
-        [Fact]
-        public void ByteToHexs()
-        {
-            byte[] bytes = { 65, 66, 67, 68 };
-            string result = MConvertUtil.ByteToHex(bytes);
-            _msg.WriteLine(result);
-            Assert.Equal(result, result);
-        } 
+       
         
-        [Fact]
-        public void NumberToIntArray()
-        {
-           var result = MConvertUtil.NumberStrToIntArray("12312312 123123");
-        }
+      
     }
 }
