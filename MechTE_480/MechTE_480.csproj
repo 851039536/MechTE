@@ -58,13 +58,9 @@
     <Compile Include="AssertCategory\MAssertUtil.cs" />
     <Compile Include="ConvertCategory\MConvertConfig.cs" />
     <Compile Include="DateTimeCategory\MDateTimeUtil.cs" />
+    <Compile Include="EncryptionCategory\AesUtil.cs" />
     <Compile Include="files\MFileConfig.cs" />
     <Compile Include="files\MFile.cs" />
-    <Compile Include="btnForm\MButton.cs" />
-    <Compile Include="btnForm\ProgressBars.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="btnForm\ProgressBars.designer.cs" />
     <Compile Include="files\MFileTransfer.cs" />
     <Compile Include="files\MFileTransferConfig.cs" />
     <Compile Include="FormCategory\MFormConfig.cs" />
@@ -72,6 +68,10 @@
     <Compile Include="files\MIni.cs" />
     <Compile Include="files\MIniConfig.cs" />
     <Compile Include="ConvertCategory\MConvertUtil.cs" />
+    <Compile Include="FormCategory\ProgressBars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCategory\ProgressBars.designer.cs" />
     <Compile Include="LogCategory\MLogUtil.cs" />
     <Compile Include="TemplateCategory\MTemplate.cs" />
     <Compile Include="PortCategory\HID\MHidUtil.cs" />
@@ -101,15 +101,18 @@
     <Compile Include="xml\MXmlConfig.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="btnForm\ProgressBars.resx" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\merge\MySql.Data.dll" />
     <Content Include="bin\Debug\merge\RestSharp.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="btnForm\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormCategory\ProgressBars.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

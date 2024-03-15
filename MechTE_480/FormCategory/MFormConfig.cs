@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using MechTE_480.btnForm;
 
 namespace MechTE_480.FormCategory
 {
@@ -25,5 +27,23 @@ namespace MechTE_480.FormCategory
         /// <returns></returns>
         [DllImport("user32.dll")]
         private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        
+        
+        private ProgressBars _bar;
+        
+        #region 进度条
+        
+        private bool ProgressBarsBox(string name)
+        {
+            try
+            {
+                _bar = new ProgressBars(name);
+                return _bar.ShowDialog() == DialogResult.OK;
+            } catch
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }

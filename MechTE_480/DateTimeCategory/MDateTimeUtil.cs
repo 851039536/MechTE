@@ -26,5 +26,14 @@ namespace MechTE_480.DateTimeCategory
            return DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
        }
        
+       /// <summary>
+       /// 获取当前日期的星期几
+       /// </summary>
+       /// <returns>星期几的枚举值</returns>
+       public static DayOfWeek GetDayOfWeek()
+       {
+           return DateTime.Now.DayOfWeek;
+       }
+       
     }
 }

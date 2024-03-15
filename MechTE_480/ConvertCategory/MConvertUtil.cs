@@ -230,7 +230,49 @@ namespace MechTE_480.ConvertCategory
 
         #endregion
 
-        
+        #region 将字符转换HID指令格式
+
+        /// <summary>
+        /// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 34)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>string</returns>
+        public static string ToHidFormat(string value)
+        {
+            return StringToHidFormat(value);
+        }
+
+        /// <summary>
+        /// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 34)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>string</returns>
+        public static string MToHidFormat(this string value)
+        {
+            return StringToHidFormat(value);
+        }
+
+        #endregion
+
+        #region 将字符串转换为单精度浮点型
+
+        /// <summary>
+        /// 将字符串转换为单精度浮点型，转换失败返回0
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static float ToSingle(string value)
+        {
+            if (float.TryParse(value, out var result))
+            {
+                return result;
+            }
+
+            return 0;
+        }
+
+        #endregion
+
 
         /// <summary>
         /// 示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
@@ -324,30 +366,5 @@ namespace MechTE_480.ConvertCategory
 
             return returnStr.Trim();
         }
-
-
-        #region 将字符转换HID指令格式
-
-        /// <summary>
-        /// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 34)
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns>string</returns>
-        public static string ToHidFormat(string value)
-        {
-            return StringToHidFormat(value);
-        }
-
-        /// <summary>
-        /// 将字符转换HID指令格式 (name=0021032334 > 00 21 03 23 34)
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns>string</returns>
-        public static string MToHidFormat(this string value)
-        {
-            return StringToHidFormat(value);
-        }
-
-        #endregion
     }
 }

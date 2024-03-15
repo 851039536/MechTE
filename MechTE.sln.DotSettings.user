@@ -56,6 +56,9 @@
     &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::VSxUnitTest.util.MConvertUtilTests.HexStrToAsciiHexStr&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::VSxUnitTest.util.MConvertUtilTests.ByteToHexs&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.DateTimeCategory.MDateTimeTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.AssertCategory.MAssertUtilTests.IsEmpty&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.ConvertCategory.MConvertUtilTests.ToSingle&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.DateTimeCategory.MDateTimeTests.GetDayOfWeek&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=MechTE_005F480_002FbtnForm_002FProgressBars/@EntryIndexedValue">True</s:Boolean>

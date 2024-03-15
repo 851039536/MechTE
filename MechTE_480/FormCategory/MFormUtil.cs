@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using MechTE_480.PortCategory.hid;
 
 namespace MechTE_480.FormCategory
 {
@@ -106,7 +109,7 @@ namespace MechTE_480.FormCategory
         /// <returns></returns>
         public static string ShowInputDialog(string title, string prompt)
         {
-            var inputBox = new System.Windows.Forms.Form();
+            var inputBox = new Form();
             var label = new Label();
             var textBox = new TextBox();
             var buttonOk = new Button();
@@ -209,6 +212,67 @@ namespace MechTE_480.FormCategory
             }
 
             return null;
+        }
+
+        #endregion
+
+        #region 按键测试
+
+        /// <summary>
+        /// 按键测试
+        /// </summary>
+        /// <param name="command">command对象</param>
+        /// <param name="action">下指令并且获取回传值的整个动作（下指令并且获取回传值事件）例：()=>{ command.WriteSendReturn() } </param>
+        /// <param name="readData">按键操作对应指令返回值</param>
+        /// <param name="name">按键操作对应窗口名</param>
+        /// <returns></returns>
+        public bool ButtonTest(MHidUtil command, Action action, string readData, string name)
+        {
+            var flag = true;
+            Task.Run(() =>
+            {
+                Thread.Sleep(50);
+                while (flag)
+                {
+                    action.Invoke();
+                    if (command.ReturnValue == readData)
+                    {
+                        _bar.DialogResult = DialogResult.OK;
+                    }
+
+                    Thread.Sleep(100);
+                }
+            });
+            var result = ProgressBarsBox(name);
+            flag = false;
+            return result;
+        }
+
+        /// <summary>
+        /// 按键测试
+        /// </summary>
+        /// <param name="func">传入方法, _button.ButtonTest(() =&gt; BtnTest("0x01"), "请按Teams键")) </param>
+        /// <param name="name">窗口名</param>
+        /// <returns></returns>
+        public bool ButtonTest(Func<bool> func, string name)
+        {
+            var flag = true;
+            Task.Run(() =>
+            {
+                Thread.Sleep(50);
+                while (flag)
+                {
+                    if (func.Invoke())
+                    {
+                        _bar.DialogResult = DialogResult.OK;
+                    }
+
+                    Thread.Sleep(100);
+                }
+            });
+            var result = ProgressBarsBox(name);
+            flag = false;
+            return result;
         }
 
         #endregion

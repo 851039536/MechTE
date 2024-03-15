@@ -8,7 +8,7 @@
     <ProjectGuid>{E08A9A18-EADA-4DDB-B13E-83FD18A96D1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VSxUnitTest</RootNamespace>
+    <RootNamespace>MechTE_Tests</RootNamespace>
     <AssemblyName>MechTE_Tests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -65,9 +65,11 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AssertCategory\MAssertUtilTests.cs" />
+    <Compile Include="ConvertCategory\MConvertUtilTests.cs" />
+    <Compile Include="DateTimeCategory\MDateTimeTests.cs" />
     <Compile Include="netWork\MNetWorkTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\MConvertUtilTests.cs" />
     <Compile Include="Util\MDESEncryptTest.cs" />
     <Compile Include="Util\MUtilTest.cs" />
     <Compile Include="Util\MStringUtilTest.cs" />

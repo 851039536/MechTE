@@ -1,9 +1,8 @@
 ﻿using MechTE_480.util;
-using System.Web;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace xUnit_Test.util
+namespace VSxUnitTest.Util
 {
     public class MUtilTest
     {
@@ -14,14 +13,7 @@ namespace xUnit_Test.util
         }
   
 
-        [Fact]
-        [System.Obsolete]
-        public void SetMD5()
-        {
-            var data = MUtil.SetMD5("DFSD,w123T");
-            _msg.WriteLine(data);
-            Assert.Equal(data,data);
-        }
+        
 
         [Fact]
         public void IsEmail()

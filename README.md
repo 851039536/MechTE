@@ -710,47 +710,6 @@ public static void WriteFile(string path, string strings)
 
 
 
-## MButton
-
-弹窗提示类 (定制类不通用)
-
-- 命名空间: namespace MechTE_480.btnForm
-- 类名:MButton
-
-### ButtonTest
-
-弹框按键测试
-
-```csharp
-/// <summary>
-/// 按键测试
-/// </summary>
-/// <param name="func">传入方法, _button.ButtonTest(() =
-/// <param name="name">窗口名</param>
-/// <returns></returns>
-public bool ButtonTest(Func<bool> func,string name)
-    
-/// <summary>
-/// 按键测试
-/// </summary>
-/// <param name="command">command对象</param>
-/// <param name="action">下指令并且获取回传值的整个动作（下指令并且获取回传值事件）例：()=>{ command.WriteSendRetur
-/// <param name="readData">按键操作对应指令返回值</param>
-/// <param name="name">按键操作对应窗口名</param>
-/// <returns></returns>
-public bool ButtonTest(MechHID command,Action action,string readData,string name)
-```
-
-简单使用
-
-```csharp
-//创建一个按键测试对象对象
-private readonly MButton _button = new MButton();
-
-//传入方法和窗体名称
-_button.ButtonTest(() => HeadsetBtn("0x01"), "请按Teams键")
-```
-
 
 
 ## MFormUtil
@@ -848,6 +807,46 @@ public static void SetControls(float newX,float newY,Control cons)
 /// <returns></returns>
 public static string ShowDialog(string description)
 ```
+
+
+
+### 按键测试
+
+弹框按键测试
+
+```csharp
+/// <summary>
+/// 按键测试
+/// </summary>
+/// <param name="func">传入方法, _button.ButtonTest(() =
+/// <param name="name">窗口名</param>
+/// <returns></returns>
+public bool ButtonTest(Func<bool> func,string name)
+    
+/// <summary>
+/// 按键测试
+/// </summary>
+/// <param name="command">command对象</param>
+/// <param name="action">下指令并且获取回传值的整个动作（下指令并且获取回传值事件）例：()=>{ command.WriteSendRetur
+/// <param name="readData">按键操作对应指令返回值</param>
+/// <param name="name">按键操作对应窗口名</param>
+/// <returns></returns>
+public bool ButtonTest(MechHID command,Action action,string readData,string name)
+```
+
+简单使用
+
+```csharp
+//创建一个按键测试对象对象
+private readonly MButton _button = new MButton();
+
+//传入方法和窗体名称
+_button.ButtonTest(() => HeadsetBtn("0x01"), "请按Teams键")
+```
+
+
+
+
 
 
 
@@ -1242,6 +1241,35 @@ ASCII字符转为16进制字符
 public static string HexToAsciiHex(string value)
 ```
 
+### 将字符转换HID指令格式
+
+**参数**
+
+`value`：要转换的字符串如:0021032334
+
+**返回值**
+
+转换成功则返回00 21 03 23 3
+
+```csharp
+public static string ToHidFormat(string value)   
+public static string MToHidFormat(this string value)
+```
+
+### 将字符串转换为单精度浮点型
+
+**参数**
+
+`value`：将字符串转换为单精度浮点型
+
+**返回值**
+
+转换失败返回0
+
+```csharp
+public static float ToSingle(string value)
+```
+
 
 
 ### StringToByteArray
@@ -1292,21 +1320,6 @@ public static string ByteToHex(byte[] bytes, string index)
 
 
 
-### 将字符转换HID指令格式
-
-**参数**
-
-`value`：要转换的字符串如:0021032334
-
-**返回值**
-
-转换成功则返回00 21 03 23 3
-
-```csharp
-public static string ToHidFormat(string value)   
-public static string MToHidFormat(this string value)
-```
-
 
 
 ## MDateTimeUtil
@@ -1334,6 +1347,16 @@ yyyy-MM-dd
 
 ```csharp
 public static string GetYesterdayTime()
+```
+
+### 获取当前日期的星期几
+
+**返回值**
+
+DayOfWeek
+
+```csharp
+public static DayOfWeek GetDayOfWeek()
 ```
 
 
@@ -1763,17 +1786,7 @@ public static string GetCurrentProgramDirectory()
 public static string GenerateNumberSequence(int startNumber, int sequenceLength)
 ```
 
-### SetMD5
 
-```csharp
- /// <summary>
- /// 根据配置对指定字符串进行 MD5 加密
- /// </summary>
- /// <param name="s"></param>
- /// <returns></returns>
- [Obsolete]
- public static string SetMD5(string s)
-```
 
 ### IsEmail
 

@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace xUnit_Test.AssertCategory
+namespace MechTE_Tests.AssertCategory
 {
     public class MAssertUtilTests
     {

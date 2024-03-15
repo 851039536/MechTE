@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace xUnit_Test.DateTimeCategory
+namespace MechTE_Tests.DateTimeCategory
 {
     public class MDateTimeTests
     {
@@ -27,6 +27,13 @@ namespace xUnit_Test.DateTimeCategory
             var data = MDateTimeUtil.GetYesterdayTime();
             _msg.WriteLine(data);
             Assert.Equal(data, data);
+        }
+        
+        [Fact]
+        public void GetDayOfWeek()
+        {
+            var data = MDateTimeUtil.GetDayOfWeek();
+            _msg.WriteLine(data.ToString());
         }
     }
 }

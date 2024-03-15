@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace VSxUnitTest.util
+namespace MechTE_Tests.ConvertCategory
 {
     public class MConvertUtilTests
     {
@@ -12,8 +12,6 @@ namespace VSxUnitTest.util
         {
             _msg = msg;
         }
-
-
         
         /// <summary>
         /// 将字符串转换为整型，转换失败返回0
@@ -87,5 +85,14 @@ namespace VSxUnitTest.util
             _msg.WriteLine(result);
             Assert.Equal(result, result);
         } 
+        
+        [Fact]
+        public void ToSingle()
+        {
+            var result = MConvertUtil.ToSingle("213.123213");
+            _msg.WriteLine(result.ToString());
+            Assert.Equal(result, result);
+        } 
+        
     }
 }

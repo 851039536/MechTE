@@ -92,18 +92,7 @@ namespace MechTE_480.util
             return strLen;
         }
 
-        /// <summary>
-        /// 根据配置对指定字符串进行 MD5 加密
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        [Obsolete]
-        public static string SetMD5(string s)
-        {
-            //md5加密
-            s = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(s,"md5").ToString();
-            return s.ToLower().Substring(8,16);
-        }
+       
 
         /// <summary>
         /// 验证EMail是否合法

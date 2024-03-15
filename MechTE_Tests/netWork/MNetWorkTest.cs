@@ -6,8 +6,7 @@ namespace VSxUnitTest.netWork
 {
     public class MNetWorkTest
     {
-        private readonly MNetHelper _mNetHelper = new MNetHelper();
-
+         
         private readonly ITestOutputHelper _msg;
 
         public MNetWorkTest(ITestOutputHelper msg)
