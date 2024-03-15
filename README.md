@@ -1501,6 +1501,27 @@ MFile.OpenProcessFile(@"D:\sw\winfrom\Merry-exeStartTool\bin\exeStartTool\dw");
 
 
 
+## MRegexUtil
+
+操作正则表达式的常用类
+
+- 命名空间: MechTE_480.RegexsCategory
+- 类名:MRegexUtil
+
+### 邮箱验证
+
+```csharp
+ /// <summary>
+ /// 验证EMail是否合法
+ /// </summary>
+ /// <param name="email">要验证的Email</param>
+ public static bool IsEmail(string email)
+```
+
+
+
+
+
 ## MSerialPort
 
 串口工具类操作
@@ -1799,15 +1820,9 @@ public static string GenerateNumberSequence(int startNumber, int sequenceLength)
 
 
 
-### IsEmail
 
-```csharp
- /// <summary>
- /// 验证EMail是否合法
- /// </summary>
- /// <param name="email">要验证的Email</param>
- public static bool IsEmail(string email)
-```
+
+
 
 ### IsInt
 

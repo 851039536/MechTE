@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace xUnit_Test.util
+namespace MechTE_Tests.Util
 {
     public class MStringUtilTest
     {

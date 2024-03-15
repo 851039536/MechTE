@@ -58,7 +58,8 @@
     <Compile Include="AssertCategory\MAssertUtil.cs" />
     <Compile Include="ConvertCategory\MConvertConfig.cs" />
     <Compile Include="DateTimeCategory\MDateTimeUtil.cs" />
-    <Compile Include="EncryptionCategory\AesUtil.cs" />
+    <Compile Include="EncryptionCategory\MAesUtil.cs" />
+    <Compile Include="EncryptionCategory\MDecUtil.cs" />
     <Compile Include="FileCategory\MFileConfig.cs" />
     <Compile Include="FileCategory\MFileUtil.cs" />
     <Compile Include="FileCategory\MFileTransfer.cs" />
@@ -87,9 +88,8 @@
     <Compile Include="PortCategory\MSerialPort.cs" />
     <Compile Include="PortCategory\MRelay32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Regexs\MRegex.cs" />
+    <Compile Include="RegexsCategory\MRegexUtil.cs" />
     <Compile Include="Util\LoadDllUtil.cs" />
-    <Compile Include="Util\MEncrypt.cs" />
     <Compile Include="Util\MMeasure.cs" />
     <Compile Include="Util\MStringUtil.cs" />
     <Compile Include="Util\MUtil.cs" />

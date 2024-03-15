@@ -23,8 +23,6 @@ namespace MechTE_Tests.FileCategory
             MFileUtil.OpenFile(@"D:\sw\winfrom\Merry-exeStartTool\bin\exeStartTool\dw");
         }
 
-       
-
         [Fact]
         public void CopyFile()
         {

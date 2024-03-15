@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace VSxUnitTest.Util
+namespace MechTE_Tests.Util
 {
     public class MUtilTest
     {
@@ -11,20 +11,6 @@ namespace VSxUnitTest.Util
         {
             _msg = msg;
         }
-  
-
-        
-
-        [Fact]
-        public void IsEmail()
-        {
-            var data = MUtil.IsEmail("DFSD,w123T");
-            _msg.WriteLine(data.ToString()); 
-            var data2 = MUtil.IsEmail("851039538@qq.com");
-            _msg.WriteLine(data2.ToString());
-            Assert.Equal(data,data);
-        } 
-        
         [Fact]
         public void IsInt()
         {

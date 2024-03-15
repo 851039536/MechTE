@@ -1,9 +1,9 @@
-﻿using MechTE_480.Regexs;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using MechTE_480.RegexsCategory;
 
 namespace MechTE_480.util
 {
@@ -94,27 +94,25 @@ namespace MechTE_480.util
             return strLen;
         }
 
-       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
-        /// <summary>
-        /// 验证EMail是否合法
-        /// </summary>
-        /// <param name="email">要验证的Email</param>
-        public static bool IsEmail(string email)
-        {
-            //如果为空，认为验证不合格
-            if (MStringUtil.IsNullOrEmpty(email))
-            {
-                return false;
-            }
-            //清除要验证字符串中的空格
-            email = email.Trim();
-            //模式字符串
-            string pattern = @"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$";
-
-            //验证
-            return MRegex.IsMatch(email,pattern);
-        }
+        
+        
+        
 
         /// <summary>
         /// 验证是否为整数 如果为空，认为验证不合格 返回false
@@ -135,7 +133,7 @@ namespace MechTE_480.util
             string pattern = @"^[0-9]+[0-9]*$";
 
             //验证
-            return MRegex.IsMatch(number,pattern);
+            return MRegexUtil.IsMatch(number,pattern);
         }
 
         /// <summary>
@@ -157,7 +155,7 @@ namespace MechTE_480.util
             string pattern = @"^[0-9]+[0-9]*[.]?[0-9]*$";
 
             //验证
-            return MRegex.IsMatch(number,pattern);
+            return MRegexUtil.IsMatch(number,pattern);
         }
     }
 }

@@ -66,8 +66,6 @@ namespace MechTE_480.Windows
 
         [PreserveSig]
         int GetDefaultAudioEndpoint(EDataFlow dataFlow, ERole role, out IMMDevice ppDevice);
-
-// the rest is not implemented
     }
 
     [Guid("D666063F-1587-4E43-81F1-B948E807363F"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -75,8 +73,6 @@ namespace MechTE_480.Windows
     {
         [PreserveSig]
         int Activate(ref Guid iid, int dwClsCtx, IntPtr pActivationParams, [MarshalAs(UnmanagedType.IUnknown)] out object ppInterface);
-
-// the rest is not implemented
     }
 
 
@@ -94,7 +90,6 @@ namespace MechTE_480.Windows
     [Guid("bfb7ff88-7239-4fc9-8fa2-07c950be9c6d"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     internal interface IAudioSessionControl2
     {
-// IAudioSessionControl
         [PreserveSig]
         int NotImpl0();
 
@@ -102,19 +97,19 @@ namespace MechTE_480.Windows
         int GetDisplayName([MarshalAs(UnmanagedType.LPWStr)] out string pRetVal);
 
         [PreserveSig]
-        int SetDisplayName([MarshalAs(UnmanagedType.LPWStr)] string Value, [MarshalAs(UnmanagedType.LPStruct)] Guid EventContext);
+        int SetDisplayName([MarshalAs(UnmanagedType.LPWStr)] string Value, [MarshalAs(UnmanagedType.LPStruct)] Guid eventContext);
 
         [PreserveSig]
         int GetIconPath([MarshalAs(UnmanagedType.LPWStr)] out string pRetVal);
 
         [PreserveSig]
-        int SetIconPath([MarshalAs(UnmanagedType.LPWStr)] string Value, [MarshalAs(UnmanagedType.LPStruct)] Guid EventContext);
+        int SetIconPath([MarshalAs(UnmanagedType.LPWStr)] string Value, [MarshalAs(UnmanagedType.LPStruct)] Guid eventContext);
 
         [PreserveSig]
         int GetGroupingParam(out Guid pRetVal);
 
         [PreserveSig]
-        int SetGroupingParam([MarshalAs(UnmanagedType.LPStruct)] Guid Override, [MarshalAs(UnmanagedType.LPStruct)] Guid EventContext);
+        int SetGroupingParam([MarshalAs(UnmanagedType.LPStruct)] Guid Override, [MarshalAs(UnmanagedType.LPStruct)] Guid eventContext);
 
         [PreserveSig]
         int NotImpl1();
@@ -122,7 +117,6 @@ namespace MechTE_480.Windows
         [PreserveSig]
         int NotImpl2();
 
-// IAudioSessionControl2
         [PreserveSig]
         int GetSessionIdentifier([MarshalAs(UnmanagedType.LPWStr)] out string pRetVal);
 
@@ -139,7 +133,6 @@ namespace MechTE_480.Windows
         int SetDuckingPreference(bool optOut);
     }
 
-// http://netcoreaudio.codeplex.com/SourceControl/latest#trunk/Code/CoreAudio/Interfaces/IAudioEndpointVolume.cs
     [Guid("5CDF2C82-841E-4546-9722-0CF74078229A"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAudioEndpointVolume
     {

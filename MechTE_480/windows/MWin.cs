@@ -220,9 +220,13 @@ namespace MechTE_480.Windows
         public static bool SetMeStart(bool onOff)
         {
             bool isOk = false;
-            string appName = Process.GetCurrentProcess().MainModule.ModuleName;
-            string appPath = Process.GetCurrentProcess().MainModule.FileName;
-            isOk = SetAutoStart(onOff, appName, appPath);
+            var processModule = Process.GetCurrentProcess().MainModule;
+            if (processModule != null)
+            {
+                string appName = processModule.ModuleName;
+                string appPath = processModule.FileName;
+                isOk = SetAutoStart(onOff, appName, appPath);
+            }
             return isOk;
         }
  
@@ -257,7 +261,6 @@ namespace MechTE_480.Windows
         {
             try
             {
-                bool _exist = false;
                 RegistryKey local = Registry.LocalMachine;
                 RegistryKey runs = local.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
                 if (runs == null)
@@ -274,11 +277,10 @@ namespace MechTE_480.Windows
                 {
                     if (strName.ToUpper() == keyName.ToUpper())
                     {
-                        _exist = true;
-                        return _exist;
+                        return true;
                     }
                 }
-                return _exist;
+                return false;
  
             }
             catch
@@ -323,11 +325,9 @@ namespace MechTE_480.Windows
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                string ss = ex.Message;
                 return false;
-                //throw;
             }
  
             return true;

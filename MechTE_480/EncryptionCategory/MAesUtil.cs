@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -9,7 +10,7 @@ namespace MechTE_480.EncryptionCategory
     /// <summary>
     /// Aes加解密
     /// </summary>
-    public static class AesUtil
+    public static class MAesUtil
     {
         /// <summary>
         /// Aes 加密
@@ -41,6 +42,9 @@ namespace MechTE_480.EncryptionCategory
         /// </summary>
         /// <param name="str"></param>
         /// <param name="sk"></param>
+        /// <param name="cipher"></param>
+        /// <param name="padding"></param>
+        /// <param name="encoding"></param>
         /// <returns></returns>
         public static string Decrypt(string str, string sk, CipherMode cipher = CipherMode.ECB, PaddingMode padding = PaddingMode.PKCS7, Encoding? encoding = null)
         {
@@ -101,7 +105,7 @@ namespace MechTE_480.EncryptionCategory
         public static string Encrypt(string text, string key, string iv ,CipherMode cipher = CipherMode.CBC, PaddingMode padding = PaddingMode.PKCS7, Encoding? encoding = null)
         {
             if (string.IsNullOrWhiteSpace(text))
-                return string.Empty; ;
+                return string.Empty; 
             if (!KeyIsLegalSize(key)) 
                 throw new ArgumentException("不合规的秘钥，请确认秘钥为16 、24、 32位的字符");
             if (!IvIsLegalSize(iv)) 
@@ -141,7 +145,7 @@ namespace MechTE_480.EncryptionCategory
         public static string Decrypt(string text, string key, string iv, CipherMode cipher = CipherMode.CBC, PaddingMode padding = PaddingMode.PKCS7, Encoding? encoding = null)
         {
             if (string.IsNullOrWhiteSpace(text))
-                return string.Empty; ;
+                return string.Empty; 
             if (!KeyIsLegalSize(key))
                 throw new ArgumentException("不合规的秘钥，请确认秘钥为16 、24、 32位的字符");
             if (!IvIsLegalSize(iv))
@@ -154,14 +158,14 @@ namespace MechTE_480.EncryptionCategory
             symmetricKey.Mode = cipher;
             symmetricKey.Padding = padding;
             // 用当前的 Key 属性和初始化向量 IV 创建对称解密器对象
-            using var decryptor = symmetricKey.CreateDecryptor(keyBytes, ivBytes);
+            using var decrypt = symmetricKey.CreateDecryptor(keyBytes, ivBytes);
             // 解密后的输出流
             using var memoryStream = new MemoryStream(cipherTextBytes);
             // 解密后的输出流
-            using var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
+            using var cryptoStream = new CryptoStream(memoryStream, decrypt, CryptoStreamMode.Read);
             var plainTextBytes = new byte[cipherTextBytes.Length];
             var decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
-            return System.Text.Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+            return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
         }
 
         private static bool KeyIsLegalSize(string sk)
