@@ -100,11 +100,11 @@ public static void Assert( string errMsg)
 
 
 
-## MFile
+## MFileUtil
 
 文件操作类 
 
-- 命名空间: namespace MechTE_480.Files
+- 命名空间: MechTE_480.FileCategory
 - 类名:MFile
 
 ### 打开文件&程序
@@ -127,24 +127,6 @@ public static void OpenFile(string path, int fsShow = 1)
 ```csharp
 MFile.OpenFile("D:\\sw");
 MFile.OpenFile("D:\\sw\\",1);
-```
-
-#### OpenProcessFile
-
-使用Process类的Start方法启动外部程序/文件夹
-
-```csharp
-/// <summary>
-/// 使用Process类的Start方法启动外部程序/文件夹
-/// </summary>
-/// <param name="path">路径</param>
-public static void OpenProcessFile(string path)
-```
-
-**Fact**
-
-```csharp
-MFile.OpenProcessFile(@"D:\sw\winfrom\Merry-exeStartTool\bin\exeStartTool\dw");
 ```
 
 
@@ -369,75 +351,90 @@ public static void ClearFile(string filePath)
 
 
 
-### 文件检查
+### 文件检查(判断)
 
-#### IsExistDirectory
+#### 判断文件或目录是否为空
 
-检测指定目录是否存在
+目录：里面没有文件时为空 
+文件：文件大小为0时为空
+
+**参数**
+
+`path`：文件或目录的路径
+
+**返回值**
+
+ bool
 
 ```csharp
-/// <summary>
-/// 检测指定目录是否存在
-/// </summary>
-/// <param name="directoryPath">目录的绝对路径</param>
-/// <returns></returns>
+public static bool IsEmpty(string path)
+```
+
+#### 检测指定目录是否存在
+
+**参数**
+
+`directoryPath`：目录的绝对路径
+
+**返回值**
+
+ bool
+
+```csharp
 public static bool IsExistDirectory(string directoryPath)
 ```
 
-#### IsExistFile
+#### 检测指定文件是否存在
 
-检测指定文件是否存在
+**参数**
+
+`filePath`：文件的绝对路径
+
+**返回值**
+
+ bool
 
 ```csharp
-/// <summary>
-/// 检测指定文件是否存在
-/// </summary>
-/// <param name="filePath">文件的绝对路径</param>       
 public static bool IsExistFile(string filePath)
 ```
 
-#### IsEmptyDirectory
+#### 检测指定目录是否为空
 
-检测指定目录是否为空
+**参数**
+
+`directoryPath`：指定目录的绝对路径
+
+**返回值**
+
+ bool
 
 ```csharp
-/// <summary>
-/// 检测指定目录是否为空
-/// </summary>
-/// <param name="directoryPath">指定目录的绝对路径</param>        
 public static bool IsEmptyDirectory(string directoryPath)
 ```
 
-#### Contains
+
+
+#### 检测指定目录中是否存在指定的文件
+
+**参数**
+
+`directoryPath`：指定目录的绝对路径
+`searchPattern`：模式字符串，"*"代表0或N个字符，"?"代表1个字符 , 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。
+`isSearchChild`：是否搜索子目录
+
+**返回值**
+
+ bool
 
 ```csharp
-/// <summary>
-/// 检测指定目录中是否存在指定的文件,若要搜索子目录请使用重载方法.
-/// </summary>
-/// <param name="directoryPath">指定目录的绝对路径</param>
-/// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
-/// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param>        
 public static bool Contains(string directoryPath, string searchPattern)
+// 检测指定目录中是否存在指定的文件
+public static bool Contains(string directoryPath, string searchPattern, bool isSearchChild)
 ```
 
 ```csharp
 Contains(@"D:\\sw\\","*");
 ```
-
-检测指定目录中是否存在指定的文件
-
-```csharp
-/// <summary>
-/// 检测指定目录中是否存在指定的文件
-/// </summary>
-/// <param name="directoryPath">指定目录的绝对路径</param>
-/// <param name="searchPattern">模式字符串，"*"代表0或N个字符，"?"代表1个字符。
-/// 范例："Log*.xml"表示搜索所有以Log开头的Xml文件。</param> 
-/// <param name="isSearchChild">是否搜索子目录</param>
-public static bool Contains(string directoryPath, string searchPattern, bool isSearchChild)
-```
-
-
 
 ### 文件创建
 
@@ -1394,10 +1391,6 @@ public void MMeasure()
 }      
 ```
 
-
-
-
-
 ## MProcessUtil
 
 使用进程调用cmd命令或程序
@@ -1486,6 +1479,24 @@ public static void StartApps(string appName)
  /// 重新启动应用程序并请求管理员权限
  /// </summary>
  public static void RestartAsAdministrator()
+```
+
+### 执行启动外部程序/文件夹
+
+使用Process类的Start方法启动外部程序/文件夹
+
+```csharp
+/// <summary>
+/// 使用Process类的Start方法启动外部程序/文件夹
+/// </summary>
+/// <param name="path">路径</param>
+public static void OpenProgram(string path)
+```
+
+**Fact**
+
+```csharp
+MFile.OpenProcessFile(@"D:\sw\winfrom\Merry-exeStartTool\bin\exeStartTool\dw");
 ```
 
 

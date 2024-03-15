@@ -4,7 +4,7 @@ using System.IO.Compression;
 using System.Net;
 using System.Text;
 
-namespace MechTE_480.Files
+namespace MechTE_480.FileCategory
 {
     /// <summary>
     /// 定制化文件传输(上传,下载)不通用

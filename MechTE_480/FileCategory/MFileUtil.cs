@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MechTE_480.Files
+namespace MechTE_480.FileCategory
 {
     /// <summary>
     /// 文件操作类
     /// </summary>
-    public partial class MFile
+    public partial class MFileUtil
     {
         #region 打开程序/文件夹
 
@@ -22,28 +22,12 @@ namespace MechTE_480.Files
         /// <param name="fsShow">是否显示窗口 默认显示(1)</param>
         public static void OpenFile(string path, int fsShow = 1)
         {
-            ShellExecute(IntPtr.Zero,
+            MFileUtil.ShellExecute(IntPtr.Zero,
                 new StringBuilder("Open"), // 打开方式为“Open”
                 new StringBuilder(@path), // 文件路径
                 new StringBuilder(""), // 命令行参数为空
                 new StringBuilder(""), // 工作目录为空
                 fsShow); // 是否显示窗口，默认显示
-        }
-
-        /// <summary>
-        /// 使用Process类的Start方法启动外部程序/文件夹
-        /// </summary>
-        /// <param name="path">路径</param>
-        public static void OpenProcessFile(string path)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start(@path);
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
         }
 
         #endregion
@@ -216,7 +200,7 @@ namespace MechTE_480.Files
 
         #endregion
 
-        #region 文件获取
+        #region 文件获取(读取)
 
         /// <summary>
         /// 从文件的绝对路径中获取文件名( 包含扩展名 )
@@ -288,9 +272,6 @@ namespace MechTE_480.Files
 
             return result;
         }
-
-
-
 
 
         /// <summary>
@@ -432,7 +413,35 @@ namespace MechTE_480.Files
 
         #endregion
 
-        #region 文件检测
+        #region 文件检测(判断)
+
+        #region 判断文件或目录是否为空
+
+        /// <summary>
+        /// 判断文件或目录是否为空
+        /// 目录：里面没有文件时为空 
+        /// 文件：文件大小为0时为空
+        /// </summary>
+        /// <param name="path">文件或目录的路径</param>
+        /// <returns>是否为空</returns>
+        public static bool IsEmpty(string path)
+        {
+            // 判断是否为目录
+            if (Directory.Exists(path))
+            {
+                // 如果是目录，遍历目录下的所有文件，判断是否有文件
+                return Directory.GetFiles(path).Length > 0;
+            }
+            else
+            {
+                // 如果是文件，判断文件大小是否为 0
+                return new FileInfo(path).Length == 0;
+            }
+        }
+
+        #endregion
+
+        #region 检测指定目录是否存在
 
         /// <summary>
         /// 检测指定目录是否存在
@@ -444,6 +453,10 @@ namespace MechTE_480.Files
             return Directory.Exists(directoryPath);
         }
 
+        #endregion
+
+        #region 检测指定文件是否存在
+
         /// <summary>
         /// 检测指定文件是否存在
         /// </summary>
@@ -452,6 +465,10 @@ namespace MechTE_480.Files
         {
             return File.Exists(filePath);
         }
+
+        #endregion
+
+        #region 检测指定目录是否为空
 
         /// <summary>
         /// 检测指定目录是否为空
@@ -479,11 +496,13 @@ namespace MechTE_480.Files
             }
             catch
             {
-                //这里记录日志
-                //LogHelper.WriteTraceLog(TraceLogLevel.Error, ex.Message);
-                return true;
+                return false;
             }
         }
+
+        #endregion
+
+        #region 检测指定目录中是否存在指定的文件
 
         /// <summary>
         /// 检测指定目录中是否存在指定的文件,若要搜索子目录请使用重载方法.
@@ -497,16 +516,13 @@ namespace MechTE_480.Files
             {
                 //获取指定的文件列表
                 string[] fileNames = GetFileNames(directoryPath, searchPattern, false);
-
                 //判断指定文件是否存在
                 if (fileNames.Length == 0)
                 {
                     return false;
                 }
-                else
-                {
-                    return true;
-                }
+
+                return true;
             }
             catch (Exception ex)
             {
@@ -543,6 +559,8 @@ namespace MechTE_480.Files
                 throw new Exception(ex.Message);
             }
         }
+
+        #endregion
 
         #endregion
 

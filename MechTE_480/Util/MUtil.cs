@@ -77,6 +77,8 @@ namespace MechTE_480.util
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
+        
+        
 
         /// <summary>
         /// 生成数字字符串序列(传0,6生成 0 1 2 3 4 5)

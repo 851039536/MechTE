@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MechTE_480.Files
+namespace MechTE_480.FileCategory
 {
     public static partial class MIni
     {

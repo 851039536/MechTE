@@ -1,38 +1,18 @@
-﻿using MechTE_480.Files;
+﻿using MechTE_480.FileCategory;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace xUnit_Test.files
+namespace MechTE_Tests.FileCategory
 {
-    public class MFileTest
+    public class MFileTransferTests
     {
         private readonly ITestOutputHelper _msg;
 
-        public MFileTest(ITestOutputHelper msg)
+        public MFileTransferTests(ITestOutputHelper msg)
         {
             _msg = msg;
         }
         
-        [Fact]
-        public void OpenFile()
-        {
-            MFile.OpenFile(@"D:\sw\winfrom\Merry-exeStartTool\bin\exeStartTool\dw");
-        }
-        
-        [Fact]
-        public void OpenProcessFile()
-        {
-            MFile.OpenProcessFile(@"D:\sw\winfrom\Merry-exeStartTool\bin\exeStartTool\dw");
-        }  
-        
-        [Fact]
-        public void CopyFile()
-        {
-           var ret= MFile.CopyFile(@"C:\Users\ch190006\Desktop\test",@"C:\Users\ch190006\Desktop\test2");
-            Assert.Equal(1,ret);
-        }
-     
-
         [Fact]
         public void DownloadZip()
         {

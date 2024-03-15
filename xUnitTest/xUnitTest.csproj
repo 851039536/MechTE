@@ -52,7 +52,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="files\MFileTest.cs" />
     <Compile Include="port\MHidUtilTest.cs" />
     <Compile Include="port\MUsbTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

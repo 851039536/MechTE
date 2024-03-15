@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace MechTE_480.Files
+namespace MechTE_480.FileCategory
 {
     /// <summary>
     /// ini文件操作类
@@ -20,7 +20,7 @@ namespace MechTE_480.Files
             // 每次从ini中读取多少字节
             StringBuilder temp = new StringBuilder(255);
             // section=配置节点名称，key=键名，temp=上面，path=路径
-            GetPrivateProfileString(section, key, "", temp, 255, path);
+            MIni.GetPrivateProfileString(section, key, "", temp, 255, path);
             return temp.ToString();
         }
 
@@ -34,7 +34,7 @@ namespace MechTE_480.Files
         public static string[] ReadArray(string section, string key, string path)
         {
             StringBuilder temp = new StringBuilder(255);
-            GetPrivateProfileString(section, key, "", temp, 500, path);
+            MIni.GetPrivateProfileString(section, key, "", temp, 500, path);
             return temp.ToString().Split(',');
         }
 
@@ -48,7 +48,7 @@ namespace MechTE_480.Files
         public static void Update(string section, string key, string value, string path)
         {
             // section=配置节点名称，key=键名，value=返回键值，path=路径
-            WritePrivateProfileString(section, key, value, path);
+            MIni.WritePrivateProfileString(section, key, value, path);
         }
 
 

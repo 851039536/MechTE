@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 
-namespace MechTE_480.Files
+namespace MechTE_480.FileCategory
 {
     /// <summary>
     /// 定制化文件传输(上传,下载)不通用
@@ -22,10 +22,10 @@ namespace MechTE_480.Files
         public static bool DownloadZip(string httpPath, string mode, string zipPath, string unPath, string downloadName)
         {
             //检测下载解压的文件是否存在
-            if (MFile.IsExistDirectory(zipPath + @"\" + downloadName))
+            if (FileCategory.MFileUtil.IsExistDirectory(zipPath + @"\" + downloadName))
             {
                 //删除
-                MFile.DeleteDirectory(zipPath + @"\" + downloadName);
+                FileCategory.MFileUtil.DeleteDirectory(zipPath + @"\" + downloadName);
             }
 
             //下载指定路径
@@ -35,22 +35,22 @@ namespace MechTE_480.Files
             var strContent = "{\"TestName\":\"" + mode + "\",\"DownloadName\":\"" + downloadName + "\"}";
 
             // 发送HTTP POST请求，下载ZIP文件
-            var data = HttpPost(httpPath,
+            var data = MFileTransfer.HttpPost(httpPath,
                 strContent, "POST", zipPath);
             //下载成功
             if (data)
             {
                 // 解压文件
-                ExtractZipFile(zipPath, unPath);
+                MFileTransfer.ExtractZipFile(zipPath, unPath);
             }
             else
             {
                 return false;
             }
 
-            if (MFile.IsExistFile(zipPath))
+            if (FileCategory.MFileUtil.IsExistFile(zipPath))
             {
-                MFile.DelFile(zipPath);
+                FileCategory.MFileUtil.DelFile(zipPath);
             }
 
             return true;
@@ -73,7 +73,7 @@ namespace MechTE_480.Files
             var strContent = "{\"TestName\":\"" + mode + "\",\"DownloadName\":\"" + downloadName + "\"}";
 
             // 发送HTTP POST请求，下载ZIP文件
-            var data = HttpPost(httpPath,
+            var data = MFileTransfer.HttpPost(httpPath,
                 strContent, "POST", zipPath);
             return data;
         }

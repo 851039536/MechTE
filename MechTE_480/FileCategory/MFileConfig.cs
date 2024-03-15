@@ -2,9 +2,9 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MechTE_480.Files
+namespace MechTE_480.FileCategory
 {
-    public partial class MFile
+    public partial class MFileUtil
     {
         /// <summary>
         /// 使用DllImport指定调用的Windows API函数及其相关信息

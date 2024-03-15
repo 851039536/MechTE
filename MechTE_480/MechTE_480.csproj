@@ -59,14 +59,14 @@
     <Compile Include="ConvertCategory\MConvertConfig.cs" />
     <Compile Include="DateTimeCategory\MDateTimeUtil.cs" />
     <Compile Include="EncryptionCategory\AesUtil.cs" />
-    <Compile Include="files\MFileConfig.cs" />
-    <Compile Include="files\MFile.cs" />
-    <Compile Include="files\MFileTransfer.cs" />
-    <Compile Include="files\MFileTransferConfig.cs" />
+    <Compile Include="FileCategory\MFileConfig.cs" />
+    <Compile Include="FileCategory\MFileUtil.cs" />
+    <Compile Include="FileCategory\MFileTransfer.cs" />
+    <Compile Include="FileCategory\MFileTransferConfig.cs" />
     <Compile Include="FormCategory\MFormConfig.cs" />
     <Compile Include="FormCategory\MFormUtil.cs" />
-    <Compile Include="files\MIni.cs" />
-    <Compile Include="files\MIniConfig.cs" />
+    <Compile Include="FileCategory\MIni.cs" />
+    <Compile Include="FileCategory\MIniConfig.cs" />
     <Compile Include="ConvertCategory\MConvertUtil.cs" />
     <Compile Include="FormCategory\ProgressBars.cs">
       <SubType>Form</SubType>
@@ -107,9 +107,6 @@
   <ItemGroup>
     <Content Include="bin\Debug\merge\MySql.Data.dll" />
     <Content Include="bin\Debug\merge\RestSharp.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="btnForm\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormCategory\ProgressBars.resx" />

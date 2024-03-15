@@ -19,7 +19,7 @@ namespace MechTE_480.ProcessCategory
         /// <returns></returns>
         public static string GetWiFiPassword(string value)
         {
-            var v= ExCmd($"netsh wlan show profiles {value} key=clear");
+            var v = ExCmd($"netsh wlan show profiles {value} key=clear");
             var ret = v.Split(new[] { "\r\n" }, StringSplitOptions.None);
 
             foreach (var v1 in ret)
@@ -27,9 +27,10 @@ namespace MechTE_480.ProcessCategory
                 if (v1.Contains("关键内容"))
                 {
                     var v2 = v1.Split(':');
-                    return  v2[1];
+                    return v2[1];
                 }
             }
+
             return "查询失败";
         }
 
@@ -225,5 +226,25 @@ namespace MechTE_480.ProcessCategory
                 Console.WriteLine(@"无法以管理员权限重新启动应用程序：" + ex.Message);
             }
         }
+
+        #region 启动外部程序/文件夹
+
+        /// <summary>
+        /// 使用Process执行启动外部程序/文件夹
+        /// </summary>
+        /// <param name="path">路径</param>
+        public static void OpenProgram(string path)
+        {
+            try
+            {
+                Process.Start(@path);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }
+
+        #endregion
     }
 }
