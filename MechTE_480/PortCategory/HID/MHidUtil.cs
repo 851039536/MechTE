@@ -18,33 +18,63 @@ namespace MechTE_480.PortCategory.hid
         /// 存储回传值
         /// </summary>
         public string ReturnValue;
+
         /// <summary>
         /// 存储全部回传值
         /// </summary>
         public string ReturnAllValue;
 
+
+        #region WriteSend
+
         /// <summary>
         /// 使用write下下指令
         /// </summary>
-        /// <param name="command">指令06 00 05...</param>
+        /// <param name="command">指令如: 06 00 05...</param>
         /// <param name="length">指令长度</param>
         /// <param name="intPtr">装置句柄(如果没有调用GetHandle获取)</param>
-        /// <returns>指令是否下成功</returns>
+        /// <returns>bool</returns>
         public bool WriteSend(string command, int length, IntPtr intPtr)
         {
             Thread.Sleep(20);
-            var comm = MHidUtil.HexToByteArray(command, length);
+            var comm = HexToByteArray(command, length);
             uint numberOfBytesWritten = 0;
             try
             {
-                return MHidUtil.WriteFile(intPtr, comm, (uint)length, ref numberOfBytesWritten, IntPtr.Zero);
+                return WriteFile(intPtr, comm, (uint)length, ref numberOfBytesWritten, IntPtr.Zero);
             }
             catch (IOException)
             {
                 return false;
             }
         }
-        
+
+        /// <summary>
+        /// 使用write下下指令(64长度)
+        /// </summary>
+        /// <param name="command">指令如: 06 00 05...</param>
+        /// <param name="intPtr">装置句柄(如果没有调用GetHandle获取)</param>
+        /// <returns>bool</returns>
+        public bool WriteSend(string command, IntPtr intPtr)
+        {
+            Thread.Sleep(20);
+            const int length = 64;
+            var comm = HexToByteArray(command, length);
+            uint numberOfBytesWritten = 0;
+            try
+            {
+                return WriteFile(intPtr, comm, length, ref numberOfBytesWritten, IntPtr.Zero);
+            }
+            catch (IOException)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region 使用 getReport下指令
+
         /// <summary>
         /// 使用 getReport下指令
         /// </summary>
@@ -55,17 +85,21 @@ namespace MechTE_480.PortCategory.hid
         public bool GetReportSend(string command, int length, IntPtr intPtr)
         {
             Thread.Sleep(20);
-            var comm = MHidUtil.HexToByteArray(command, length);
+            var comm = HexToByteArray(command, length);
             try
             {
-                return MHidUtil.HidD_GetInputReport(intPtr, comm, length);
+                return HidD_GetInputReport(intPtr, comm, length);
             }
             catch (IOException)
             {
                 return false;
             }
         }
-        
+
+        #endregion
+
+        #region 使用setReport下指令
+
         /// <summary>
         /// 使用setReport下指令
         /// </summary>
@@ -76,19 +110,21 @@ namespace MechTE_480.PortCategory.hid
         public bool SetReportSend(string command, int length, IntPtr intPtr)
         {
             Thread.Sleep(20);
-            var comm = MHidUtil.HexToByteArray(command, length);
+            var comm = HexToByteArray(command, length);
             try
             {
-                return MHidUtil.HidD_SetOutputReport(intPtr, comm, length);
+                return HidD_SetOutputReport(intPtr, comm, length);
             }
             catch (IOException)
             {
                 return false;
             }
-
-
         }
-        
+
+        #endregion
+
+        #region 使用SetFeature下指令
+
         /// <summary>
         /// 使用SetFeature下指令
         /// </summary>
@@ -99,16 +135,21 @@ namespace MechTE_480.PortCategory.hid
         public bool SetFeatureSend(string command, int length, IntPtr intPtr)
         {
             Thread.Sleep(20);
-            var comm = MHidUtil.HexToByteArray(command, length);
+            var comm = HexToByteArray(command, length);
             try
-            {       //       通道     指令                指令長度               
-                return MHidUtil.HidD_SetFeature(intPtr, comm, length);
+            {
+                //              通道    指令   指令長度               
+                return HidD_SetFeature(intPtr, comm, length);
             }
             catch (IOException)
             {
                 return false;
             }
         }
+
+        #endregion
+
+        #region WriteReturn
 
         /// <summary>
         /// 使用write下指令,返回值存储到ReturnValue
@@ -124,48 +165,41 @@ namespace MechTE_480.PortCategory.hid
         {
             ReturnValue = "False";
             ReturnAllValue = "False";
-            var createFileHandle = MHidUtil.CreateFile(handle,          //文件位置
-                           0x40000000 | 0x80000000,          //允许对设备进行读写访问
-                           0x1 | 0x2,    //允许对设备进行共享访问
-                           IntPtr.Zero,                           //指向空指针（SECURITY_ATTRIBUTES定义文件的安全特性）
-                           3,                         //文件必须已存在
-                           0x40000000,                  //允许对文件进行重叠操作
-                           IntPtr.Zero);                          //指向空指针（如果不为零，则指定一个文件句柄。新文件将从这个文件中复制扩展属性）
+
+            var createFileHandle = CreateFile(handle, //文件位置
+                0x40000000 | 0x80000000, //允许对设备进行读写访问
+                0x1 | 0x2, //允许对设备进行共享访问
+                IntPtr.Zero, //指向空指针（SECURITY_ATTRIBUTES定义文件的安全特性）
+                3, //文件必须已存在
+                0x40000000, //允许对文件进行重叠操作
+                IntPtr.Zero); //指向空指针（如果不为零，则指定一个文件句柄。新文件将从这个文件中复制扩展属性）
             var readFlag = true;
             var values = "";
             var arrInputReport = new byte[length];
-            var endflag = false;
+            var endFlag = false;
+
+
             var fs = new FileStream(new SafeFileHandle(createFileHandle, false), FileAccess.Read | FileAccess.Write, length, true);
             try
             {
-                if (fs == null)
-                {
-                    readFlag = false;
-                    return false;
-                }
                 #region 监听通道回传值
-                AsyncCallback AsyRead = ((IAsyncResult iResult) =>
+
+                void AsyRead(IAsyncResult iResult)
                 {
                     byte[] arrBuff = (byte[])iResult.AsyncState;
-                    if (fs != null)
+                    try
                     {
-                        try
-                        {
-                            fs.EndRead(iResult);
-                        }
-                        catch
-                        {
-                            fs.Close();
-                        }
+                        fs.EndRead(iResult);
                     }
-                    else
+                    catch
                     {
-                        readFlag = false; return;
+                        fs.Close();
                     }
-                    var arrReaddata = readData.Split(' ');
-                    for (var i = 0; i < arrReaddata.Length; i++)
+
+                    var arrReadData = readData.Split(' ');
+                    for (var i = 0; i < arrReadData.Length; i++)
                     {
-                        if (arrBuff[i] != Convert.ToInt32(arrReaddata[i], 16))
+                        if (arrBuff[i] != Convert.ToInt32(arrReadData[i], 16))
                         {
                             readFlag = false;
                             return;
@@ -175,34 +209,39 @@ namespace MechTE_480.PortCategory.hid
                     var arrIndexes = index.Split(' ');
                     foreach (var a in arrIndexes)
                     {
-                        values = values + string.Format("{0:X2}", arrBuff[Convert.ToInt32(a)]) + " ";
+                        values = values + $"{arrBuff[Convert.ToInt32(a)]:X2}" + " ";
                     }
-                    var valuesall = "";
+
+                    var valueAll = "";
                     for (var i = 0; i < length; i++)
                     {
-                        valuesall = values + string.Format("{0:X2}", arrBuff[Convert.ToInt32(i)]) + " ";
+                        valueAll = values + $"{arrBuff[Convert.ToInt32(i)]:X2}" + " ";
                     }
-                    ReturnAllValue = valuesall;
+
+                    ReturnAllValue = valueAll;
                     values = values.Substring(0, values.Length - 1);
-                    endflag = true;
-                });
+                    endFlag = true;
+                }
+
                 #endregion
+
                 fs.BeginRead(arrInputReport, 0, length, AsyRead, arrInputReport);
                 Thread.Sleep(20);
                 var nums = 0;
                 while (true)
                 {
                     WriteSend(command, length, intPtr);
-                    if (endflag)
+                    if (endFlag)
                     {
                         if (readFlag)
                         {
                             ReturnValue = values.Trim();
-
                             return true;
                         }
+
                         return false;
                     }
+
                     Thread.Sleep(100);
                     nums++;
                     if (nums > 40)
@@ -219,8 +258,9 @@ namespace MechTE_480.PortCategory.hid
             {
                 fs.Close();
             }
-
         }
+
+        #endregion
 
         /// <summary>
         /// 使用setReport下下指令并且存储回传值到ReturnValue
@@ -236,13 +276,13 @@ namespace MechTE_480.PortCategory.hid
         {
             ReturnValue = "False";
             ReturnAllValue = "False";
-            var createFileHandle = MHidUtil.CreateFile(handle,          //文件位置
-                           0x40000000 | 0x80000000,          //允许对设备进行读写访问
-                           0x1 | 0x2,    //允许对设备进行共享访问
-                           IntPtr.Zero,                           //指向空指针（SECURITY_ATTRIBUTES定义文件的安全特性）
-                           3,                         //文件必须已存在
-                           0x40000000,                  //允许对文件进行重叠操作
-                           IntPtr.Zero);                          //指向空指针（如果不为零，则指定一个文件句柄。新文件将从这个文件中复制扩展属性）
+            var createFileHandle = MHidUtil.CreateFile(handle, //文件位置
+                0x40000000 | 0x80000000, //允许对设备进行读写访问
+                0x1 | 0x2, //允许对设备进行共享访问
+                IntPtr.Zero, //指向空指针（SECURITY_ATTRIBUTES定义文件的安全特性）
+                3, //文件必须已存在
+                0x40000000, //允许对文件进行重叠操作
+                IntPtr.Zero); //指向空指针（如果不为零，则指定一个文件句柄。新文件将从这个文件中复制扩展属性）
             var readFlag = true;
             var values = "";
             var arrInputReport = new byte[length];
@@ -250,14 +290,15 @@ namespace MechTE_480.PortCategory.hid
             var fs = new FileStream(new SafeFileHandle(createFileHandle, false), FileAccess.Read | FileAccess.Write, length, true);
             try
             {
-                if (fs == null)
-                {
-                    readFlag = false;
-                    return false;
-                }
-                
+                // if (fs == null)
+                // {
+                //     readFlag = false;
+                //     return false;
+                // }
+
                 #region 监听通道回传值
-                AsyncCallback asyRead = ((IAsyncResult iResult) =>
+
+                void AsyRead(IAsyncResult iResult)
                 {
                     byte[] arrBuff = (byte[])iResult.AsyncState;
                     if (fs != null)
@@ -273,8 +314,10 @@ namespace MechTE_480.PortCategory.hid
                     }
                     else
                     {
-                        readFlag = false; return;
+                        readFlag = false;
+                        return;
                     }
+
                     var arrData = readData.Split(' ');
                     for (var i = 0; i < arrData.Length; i++)
                     {
@@ -288,19 +331,23 @@ namespace MechTE_480.PortCategory.hid
                     var arrIndexes = index.Split(' ');
                     foreach (var a in arrIndexes)
                     {
-                        values = values + string.Format("{0:X2}", arrBuff[Convert.ToInt32(a)]) + " ";
+                        values = values + $"{arrBuff[Convert.ToInt32(a)]:X2}" + " ";
                     }
+
                     var valueAll = "";
                     for (var i = 0; i < length; i++)
                     {
-                        valueAll = values + string.Format("{0:X2}", arrBuff[Convert.ToInt32(i)]) + " ";
+                        valueAll = values + $"{arrBuff[Convert.ToInt32(i)]:X2}" + " ";
                     }
+
                     ReturnAllValue = valueAll;
                     values = values.Substring(0, values.Length - 1);
                     endFlag = true;
-                });
+                }
+
                 #endregion
-                fs.BeginRead(arrInputReport, 0, length, asyRead, arrInputReport);
+
+                fs.BeginRead(arrInputReport, 0, length, AsyRead, arrInputReport);
                 Thread.Sleep(20);
                 var nums = 0;
                 while (true)
@@ -314,8 +361,10 @@ namespace MechTE_480.PortCategory.hid
 
                             return true;
                         }
+
                         return false;
                     }
+
                     Thread.Sleep(100);
                     nums++;
                     if (nums > 40)
@@ -349,25 +398,28 @@ namespace MechTE_480.PortCategory.hid
             Thread.Sleep(20);
             var arr = MConvertUtil.NumberStrToIntArray(indexes);
             Thread.Sleep(20);
-            var comm = MHidUtil.HexToByteArray(command, length);
+            var comm = HexToByteArray(command, length);
             try
             {
-                if (MHidUtil.HidD_GetFeature(intPtr, comm, length))
+                if (HidD_GetFeature(intPtr, comm, length))
                 {
                     string ver = "";
                     foreach (int a in arr)
                     {
-                        ver = ver + string.Format("{0:X2}", comm[a]) + " ";
+                        ver = ver + $"{comm[a]:X2}" + " ";
                     }
+
                     var values = "";
                     for (var i = 0; i < length; i++)
                     {
-                        values = values + string.Format("{0:X2}", comm[i]) + " ";
+                        values = values + $"{comm[i]:X2}" + " ";
                     }
+
                     ReturnValue = ver.Trim();
                     ReturnAllValue = values.Trim();
                     return true;
                 }
+
                 return false;
             }
             catch (IOException)
@@ -391,25 +443,28 @@ namespace MechTE_480.PortCategory.hid
             Thread.Sleep(20);
             var arr = MConvertUtil.NumberStrToIntArray(indexes);
             Thread.Sleep(20);
-            var comm = MHidUtil.HexToByteArray(command, length);
+            var comm = HexToByteArray(command, length);
             try
             {
-                if (MHidUtil.HidD_GetInputReport(intPtr, comm, length))
+                if (HidD_GetInputReport(intPtr, comm, length))
                 {
                     string ver = "";
                     foreach (var a in arr)
                     {
-                        ver = ver + string.Format("{0:X2}", comm[a]) + " ";
+                        ver = ver + $"{comm[a]:X2}" + " ";
                     }
+
                     var values = "";
                     for (var i = 0; i < length; i++)
                     {
-                        values = values + string.Format("{0:X2}", comm[i]) + " ";
+                        values = values + $"{comm[i]:X2}" + " ";
                     }
+
                     ReturnValue = ver.Trim();
                     ReturnAllValue = values.Trim();
                     return true;
                 }
+
                 return false;
             }
             catch (IOException)
@@ -419,6 +474,8 @@ namespace MechTE_480.PortCategory.hid
         }
 
 
+        #region 直接获取指定句柄回传值
+        
         /// <summary>
         /// 直接获取指定句柄回传值
         /// </summary>
@@ -428,30 +485,25 @@ namespace MechTE_480.PortCategory.hid
         /// <returns></returns>
         public string IsReturnValue(string handle, string index, int length = 1000)
         {
-            IntPtr createFileHandle = MHidUtil.CreateFile(handle,          //文件位置
-                            0x40000000 | 0x80000000,          //允许对设备进行读写访问
-                            0x1 | 0x2,    //允许对设备进行共享访问
-                            IntPtr.Zero,                           //指向空指针（SECURITY_ATTRIBUTES定义文件的安全特性）
-                            3,                         //文件必须已存在
-                            0x40000000,                  //允许对文件进行重叠操作
-                            IntPtr.Zero);                          //指向空指针（如果不为零，则指定一个文件句柄。新文件将从这个文件中复制扩展属性）
+            IntPtr createFileHandle = MHidUtil.CreateFile(handle, //文件位置
+                0x40000000 | 0x80000000, //允许对设备进行读写访问
+                0x1 | 0x2, //允许对设备进行共享访问
+                IntPtr.Zero, //指向空指针（SECURITY_ATTRIBUTES定义文件的安全特性）
+                3, //文件必须已存在
+                0x40000000, //允许对文件进行重叠操作
+                IntPtr.Zero); //指向空指针（如果不为零，则指定一个文件句柄。新文件将从这个文件中复制扩展属性）
 
             var deviceRead = new FileStream(new SafeFileHandle(createFileHandle, false), FileAccess.Read | FileAccess.Write, 36, true);
             var result = "False";
-            if (deviceRead != null)
             {
-                AsyncCallback AsyRead = (IAsyncResult iResult) =>
+                AsyncCallback asyRead = (IAsyncResult iResult) =>
                 {
                     byte[] arrBuff = (byte[])iResult.AsyncState;
-
-                    if (deviceRead != null)
-                    {
-                        deviceRead.EndRead(iResult);
-                        result = MConvertUtil.ByteToHex(arrBuff, index);
-                    }
+                    deviceRead.EndRead(iResult);
+                    result = MConvertUtil.ByteToHex(arrBuff, index);
                 };
                 byte[] arrInputReport = new byte[length];
-                deviceRead.BeginRead(arrInputReport, 0, length, AsyRead, arrInputReport);
+                deviceRead.BeginRead(arrInputReport, 0, length, asyRead, arrInputReport);
                 //等待句柄获取回传值
                 for (var i = 0; i < 300; i++)
                 {
@@ -461,6 +513,10 @@ namespace MechTE_480.PortCategory.hid
             }
             return result;
         }
+        #endregion
+
+        #region 删除驱动(未使用,未测试是否有用)
+
         /// <summary>
         /// 删除驱动
         /// </summary>
@@ -470,33 +526,37 @@ namespace MechTE_480.PortCategory.hid
         {
             var hidGuid = Guid.Empty;
             bool result = true;
-            bool resFlag = false;
             uint deviceSerialNumber = 0;
-            MHidUtil.HidD_GetHidGuid(ref hidGuid);
+            HidD_GetHidGuid(ref hidGuid);
             int s = 0;
-            var hDevInfo = MHidUtil.SetupDiGetClassDevs(ref hidGuid,null,IntPtr.Zero,MHidUtil.Digcf.DigcfAllclasses | MHidUtil.Digcf.DigcfDeviceinterface);
-            try {
+            var hDevInfo = SetupDiGetClassDevs(ref hidGuid, null, IntPtr.Zero, Digcf.DigcfAllclasses | Digcf.DigcfDeviceinterface);
+            try
+            {
                 // 设备信息
-                MHidUtil.SpDeviceInfoData devi = new MHidUtil.SpDeviceInfoData();
-                devi.Size = Marshal.SizeOf(devi);
+                var devData = new SpDeviceInfoData();
+                devData.Size = Marshal.SizeOf(devData);
                 // 驱动程序信息
                 StringBuilder by = new StringBuilder();
 
                 const uint zzz = 0;
                 // 遍历设备信息列表
-                while (result) {
+                while (result)
+                {
                     // 获取设备信息
-                    result = MHidUtil.SetupDiEnumDeviceInfo(hDevInfo,deviceSerialNumber,ref devi);
-                    if (result) {
+                    result = SetupDiEnumDeviceInfo(hDevInfo, deviceSerialNumber, ref devData);
+                    if (result)
+                    {
                         // 获取设备驱动程序信息
-                        resFlag = MHidUtil.SetupDiGetDeviceRegistryProperty(hDevInfo,ref devi,MHidUtil.SPDRP.SPDRP_DRIVER,
-                            0,by,2048,zzz);
-                        if (!pid.Contains(by.ToString())) {
+                        SetupDiGetDeviceRegistryProperty(hDevInfo, ref devData, SPDRP.SPDRP_DRIVER,
+                            0, by, 2048, zzz);
+                        if (!pid.Contains(by.ToString()))
+                        {
                             // 删除设备
-                            resFlag = MHidUtil.SetupDiRemoveDevice(hDevInfo,ref devi);
+                            SetupDiRemoveDevice(hDevInfo, ref devData);
                             s++;
                         }
                     }
+
                     deviceSerialNumber++;
                 }
             }
@@ -504,13 +564,14 @@ namespace MechTE_480.PortCategory.hid
             {
                 // ignored
             }
-            finally {
-                MHidUtil.SetupDiDestroyDeviceInfoList(hDevInfo);
+            finally
+            {
+                SetupDiDestroyDeviceInfoList(hDevInfo);
             }
+
             return s;
         }
-        
-        
-        
+
+        #endregion
     }
 }

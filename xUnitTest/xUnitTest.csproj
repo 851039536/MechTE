@@ -52,8 +52,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="port\MHidUtilTest.cs" />
-    <Compile Include="port\MUsbTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilsTest.cs" />
     <Compile Include="windows\MMouseTest.cs" />

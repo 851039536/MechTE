@@ -6,7 +6,7 @@ namespace MechTE_480.PortCategory.usb
     /// <summary>
     /// USB端口类
     /// </summary>
-    public class MUsb
+    public class MUsbUtil
     {
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace MechTE_480.PortCategory.usb
                 if (match.Success)
                 {
                     string name = entity["Name"] as string;
-                    if (name.Contains(names)) return name;
+                    if (name != null && name.Contains(names)) return name;
                 }
             }
             return "False";

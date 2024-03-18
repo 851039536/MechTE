@@ -21,6 +21,7 @@ namespace xUnit_Test
 
         //GenerateNumberStringSequence
         [Fact]
+        
         public void GenerateNumberStringSequence()
         {
             var data = MUtil.GenerateNumberSequence(1, 10);

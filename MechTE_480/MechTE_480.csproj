@@ -78,7 +78,7 @@
     <Compile Include="PortCategory\HID\MHidUtil.cs" />
     <Compile Include="PortCategory\HID\MHidConfig.cs" />
     <Compile Include="PortCategory\HID\MHidHandle.cs" />
-    <Compile Include="PortCategory\USB\MUsb.cs" />
+    <Compile Include="PortCategory\USB\MUsbUtil.cs" />
     <Compile Include="TemplateCategory\IMerryDll.cs" />
     <Compile Include="network\MNetHelper.cs" />
     <Compile Include="network\SocketClient.cs" />

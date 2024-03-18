@@ -1,14 +1,13 @@
 ﻿using MechTE_480.ConvertCategory;
-using MechTE_480.util;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace xUnit_Test.port
+namespace MechTE_Tests.PortCategory
 {
-    public class MHidUtilTest
+    public class MHidUtilTests
     {
         private readonly ITestOutputHelper _msg;
-        public MHidUtilTest(ITestOutputHelper msg)
+        public MHidUtilTests(ITestOutputHelper msg)
         {
             _msg = msg;
         }

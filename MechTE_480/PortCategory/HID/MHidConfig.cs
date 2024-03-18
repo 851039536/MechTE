@@ -41,7 +41,7 @@ namespace MechTE_480.PortCategory.hid
         /// </summary>
         /// <param name="hFile"></param>
         /// <returns></returns>
-        [DllImport("kernel32.dll",SetLastError = true)]
+        [DllImport("kernel32.dll", SetLastError = true)]
         private static extern int CloseHandle(IntPtr hFile);
 
         /// <summary>
@@ -51,8 +51,8 @@ namespace MechTE_480.PortCategory.hid
         [DllImport("hid.dll")]
         private static extern void HidD_GetHidGuid(ref Guid hidGuid);
 
-        [DllImport("setupapi.dll",SetLastError = true)] //过滤设备，获取需要的设备
-        private static extern IntPtr SetupDiGetClassDevs(ref Guid gClass,[MarshalAs(UnmanagedType.LPStr)] string strEnumerator,IntPtr hParent,
+        [DllImport("setupapi.dll", SetLastError = true)] //过滤设备，获取需要的设备
+        private static extern IntPtr SetupDiGetClassDevs(ref Guid gClass, [MarshalAs(UnmanagedType.LPStr)] string strEnumerator, IntPtr hParent,
             Digcf nFlags);
 
         private enum Digcf //3
@@ -72,21 +72,21 @@ namespace MechTE_480.PortCategory.hid
             internal int Reserved;
         }
 
-        [DllImport("setupapi.dll",CharSet = CharSet.Auto,SetLastError = true)]
-        private static extern Boolean SetupDiEnumDeviceInterfaces(IntPtr hDevInfo,uint devInfo,ref Guid interfaceClassGuid,uint memberIndex,
+        [DllImport("setupapi.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern Boolean SetupDiEnumDeviceInterfaces(IntPtr hDevInfo, uint devInfo, ref Guid interfaceClassGuid, uint memberIndex,
             ref SpDeviceInterfaceData deviceInterfaceData);
 
-        [DllImport("setupapi.dll",SetLastError = true,CharSet = CharSet.Auto)]
-        private static extern bool SetupDiGetDeviceInterfaceDetail(IntPtr deviceInfoSet,ref SpDeviceInterfaceData deviceInterfaceData,
+        [DllImport("setupapi.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        private static extern bool SetupDiGetDeviceInterfaceDetail(IntPtr deviceInfoSet, ref SpDeviceInterfaceData deviceInterfaceData,
             IntPtr deviceInterfaceDetailData,
-            uint deviceInterfaceDetailDataSize,ref uint requiredSize,IntPtr deviceInfoData);
+            uint deviceInterfaceDetailDataSize, ref uint requiredSize, IntPtr deviceInfoData);
 
-        [StructLayout(LayoutKind.Sequential,Pack = 2)] //2
+        [StructLayout(LayoutKind.Sequential, Pack = 2)] //2
         internal struct SpDeviceInterfaceDetailData
         {
             internal int Size;
 
-            [MarshalAs(UnmanagedType.ByValTStr,SizeConst = 256)]
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
             internal string DevicePath;
         }
 
@@ -101,31 +101,35 @@ namespace MechTE_480.PortCategory.hid
         /// 句柄
         /// </summary>
         public IntPtr Handle = IntPtr.Zero;
+
         /// <summary>
         /// Path
         /// </summary>
         public string Path = "";
 
-        [DllImport("kernel32.dll",SetLastError = true)]
-        private static extern IntPtr CreateFile([MarshalAs(UnmanagedType.LPStr)] string strName,uint nAccess,uint nShareMode,IntPtr lpSecurity,
-            uint nCreationFlags,uint nAttributes,IntPtr lpTemplate);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern IntPtr CreateFile([MarshalAs(UnmanagedType.LPStr)] string strName, uint nAccess, uint nShareMode, IntPtr lpSecurity,
+            uint nCreationFlags, uint nAttributes, IntPtr lpTemplate);
 
-        [DllImport("setupapi.dll",SetLastError = true)]
-        private static extern bool SetupDiGetDeviceInterfaceDetail(IntPtr lpDeviceInfoSet,ref SpDeviceInterfaceData oInterfaceData,
-            ref SpDeviceInterfaceDetailData oDetailData,uint nDeviceInterfaceDetailDataSize,ref uint nRequiredSize,IntPtr lpDeviceInfoData);
+        [DllImport("setupapi.dll", SetLastError = true)]
+        private static extern bool SetupDiGetDeviceInterfaceDetail(IntPtr lpDeviceInfoSet, ref SpDeviceInterfaceData oInterfaceData,
+            ref SpDeviceInterfaceDetailData oDetailData, uint nDeviceInterfaceDetailDataSize, ref uint nRequiredSize, IntPtr lpDeviceInfoData);
 
-        [DllImport("setupapi.dll",SetLastError = true)]
+        [DllImport("setupapi.dll", SetLastError = true)]
         private static extern IntPtr SetupDiDestroyDeviceInfoList(IntPtr deviceInfoSet);
 
-        [DllImport("hid.dll",SetLastError = true)]
-        static extern Boolean HidD_GetFeature(IntPtr HidDeviceObject,Byte[] lpReportBuffer,Int32 ReportBufferLength);
-        [DllImport("hid.dll",SetLastError = true)]
-        static extern Boolean HidD_SetFeature(IntPtr HidDeviceObject,Byte[] lpReportBuffer,Int32 ReportBufferLength);
-        [DllImport("hid.dll",SetLastError = true)]
+        [DllImport("hid.dll", SetLastError = true)]
+        static extern Boolean HidD_GetFeature(IntPtr hidDeviceObject, Byte[] lpReportBuffer, Int32 reportBufferLength);
+
+        [DllImport("hid.dll", SetLastError = true)]
+        static extern Boolean HidD_SetFeature(IntPtr hidDeviceObject, Byte[] lpReportBuffer, Int32 reportBufferLength);
+
+        [DllImport("hid.dll", SetLastError = true)]
         private static extern bool HidD_SetOutputReport(IntPtr hDev, //设备句柄，即CreateFile的返回值
-            byte[] reportBuf,//存有待发送数据的buffer
-            int OUT_REPORT_LEN); //buffer的长度
-        [DllImport("Kernel32.dll",SetLastError = true)]
+            byte[] reportBuf, //存有待发送数据的buffer
+            int outReportLen); //buffer的长度
+
+        [DllImport("Kernel32.dll", SetLastError = true)]
         private static extern bool WriteFile(
             IntPtr hFile,
             byte[] lpBuffer,
@@ -134,12 +138,11 @@ namespace MechTE_480.PortCategory.hid
             IntPtr lpOverlapped
         );
 
-        [DllImport("hid.dll",SetLastError = true)]
+        [DllImport("hid.dll", SetLastError = true)]
         private static extern bool HidD_GetInputReport(
-            IntPtr HidDeviceObject,
+            IntPtr hidDeviceObject,
             byte[] lpReportBuffer,
-            int ReportBufferLength);
-
+            int reportBufferLength);
 
         #endregion
 
@@ -153,15 +156,15 @@ namespace MechTE_480.PortCategory.hid
         /// <param name="pid02"></param>
         /// <param name="vid02"></param>
         /// <returns></returns>
-        private bool GetHidDevicePath(string pid01,string vid01,string pid02,string vid02)
+        private bool GetHidDevicePath(string pid01, string vid01, string pid02, string vid02)
         {
             var hidGuid = Guid.Empty;
-            var Dpid01 = new Regex(pid01.ToLower());
-            var Dvid01 = new Regex(vid01.ToLower());
-            var Dpid02 = new Regex(pid02.ToLower());
-            var Dvid02 = new Regex(vid02.ToLower());
+            var dpid01 = new Regex(pid01.ToLower());
+            var dvid01 = new Regex(vid01.ToLower());
+            var dpid02 = new Regex(pid02.ToLower());
+            var dvid02 = new Regex(vid02.ToLower());
 
-            Regex[] ExternAgs =
+            Regex[] externAgs =
             {
                 new Regex("col01"),
                 new Regex("col02"),
@@ -180,47 +183,61 @@ namespace MechTE_480.PortCategory.hid
 
             HidD_GetHidGuid(ref hidGuid);
             //过滤设备，获取需要的设备
-            var hDevInfo = SetupDiGetClassDevs(ref hidGuid,null,IntPtr.Zero,Digcf.DigcfPresent | Digcf.DigcfDeviceinterface);
-            try {
+            var hDevInfo = SetupDiGetClassDevs(ref hidGuid, null, IntPtr.Zero, Digcf.DigcfPresent | Digcf.DigcfDeviceinterface);
+            try
+            {
                 var deviceInterfaceData = new SpDeviceInterfaceData();
                 deviceInterfaceData.Size = Marshal.SizeOf(deviceInterfaceData);
-                while (ret) {
-                    ret = SetupDiEnumDeviceInterfaces(hDevInfo,0,ref hidGuid,deviceSerialNumber,
+                while (ret)
+                {
+                    ret = SetupDiEnumDeviceInterfaces(hDevInfo, 0, ref hidGuid, deviceSerialNumber,
                         ref deviceInterfaceData); //获取设备，true获取到                   
-                    if (ret) {
+                    if (ret)
+                    {
                         uint nRequiredSize = 0;
-                        SetupDiGetDeviceInterfaceDetail(hDevInfo,ref deviceInterfaceData,IntPtr.Zero,0,ref nRequiredSize,IntPtr.Zero);
+                        SetupDiGetDeviceInterfaceDetail(hDevInfo, ref deviceInterfaceData, IntPtr.Zero, 0, ref nRequiredSize, IntPtr.Zero);
 
-                        var detailData = new SpDeviceInterfaceDetailData {
+                        var detailData = new SpDeviceInterfaceDetailData
+                        {
                             Size = 5 // hardcoded to 5! Sorry, but this works and trying more future proof versions by setting the size to the struct sizeof failed miserably. If you manage to sort it, mail me! Thx
                         };
-                        ret = SetupDiGetDeviceInterfaceDetail(hDevInfo,ref deviceInterfaceData,ref detailData,nRequiredSize,ref nRequiredSize,
+                        ret = SetupDiGetDeviceInterfaceDetail(hDevInfo, ref deviceInterfaceData, ref detailData, nRequiredSize, ref nRequiredSize,
                             IntPtr.Zero); //获取接口的详细信息，必须调用两次，一次返回长度，二次获取数据
 
-                        if (ret) {
-                            if (detailData.DevicePath != null) {
-                                var matchPid01 = Dpid01.Match(detailData.DevicePath);
-                                var matchVid01 = Dvid01.Match(detailData.DevicePath);
+                        if (ret)
+                        {
+                            if (detailData.DevicePath != null)
+                            {
+                                var matchPid01 = dpid01.Match(detailData.DevicePath);
+                                var matchVid01 = dvid01.Match(detailData.DevicePath);
 
-                                var matchPid02 = Dpid02.Match(detailData.DevicePath);
-                                var matchVid02 = Dvid02.Match(detailData.DevicePath);
+                                var matchPid02 = dpid02.Match(detailData.DevicePath);
+                                var matchVid02 = dvid02.Match(detailData.DevicePath);
 
                                 var mathExternAgs = new Match[IntLen];
 
-                                for (int i = 0 ; i < IntLen ; i++) {
-                                    mathExternAgs[i] = ExternAgs[i].Match(detailData.DevicePath);
+                                for (int i = 0; i < IntLen; i++)
+                                {
+                                    mathExternAgs[i] = externAgs[i].Match(detailData.DevicePath);
                                 }
 
-                                if (matchPid02.Success && matchVid02.Success) {
-                                    for (int i = 0 ; i < IntLen ; i++) {
-                                        if (mathExternAgs[i].Success) {
+                                if (matchPid02.Success && matchVid02.Success)
+                                {
+                                    for (int i = 0; i < IntLen; i++)
+                                    {
+                                        if (mathExternAgs[i].Success)
+                                        {
                                             SetPath2[i] = detailData.DevicePath;
                                             retFlag = true;
                                         }
                                     }
-                                } else if (matchPid01.Success && matchVid01.Success) {
-                                    for (int i = 0 ; i < IntLen ; i++) {
-                                        if (mathExternAgs[i].Success) {
+                                }
+                                else if (matchPid01.Success && matchVid01.Success)
+                                {
+                                    for (int i = 0; i < IntLen; i++)
+                                    {
+                                        if (mathExternAgs[i].Success)
+                                        {
                                             SetPath1[i] = detailData.DevicePath;
                                             retFlag = true;
                                         }
@@ -232,15 +249,18 @@ namespace MechTE_480.PortCategory.hid
                         }
                     }
                 }
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 retFlag = false;
-            } finally {
+            }
+            finally
+            {
                 SetupDiDestroyDeviceInfoList(hDevInfo);
             }
 
             return retFlag;
         }
-
 
         /// <summary>
         /// 获取单通道装置路径
@@ -248,7 +268,7 @@ namespace MechTE_480.PortCategory.hid
         /// <param name="pid01"></param>
         /// <param name="vid01"></param>
         /// <returns></returns>
-        private bool GetHidDevicePath(string pid01,string vid01)
+        private bool GetHidDevicePath(string pid01, string vid01)
         {
             var hidGuid = Guid.Empty;
             var Dpid01 = new Regex(pid01.ToLower());
@@ -273,38 +293,48 @@ namespace MechTE_480.PortCategory.hid
 
             HidD_GetHidGuid(ref hidGuid);
             //过滤设备，获取需要的设备
-            var hDevInfo = SetupDiGetClassDevs(ref hidGuid,null,IntPtr.Zero,Digcf.DigcfPresent | Digcf.DigcfDeviceinterface);
-            try {
+            var hDevInfo = SetupDiGetClassDevs(ref hidGuid, null, IntPtr.Zero, Digcf.DigcfPresent | Digcf.DigcfDeviceinterface);
+            try
+            {
                 var deviceInterfaceData = new SpDeviceInterfaceData();
                 deviceInterfaceData.Size = Marshal.SizeOf(deviceInterfaceData);
-                while (ret) {
-                    ret = SetupDiEnumDeviceInterfaces(hDevInfo,0,ref hidGuid,deviceSerialNumber,
+                while (ret)
+                {
+                    ret = SetupDiEnumDeviceInterfaces(hDevInfo, 0, ref hidGuid, deviceSerialNumber,
                         ref deviceInterfaceData); //获取设备，true获取到                   
-                    if (ret) {
+                    if (ret)
+                    {
                         uint nRequiredSize = 0;
-                        SetupDiGetDeviceInterfaceDetail(hDevInfo,ref deviceInterfaceData,IntPtr.Zero,0,ref nRequiredSize,IntPtr.Zero);
+                        SetupDiGetDeviceInterfaceDetail(hDevInfo, ref deviceInterfaceData, IntPtr.Zero, 0, ref nRequiredSize, IntPtr.Zero);
 
-                        var detailData = new SpDeviceInterfaceDetailData {
+                        var detailData = new SpDeviceInterfaceDetailData
+                        {
                             Size = 5 // hardcoded to 5! Sorry, but this works and trying more future proof versions by setting the size to the struct sizeof failed miserably. If you manage to sort it, mail me! Thx
                         };
-                        ret = SetupDiGetDeviceInterfaceDetail(hDevInfo,ref deviceInterfaceData,ref detailData,nRequiredSize,ref nRequiredSize,
+                        ret = SetupDiGetDeviceInterfaceDetail(hDevInfo, ref deviceInterfaceData, ref detailData, nRequiredSize, ref nRequiredSize,
                             IntPtr.Zero); //获取接口的详细信息，必须调用两次，一次返回长度，二次获取数据
 
-                        if (ret) {
-                            if (detailData.DevicePath != null) {
+                        if (ret)
+                        {
+                            if (detailData.DevicePath != null)
+                            {
                                 var matchPid01 = Dpid01.Match(detailData.DevicePath);
                                 var matchVid01 = Dvid01.Match(detailData.DevicePath);
 
 
                                 var mathExternAgs = new Match[IntLen];
 
-                                for (int i = 0 ; i < IntLen ; i++) {
+                                for (int i = 0; i < IntLen; i++)
+                                {
                                     mathExternAgs[i] = ExternAgs[i].Match(detailData.DevicePath);
                                 }
 
-                                if (matchPid01.Success && matchVid01.Success) {
-                                    for (int i = 0 ; i < IntLen ; i++) {
-                                        if (mathExternAgs[i].Success) {
+                                if (matchPid01.Success && matchVid01.Success)
+                                {
+                                    for (int i = 0; i < IntLen; i++)
+                                    {
+                                        if (mathExternAgs[i].Success)
+                                        {
                                             SetPath1[i] = detailData.DevicePath;
                                             retFlag = true;
                                         }
@@ -316,9 +346,13 @@ namespace MechTE_480.PortCategory.hid
                         }
                     }
                 }
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 retFlag = false;
-            } finally {
+            }
+            finally
+            {
                 SetupDiDestroyDeviceInfoList(hDevInfo);
             }
 
@@ -332,7 +366,7 @@ namespace MechTE_480.PortCategory.hid
         /// <param name="vid"></param>
         /// <param name="col"></param>
         /// <returns></returns>
-        private bool GetHidDevicePath(string pid,string vid,string col)
+        private bool GetHidDevicePath(string pid, string vid, string col)
         {
             Guid hidGuid = Guid.Empty;
             Regex TXregPid = new Regex(pid.ToLower());
@@ -343,30 +377,36 @@ namespace MechTE_480.PortCategory.hid
             UInt32 deviceSerialNumber = 0;
             HidD_GetHidGuid(ref hidGuid);
 
-            IntPtr hDevInfo = SetupDiGetClassDevs(ref hidGuid,null,IntPtr.Zero,Digcf.DigcfPresent | Digcf.DigcfDeviceinterface); //过滤设备，获取需要的设备
-            try {
+            IntPtr hDevInfo = SetupDiGetClassDevs(ref hidGuid, null, IntPtr.Zero, Digcf.DigcfPresent | Digcf.DigcfDeviceinterface); //过滤设备，获取需要的设备
+            try
+            {
                 SpDeviceInterfaceData deviceInterfaceData = new SpDeviceInterfaceData();
                 deviceInterfaceData.Size = Marshal.SizeOf(deviceInterfaceData);
-                while (result) {
-                    result = SetupDiEnumDeviceInterfaces(hDevInfo,0,ref hidGuid,deviceSerialNumber,
+                while (result)
+                {
+                    result = SetupDiEnumDeviceInterfaces(hDevInfo, 0, ref hidGuid, deviceSerialNumber,
                         ref deviceInterfaceData); //获取设备，true获取到                   
-                    if (result) {
+                    if (result)
+                    {
                         uint nRequiredSize = 0;
-                        SetupDiGetDeviceInterfaceDetail(hDevInfo,ref deviceInterfaceData,IntPtr.Zero,0,ref nRequiredSize,IntPtr.Zero);
+                        SetupDiGetDeviceInterfaceDetail(hDevInfo, ref deviceInterfaceData, IntPtr.Zero, 0, ref nRequiredSize, IntPtr.Zero);
 
                         SpDeviceInterfaceDetailData detailData = new SpDeviceInterfaceDetailData();
                         detailData.Size =
                             5; // hardcoded to 5! Sorry, but this works and trying more future proof versions by setting the size to the struct sizeof failed miserably. If you manage to sort it, mail me! Thx
-                        result = SetupDiGetDeviceInterfaceDetail(hDevInfo,ref deviceInterfaceData,ref detailData,nRequiredSize,ref nRequiredSize,
+                        result = SetupDiGetDeviceInterfaceDetail(hDevInfo, ref deviceInterfaceData, ref detailData, nRequiredSize, ref nRequiredSize,
                             IntPtr.Zero); //获取接口的详细信息，必须调用两次，一次返回长度，二次获取数据
 
-                        if (result) {
-                            if (detailData.DevicePath != null) {
-                                Match MatchPid = TXregPid.Match(detailData.DevicePath);
-                                Match MatchVID = TXregVid.Match(detailData.DevicePath);
+                        if (result)
+                        {
+                            if (detailData.DevicePath != null)
+                            {
+                                Match matchPid = TXregPid.Match(detailData.DevicePath);
+                                Match matchVid = TXregVid.Match(detailData.DevicePath);
                                 Match mathExternAgs = ExternAgs.Match(detailData.DevicePath);
 
-                                if (MatchPid.Success && MatchVID.Success && mathExternAgs.Success) {
+                                if (matchPid.Success && matchVid.Success && mathExternAgs.Success)
+                                {
                                     Path = detailData.DevicePath;
                                     return true;
                                 }
@@ -376,9 +416,13 @@ namespace MechTE_480.PortCategory.hid
                         }
                     }
                 }
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 return false;
-            } finally {
+            }
+            finally
+            {
                 SetupDiDestroyDeviceInfoList(hDevInfo);
             }
 
@@ -392,36 +436,57 @@ namespace MechTE_480.PortCategory.hid
         private static IntPtr GetHidDeviceHandle(string HidDevicePath)
         {
             var _HIDWriteHandle = IntPtr.Zero;
-            if (!string.IsNullOrEmpty(HidDevicePath)) {
-                _HIDWriteHandle = CreateFile(HidDevicePath,GENERIC_WRITE | GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,IntPtr.Zero,
-                    OPEN_EXISTING,0,IntPtr.Zero);
+            if (!string.IsNullOrEmpty(HidDevicePath))
+            {
+                _HIDWriteHandle = CreateFile(HidDevicePath, GENERIC_WRITE | GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, IntPtr.Zero,
+                    OPEN_EXISTING, 0, IntPtr.Zero);
             }
+
             return _HIDWriteHandle;
         }
+
         #endregion
 
         #region 删除驱动
 
-        /// <summary>
-        /// SpDeviceInfoData
-        /// </summary>
+       /// <summary>
+       /// SpDeviceInfoData
+       /// </summary>
         protected struct SpDeviceInfoData
         {
+            /// <summary>
+            /// Size
+            /// </summary>
             public int Size;
+            /// <summary>
+            /// InterfaceClassGuid
+            /// </summary>
             public Guid InterfaceClassGuid;
+            /// <summary>
+            /// Flags
+            /// </summary>
             public int Flags;
+            /// <summary>
+            /// Reserved
+            /// </summary>
             public int Reserved;
         }
 
-        [DllImport("setupapi.dll",SetLastError = true)]
-        private static extern bool SetupDiEnumDeviceInfo(IntPtr hDevInfo,uint Widx,ref SpDeviceInfoData deviceInterfaceData);
+        [DllImport("setupapi.dll", SetLastError = true)]
+        private static extern bool SetupDiEnumDeviceInfo(IntPtr hDevInfo, uint Widx, ref SpDeviceInfoData deviceInterfaceData);
 
-        [DllImport("setupapi.dll",SetLastError = true)]
-        private static extern bool SetupDiGetDeviceRegistryProperty(IntPtr hDevInfo,ref SpDeviceInfoData deviceInterfaceData,SPDRP OPTIONAL,uint PropertyRegDataType,StringBuilder PropertyBuffer,uint PropertyBufferSize,uint RequiredSize);
-        [DllImport("setupapi.dll",SetLastError = true)]
-        private static extern bool SetupDiRemoveDevice(IntPtr hDevInfo,ref SpDeviceInfoData deviceInterfaceData);
+        [DllImport("setupapi.dll", SetLastError = true)]
+        private static extern bool SetupDiGetDeviceRegistryProperty(IntPtr hDevInfo, ref SpDeviceInfoData deviceInterfaceData, SPDRP optional,
+            uint propertyRegDataType, StringBuilder propertyBuffer, uint propertyBufferSize, uint requiredSize);
+
+        [DllImport("setupapi.dll", SetLastError = true)]
+        private static extern bool SetupDiRemoveDevice(IntPtr hDevInfo, ref SpDeviceInfoData deviceInterfaceData);
+
         public enum SPDRP
         {
+            /// <summary>
+            /// SPDRP_DEVICEDESC
+            /// </summary>
             SPDRP_DEVICEDESC = 0,
             SPDRP_HARDWAREID = 0x1,
             SPDRP_COMPATIBLEIDS = 0x2,
@@ -454,38 +519,42 @@ namespace MechTE_480.PortCategory.hid
             SPDRP_UI_NUMBER_DESC_FORMAT = 0x1E,
             SPDRP_MAXIMUM_PROPERTY = 0x1F
         }
-        
- 
 
-        #endregion 
-        
+        #endregion
+
+        #region HexToByteArray
+
         /// <summary>
         /// 將16進制字符串轉換為16进制byte數組并且根据数组长度自动补0
         /// </summary>
-        /// <param name="shex">要转换的16进制字符串</param>
+        /// <param name="hex">要转换的16进制字符串</param>
         /// <param name="length">要转换的Byte数组长度</param>
         /// <returns>转换后的Byte数组，自动补0</returns>
-        public static byte[] HexToByteArray(string shex, int length)
+        private static byte[] HexToByteArray(string hex, int length)
         {
             // 将输入的十六进制字符串按空格分割成字符串数组
-            string[] ssArray = shex.Split(' ');
+            string[] ssArray = hex.Split(' ');
             // 创建一个空的字节数组列表
             var bytList = new List<byte>();
             int i = 0;
             foreach (var s in ssArray)
-            {  
+            {
                 //将十六进制的字符串转换成数值
                 bytList.Add(Convert.ToByte(s, 16));
                 i++;
             }
+
             for (int j = i; j < length; j++)
             {
                 bytList.Add(Convert.ToByte("0"));
             }
+
             return bytList.ToArray();
         }
+
+        #endregion
         
         
-       
+        
     }
 }

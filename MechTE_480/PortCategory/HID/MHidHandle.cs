@@ -7,7 +7,6 @@ namespace MechTE_480.PortCategory.hid
     /// </summary>
     public partial class MHidUtil
     {
-
         /// <summary>
         /// 获取双通道装置路径,传入参数不能为空
         /// </summary>
@@ -26,7 +25,6 @@ namespace MechTE_480.PortCategory.hid
                     SetPath1[i] = "";
                     SetPath2[i] = "";
                 }
-
                 flag = GetHidDevicePath(pid01, vid01, pid02, vid02);
                 for (int i = 0; i < IntLen; i++)
                 {
@@ -68,7 +66,6 @@ namespace MechTE_480.PortCategory.hid
             {
                 flag = false;
             }
-
             return flag;
         }
 

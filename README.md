@@ -1681,24 +1681,78 @@ HID指令帮助类
 - 命名空间: MechTE_480.PortCategory.hid
 - 类名:MHidUtil
 
-创建hid对象
+执行流程
+
+1. 先获取装置句柄 GetHandle
+2. 执行下指令函数: 如WriteReturn
+3. 关闭句柄CloseHandle
+
+### 使用实例
 
 ```csharp
-private static readonly MHidUtil Hid = new MHidUtil();
+private static readonly MHidUtil _command = new MHidUtil();
+private const string MCU_VID = "03F0";
+private const string MCU_PID = "02B5";
+
+ /// <summary>
+ /// 执行打开和关闭,
+ /// 而不必每次都重复打开和关闭串口。
+ /// </summary>
+ /// <param name="action"></param>
+ private void ExMCU_Cmd(Action action)
+ {
+     _command.GetHandle(MCU_VID, MCU_PID);
+     Thread.Sleep(100);
+     action();
+     _command.CloseHandle();
+ }
+
+/// <summary>
+/// MUC指令
+/// </summary>
+/// <param name="cmd">指令</param>
+private bool Write_MUCSend(string cmd)
+{
+    bool ret = false;
+    ExMCU_Cmd(() => { ret = _command.WriteSend(cmd, 64, _command.SetHandle1[1]); });
+    if (ret) return true;
+    return false;
+}
+```
+
+
+
+### WriteSend
+
+```csharp
+/// <summary>
+/// 使用write下下指令
+/// </summary>
+/// <param name="command">指令如: 06 00 05...</param>
+/// <param name="length">指令长度</param>
+/// <param name="intPtr">装置句柄(如果没有调用GetHandle获取)</param>
+/// <returns>bool</returns>
+public bool WriteSend(string command, int length, IntPtr intPtr)
+
+ /// <summary>
+ /// 使用write下下指令(64长度)
+ /// </summary>
+ /// <param name="command">指令如: 06 00 05...</param>
+ /// <param name="intPtr">装置句柄(如果没有调用GetHandle获取)</param>
+ /// <returns>bool</returns>
+ public bool WriteSend(string command, IntPtr intPtr)
 ```
 
 
 
 
 
-
-
-## MUsb
+## MUsbUtil
 
 USB端口类
 
-- 命名空间: MechTE_480.port.usb
-- 类名:MUsb
+- 命名空间: MechTE_480.PortCategory.usb
+- 类名:MUsbUtil
 
 ### GetDeviceName
 

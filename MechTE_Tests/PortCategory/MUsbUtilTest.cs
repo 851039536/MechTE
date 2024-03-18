@@ -2,22 +2,20 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace xUnit_Test.port
+namespace MechTE_Tests.PortCategory
 {
-    public class MUsbTest
+    public class MUsbUtilTest
     {
-        private readonly MUsb _usb = new MUsb();
-        
         private readonly ITestOutputHelper _msg;
 
-        public MUsbTest(ITestOutputHelper msg)
+        public MUsbUtilTest(ITestOutputHelper msg)
         {
             _msg = msg;
         }
         [Fact]
         public void GetDeviceName()
         {
-            var ret = MUsb.GetDeviceName(0x413c, 0xa527,"Dell");
+            var ret = MUsbUtil.GetDeviceName(0x413c, 0xa527,"Dell");
            _msg.WriteLine(ret);
             Assert.Equal(ret, ret);
         } 
