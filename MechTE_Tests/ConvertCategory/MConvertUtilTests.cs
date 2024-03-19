@@ -50,7 +50,7 @@ namespace MechTE_Tests.ConvertCategory
         public void HexToAscii()
         {
             var data = MConvertUtil.HexToAscii("76312E342E30");
-            var data2= "76312E342E30".MHexToAscii();
+            var data2= "76312E342E30".HexToAsciiEx();
             if (data.Equals(data2))
             {
                 _msg.WriteLine(data);
@@ -78,7 +78,7 @@ namespace MechTE_Tests.ConvertCategory
         /// 通过将byte数组中的每个元素转换为十六进制字符串，并在每个元素之间添加空格，将byte数组转换为字符串
         /// </summary>
         [Fact]
-        public void ByteToHexs()
+        public void ByteToHex()
         {
             byte[] bytes = { 65, 66, 67, 68 };
             string result = MConvertUtil.ByteToHex(bytes);

@@ -133,6 +133,9 @@ namespace MechTE_480.Windows
         int SetDuckingPreference(bool optOut);
     }
 
+    /// <summary>
+    /// IAudioEndpointVolume
+    /// </summary>
     [Guid("5CDF2C82-841E-4546-9722-0CF74078229A"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IAudioEndpointVolume
     {

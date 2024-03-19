@@ -14,7 +14,7 @@ namespace MechTE_480.ConvertCategory
         /// </summary>
         /// <param name="value"></param>
         /// <returns>string</returns>
-        private static string StringToHidFormat(string value)
+        public static string StringToHidFormat(string value)
         {
             var splitStrings = new string[value.Length / 2];
             for (int i = 0; i < splitStrings.Length; i++)

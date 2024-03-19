@@ -1,5 +1,3 @@
-c#一些常用功能封装如弹窗, 文件操作, 数据转换, ini文件操作, 字符串操作等
-
 # 第三方库合并
 
 ## 合并工具及脚本
@@ -48,7 +46,11 @@ call $(TargetPath) merge.bat
 
 # MechTE_480
 
-功能模块
+基于 **NET Framework**  4.8.0 框架编写 , .NET Framework 仅适用于 Windows 系统。
+
+使用c#编写一些常用功能封装如弹窗, 文件操作, 数据转换, ini文件操作, 字符串操作等
+
+扩展方法 : 都是以Ex字符后缀结束
 
 ## MAssertUtil
 
@@ -961,7 +963,7 @@ public static void ClearSection(string Section,string filePath)
 
 ```csharp
 // 扩展方法
-public static void MStartApp(this string value)
+public static void StartAppEx(this string value)
 ```
 
 **参数**
@@ -973,7 +975,7 @@ public static void MStartApp(this string value)
 ```csharp
 public static string Reverse(string value)
 // 扩展方法
-public static string MReverse(this string value)
+public static string ReverseEx(this string value)
 ```
 
 **参数**
@@ -999,7 +1001,7 @@ public static string MReverse(this string value)
 ```csharp
 public static string ClearSpaces(string value)
 // 扩展方式
-public static string MClearSpaces(this string value)
+public static string ClearSpacesEx(this string value)
 ```
 
 ### 字符串按照分隔符转List
@@ -1091,7 +1093,7 @@ public static void LogWrite(string paths, string name, string str)
 ```csharp
 public static int ToInt32(string value)
 //扩展方法
-public static int MToInt32(this string value)
+public static int ToInt32Ex(this string value)
 ```
 
 **参数**
@@ -1197,7 +1199,7 @@ ASCII字符
 ```csharp
 public static string HexToAscii(string hex)
 //扩展方法
-public static string MHexToAscii(this string hex)   
+public static string HexToAsciiEx(this string hex)   
 ```
 
 
@@ -1217,7 +1219,7 @@ ASCII字符转为16进制字符
 ```csharp
 public static string AsciiStrToHexStr(string value)
 //扩展方法
-public static string MAsciiStrToHexStr(this string value)    
+public static string AsciiStrToHexStrEx(this string value)    
 ```
 
 
@@ -1250,7 +1252,7 @@ public static string HexToAsciiHex(string value)
 
 ```csharp
 public static string ToHidFormat(string value)   
-public static string MToHidFormat(this string value)
+public static string ToHidFormatEx(this string value)
 ```
 
 ### 将字符串转换为单精度浮点型
@@ -1872,12 +1874,6 @@ public static string GetCurrentProgramDirectory()
 public static string GenerateNumberSequence(int startNumber, int sequenceLength)
 ```
 
-
-
-
-
-
-
 ### IsInt
 
 ```csharp
@@ -2065,5 +2061,7 @@ public static bool IsUserAdministrator()
 
 # MechTE_ContextMenu
 
-菜单配置
+自定义桌面菜单库
+
+
 

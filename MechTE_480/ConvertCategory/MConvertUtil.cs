@@ -23,11 +23,10 @@ namespace MechTE_480.ConvertCategory
         /// <summary>
         /// 将字符串转换为整型，转换失败返回0
         /// </summary>
-        public static int MToInt32(this string value)
+        public static int ToInt32Ex(this string value)
         {
             return int.TryParse(value, out var result) ? result : 0;
         }
-
         #endregion
 
         #region 将字符串转换为长整型
@@ -136,7 +135,7 @@ namespace MechTE_480.ConvertCategory
         /// </summary>
         /// <param name="hex">16个数字（0-9和A-F）来表示</param>
         /// <returns></returns>
-        public static string MHexToAscii(this string hex)
+        public static string HexToAsciiEx(this string hex)
         {
             return HexStringToAsciiString(hex);
         }
@@ -160,7 +159,7 @@ namespace MechTE_480.ConvertCategory
         /// </summary>
         /// <param name="value">转换值</param>
         /// <returns></returns>
-        public static string MAsciiStrToHexStr(this string value)
+        public static string AsciiStrToHexStrEx(this string value)
         {
             return AsciiStringToHexString(value);
         }
@@ -247,7 +246,7 @@ namespace MechTE_480.ConvertCategory
         /// </summary>
         /// <param name="value"></param>
         /// <returns>string</returns>
-        public static string MToHidFormat(this string value)
+        public static string ToHidFormatEx(this string value)
         {
             return StringToHidFormat(value);
         }
@@ -278,9 +277,8 @@ namespace MechTE_480.ConvertCategory
         /// 示例：[ "AB", "CD", "EF" ] -> "AB{separator}CD{separator}EF"
         /// </summary>
         /// <param name="bytes"></param>
-        /// <param name="separator">分隔符</param>
         /// <returns></returns>
-        private static string ByteArr2HexStrings(byte[] bytes, string separator = "")
+        private static string ByteArr2HexStrings(byte[] bytes)
         {
             return ByteArrayToHexStrings(bytes.ToList());
         }

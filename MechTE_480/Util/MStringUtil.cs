@@ -12,13 +12,13 @@ namespace MechTE_480.util
     public static class MStringUtil
     {
 
-        #region 扩展方法,必须以M开头区分
+        #region 扩展方法
 
         /// <summary>
         /// 启动应用网站
         /// </summary>
         /// <param name="value"></param>
-        public static void MStartApp(this string value)
+        public static void StartAppEx(this string value)
         {
             MProcessUtil.StartApp(value);
         }
@@ -28,7 +28,7 @@ namespace MechTE_480.util
         /// </summary>
         /// <param name="value">11 22 33 44</param>
         /// <returns>44332211->11223344</returns>
-        public static string MReverse(this string value)
+        public static string ReverseEx(this string value)
         {
             //使用StringBuilder代替字符串拼接，避免了频繁的内存分配和拷贝，提高了代码的效率
             var newStr = new StringBuilder();
@@ -76,7 +76,7 @@ namespace MechTE_480.util
         /// </summary>
         /// <param name="value"></param>
         /// <returns>string</returns>
-        public static string MClearSpaces(this string value)
+        public static string ClearSpacesEx(this string value)
         {
             return value.Replace(" ", "");
         }
