@@ -17,26 +17,14 @@
     &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.RegexsCategory.MRegexUtilTests.IsEmails&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.UtilsTest.GenerateNumberStringSequence&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.PortCategory.MUsbUtilTest.GetDeviceName&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.EncryptionCategory.MAesUtilTests.EncryptSecret16Test&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.EncryptionCategory.MAesUtilTests.EncryptSecret24Test&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.EncryptionCategory.MAesUtilTests.EncryptSecret32Test&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.ConvertCategory.MConvertUtilTests.ToDouble&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.ConvertCategory.MConvertUtilTests.ToEnum&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=78cff1dc_002D77ac_002D447a_002D91de_002D6077f57e9f77/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TEST" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.WinTest.TEST&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.UtilsTest.Execute&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.WinTest.IsConnectInternet&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.files.MFileTest.CopyFile&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.XmlTest.读取指定路径和节点的属性值&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.XmlTest.Insert&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.IniTest.MouseMove&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.windows.MMouseTest.MouseMove&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::xUnit_Test.util.MStringTest.GetStrArray&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::VSxUnitTest.util.MConvertUtilTests.ToInt32&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::VSxUnitTest.util.MConvertUtilTests.ToInt64&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.AssertCategory.MAssertUtilTests.GetDeviceName&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.AssertCategory.MAssertUtilTests.IsEmpty&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::4F2A56FB-0199-4A3A-925A-040E5B8624D6::.NETFramework,Version=v4.8::xUnit_Test.ConvertCategory.MConvertUtilTests.ToInt32&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
+	
 	
 	
 	

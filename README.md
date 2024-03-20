@@ -1,3 +1,11 @@
+
+
+<h1 align="center"> MechTE </h1>
+
+MechTE一个功能丰富且易用的 .NET 工具库
+
+
+
 # 第三方库合并
 
 ## 合并工具及脚本
@@ -102,9 +110,9 @@ public static void Assert( string errMsg)
 
 
 
-## MFileUtil
+## 文件操作
 
-文件操作类 
+MFileUtil 文件操作类
 
 - 命名空间: MechTE_480.FileCategory
 - 类名:MFile
@@ -1136,6 +1144,20 @@ public static bool ToBoolean(string value)
 
 转换成功则返回转换后的布尔型值，否则返回false
 
+### 将字符转换为双精度浮点型
+
+**参数**
+
+`value`：要转换的字符串。
+
+**返回值**
+
+将字符串转换为双精度浮点型，转换失败返回0
+
+```csharp
+public static double ToDouble(string value)
+```
+
 ### 进制数间的转换
 
 实现2,8,10,16进制数间的转换
@@ -1220,6 +1242,73 @@ ASCII字符转为16进制字符
 public static string AsciiStrToHexStr(string value)
 //扩展方法
 public static string AsciiStrToHexStrEx(this string value)    
+```
+
+### 将字符转换为十进制数
+
+将字符串转换为十进制数，转换失败返回0
+
+**参数**
+
+`value`：要转换的值
+
+**返回值**
+
+decimal
+
+```csharp
+public static decimal ToDecimal(string value)
+```
+
+### 将字符转换为十进制数
+
+将字符串转换为日期时间，转换失败返回DateTime.MinValue
+
+`value`：要转换的值
+
+**返回值**
+
+DateTime
+
+```csharp
+public static DateTime ToDateTime(string value)
+```
+
+### 将字符串转换为枚举类型
+
+将字符串转换为枚举类型，转换失败返回默认值
+
+`value`：要转换的值
+`defaultValue`：
+
+**返回值**
+
+DateTime
+
+```csharp
+public static T ToEnum<T>(string value, T defaultValue = default) where T : struct
+```
+
+单元测试
+
+```csharp
+ public enum MyEnum
+ {
+     Value1,
+     Value2,
+     Value3
+ }
+ [Fact]
+ public void ToEnum()
+ {
+     // 使用方法
+     string input = "Value2";
+     var convertedEnum = MConvertUtil.ToEnum<MyEnum>(input); // 如果 "Value2" 存在于 MyEnum 中，则转换成功并返回相应枚举成员
+     var defaultValueCase = MConvertUtil.ToEnum<MyEnum>("NonExistentValue"); // 如果 "NonExistentValue" 不存在于 MyEnum 中，则返回默认值 MyEnum.Value1
+     _msg.WriteLine(convertedEnum.ToString());
+     _msg.WriteLine(defaultValueCase.ToString());
+     Assert.Equal(defaultValueCase, defaultValueCase);
+ }
 ```
 
 
@@ -1319,11 +1408,9 @@ public static string ByteToHex(byte[] bytes, string index)
 
 
 
+## 时间操作
 
-
-## MDateTimeUtil
-
-时间类操作
+MDateTimeUtil 时间类操作 
 
 - 命名空间: MechTE_480.DateTimeCategory
 - 类名:MDateTimeUtil
@@ -1357,6 +1444,12 @@ DayOfWeek
 ```csharp
 public static DayOfWeek GetDayOfWeek()
 ```
+
+
+
+## 数据加密
+
+
 
 
 

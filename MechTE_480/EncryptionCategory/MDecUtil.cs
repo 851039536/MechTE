@@ -24,10 +24,10 @@ namespace MechTE_480.EncryptionCategory
             {
                 throw new Exception("Error: \n源字符串为空！！");
             }
-            DESCryptoServiceProvider objDes = new DESCryptoServiceProvider();
-            MemoryStream objMemoryStream = new MemoryStream();
-            CryptoStream objCryptoStream = new CryptoStream(objMemoryStream,objDes.CreateEncryptor(SArrDesKey,SArrDesiv),CryptoStreamMode.Write);
-            StreamWriter objStreamWriter = new StreamWriter(objCryptoStream);
+            var objDes = new DESCryptoServiceProvider();
+            var objMemoryStream = new MemoryStream();
+            var objCryptoStream = new CryptoStream(objMemoryStream,objDes.CreateEncryptor(SArrDesKey,SArrDesiv),CryptoStreamMode.Write);
+            var objStreamWriter = new StreamWriter(objCryptoStream);
             objStreamWriter.Write(mNeedEncodeString);
             objStreamWriter.Flush();
             objCryptoStream.FlushFinalBlock();
@@ -46,11 +46,11 @@ namespace MechTE_480.EncryptionCategory
             {
                 throw new Exception("Error: \n源字符串为空！！");
             }
-            DESCryptoServiceProvider objDes = new DESCryptoServiceProvider();
-            byte[] arrInput = Convert.FromBase64String(mNeedEncodeString);
-            MemoryStream objMemoryStream = new MemoryStream(arrInput);
-            CryptoStream objCryptoStream = new CryptoStream(objMemoryStream,objDes.CreateDecryptor(SArrDesKey,SArrDesiv),CryptoStreamMode.Read);
-            StreamReader objStreamReader = new StreamReader(objCryptoStream);
+            var objDes = new DESCryptoServiceProvider();
+            var arrInput = Convert.FromBase64String(mNeedEncodeString);
+            var objMemoryStream = new MemoryStream(arrInput);
+            var objCryptoStream = new CryptoStream(objMemoryStream,objDes.CreateDecryptor(SArrDesKey,SArrDesiv),CryptoStreamMode.Read);
+            var objStreamReader = new StreamReader(objCryptoStream);
             return objStreamReader.ReadToEnd();
         }
     }

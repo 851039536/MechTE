@@ -15,8 +15,8 @@ namespace MechTE_480.EncryptionCategory
         /// <summary>
         /// Aes 加密
         /// </summary>
-        /// <param name="str"></param>
-        /// <param name="sk"></param>
+        /// <param name="str">加密值</param>
+        /// <param name="sk">秘钥 秘钥为16 、24、 32位的字符</param>
         /// <param name="cipher"></param>
         /// <param name="padding"></param>
         /// <param name="encoding"></param>
@@ -26,13 +26,13 @@ namespace MechTE_480.EncryptionCategory
             if (string.IsNullOrEmpty(str)) return string.Empty;
             if (!IsLegalSize(sk)) throw new ArgumentException("不合规的秘钥，请确认秘钥为16 、24、 32位的字符");
             encoding ??= Encoding.UTF8;
-            byte[] key = encoding.GetBytes(sk).ToArray();
-            byte[] toEncrypt = encoding.GetBytes(str);
+            var key = encoding.GetBytes(sk).ToArray();
+            var toEncrypt = encoding.GetBytes(str);
             var aes = Aes.Create();
             aes.Key = key;
             aes.Mode = cipher;
             aes.Padding = padding;
-            ICryptoTransform cTransform = aes.CreateEncryptor();
+            var cTransform = aes.CreateEncryptor();
             var resultArray = cTransform.TransformFinalBlock(toEncrypt, 0, toEncrypt.Length);
             return Convert.ToBase64String(resultArray);
         }
@@ -40,8 +40,8 @@ namespace MechTE_480.EncryptionCategory
         /// <summary>
         /// Aes 解密
         /// </summary>
-        /// <param name="str"></param>
-        /// <param name="sk"></param>
+        /// <param name="str">加密值</param>
+        /// <param name="sk">秘钥 秘钥为16 、24、 32位的字符</param>
         /// <param name="cipher"></param>
         /// <param name="padding"></param>
         /// <param name="encoding"></param>
@@ -51,13 +51,13 @@ namespace MechTE_480.EncryptionCategory
             if (string.IsNullOrEmpty(str)) return string.Empty;
             if (!IsLegalSize(sk)) throw new ArgumentException("不合规的秘钥，请确认秘钥为16 、24、 32位的字符");
             encoding ??= Encoding.UTF8;
-            byte[] key = encoding.GetBytes(sk).ToArray();
-            byte[] toDecrypt = Convert.FromBase64String(str);
+            var key = encoding.GetBytes(sk).ToArray();
+            var toDecrypt = Convert.FromBase64String(str);
             var aes = Aes.Create();
             aes.Key = key;
             aes.Mode = cipher;
             aes.Padding = padding;
-            ICryptoTransform cTransform = aes.CreateDecryptor();
+            var cTransform = aes.CreateDecryptor();
             var resultArray = cTransform.TransformFinalBlock(toDecrypt, 0, toDecrypt.Length);
             return encoding.GetString(resultArray);
         }
@@ -82,8 +82,7 @@ namespace MechTE_480.EncryptionCategory
             return false;
         }
 
-
-
+        
         /*
          * AES Blowfish
          * 对称加密算法的优点是速度快，

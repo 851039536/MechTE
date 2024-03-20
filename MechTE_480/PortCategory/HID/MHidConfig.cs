@@ -57,10 +57,22 @@ namespace MechTE_480.PortCategory.hid
 
         private enum Digcf //3
         {
-            DigcfDefault = 0x1, //返回与系统默认设备相关的设备
-            DigcfPresent = 0x2, //返回当前存在的设备
-            DigcfAllclasses = 0x4, //返回所有安装的设备
-            DigcfProfile = 0x8, //只返回当前硬件配置文件的设备
+            /// <summary>
+            /// 返回与系统默认设备相关的设备
+            /// </summary>
+            DigcfDefault = 0x1, 
+            /// <summary>
+            /// 返回当前存在的设备
+            /// </summary>
+            DigcfPresent = 0x2, 
+            /// <summary>
+            /// 返回所有安装的设备
+            /// </summary>
+            DigcfAllclasses = 0x4, 
+            /// <summary>
+            /// 只返回当前硬件配置文件的设备
+            /// </summary>
+            DigcfProfile = 0x8, 
             DigcfDeviceinterface = 0x10 //返回所有支持的设备
         }
 

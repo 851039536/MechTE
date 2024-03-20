@@ -24,15 +24,36 @@ namespace MechTE_Tests.ConvertCategory
             Assert.Equal(data, data);
         }
 
-        /// <summary>
-        /// 将字符串转换为长整型，转换失败返回0
-        /// </summary>
         [Fact]
         public void ToInt64()
         {
             var data = MConvertUtil.ToInt64("183213213214");
             _msg.WriteLine(data.ToString());
             Assert.Equal(data, data);
+        }    
+        [Fact]
+        public void ToDouble()
+        {
+            var data = MConvertUtil.ToDouble("1832132132.14");
+            _msg.WriteLine(data.ToString());
+            Assert.Equal(data, data);
+        }
+
+        private enum MyEnum
+        {
+            Value1,
+            Value2,
+        }
+        [Fact]
+        public void ToEnum()
+        {
+            // 使用方法
+            string input = "Value2";
+            var convertedEnum = MConvertUtil.ToEnum<MyEnum>(input); // 如果 "Value2" 存在于 MyEnum 中，则转换成功并返回相应枚举成员
+            var defaultValueCase = MConvertUtil.ToEnum<MyEnum>("NonExistentValue"); // 如果 "NonExistentValue" 不存在于 MyEnum 中，则返回默认值 MyEnum.Value1
+            _msg.WriteLine(convertedEnum.ToString());
+            _msg.WriteLine(defaultValueCase.ToString());
+            Assert.Equal(defaultValueCase, defaultValueCase);
         }
 
         [Fact]

@@ -68,6 +68,7 @@
     <Compile Include="AssertCategory\MAssertUtilTests.cs" />
     <Compile Include="ConvertCategory\MConvertUtilTests.cs" />
     <Compile Include="DateTimeCategory\MDateTimeTests.cs" />
+    <Compile Include="EncryptionCategory\MAesUtilTests.cs" />
     <Compile Include="EncryptionCategory\MDecUtilTests.cs" />
     <Compile Include="FileCategory\MFileTransferTests.cs" />
     <Compile Include="FileCategory\MFileUtilTests.cs" />

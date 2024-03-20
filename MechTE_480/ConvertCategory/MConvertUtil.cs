@@ -27,6 +27,7 @@ namespace MechTE_480.ConvertCategory
         {
             return int.TryParse(value, out var result) ? result : 0;
         }
+
         #endregion
 
         #region 将字符串转换为长整型
@@ -118,6 +119,25 @@ namespace MechTE_480.ConvertCategory
 
         #endregion
 
+        #region 将字符串转换为双精度浮点型
+
+        /// <summary>
+        /// 将字符串转换为双精度浮点型，转换失败返回0
+        /// </summary>
+        /// <param name="value">要转换的值</param>
+        /// <returns></returns>
+        public static double ToDouble(string value)
+        {
+            if (double.TryParse(value, out var result))
+            {
+                return result;
+            }
+
+            return 0;
+        }
+
+        #endregion
+
         #region 16进制字符转为ASCII字符
 
         /// <summary>
@@ -138,6 +158,50 @@ namespace MechTE_480.ConvertCategory
         public static string HexToAsciiEx(this string hex)
         {
             return HexStringToAsciiString(hex);
+        }
+
+        #endregion
+
+        #region 将字符串转换为十进制数
+
+        /// <summary>
+        /// 将字符串转换为十进制数，转换失败返回0
+        /// </summary>
+        /// <param name="value">要转换的值</param>
+        /// <returns></returns>
+        public static decimal ToDecimal(string value)
+        {
+            return decimal.TryParse(value, out var result) ? result : 0;
+        }
+
+        #endregion
+
+        #region 将字符串转换为日期时间
+
+        /// <summary>
+        /// 将字符串转换为日期时间，转换失败返回DateTime.MinValue
+        /// </summary>
+        /// <param name="value">要转换的值</param>
+        /// <returns></returns>
+        public static DateTime ToDateTime(string value)
+        {
+            return DateTime.TryParse(value, out var result) ? result : DateTime.MinValue;
+        }
+
+        #endregion
+
+        #region 将字符串转换为枚举类型
+
+        /// <summary>
+        /// 将字符串转换为枚举类型，转换失败返回默认值
+        /// </summary>
+        /// <param name="value">要转换的值</param>
+        /// <param name="defaultValue"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static T ToEnum<T>(string value, T defaultValue = default) where T : struct
+        {
+            return Enum.TryParse(value, out T result) ? result : defaultValue;
         }
 
         #endregion
