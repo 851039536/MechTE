@@ -2065,3 +2065,7 @@ public static bool IsUserAdministrator()
 
 
 
+# MechTE_Speech
+
+微软语音识别封装
+

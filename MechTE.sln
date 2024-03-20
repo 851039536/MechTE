@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_Tests", "MechTE_Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_Core", "MechTE_Core\MechTE_Core.csproj", "{65C9E2B0-BE53-4C51-87AF-75EFBA5A4F13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechTE_Speech", "MechTE_Speech\MechTE_Speech.csproj", "{015F827E-F899-4859-BFFE-021B0A8258DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{65C9E2B0-BE53-4C51-87AF-75EFBA5A4F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65C9E2B0-BE53-4C51-87AF-75EFBA5A4F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65C9E2B0-BE53-4C51-87AF-75EFBA5A4F13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{015F827E-F899-4859-BFFE-021B0A8258DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{015F827E-F899-4859-BFFE-021B0A8258DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{015F827E-F899-4859-BFFE-021B0A8258DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{015F827E-F899-4859-BFFE-021B0A8258DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
