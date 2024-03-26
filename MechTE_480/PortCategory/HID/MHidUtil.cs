@@ -556,7 +556,6 @@ namespace MechTE_480.PortCategory.hid
                             s++;
                         }
                     }
-
                     deviceSerialNumber++;
                 }
             }

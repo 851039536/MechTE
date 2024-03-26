@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading;
 using MechTE_480.RegexsCategory;
 
@@ -77,8 +79,7 @@ namespace MechTE_480.util
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
-        
-        
+
 
         /// <summary>
         /// 生成数字字符串序列(传0,6生成 0 1 2 3 4 5)
@@ -93,26 +94,6 @@ namespace MechTE_480.util
                 .Aggregate((a, b) => a + " " + b);
             return strLen;
         }
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-        
-        
 
         /// <summary>
         /// 验证是否为整数 如果为空，认为验证不合格 返回false
@@ -133,7 +114,7 @@ namespace MechTE_480.util
             string pattern = @"^[0-9]+[0-9]*$";
 
             //验证
-            return MRegexUtil.IsMatch(number,pattern);
+            return MRegexUtil.IsMatch(number, pattern);
         }
 
         /// <summary>
@@ -155,7 +136,7 @@ namespace MechTE_480.util
             string pattern = @"^[0-9]+[0-9]*[.]?[0-9]*$";
 
             //验证
-            return MRegexUtil.IsMatch(number,pattern);
+            return MRegexUtil.IsMatch(number, pattern);
         }
     }
 }
