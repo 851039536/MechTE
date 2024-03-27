@@ -66,6 +66,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AssertCategory\MAssertUtilTests.cs" />
+    <Compile Include="BranchCategory\ChainSwitchTests.cs" />
     <Compile Include="ConvertCategory\MConvertUtilTests.cs" />
     <Compile Include="DateTimeCategory\MDateTimeTests.cs" />
     <Compile Include="EncryptionCategory\MAesUtilTests.cs" />

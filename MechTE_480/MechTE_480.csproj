@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertCategory\MAssertUtil.cs" />
+    <Compile Include="BranchCategory\ChainSwitch.cs" />
     <Compile Include="ConvertCategory\MConvertConfig.cs" />
     <Compile Include="DateTimeCategory\MDateTimeUtil.cs" />
     <Compile Include="EncryptionCategory\MAesUtil.cs" />

@@ -22,6 +22,7 @@
     &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.EncryptionCategory.MAesUtilTests.EncryptSecret32Test&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.ConvertCategory.MConvertUtilTests.ToDouble&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.ConvertCategory.MConvertUtilTests.ToEnum&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E08A9A18-EADA-4DDB-B13E-83FD18A96D1C::.NETFramework,Version=v4.8::MechTE_Tests.BranchCategory.ChainSwitchTests.ChainSwitch&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
